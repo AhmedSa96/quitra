@@ -1,4 +1,4 @@
-# smoke
+# Quitra
 
 A new Flutter project.
 

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quitra - Pause &amp; Breathe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#dce2f7",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#9c573a",
+                    "surface-variant": "#dce2f7",
+                    "tertiary": "#7f4025",
+                    "secondary-container": "#c5e6e1",
+                    "surface-dim": "#d3daef",
+                    "surface-container": "#e9edff",
+                    "surface-container-low": "#f1f3ff",
+                    "on-tertiary-fixed": "#370e00",
+                    "surface-container-high": "#e1e8fd",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#accdc8",
+                    "on-background": "#141b2b",
+                    "on-tertiary-fixed-variant": "#72361b",
+                    "on-secondary-fixed": "#00201d",
+                    "secondary": "#466460",
+                    "tertiary-fixed": "#ffdbce",
+                    "on-tertiary-container": "#ffe5db",
+                    "on-primary-container": "#a3faef",
+                    "on-primary-fixed": "#00201d",
+                    "on-surface": "#141b2b",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#293040",
+                    "background": "#f9f9ff",
+                    "inverse-on-surface": "#edf0ff",
+                    "primary-fixed-dim": "#80d5cb",
+                    "secondary-fixed": "#c8e9e4",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#9cf2e8",
+                    "primary": "#005c55",
+                    "inverse-primary": "#80d5cb",
+                    "surface-tint": "#006a63",
+                    "primary-container": "#0f766e",
+                    "on-secondary-container": "#4a6864",
+                    "outline": "#6e7977",
+                    "on-surface-variant": "#3e4947",
+                    "tertiary-fixed-dim": "#ffb598",
+                    "surface": "#f9f9ff",
+                    "on-primary-fixed-variant": "#00504a",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f9f9ff",
+                    "on-secondary-fixed-variant": "#2e4c48",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bdc9c6",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f9f9ff;
+            overflow: hidden;
+        }
+        /* Custom gradient backgrounds using theme colors */
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #005c55 0%, #0f766e 100%);
+        }
+        .breath-glow {
+            box-shadow: 0 0 60px 10px rgba(156, 242, 232, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- Focused Canvas: Quitra Craving Flow - Step 1 -->
+<main class="min-h-screen w-full flex flex-col items-center justify-between px-8 py-16 md:py-24 max-w-lg mx-auto relative">
+<!-- Top Exit/Close Action (Contextual Suppression of Nav) -->
+<div class="absolute top-8 left-8">
+<button class="p-3 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Header Section -->
+<header class="text-center mt-12">
+<h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tighter mb-4">
+                Pause. Breathe.
+            </h1>
+<p class="text-on-surface-variant font-medium text-lg max-w-[280px] mx-auto leading-relaxed">
+                Let your mind settle as your breath flows.
+            </p>
+</header>
+<!-- The Breath Module (Specialized Component) -->
+<div class="flex-1 flex items-center justify-center w-full">
+<div class="relative flex items-center justify-center">
+<!-- Concentric Circle 3 (Outer - most faint) -->
+<div class="absolute w-72 h-72 rounded-full border border-primary-fixed/20 animate-pulse"></div>
+<!-- Concentric Circle 2 (Middle) -->
+<div class="absolute w-56 h-56 rounded-full border border-primary-fixed/40"></div>
+<!-- Inner Core Circle (The Breath Anchor) -->
+<div class="w-40 h-40 rounded-full bg-primary-gradient flex items-center justify-center shadow-xl breath-glow relative z-10">
+<div class="absolute inset-0 bg-white/10 rounded-full blur-sm"></div>
+<span class="material-symbols-outlined text-white text-5xl opacity-80" data-icon="air">air</span>
+</div>
+<!-- Decorative tonal layers (Tonal Layering Principle) -->
+<div class="absolute -z-10 w-[320px] h-[320px] bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+</div>
+<!-- Progress Footer Message -->
+<footer class="w-full flex flex-col items-center gap-8">
+<div class="bg-surface-container-low px-6 py-4 rounded-full flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="timer">timer</span>
+<p class="text-sm md:text-base font-semibold text-on-surface-variant">
+                    This urge will pass in ~3 minutes
+                </p>
+</div>
+<!-- Supporting Action (Soft Secondary) -->
+<button class="flex items-center gap-2 text-primary font-bold hover:bg-primary/5 px-6 py-3 rounded-full transition-all active:scale-95">
+<span>Next Step</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</footer>
+<!-- Decorative background elements following Sanctuary philosophy -->
+<div class="fixed top-[-10%] right-[-10%] w-64 h-64 bg-primary-fixed/10 rounded-full blur-[100px]"></div>
+<div class="fixed bottom-[-5%] left-[-5%] w-80 h-80 bg-secondary-fixed/15 rounded-full blur-[120px]"></div>
+</main>
+<!-- Content-Specific Imagery for Ambience -->
+<div class="fixed inset-0 -z-50 opacity-[0.03] pointer-events-none">
+<img alt="Serene Background" class="w-full h-full object-cover" data-alt="Soft ethereal light filtering through morning mist in a serene forest, creating a calming atmospheric texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfzxr0XZ2Z3dDZHmeGdapnbul2QNz-W-wTbhDs1qjPM1KZQPFljqdqqzLIHiY-bzdwloj-s72M5IENpqp78LrhYEIm7rd4T8ufM-lE7a2vt-WgaXBLu5qmjJpaFAkiDyyBxIVFXqsws3qXrzi2Scz7hWNXm0Y7JctmsWO90dKoz_9mmIca0mmB5IvoYohOxTGi4_Wye_p_FKpWnmL3GUu-IKhkP-eAUEdNN-Vx5qF8rXK45_mN9x9rf0wwmXOpUN4qteTpVM6lPaMC"/>
+</div>
+</body></html>
