@@ -92,4 +92,60 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get unexpectedError => 'Beklenmedik bir hata oluştu.';
+
+  @override
+  String homeGreeting(int days) {
+    return '$days gün sigarasız';
+  }
+
+  @override
+  String get moneySavedLabel => 'Tasarruf Edilen';
+
+  @override
+  String get cigsAvoidedLabel => 'Kaçınılan Sigara';
+
+  @override
+  String get timeSmokeFreeLabel => 'Sigarasız Süre';
+
+  @override
+  String get howWasYourDay => 'Günün nasıl geçti?';
+
+  @override
+  String get healthMilestonesTitle => 'Sağlık Kilometre Taşları';
+
+  @override
+  String get lungFunctionLabel => 'Akciğer kapasitesi artıyor';
+
+  @override
+  String get circulationLabel => 'Daha iyi kan dolaşımı';
+
+  @override
+  String get heartRateLabel => 'Kalp hızı normalleşiyor';
+
+  @override
+  String get journeyHistoryTitle => 'Yolculuk Geçmişi';
+
+  @override
+  String get cleanStatus => 'Temiz';
+
+  @override
+  String get cravingStatus => 'İstek';
+
+  @override
+  String get setbackStatus => 'Gerileme';
+
+  @override
+  String get profileLabel => 'Profil';
+
+  @override
+  String get quitPlanLabel => 'Bırakma Planı';
+
+  @override
+  String get notificationsLabel => 'Bildirimler';
+
+  @override
+  String get subscriptionLabel => 'Abonelik';
+
+  @override
+  String get privacyPolicyLabel => 'Gizlilik Politikası';
 }

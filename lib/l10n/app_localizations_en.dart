@@ -93,4 +93,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unexpectedError => 'An unexpected error occurred.';
+
+  @override
+  String homeGreeting(int days) {
+    return 'Day $days smoke-free';
+  }
+
+  @override
+  String get moneySavedLabel => 'Money Saved';
+
+  @override
+  String get cigsAvoidedLabel => 'Cigarettes Avoided';
+
+  @override
+  String get timeSmokeFreeLabel => 'Time Smoke-free';
+
+  @override
+  String get howWasYourDay => 'How was your day?';
+
+  @override
+  String get healthMilestonesTitle => 'Health Milestones';
+
+  @override
+  String get lungFunctionLabel => 'Lung function improving';
+
+  @override
+  String get circulationLabel => 'Better circulation';
+
+  @override
+  String get heartRateLabel => 'Heart rate normalizing';
+
+  @override
+  String get journeyHistoryTitle => 'Journey History';
+
+  @override
+  String get cleanStatus => 'Clean';
+
+  @override
+  String get cravingStatus => 'Craving';
+
+  @override
+  String get setbackStatus => 'Setback';
+
+  @override
+  String get profileLabel => 'Profile';
+
+  @override
+  String get quitPlanLabel => 'Quit Plan';
+
+  @override
+  String get notificationsLabel => 'Notifications';
+
+  @override
+  String get subscriptionLabel => 'Subscription';
+
+  @override
+  String get privacyPolicyLabel => 'Privacy Policy';
 }

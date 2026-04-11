@@ -261,6 +261,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unexpected error occurred.'**
   String get unexpectedError;
+
+  /// No description provided for @homeGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {days} smoke-free'**
+  String homeGreeting(int days);
+
+  /// No description provided for @moneySavedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Money Saved'**
+  String get moneySavedLabel;
+
+  /// No description provided for @cigsAvoidedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cigarettes Avoided'**
+  String get cigsAvoidedLabel;
+
+  /// No description provided for @timeSmokeFreeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Smoke-free'**
+  String get timeSmokeFreeLabel;
+
+  /// No description provided for @howWasYourDay.
+  ///
+  /// In en, this message translates to:
+  /// **'How was your day?'**
+  String get howWasYourDay;
+
+  /// No description provided for @healthMilestonesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Milestones'**
+  String get healthMilestonesTitle;
+
+  /// No description provided for @lungFunctionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Lung function improving'**
+  String get lungFunctionLabel;
+
+  /// No description provided for @circulationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Better circulation'**
+  String get circulationLabel;
+
+  /// No description provided for @heartRateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart rate normalizing'**
+  String get heartRateLabel;
+
+  /// No description provided for @journeyHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey History'**
+  String get journeyHistoryTitle;
+
+  /// No description provided for @cleanStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean'**
+  String get cleanStatus;
+
+  /// No description provided for @cravingStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Craving'**
+  String get cravingStatus;
+
+  /// No description provided for @setbackStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Setback'**
+  String get setbackStatus;
+
+  /// No description provided for @profileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileLabel;
+
+  /// No description provided for @quitPlanLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit Plan'**
+  String get quitPlanLabel;
+
+  /// No description provided for @notificationsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationsLabel;
+
+  /// No description provided for @subscriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription'**
+  String get subscriptionLabel;
+
+  /// No description provided for @privacyPolicyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicyLabel;
 }
 
 class _AppLocalizationsDelegate

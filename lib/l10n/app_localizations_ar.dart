@@ -91,4 +91,60 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unexpectedError => 'حدث خطأ غير متوقع.';
+
+  @override
+  String homeGreeting(int days) {
+    return 'اليوم $days بدون تدخين';
+  }
+
+  @override
+  String get moneySavedLabel => 'الأموال الموفرة';
+
+  @override
+  String get cigsAvoidedLabel => 'سجائر تم تجنبها';
+
+  @override
+  String get timeSmokeFreeLabel => 'وقت بدون تدخين';
+
+  @override
+  String get howWasYourDay => 'كيف كان يومك؟';
+
+  @override
+  String get healthMilestonesTitle => 'إنجازات صحية';
+
+  @override
+  String get lungFunctionLabel => 'تحسن وظائف الرئة';
+
+  @override
+  String get circulationLabel => 'تحسن الدورة الدموية';
+
+  @override
+  String get heartRateLabel => 'انتظام ضربات القلب';
+
+  @override
+  String get journeyHistoryTitle => 'سجل الرحلة';
+
+  @override
+  String get cleanStatus => 'نظيف';
+
+  @override
+  String get cravingStatus => 'رغبة';
+
+  @override
+  String get setbackStatus => 'انتكاسة';
+
+  @override
+  String get profileLabel => 'الملف الشخصي';
+
+  @override
+  String get quitPlanLabel => 'خطة الإقلاع';
+
+  @override
+  String get notificationsLabel => 'الإشعارات';
+
+  @override
+  String get subscriptionLabel => 'الاشتراك';
+
+  @override
+  String get privacyPolicyLabel => 'سياسة الخصوصية';
 }

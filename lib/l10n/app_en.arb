@@ -49,5 +49,30 @@
   "journeyComingSoon": "Timeline history coming soon",
   "serverError": "A server error occurred. Please try again.",
   "networkError": "Network error. Please check your connection.",
-  "unexpectedError": "An unexpected error occurred."
+  "unexpectedError": "An unexpected error occurred.",
+  "homeGreeting": "Day {days} smoke-free",
+  "@homeGreeting": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "moneySavedLabel": "Money Saved",
+  "cigsAvoidedLabel": "Cigarettes Avoided",
+  "timeSmokeFreeLabel": "Time Smoke-free",
+  "howWasYourDay": "How was your day?",
+  "healthMilestonesTitle": "Health Milestones",
+  "lungFunctionLabel": "Lung function improving",
+  "circulationLabel": "Better circulation",
+  "heartRateLabel": "Heart rate normalizing",
+  "journeyHistoryTitle": "Journey History",
+  "cleanStatus": "Clean",
+  "cravingStatus": "Craving",
+  "setbackStatus": "Setback",
+  "profileLabel": "Profile",
+  "quitPlanLabel": "Quit Plan",
+  "notificationsLabel": "Notifications",
+  "subscriptionLabel": "Subscription",
+  "privacyPolicyLabel": "Privacy Policy"
 }
