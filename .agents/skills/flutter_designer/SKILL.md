@@ -75,6 +75,18 @@ LinearGradient(
 
 - 80% surface opacity + `BackdropFilter` with `Sigma(16, 16)`.
 
+### Icons: Solar Icons
+
+- **Rule:** Never use standard Material `Icons`. Always use the `solar_icons` package.
+- **Style:**
+  - **Inactive/Secondary:** Use `SolarIconsOutline`.
+  - **Active/Primary:** Use `SolarIconsBold`.
+- **Usage:**
+  ```dart
+  Icon(SolarIconsOutline.home) // Inactive state
+  Icon(SolarIconsBold.home)    // Active state
+  ```
+
 ## 5. Development Constraints (Linting for Design)
 
 1. **Never** use `Divider()` widgets. Use `SizedBox` for spacing.
@@ -83,6 +95,7 @@ LinearGradient(
 4. **Spacing:** Standardize on an 8pt grid, but favor 24px and 32px for main
    sections.
 5. **Componentization:** Always split large pages into smaller, focused widgets.
+6. **Icons:** Never use `Icons.xxx`. Always use `SolarIconsOutline.xxx` or `SolarIconsBold.xxx`.
 
 ## 6. Widget Architecture & Componentization
 

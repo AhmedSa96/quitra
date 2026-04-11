@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitra/l10n/app_localizations.dart';
+import 'package:solar_icons/solar_icons.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../home/presentation/pages/home_page.dart';
 import '../../../progress/presentation/pages/progress_page.dart';
@@ -54,23 +55,23 @@ class _MainPageState extends State<MainPage> {
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
           items: [
             BottomNavigationBarItem(
-              icon: const Icon(Icons.home_outlined),
-              activeIcon: const Icon(Icons.home),
+              icon: const Icon(SolarIconsOutline.home),
+              activeIcon: const Icon(SolarIconsBold.home),
               label: l10n.homeTitle,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.bar_chart_outlined),
-              activeIcon: const Icon(Icons.bar_chart),
+              icon: const Icon(SolarIconsOutline.graph),
+              activeIcon: const Icon(SolarIconsBold.graph),
               label: l10n.progressTitle,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.auto_graph_outlined),
-              activeIcon: const Icon(Icons.auto_graph),
+              icon: const Icon(SolarIconsOutline.route),
+              activeIcon: const Icon(SolarIconsBold.route),
               label: l10n.journeyTitle,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.settings_outlined),
-              activeIcon: const Icon(Icons.settings),
+              icon: const Icon(SolarIconsOutline.settings),
+              activeIcon: const Icon(SolarIconsBold.settings),
               label: l10n.settingsTitle,
             ),
           ],

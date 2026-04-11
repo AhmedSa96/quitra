@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quitra/core/theme/app_theme.dart';
 import 'package:quitra/features/onboarding/presentation/widgets/step_container.dart';
+import 'package:quitra/l10n/app_localizations.dart';
 
 class CigarettesStep extends StatelessWidget {
   final int value;
@@ -15,7 +16,7 @@ class CigarettesStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StepContainer(
-      title: "How many cigarettes do you smoke a day?",
+      title: AppLocalizations.of(context)!.cigarettesPerDayQuestion,
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
