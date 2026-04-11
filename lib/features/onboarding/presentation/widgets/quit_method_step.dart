@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitra/l10n/app_localizations.dart';
 import '../../../../core/theme/app_theme.dart';
 import 'step_container.dart';
 
@@ -14,24 +15,25 @@ class QuitMethodStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return StepContainer(
-      title: "How would you like to quit?",
+      title: l10n.quitMethodQuestion,
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildMethodOption(
             context,
             'cold_turkey',
-            'Cold Turkey',
-            'Stop completely right now.',
+            l10n.coldTurkeyTitle,
+            l10n.coldTurkeyDescription,
             Icons.flash_on,
           ),
           const SizedBox(height: 16),
           _buildMethodOption(
             context,
             'gradual',
-            'Gradual Reduction',
-            'Slowly reduce over time.',
+            l10n.gradualTitle,
+            l10n.gradualDescription,
             Icons.trending_down,
           ),
         ],

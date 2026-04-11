@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_theme.dart';
-import 'step_container.dart';
+import 'package:quitra/core/theme/app_theme.dart';
+import 'package:quitra/features/onboarding/presentation/widgets/step_container.dart';
 
 class CigarettesStep extends StatelessWidget {
   final int value;
   final ValueChanged<int> onChanged;
 
-  const CigarettesStep({super.key, required this.value, required this.onChanged});
+  const CigarettesStep({
+    super.key,
+    required this.value,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quitra/features/onboarding/domain/repositories/onboarding_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/supabase/supabase_config.dart';
+import '../../../../core/di/injection.dart';
+import 'package:quitra/l10n/app_localizations.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -33,21 +36,46 @@ class _SplashPageState extends State<SplashPage>
 
   Future<void> _navigateToNext() async {
     // Initialize Supabase in parallel with the splash animation
-    await Future.wait([
-      Supabase.initialize(
-        url: SupabaseConfig.url,
-        anonKey: SupabaseConfig.anonKey,
-      ),
-      Future.delayed(const Duration(seconds: 2)),
-    ]);
+    try {
+      await Future.wait([
+        _initializeSupabase(),
+        Future.delayed(const Duration(seconds: 2)),
+      ]);
+    } catch (e) {
+      // Log error and proceed to check current state
+      debugPrint('Supabase initialization error: $e');
+    }
 
     if (mounted) {
-      final user = Supabase.instance.client.auth.currentUser;
-      if (user != null) {
-        context.go('/home');
-      } else {
-        context.go('/onboarding');
+      final repository = getIt<OnboardingRepository>();
+      final result = await repository.isOnboardingCompleted();
+
+      result.fold(
+        (failure) =>
+            context.go('/onboarding'), // Default to onboarding on error
+        (isCompleted) {
+          if (isCompleted) {
+            context.go('/home');
+          } else {
+            context.go('/onboarding');
+          }
+        },
+      );
+    }
+  }
+
+  Future<void> _initializeSupabase() async {
+    try {
+      await Supabase.initialize(
+        url: SupabaseConfig.url,
+        anonKey: SupabaseConfig.anonKey,
+      );
+    } catch (e) {
+      // Check if error is 'already initialized'
+      if (e.toString().contains('has already been initialized')) {
+        return;
       }
+      rethrow;
     }
   }
 
@@ -91,8 +119,9 @@ class _SplashPageState extends State<SplashPage>
                   ),
                 ),
                 const SizedBox(height: 24),
+
                 Text(
-                  'QUITRA',
+                  AppLocalizations.of(context)!.appName.toUpperCase(),
                   style: Theme.of(context).textTheme.displayLarge?.copyWith(
                     color: Colors.white,
                     letterSpacing: 8,
@@ -101,7 +130,7 @@ class _SplashPageState extends State<SplashPage>
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'DIGITAL SANCTUARY',
+                  AppLocalizations.of(context)!.digitalSanctuary,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: Colors.white.withValues(alpha: 0.7),
                     letterSpacing: 2,

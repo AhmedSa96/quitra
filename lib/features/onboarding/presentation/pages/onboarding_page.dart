@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quitra/l10n/app_localizations.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../bloc/onboarding_bloc.dart';
 
@@ -19,14 +20,25 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
 
+  static const int _totalSteps = 4;
+
   int _currentPage = 0;
   int _cigarettesPerDay = 10;
   int _yearsSmoking = 5;
   String _quitMethod = 'cold_turkey';
   DateTime _quitStartDate = DateTime.now();
 
+  void _previousPage() {
+    if (_currentPage > 0) {
+      _pageController.previousPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
   void _nextPage() {
-    if (_currentPage == 3) {
+    if (_currentPage == _totalSteps - 1) {
       context.read<OnboardingBloc>().add(
         OnboardingStarted(
           cigarettesPerDay: _cigarettesPerDay,
@@ -60,10 +72,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
               success: () => context.go('/home'),
               error: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'Failed to complete onboarding. Please try again.',
-                    ),
+                  SnackBar(
+                    content: Text('Something went wrong'),
                     backgroundColor: Colors.red,
                   ),
                 );
@@ -149,16 +159,31 @@ class _OnboardingPageState extends State<OnboardingPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            'Step ${_currentPage + 1} of 4',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: AppTheme.onSurfaceVariant,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.2,
-            ),
+          Row(
+            children: [
+              if (_currentPage > 0)
+                IconButton(
+                  onPressed: _previousPage,
+                  icon: const Icon(Icons.arrow_back_ios, size: 20),
+                  color: AppTheme.onSurfaceVariant,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                ),
+              if (_currentPage > 0) const SizedBox(width: 12),
+              Text(
+                AppLocalizations.of(
+                  context,
+                )!.stepProgress(_currentPage + 1, _totalSteps),
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: AppTheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ],
           ),
           Row(
-            children: List.generate(4, (index) {
+            children: List.generate(_totalSteps, (index) {
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 margin: const EdgeInsets.only(left: 8.0),
@@ -179,23 +204,40 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   Widget _buildBottomControls() {
+    final isLoading = context.watch<OnboardingBloc>().state.maybeWhen(
+      loading: () => true,
+      orElse: () => false,
+    );
+
     return Padding(
       padding: const EdgeInsets.all(32.0),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: AppTheme.signatureGradient,
-          borderRadius: BorderRadius.circular(999),
-        ),
-        child: ElevatedButton(
-          onPressed: _nextPage,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-            minimumSize: const Size(double.infinity, 56),
+      child: Opacity(
+        opacity: isLoading ? 0.6 : 1.0,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: AppTheme.signatureGradient,
+            borderRadius: BorderRadius.circular(999),
           ),
-          child: const Text(
-            'Continue',
-            style: TextStyle(color: Colors.white, fontSize: 16),
+          child: ElevatedButton(
+            onPressed: isLoading ? null : _nextPage,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              minimumSize: const Size(double.infinity, 56),
+            ),
+            child: isLoading
+                ? const SizedBox(
+                    height: 24,
+                    width: 24,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2,
+                    ),
+                  )
+                : Text(
+                    AppLocalizations.of(context)!.continueButton,
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                  ),
           ),
         ),
       ),

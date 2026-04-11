@@ -1,0 +1,53 @@
+{
+  "@@locale": "en",
+  "appName": "Quitra",
+  "@appName": {
+    "description": "The name of the application"
+  },
+  "digitalSanctuary": "DIGITAL SANCTUARY",
+  "@digitalSanctuary": {
+    "description": "Slogan for the splash screen"
+  },
+  "stepProgress": "Step {current} of {total}",
+  "@stepProgress": {
+    "description": "Onboarding step progress",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "continueButton": "Continue",
+  "@continueButton": {
+    "description": "Continue button text"
+  },
+  "onboardingError": "Failed to complete onboarding. Please try again.",
+  "@onboardingError": {
+    "description": "Error message when onboarding fails"
+  },
+  "cigarettesPerDayQuestion": "How many cigarettes do you smoke a day?",
+  "yearsSmokingQuestion": "How many years have you been smoking?",
+  "quitMethodQuestion": "How would you like to quit?",
+  "coldTurkeyTitle": "Cold Turkey",
+  "coldTurkeyDescription": "Stop completely right now.",
+  "gradualTitle": "Gradual Reduction",
+  "gradualDescription": "Slowly reduce over time.",
+  "quitDateQuestion": "When is your quit start date?",
+  "changeDate": "Change Date",
+  "homeTitle": "Home",
+  "progressTitle": "Progress",
+  "journeyTitle": "Journey",
+  "settingsTitle": "Settings",
+  "homeWelcome": "You're doing great.",
+  "homeDashboardTitle": "Your journey begins here.",
+  "homeDashboardDescription": "This is your empty dashboard. Later, you will see your stats and daily logs here.",
+  "craveButton": "I feel like smoking",
+  "progressComingSoon": "Stats & Milestones coming soon",
+  "journeyComingSoon": "Timeline history coming soon",
+  "serverError": "A server error occurred. Please try again.",
+  "networkError": "Network error. Please check your connection.",
+  "unexpectedError": "An unexpected error occurred."
+}

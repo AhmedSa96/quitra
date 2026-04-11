@@ -19,9 +19,12 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
     required DateTime quitStartDate,
   }) async {
     try {
-      // 1. Sign in anonymously
-      final authResponse = await supabase.auth.signInAnonymously();
-      final user = authResponse.user;
+      // 1. Ensure we have an authenticated user
+      var user = supabase.auth.currentUser;
+      if (user == null) {
+        final authResponse = await supabase.auth.signInAnonymously();
+        user = authResponse.user;
+      }
 
       if (user == null) {
         return const Left(Failure.serverError());

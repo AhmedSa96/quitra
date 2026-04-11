@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quitra/l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 import '../../../../core/theme/app_theme.dart';
 import 'step_container.dart';
 
@@ -10,13 +12,16 @@ class QuitDateStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).toString();
+
     return StepContainer(
-      title: "When is your quit start date?",
+      title: l10n.quitDateQuestion,
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "${value.day}/${value.month}/${value.year}",
+            DateFormat.yMd(locale).format(value),
             style: Theme.of(context).textTheme.displayMedium?.copyWith(
               color: AppTheme.primary,
               fontWeight: FontWeight.bold,
@@ -32,6 +37,7 @@ class QuitDateStep extends StatelessWidget {
                 lastDate: DateTime(2100),
               );
               if (date != null) {
+                if (!context.mounted) return;
                 onChanged(date);
               }
             },
@@ -43,7 +49,7 @@ class QuitDateStep extends StatelessWidget {
                 borderRadius: BorderRadius.circular(999),
               ),
             ),
-            child: const Text('Change Date'),
+            child: Text(l10n.changeDate),
           ),
         ],
       ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_theme.dart';
+import 'package:quitra/l10n/app_localizations.dart';
 
 class JourneyPage extends StatelessWidget {
   const JourneyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
@@ -13,29 +14,16 @@ class JourneyPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Journey',
+              l10n.journeyTitle,
               style: Theme.of(context).textTheme.displayLarge,
             ),
             const SizedBox(height: 8),
             Text(
-              'Every step counts.',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppTheme.onSurfaceVariant,
-                  ),
+              "Your milestones.",
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 32),
-            // Placeholder for timeline history
-            Container(
-              height: 400,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppTheme.surfaceContainerLow,
-                borderRadius: BorderRadius.circular(32),
-              ),
-              child: const Center(
-                child: Text('Timeline history coming soon'),
-              ),
-            ),
+            Center(child: Text(l10n.journeyComingSoon)),
           ],
         ),
       ),

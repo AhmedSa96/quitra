@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitra/l10n/app_localizations.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../home/presentation/pages/home_page.dart';
 import '../../../progress/presentation/pages/progress_page.dart';
@@ -24,13 +25,11 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppTheme.surface,
       body: SafeArea(
-        child: IndexedStack(
-          index: _currentIndex,
-          children: _pages,
-        ),
+        child: IndexedStack(index: _currentIndex, children: _pages),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -53,26 +52,26 @@ class _MainPageState extends State<MainPage> {
           unselectedItemColor: AppTheme.onSurfaceVariant,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
-              label: 'Home',
+              icon: const Icon(Icons.home_outlined),
+              activeIcon: const Icon(Icons.home),
+              label: l10n.homeTitle,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart_outlined),
-              activeIcon: Icon(Icons.bar_chart),
-              label: 'Progress',
+              icon: const Icon(Icons.bar_chart_outlined),
+              activeIcon: const Icon(Icons.bar_chart),
+              label: l10n.progressTitle,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.auto_graph_outlined),
-              activeIcon: Icon(Icons.auto_graph),
-              label: 'Journey',
+              icon: const Icon(Icons.auto_graph_outlined),
+              activeIcon: const Icon(Icons.auto_graph),
+              label: l10n.journeyTitle,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings_outlined),
-              activeIcon: Icon(Icons.settings),
-              label: 'Settings',
+              icon: const Icon(Icons.settings_outlined),
+              activeIcon: const Icon(Icons.settings),
+              label: l10n.settingsTitle,
             ),
           ],
         ),

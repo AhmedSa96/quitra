@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quitra/core/theme/app_theme.dart';
-import 'package:quitra/core/app_router.dart';
 import 'package:quitra/core/di/injection.dart';
+import 'package:quitra/core/app_router.dart';
+import 'package:quitra/core/theme/app_theme.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +21,13 @@ class MyApp extends StatelessWidget {
       title: 'Quitra',
       routerConfig: goRouter,
       theme: AppTheme.lightTheme(),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }
