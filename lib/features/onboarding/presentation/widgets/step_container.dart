@@ -13,11 +13,13 @@ class StepContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(letterSpacing: -0.02),
+            style: Theme.of(
+              context,
+            ).textTheme.displaySmall?.copyWith(letterSpacing: -0.02),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
@@ -34,11 +36,11 @@ class StepContainer extends StatelessWidget {
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF005C55).withOpacity(0.06),
+                    color: const Color(0xFF005C55).withValues(alpha: 0.06),
                     blurRadius: 40,
                     offset: const Offset(0, 8),
                   ),
-                ]
+                ],
               ),
               child: content,
             ),

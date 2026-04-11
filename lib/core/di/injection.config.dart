@@ -12,6 +12,8 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:quitra/core/supabase/supabase_module.dart' as _i255;
+import 'package:quitra/features/onboarding/data/repositories/onboarding_repository_impl.dart'
+    as _i53;
 import 'package:quitra/features/onboarding/domain/repositories/onboarding_repository.dart'
     as _i535;
 import 'package:quitra/features/onboarding/domain/usecases/complete_onboarding_usecase.dart'
@@ -29,6 +31,9 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final supabaseModule = _$SupabaseModule();
     gh.lazySingleton<_i454.SupabaseClient>(() => supabaseModule.supabaseClient);
+    gh.lazySingleton<_i535.OnboardingRepository>(
+      () => _i53.OnboardingRepositoryImpl(gh<_i454.SupabaseClient>()),
+    );
     gh.lazySingleton<_i935.CompleteOnboardingUseCase>(
       () => _i935.CompleteOnboardingUseCase(gh<_i535.OnboardingRepository>()),
     );

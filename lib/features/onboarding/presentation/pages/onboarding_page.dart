@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../bloc/onboarding_bloc.dart';
 
 import '../widgets/cigarettes_step.dart';
 import '../widgets/years_smoking_step.dart';
@@ -16,18 +18,23 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
-  
+
   int _currentPage = 0;
   int _cigarettesPerDay = 10;
   int _yearsSmoking = 5;
-  String _quitMethod = 'cold_turkey'; 
+  String _quitMethod = 'cold_turkey';
   DateTime _quitStartDate = DateTime.now();
 
   void _nextPage() {
     if (_currentPage == 3) {
-      // In a full implementation we would call completeOnboarding here
-      // dispatching the Bloc event to save the profile in Supabase.
-      context.go('/home');
+      context.read<OnboardingBloc>().add(
+        OnboardingStarted(
+          cigarettesPerDay: _cigarettesPerDay,
+          yearsSmoking: _yearsSmoking,
+          quitMethod: _quitMethod,
+          quitStartDate: _quitStartDate,
+        ),
+      );
     } else {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
@@ -47,50 +54,90 @@ class _OnboardingPageState extends State<OnboardingPage> {
     return Scaffold(
       backgroundColor: AppTheme.surface,
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildHeader(),
-            Expanded(
-              child: Center(
-                child: PageView(
-                  controller: _pageController,
-                  physics: const NeverScrollableScrollPhysics(), // Disable swipe
-                  onPageChanged: (index) {
-                    setState(() {
-                      _currentPage = index;
-                    });
-                  },
+        child: BlocConsumer<OnboardingBloc, OnboardingState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              success: () => context.go('/home'),
+              error: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Failed to complete onboarding. Please try again.',
+                    ),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              },
+              orElse: () {},
+            );
+          },
+          builder: (context, state) {
+            return Stack(
+              children: [
+                Column(
                   children: [
-                     Center(
-                        child: CigarettesStep(
-                         value: _cigarettesPerDay,
-                         onChanged: (val) => setState(() => _cigarettesPerDay = val),
+                    _buildHeader(),
+                    Expanded(
+                      child: Center(
+                        child: PageView(
+                          controller: _pageController,
+                          physics:
+                              const NeverScrollableScrollPhysics(), // Disable swipe
+                          onPageChanged: (index) {
+                            setState(() {
+                              _currentPage = index;
+                            });
+                          },
+                          children: [
+                            Center(
+                              child: CigarettesStep(
+                                value: _cigarettesPerDay,
+                                onChanged: (val) =>
+                                    setState(() => _cigarettesPerDay = val),
+                              ),
+                            ),
+                            Center(
+                              child: YearsSmokingStep(
+                                value: _yearsSmoking,
+                                onChanged: (val) =>
+                                    setState(() => _yearsSmoking = val),
+                              ),
+                            ),
+                            Center(
+                              child: QuitMethodStep(
+                                value: _quitMethod,
+                                onChanged: (val) =>
+                                    setState(() => _quitMethod = val),
+                              ),
+                            ),
+                            Center(
+                              child: QuitDateStep(
+                                value: _quitStartDate,
+                                onChanged: (val) =>
+                                    setState(() => _quitStartDate = val),
+                              ),
+                            ),
+                          ],
                         ),
-                     ),
-                     Center(
-                        child: YearsSmokingStep(
-                         value: _yearsSmoking,
-                         onChanged: (val) => setState(() => _yearsSmoking = val),
-                        ),
-                     ),
-                     Center(
-                        child: QuitMethodStep(
-                         value: _quitMethod,
-                         onChanged: (val) => setState(() => _quitMethod = val),
-                        ),
-                     ),
-                     Center(
-                        child: QuitDateStep(
-                         value: _quitStartDate,
-                         onChanged: (val) => setState(() => _quitStartDate = val),
-                        ),
-                     ),
+                      ),
+                    ),
+                    _buildBottomControls(),
                   ],
                 ),
-              ),
-            ),
-            _buildBottomControls(),
-          ],
+                if (state.maybeWhen(loading: () => true, orElse: () => false))
+                  Container(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppTheme.primary,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -118,9 +165,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 height: 8,
                 width: _currentPage == index ? 24 : 8,
                 decoration: BoxDecoration(
-                  color: _currentPage == index 
-                      ? AppTheme.primary 
-                      : AppTheme.primary.withOpacity(0.2),
+                  color: _currentPage == index
+                      ? AppTheme.primary
+                      : AppTheme.primary.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(4),
                 ),
               );
@@ -146,7 +193,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
             shadowColor: Colors.transparent,
             minimumSize: const Size(double.infinity, 56),
           ),
-          child: const Text('Continue', style: TextStyle(color: Colors.white, fontSize: 16)),
+          child: const Text(
+            'Continue',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
         ),
       ),
     );

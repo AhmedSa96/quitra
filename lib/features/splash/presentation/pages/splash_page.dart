@@ -42,7 +42,12 @@ class _SplashPageState extends State<SplashPage>
     ]);
 
     if (mounted) {
-      context.go('/onboarding');
+      final user = Supabase.instance.client.auth.currentUser;
+      if (user != null) {
+        context.go('/home');
+      } else {
+        context.go('/onboarding');
+      }
     }
   }
 
