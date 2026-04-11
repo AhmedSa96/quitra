@@ -82,3 +82,13 @@ LinearGradient(
 3. **Always** use `Material3: true`.
 4. **Spacing:** Standardize on an 8pt grid, but favor 24px and 32px for main
    sections.
+5. **Componentization:** Always split large pages into smaller, focused widgets.
+
+## 6. Widget Architecture & Componentization
+
+To maintain code clarity and follow Flutter best practices, follow these architectural rules:
+
+1. **Split Large Builders**: Never allow a `build` method to exceed 100 lines. If it does, split it into private sub-widgets or external component classes.
+2. **Atomic Widgets**: Extract reusable UI elements (buttons, cards, inputs) into their own files in the `presentation/widgets` directory.
+3. **Prefer Classes over Functions**: When splitting a widget, prefer creating a separate `StatelessWidget` or `StatefulWidget` class over a helper function returning a widget. This allows for better performance (via `const` constructors) and cleaner debugging.
+4. **Feature-Based Widgets**: Keep widgets that are specific to a single feature within that feature's `presentation/widgets` folder.

@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import '../features/onboarding/presentation/pages/onboarding_page.dart';
 import '../features/splash/presentation/pages/splash_page.dart';
-import '../features/home/presentation/pages/home_page.dart';
+import '../features/main/presentation/pages/main_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../features/onboarding/presentation/bloc/onboarding_bloc.dart';
 import 'di/injection.dart';
@@ -22,7 +22,7 @@ final goRouter = GoRouter(
     ),
     GoRoute(
       path: '/home',
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) => const MainPage(),
     ),
   ],
 );
