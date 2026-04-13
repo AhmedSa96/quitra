@@ -5,9 +5,26 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../../core/presentation/widgets/sanctuary_card.dart';
 import '../../../../core/presentation/widgets/pill_button.dart';
 import '../../../../core/presentation/widgets/stat_item.dart';
+import '../../../../core/di/injection.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/home_bloc.dart';
+import '../bloc/home_event.dart';
+import '../bloc/home_state.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<HomeBloc>()..add(const HomeEvent.loadStats()),
+      child: const _HomeView(),
+    );
+  }
+}
+
+class _HomeView extends StatelessWidget {
+  const _HomeView();
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +40,17 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  l10n.homeGreeting(5), // TODO: Link to actual data
-                  style: Theme.of(context).textTheme.displayLarge,
+                BlocBuilder<HomeBloc, HomeState>(
+                  builder: (context, state) {
+                    final daysCount = state.maybeWhen(
+                      loaded: (stats) => stats.daysSmokeFree,
+                      orElse: () => 0,
+                    );
+                    return Text(
+                      l10n.homeGreeting(daysCount),
+                      style: Theme.of(context).textTheme.displayLarge,
+                    );
+                  },
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -43,7 +68,10 @@ class HomePage extends StatelessWidget {
             child: PillButton(
               label: l10n.craveButton,
               onPressed: () {
-                // TODO: Trigger Craving Relief Flow
+                context.read<HomeBloc>().add(const HomeEvent.logCraving());
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Craving logged! Breathe deeply.')),
+                );
               },
               icon: SolarIconsBold.fire,
             ),
@@ -58,31 +86,42 @@ class HomePage extends StatelessWidget {
             decoration: const BoxDecoration(
               color: AppTheme.surfaceContainerLow,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: StatItem(
-                    label: l10n.moneySavedLabel,
-                    value: "\$142",
-                    icon: SolarIconsOutline.walletMoney,
+            child: BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loaded: (stats) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: StatItem(
+                            label: l10n.moneySavedLabel,
+                            value: "\$${stats.moneySaved.toStringAsFixed(0)}",
+                            icon: SolarIconsOutline.walletMoney,
+                          ),
+                        ),
+                        Expanded(
+                          child: StatItem(
+                            label: l10n.cigsAvoidedLabel,
+                            value: "${stats.cigarettesAvoided}",
+                            icon: SolarIconsOutline.maskHapply,
+                          ),
+                        ),
+                        Expanded(
+                          child: StatItem(
+                            label: l10n.timeSmokeFreeLabel,
+                            value: "${stats.daysSmokeFree}d",
+                            icon: SolarIconsOutline.clockCircle,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                  orElse: () => const Center(
+                    child: CircularProgressIndicator(),
                   ),
-                ),
-                Expanded(
-                  child: StatItem(
-                    label: l10n.cigsAvoidedLabel,
-                    value: "84",
-                    icon: SolarIconsOutline.maskHapply,
-                  ),
-                ),
-                Expanded(
-                  child: StatItem(
-                    label: l10n.timeSmokeFreeLabel,
-                    value: "5d",
-                    icon: SolarIconsOutline.clockCircle,
-                  ),
-                ),
-              ],
+                );
+              },
             ),
           ),
 

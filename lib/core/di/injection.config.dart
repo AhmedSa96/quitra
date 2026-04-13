@@ -12,6 +12,15 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:quitra/core/supabase/supabase_module.dart' as _i255;
+import 'package:quitra/features/home/data/repositories/home_repository_impl.dart'
+    as _i488;
+import 'package:quitra/features/home/domain/repositories/home_repository.dart'
+    as _i1016;
+import 'package:quitra/features/home/domain/usecases/get_home_stats_usecase.dart'
+    as _i863;
+import 'package:quitra/features/home/domain/usecases/log_craving_usecase.dart'
+    as _i368;
+import 'package:quitra/features/home/presentation/bloc/home_bloc.dart' as _i397;
 import 'package:quitra/features/onboarding/data/repositories/onboarding_repository_impl.dart'
     as _i53;
 import 'package:quitra/features/onboarding/domain/repositories/onboarding_repository.dart'
@@ -31,8 +40,23 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final supabaseModule = _$SupabaseModule();
     gh.lazySingleton<_i454.SupabaseClient>(() => supabaseModule.supabaseClient);
+    gh.lazySingleton<_i1016.HomeRepository>(
+      () => _i488.HomeRepositoryImpl(gh<_i454.SupabaseClient>()),
+    );
+    gh.factory<_i863.GetHomeStatsUseCase>(
+      () => _i863.GetHomeStatsUseCase(gh<_i1016.HomeRepository>()),
+    );
+    gh.factory<_i368.LogCravingUseCase>(
+      () => _i368.LogCravingUseCase(gh<_i1016.HomeRepository>()),
+    );
     gh.lazySingleton<_i535.OnboardingRepository>(
       () => _i53.OnboardingRepositoryImpl(gh<_i454.SupabaseClient>()),
+    );
+    gh.factory<_i397.HomeBloc>(
+      () => _i397.HomeBloc(
+        gh<_i863.GetHomeStatsUseCase>(),
+        gh<_i368.LogCravingUseCase>(),
+      ),
     );
     gh.lazySingleton<_i935.CompleteOnboardingUseCase>(
       () => _i935.CompleteOnboardingUseCase(gh<_i535.OnboardingRepository>()),
