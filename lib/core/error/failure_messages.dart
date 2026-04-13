@@ -9,6 +9,8 @@ extension FailureMessages on Failure {
       serverError: () => l10n.serverError,
       networkError: () => l10n.networkError,
       unexpectedError: () => l10n.unexpectedError,
+      cacheError: () =>
+          "temp error message for cache error", // TODO: l10n.cacheError,
     );
   }
 }

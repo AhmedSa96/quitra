@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,269 +9,165 @@ part of 'user_stats.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
 /// @nodoc
 mixin _$UserStats {
+  int get daysSmokeFree => throw _privateConstructorUsedError;
+  double get moneySaved => throw _privateConstructorUsedError;
+  int get cigarettesAvoided => throw _privateConstructorUsedError;
 
- int get daysSmokeFree; double get moneySaved; int get cigarettesAvoided;
-/// Create a copy of UserStats
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$UserStatsCopyWith<UserStats> get copyWith => _$UserStatsCopyWithImpl<UserStats>(this as UserStats, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserStats&&(identical(other.daysSmokeFree, daysSmokeFree) || other.daysSmokeFree == daysSmokeFree)&&(identical(other.moneySaved, moneySaved) || other.moneySaved == moneySaved)&&(identical(other.cigarettesAvoided, cigarettesAvoided) || other.cigarettesAvoided == cigarettesAvoided));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,daysSmokeFree,moneySaved,cigarettesAvoided);
-
-@override
-String toString() {
-  return 'UserStats(daysSmokeFree: $daysSmokeFree, moneySaved: $moneySaved, cigarettesAvoided: $cigarettesAvoided)';
-}
-
-
+  @JsonKey(ignore: true)
+  $UserStatsCopyWith<UserStats> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $UserStatsCopyWith<$Res>  {
-  factory $UserStatsCopyWith(UserStats value, $Res Function(UserStats) _then) = _$UserStatsCopyWithImpl;
-@useResult
-$Res call({
- int daysSmokeFree, double moneySaved, int cigarettesAvoided
-});
-
-
-
-
+abstract class $UserStatsCopyWith<$Res> {
+  factory $UserStatsCopyWith(UserStats value, $Res Function(UserStats) then) =
+      _$UserStatsCopyWithImpl<$Res, UserStats>;
+  @useResult
+  $Res call({int daysSmokeFree, double moneySaved, int cigarettesAvoided});
 }
+
 /// @nodoc
-class _$UserStatsCopyWithImpl<$Res>
+class _$UserStatsCopyWithImpl<$Res, $Val extends UserStats>
     implements $UserStatsCopyWith<$Res> {
-  _$UserStatsCopyWithImpl(this._self, this._then);
+  _$UserStatsCopyWithImpl(this._value, this._then);
 
-  final UserStats _self;
-  final $Res Function(UserStats) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
-/// Create a copy of UserStats
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? daysSmokeFree = null,Object? moneySaved = null,Object? cigarettesAvoided = null,}) {
-  return _then(_self.copyWith(
-daysSmokeFree: null == daysSmokeFree ? _self.daysSmokeFree : daysSmokeFree // ignore: cast_nullable_to_non_nullable
-as int,moneySaved: null == moneySaved ? _self.moneySaved : moneySaved // ignore: cast_nullable_to_non_nullable
-as double,cigarettesAvoided: null == cigarettesAvoided ? _self.cigarettesAvoided : cigarettesAvoided // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? daysSmokeFree = null,
+    Object? moneySaved = null,
+    Object? cigarettesAvoided = null,
+  }) {
+    return _then(_value.copyWith(
+      daysSmokeFree: null == daysSmokeFree
+          ? _value.daysSmokeFree
+          : daysSmokeFree // ignore: cast_nullable_to_non_nullable
+              as int,
+      moneySaved: null == moneySaved
+          ? _value.moneySaved
+          : moneySaved // ignore: cast_nullable_to_non_nullable
+              as double,
+      cigarettesAvoided: null == cigarettesAvoided
+          ? _value.cigarettesAvoided
+          : cigarettesAvoided // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
+/// @nodoc
+abstract class _$$UserStatsImplCopyWith<$Res>
+    implements $UserStatsCopyWith<$Res> {
+  factory _$$UserStatsImplCopyWith(
+          _$UserStatsImpl value, $Res Function(_$UserStatsImpl) then) =
+      __$$UserStatsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int daysSmokeFree, double moneySaved, int cigarettesAvoided});
 }
 
+/// @nodoc
+class __$$UserStatsImplCopyWithImpl<$Res>
+    extends _$UserStatsCopyWithImpl<$Res, _$UserStatsImpl>
+    implements _$$UserStatsImplCopyWith<$Res> {
+  __$$UserStatsImplCopyWithImpl(
+      _$UserStatsImpl _value, $Res Function(_$UserStatsImpl) _then)
+      : super(_value, _then);
 
-/// Adds pattern-matching-related methods to [UserStats].
-extension UserStatsPatterns on UserStats {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserStats value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _UserStats() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserStats value)  $default,){
-final _that = this;
-switch (_that) {
-case _UserStats():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserStats value)?  $default,){
-final _that = this;
-switch (_that) {
-case _UserStats() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int daysSmokeFree,  double moneySaved,  int cigarettesAvoided)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _UserStats() when $default != null:
-return $default(_that.daysSmokeFree,_that.moneySaved,_that.cigarettesAvoided);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int daysSmokeFree,  double moneySaved,  int cigarettesAvoided)  $default,) {final _that = this;
-switch (_that) {
-case _UserStats():
-return $default(_that.daysSmokeFree,_that.moneySaved,_that.cigarettesAvoided);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int daysSmokeFree,  double moneySaved,  int cigarettesAvoided)?  $default,) {final _that = this;
-switch (_that) {
-case _UserStats() when $default != null:
-return $default(_that.daysSmokeFree,_that.moneySaved,_that.cigarettesAvoided);case _:
-  return null;
-
-}
-}
-
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? daysSmokeFree = null,
+    Object? moneySaved = null,
+    Object? cigarettesAvoided = null,
+  }) {
+    return _then(_$UserStatsImpl(
+      daysSmokeFree: null == daysSmokeFree
+          ? _value.daysSmokeFree
+          : daysSmokeFree // ignore: cast_nullable_to_non_nullable
+              as int,
+      moneySaved: null == moneySaved
+          ? _value.moneySaved
+          : moneySaved // ignore: cast_nullable_to_non_nullable
+              as double,
+      cigarettesAvoided: null == cigarettesAvoided
+          ? _value.cigarettesAvoided
+          : cigarettesAvoided // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
+class _$UserStatsImpl implements _UserStats {
+  const _$UserStatsImpl(
+      {required this.daysSmokeFree,
+      required this.moneySaved,
+      required this.cigarettesAvoided});
 
-class _UserStats implements UserStats {
-  const _UserStats({required this.daysSmokeFree, required this.moneySaved, required this.cigarettesAvoided});
-  
+  @override
+  final int daysSmokeFree;
+  @override
+  final double moneySaved;
+  @override
+  final int cigarettesAvoided;
 
-@override final  int daysSmokeFree;
-@override final  double moneySaved;
-@override final  int cigarettesAvoided;
+  @override
+  String toString() {
+    return 'UserStats(daysSmokeFree: $daysSmokeFree, moneySaved: $moneySaved, cigarettesAvoided: $cigarettesAvoided)';
+  }
 
-/// Create a copy of UserStats
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$UserStatsCopyWith<_UserStats> get copyWith => __$UserStatsCopyWithImpl<_UserStats>(this, _$identity);
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserStatsImpl &&
+            (identical(other.daysSmokeFree, daysSmokeFree) ||
+                other.daysSmokeFree == daysSmokeFree) &&
+            (identical(other.moneySaved, moneySaved) ||
+                other.moneySaved == moneySaved) &&
+            (identical(other.cigarettesAvoided, cigarettesAvoided) ||
+                other.cigarettesAvoided == cigarettesAvoided));
+  }
 
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, daysSmokeFree, moneySaved, cigarettesAvoided);
 
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserStats&&(identical(other.daysSmokeFree, daysSmokeFree) || other.daysSmokeFree == daysSmokeFree)&&(identical(other.moneySaved, moneySaved) || other.moneySaved == moneySaved)&&(identical(other.cigarettesAvoided, cigarettesAvoided) || other.cigarettesAvoided == cigarettesAvoided));
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserStatsImplCopyWith<_$UserStatsImpl> get copyWith =>
+      __$$UserStatsImplCopyWithImpl<_$UserStatsImpl>(this, _$identity);
 }
 
+abstract class _UserStats implements UserStats {
+  const factory _UserStats(
+      {required final int daysSmokeFree,
+      required final double moneySaved,
+      required final int cigarettesAvoided}) = _$UserStatsImpl;
 
-@override
-int get hashCode => Object.hash(runtimeType,daysSmokeFree,moneySaved,cigarettesAvoided);
-
-@override
-String toString() {
-  return 'UserStats(daysSmokeFree: $daysSmokeFree, moneySaved: $moneySaved, cigarettesAvoided: $cigarettesAvoided)';
+  @override
+  int get daysSmokeFree;
+  @override
+  double get moneySaved;
+  @override
+  int get cigarettesAvoided;
+  @override
+  @JsonKey(ignore: true)
+  _$$UserStatsImplCopyWith<_$UserStatsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-
-}
-
-/// @nodoc
-abstract mixin class _$UserStatsCopyWith<$Res> implements $UserStatsCopyWith<$Res> {
-  factory _$UserStatsCopyWith(_UserStats value, $Res Function(_UserStats) _then) = __$UserStatsCopyWithImpl;
-@override @useResult
-$Res call({
- int daysSmokeFree, double moneySaved, int cigarettesAvoided
-});
-
-
-
-
-}
-/// @nodoc
-class __$UserStatsCopyWithImpl<$Res>
-    implements _$UserStatsCopyWith<$Res> {
-  __$UserStatsCopyWithImpl(this._self, this._then);
-
-  final _UserStats _self;
-  final $Res Function(_UserStats) _then;
-
-/// Create a copy of UserStats
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? daysSmokeFree = null,Object? moneySaved = null,Object? cigarettesAvoided = null,}) {
-  return _then(_UserStats(
-daysSmokeFree: null == daysSmokeFree ? _self.daysSmokeFree : daysSmokeFree // ignore: cast_nullable_to_non_nullable
-as int,moneySaved: null == moneySaved ? _self.moneySaved : moneySaved // ignore: cast_nullable_to_non_nullable
-as double,cigarettesAvoided: null == cigarettesAvoided ? _self.cigarettesAvoided : cigarettesAvoided // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
-
-}
-
-// dart format on

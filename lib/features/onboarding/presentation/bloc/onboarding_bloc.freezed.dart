@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,578 +9,823 @@ part of 'onboarding_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
 /// @nodoc
 mixin _$OnboardingEvent {
+  int get cigarettesPerDay => throw _privateConstructorUsedError;
+  int get yearsSmoking => throw _privateConstructorUsedError;
+  String get quitMethod => throw _privateConstructorUsedError;
+  DateTime get quitStartDate => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int cigarettesPerDay, int yearsSmoking,
+            String quitMethod, DateTime quitStartDate)
+        started,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int cigarettesPerDay, int yearsSmoking, String quitMethod,
+            DateTime quitStartDate)?
+        started,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int cigarettesPerDay, int yearsSmoking, String quitMethod,
+            DateTime quitStartDate)?
+        started,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnboardingStarted value) started,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OnboardingStarted value)? started,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnboardingStarted value)? started,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
- int get cigarettesPerDay; int get yearsSmoking; String get quitMethod; DateTime get quitStartDate;
-/// Create a copy of OnboardingEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$OnboardingEventCopyWith<OnboardingEvent> get copyWith => _$OnboardingEventCopyWithImpl<OnboardingEvent>(this as OnboardingEvent, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingEvent&&(identical(other.cigarettesPerDay, cigarettesPerDay) || other.cigarettesPerDay == cigarettesPerDay)&&(identical(other.yearsSmoking, yearsSmoking) || other.yearsSmoking == yearsSmoking)&&(identical(other.quitMethod, quitMethod) || other.quitMethod == quitMethod)&&(identical(other.quitStartDate, quitStartDate) || other.quitStartDate == quitStartDate));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,cigarettesPerDay,yearsSmoking,quitMethod,quitStartDate);
-
-@override
-String toString() {
-  return 'OnboardingEvent(cigarettesPerDay: $cigarettesPerDay, yearsSmoking: $yearsSmoking, quitMethod: $quitMethod, quitStartDate: $quitStartDate)';
-}
-
-
+  @JsonKey(ignore: true)
+  $OnboardingEventCopyWith<OnboardingEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $OnboardingEventCopyWith<$Res>  {
-  factory $OnboardingEventCopyWith(OnboardingEvent value, $Res Function(OnboardingEvent) _then) = _$OnboardingEventCopyWithImpl;
-@useResult
-$Res call({
- int cigarettesPerDay, int yearsSmoking, String quitMethod, DateTime quitStartDate
-});
-
-
-
-
+abstract class $OnboardingEventCopyWith<$Res> {
+  factory $OnboardingEventCopyWith(
+          OnboardingEvent value, $Res Function(OnboardingEvent) then) =
+      _$OnboardingEventCopyWithImpl<$Res, OnboardingEvent>;
+  @useResult
+  $Res call(
+      {int cigarettesPerDay,
+      int yearsSmoking,
+      String quitMethod,
+      DateTime quitStartDate});
 }
+
 /// @nodoc
-class _$OnboardingEventCopyWithImpl<$Res>
+class _$OnboardingEventCopyWithImpl<$Res, $Val extends OnboardingEvent>
     implements $OnboardingEventCopyWith<$Res> {
-  _$OnboardingEventCopyWithImpl(this._self, this._then);
+  _$OnboardingEventCopyWithImpl(this._value, this._then);
 
-  final OnboardingEvent _self;
-  final $Res Function(OnboardingEvent) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
-/// Create a copy of OnboardingEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cigarettesPerDay = null,Object? yearsSmoking = null,Object? quitMethod = null,Object? quitStartDate = null,}) {
-  return _then(_self.copyWith(
-cigarettesPerDay: null == cigarettesPerDay ? _self.cigarettesPerDay : cigarettesPerDay // ignore: cast_nullable_to_non_nullable
-as int,yearsSmoking: null == yearsSmoking ? _self.yearsSmoking : yearsSmoking // ignore: cast_nullable_to_non_nullable
-as int,quitMethod: null == quitMethod ? _self.quitMethod : quitMethod // ignore: cast_nullable_to_non_nullable
-as String,quitStartDate: null == quitStartDate ? _self.quitStartDate : quitStartDate // ignore: cast_nullable_to_non_nullable
-as DateTime,
-  ));
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cigarettesPerDay = null,
+    Object? yearsSmoking = null,
+    Object? quitMethod = null,
+    Object? quitStartDate = null,
+  }) {
+    return _then(_value.copyWith(
+      cigarettesPerDay: null == cigarettesPerDay
+          ? _value.cigarettesPerDay
+          : cigarettesPerDay // ignore: cast_nullable_to_non_nullable
+              as int,
+      yearsSmoking: null == yearsSmoking
+          ? _value.yearsSmoking
+          : yearsSmoking // ignore: cast_nullable_to_non_nullable
+              as int,
+      quitMethod: null == quitMethod
+          ? _value.quitMethod
+          : quitMethod // ignore: cast_nullable_to_non_nullable
+              as String,
+      quitStartDate: null == quitStartDate
+          ? _value.quitStartDate
+          : quitStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
+  }
 }
 
+/// @nodoc
+abstract class _$$OnboardingStartedImplCopyWith<$Res>
+    implements $OnboardingEventCopyWith<$Res> {
+  factory _$$OnboardingStartedImplCopyWith(_$OnboardingStartedImpl value,
+          $Res Function(_$OnboardingStartedImpl) then) =
+      __$$OnboardingStartedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int cigarettesPerDay,
+      int yearsSmoking,
+      String quitMethod,
+      DateTime quitStartDate});
 }
 
+/// @nodoc
+class __$$OnboardingStartedImplCopyWithImpl<$Res>
+    extends _$OnboardingEventCopyWithImpl<$Res, _$OnboardingStartedImpl>
+    implements _$$OnboardingStartedImplCopyWith<$Res> {
+  __$$OnboardingStartedImplCopyWithImpl(_$OnboardingStartedImpl _value,
+      $Res Function(_$OnboardingStartedImpl) _then)
+      : super(_value, _then);
 
-/// Adds pattern-matching-related methods to [OnboardingEvent].
-extension OnboardingEventPatterns on OnboardingEvent {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( OnboardingStarted value)?  started,required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case OnboardingStarted() when started != null:
-return started(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( OnboardingStarted value)  started,}){
-final _that = this;
-switch (_that) {
-case OnboardingStarted():
-return started(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( OnboardingStarted value)?  started,}){
-final _that = this;
-switch (_that) {
-case OnboardingStarted() when started != null:
-return started(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int cigarettesPerDay,  int yearsSmoking,  String quitMethod,  DateTime quitStartDate)?  started,required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case OnboardingStarted() when started != null:
-return started(_that.cigarettesPerDay,_that.yearsSmoking,_that.quitMethod,_that.quitStartDate);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int cigarettesPerDay,  int yearsSmoking,  String quitMethod,  DateTime quitStartDate)  started,}) {final _that = this;
-switch (_that) {
-case OnboardingStarted():
-return started(_that.cigarettesPerDay,_that.yearsSmoking,_that.quitMethod,_that.quitStartDate);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int cigarettesPerDay,  int yearsSmoking,  String quitMethod,  DateTime quitStartDate)?  started,}) {final _that = this;
-switch (_that) {
-case OnboardingStarted() when started != null:
-return started(_that.cigarettesPerDay,_that.yearsSmoking,_that.quitMethod,_that.quitStartDate);case _:
-  return null;
-
-}
-}
-
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cigarettesPerDay = null,
+    Object? yearsSmoking = null,
+    Object? quitMethod = null,
+    Object? quitStartDate = null,
+  }) {
+    return _then(_$OnboardingStartedImpl(
+      cigarettesPerDay: null == cigarettesPerDay
+          ? _value.cigarettesPerDay
+          : cigarettesPerDay // ignore: cast_nullable_to_non_nullable
+              as int,
+      yearsSmoking: null == yearsSmoking
+          ? _value.yearsSmoking
+          : yearsSmoking // ignore: cast_nullable_to_non_nullable
+              as int,
+      quitMethod: null == quitMethod
+          ? _value.quitMethod
+          : quitMethod // ignore: cast_nullable_to_non_nullable
+              as String,
+      quitStartDate: null == quitStartDate
+          ? _value.quitStartDate
+          : quitStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
 /// @nodoc
 
+class _$OnboardingStartedImpl implements OnboardingStarted {
+  const _$OnboardingStartedImpl(
+      {required this.cigarettesPerDay,
+      required this.yearsSmoking,
+      required this.quitMethod,
+      required this.quitStartDate});
 
-class OnboardingStarted implements OnboardingEvent {
-  const OnboardingStarted({required this.cigarettesPerDay, required this.yearsSmoking, required this.quitMethod, required this.quitStartDate});
-  
+  @override
+  final int cigarettesPerDay;
+  @override
+  final int yearsSmoking;
+  @override
+  final String quitMethod;
+  @override
+  final DateTime quitStartDate;
 
-@override final  int cigarettesPerDay;
-@override final  int yearsSmoking;
-@override final  String quitMethod;
-@override final  DateTime quitStartDate;
+  @override
+  String toString() {
+    return 'OnboardingEvent.started(cigarettesPerDay: $cigarettesPerDay, yearsSmoking: $yearsSmoking, quitMethod: $quitMethod, quitStartDate: $quitStartDate)';
+  }
 
-/// Create a copy of OnboardingEvent
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$OnboardingStartedCopyWith<OnboardingStarted> get copyWith => _$OnboardingStartedCopyWithImpl<OnboardingStarted>(this, _$identity);
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnboardingStartedImpl &&
+            (identical(other.cigarettesPerDay, cigarettesPerDay) ||
+                other.cigarettesPerDay == cigarettesPerDay) &&
+            (identical(other.yearsSmoking, yearsSmoking) ||
+                other.yearsSmoking == yearsSmoking) &&
+            (identical(other.quitMethod, quitMethod) ||
+                other.quitMethod == quitMethod) &&
+            (identical(other.quitStartDate, quitStartDate) ||
+                other.quitStartDate == quitStartDate));
+  }
 
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate);
 
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnboardingStartedImplCopyWith<_$OnboardingStartedImpl> get copyWith =>
+      __$$OnboardingStartedImplCopyWithImpl<_$OnboardingStartedImpl>(
+          this, _$identity);
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingStarted&&(identical(other.cigarettesPerDay, cigarettesPerDay) || other.cigarettesPerDay == cigarettesPerDay)&&(identical(other.yearsSmoking, yearsSmoking) || other.yearsSmoking == yearsSmoking)&&(identical(other.quitMethod, quitMethod) || other.quitMethod == quitMethod)&&(identical(other.quitStartDate, quitStartDate) || other.quitStartDate == quitStartDate));
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int cigarettesPerDay, int yearsSmoking,
+            String quitMethod, DateTime quitStartDate)
+        started,
+  }) {
+    return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int cigarettesPerDay, int yearsSmoking, String quitMethod,
+            DateTime quitStartDate)?
+        started,
+  }) {
+    return started?.call(
+        cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int cigarettesPerDay, int yearsSmoking, String quitMethod,
+            DateTime quitStartDate)?
+        started,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnboardingStarted value) started,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OnboardingStarted value)? started,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnboardingStarted value)? started,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
 }
 
+abstract class OnboardingStarted implements OnboardingEvent {
+  const factory OnboardingStarted(
+      {required final int cigarettesPerDay,
+      required final int yearsSmoking,
+      required final String quitMethod,
+      required final DateTime quitStartDate}) = _$OnboardingStartedImpl;
 
-@override
-int get hashCode => Object.hash(runtimeType,cigarettesPerDay,yearsSmoking,quitMethod,quitStartDate);
-
-@override
-String toString() {
-  return 'OnboardingEvent.started(cigarettesPerDay: $cigarettesPerDay, yearsSmoking: $yearsSmoking, quitMethod: $quitMethod, quitStartDate: $quitStartDate)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $OnboardingStartedCopyWith<$Res> implements $OnboardingEventCopyWith<$Res> {
-  factory $OnboardingStartedCopyWith(OnboardingStarted value, $Res Function(OnboardingStarted) _then) = _$OnboardingStartedCopyWithImpl;
-@override @useResult
-$Res call({
- int cigarettesPerDay, int yearsSmoking, String quitMethod, DateTime quitStartDate
-});
-
-
-
-
-}
-/// @nodoc
-class _$OnboardingStartedCopyWithImpl<$Res>
-    implements $OnboardingStartedCopyWith<$Res> {
-  _$OnboardingStartedCopyWithImpl(this._self, this._then);
-
-  final OnboardingStarted _self;
-  final $Res Function(OnboardingStarted) _then;
-
-/// Create a copy of OnboardingEvent
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cigarettesPerDay = null,Object? yearsSmoking = null,Object? quitMethod = null,Object? quitStartDate = null,}) {
-  return _then(OnboardingStarted(
-cigarettesPerDay: null == cigarettesPerDay ? _self.cigarettesPerDay : cigarettesPerDay // ignore: cast_nullable_to_non_nullable
-as int,yearsSmoking: null == yearsSmoking ? _self.yearsSmoking : yearsSmoking // ignore: cast_nullable_to_non_nullable
-as int,quitMethod: null == quitMethod ? _self.quitMethod : quitMethod // ignore: cast_nullable_to_non_nullable
-as String,quitStartDate: null == quitStartDate ? _self.quitStartDate : quitStartDate // ignore: cast_nullable_to_non_nullable
-as DateTime,
-  ));
-}
-
-
+  @override
+  int get cigarettesPerDay;
+  @override
+  int get yearsSmoking;
+  @override
+  String get quitMethod;
+  @override
+  DateTime get quitStartDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$OnboardingStartedImplCopyWith<_$OnboardingStartedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$OnboardingState {
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingState);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'OnboardingState()';
-}
-
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnboardingInitial value) initial,
+    required TResult Function(OnboardingLoading value) loading,
+    required TResult Function(OnboardingSuccess value) success,
+    required TResult Function(OnboardingError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OnboardingInitial value)? initial,
+    TResult? Function(OnboardingLoading value)? loading,
+    TResult? Function(OnboardingSuccess value)? success,
+    TResult? Function(OnboardingError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnboardingInitial value)? initial,
+    TResult Function(OnboardingLoading value)? loading,
+    TResult Function(OnboardingSuccess value)? success,
+    TResult Function(OnboardingError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class $OnboardingStateCopyWith<$Res>  {
-$OnboardingStateCopyWith(OnboardingState _, $Res Function(OnboardingState) __);
+abstract class $OnboardingStateCopyWith<$Res> {
+  factory $OnboardingStateCopyWith(
+          OnboardingState value, $Res Function(OnboardingState) then) =
+      _$OnboardingStateCopyWithImpl<$Res, OnboardingState>;
 }
 
+/// @nodoc
+class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
+    implements $OnboardingStateCopyWith<$Res> {
+  _$OnboardingStateCopyWithImpl(this._value, this._then);
 
-/// Adds pattern-matching-related methods to [OnboardingState].
-extension OnboardingStatePatterns on OnboardingState {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( OnboardingInitial value)?  initial,TResult Function( OnboardingLoading value)?  loading,TResult Function( OnboardingSuccess value)?  success,TResult Function( OnboardingError value)?  error,required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case OnboardingInitial() when initial != null:
-return initial(_that);case OnboardingLoading() when loading != null:
-return loading(_that);case OnboardingSuccess() when success != null:
-return success(_that);case OnboardingError() when error != null:
-return error(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( OnboardingInitial value)  initial,required TResult Function( OnboardingLoading value)  loading,required TResult Function( OnboardingSuccess value)  success,required TResult Function( OnboardingError value)  error,}){
-final _that = this;
-switch (_that) {
-case OnboardingInitial():
-return initial(_that);case OnboardingLoading():
-return loading(_that);case OnboardingSuccess():
-return success(_that);case OnboardingError():
-return error(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( OnboardingInitial value)?  initial,TResult? Function( OnboardingLoading value)?  loading,TResult? Function( OnboardingSuccess value)?  success,TResult? Function( OnboardingError value)?  error,}){
-final _that = this;
-switch (_that) {
-case OnboardingInitial() when initial != null:
-return initial(_that);case OnboardingLoading() when loading != null:
-return loading(_that);case OnboardingSuccess() when success != null:
-return success(_that);case OnboardingError() when error != null:
-return error(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function()?  error,required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case OnboardingInitial() when initial != null:
-return initial();case OnboardingLoading() when loading != null:
-return loading();case OnboardingSuccess() when success != null:
-return success();case OnboardingError() when error != null:
-return error();case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function()  error,}) {final _that = this;
-switch (_that) {
-case OnboardingInitial():
-return initial();case OnboardingLoading():
-return loading();case OnboardingSuccess():
-return success();case OnboardingError():
-return error();case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function()?  error,}) {final _that = this;
-switch (_that) {
-case OnboardingInitial() when initial != null:
-return initial();case OnboardingLoading() when loading != null:
-return loading();case OnboardingSuccess() when success != null:
-return success();case OnboardingError() when error != null:
-return error();case _:
-  return null;
-
-}
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
+/// @nodoc
+abstract class _$$OnboardingInitialImplCopyWith<$Res> {
+  factory _$$OnboardingInitialImplCopyWith(_$OnboardingInitialImpl value,
+          $Res Function(_$OnboardingInitialImpl) then) =
+      __$$OnboardingInitialImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OnboardingInitialImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingInitialImpl>
+    implements _$$OnboardingInitialImplCopyWith<$Res> {
+  __$$OnboardingInitialImplCopyWithImpl(_$OnboardingInitialImpl _value,
+      $Res Function(_$OnboardingInitialImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
+class _$OnboardingInitialImpl implements OnboardingInitial {
+  const _$OnboardingInitialImpl();
 
-class OnboardingInitial implements OnboardingState {
-  const OnboardingInitial();
-  
+  @override
+  String toString() {
+    return 'OnboardingState.initial()';
+  }
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OnboardingInitialImpl);
+  }
 
+  @override
+  int get hashCode => runtimeType.hashCode;
 
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() error,
+  }) {
+    return initial();
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? error,
+  }) {
+    return initial?.call();
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingInitial);
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnboardingInitial value) initial,
+    required TResult Function(OnboardingLoading value) loading,
+    required TResult Function(OnboardingSuccess value) success,
+    required TResult Function(OnboardingError value) error,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OnboardingInitial value)? initial,
+    TResult? Function(OnboardingLoading value)? loading,
+    TResult? Function(OnboardingSuccess value)? success,
+    TResult? Function(OnboardingError value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnboardingInitial value)? initial,
+    TResult Function(OnboardingLoading value)? loading,
+    TResult Function(OnboardingSuccess value)? success,
+    TResult Function(OnboardingError value)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
 }
 
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'OnboardingState.initial()';
+abstract class OnboardingInitial implements OnboardingState {
+  const factory OnboardingInitial() = _$OnboardingInitialImpl;
 }
 
-
+/// @nodoc
+abstract class _$$OnboardingLoadingImplCopyWith<$Res> {
+  factory _$$OnboardingLoadingImplCopyWith(_$OnboardingLoadingImpl value,
+          $Res Function(_$OnboardingLoadingImpl) then) =
+      __$$OnboardingLoadingImplCopyWithImpl<$Res>;
 }
 
-
-
+/// @nodoc
+class __$$OnboardingLoadingImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingLoadingImpl>
+    implements _$$OnboardingLoadingImplCopyWith<$Res> {
+  __$$OnboardingLoadingImplCopyWithImpl(_$OnboardingLoadingImpl _value,
+      $Res Function(_$OnboardingLoadingImpl) _then)
+      : super(_value, _then);
+}
 
 /// @nodoc
 
+class _$OnboardingLoadingImpl implements OnboardingLoading {
+  const _$OnboardingLoadingImpl();
 
-class OnboardingLoading implements OnboardingState {
-  const OnboardingLoading();
-  
+  @override
+  String toString() {
+    return 'OnboardingState.loading()';
+  }
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OnboardingLoadingImpl);
+  }
 
+  @override
+  int get hashCode => runtimeType.hashCode;
 
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() error,
+  }) {
+    return loading();
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? error,
+  }) {
+    return loading?.call();
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingLoading);
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnboardingInitial value) initial,
+    required TResult Function(OnboardingLoading value) loading,
+    required TResult Function(OnboardingSuccess value) success,
+    required TResult Function(OnboardingError value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OnboardingInitial value)? initial,
+    TResult? Function(OnboardingLoading value)? loading,
+    TResult? Function(OnboardingSuccess value)? success,
+    TResult? Function(OnboardingError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnboardingInitial value)? initial,
+    TResult Function(OnboardingLoading value)? loading,
+    TResult Function(OnboardingSuccess value)? success,
+    TResult Function(OnboardingError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
 }
 
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'OnboardingState.loading()';
+abstract class OnboardingLoading implements OnboardingState {
+  const factory OnboardingLoading() = _$OnboardingLoadingImpl;
 }
 
-
+/// @nodoc
+abstract class _$$OnboardingSuccessImplCopyWith<$Res> {
+  factory _$$OnboardingSuccessImplCopyWith(_$OnboardingSuccessImpl value,
+          $Res Function(_$OnboardingSuccessImpl) then) =
+      __$$OnboardingSuccessImplCopyWithImpl<$Res>;
 }
 
-
-
+/// @nodoc
+class __$$OnboardingSuccessImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingSuccessImpl>
+    implements _$$OnboardingSuccessImplCopyWith<$Res> {
+  __$$OnboardingSuccessImplCopyWithImpl(_$OnboardingSuccessImpl _value,
+      $Res Function(_$OnboardingSuccessImpl) _then)
+      : super(_value, _then);
+}
 
 /// @nodoc
 
+class _$OnboardingSuccessImpl implements OnboardingSuccess {
+  const _$OnboardingSuccessImpl();
 
-class OnboardingSuccess implements OnboardingState {
-  const OnboardingSuccess();
-  
+  @override
+  String toString() {
+    return 'OnboardingState.success()';
+  }
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OnboardingSuccessImpl);
+  }
 
+  @override
+  int get hashCode => runtimeType.hashCode;
 
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() error,
+  }) {
+    return success();
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? error,
+  }) {
+    return success?.call();
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingSuccess);
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnboardingInitial value) initial,
+    required TResult Function(OnboardingLoading value) loading,
+    required TResult Function(OnboardingSuccess value) success,
+    required TResult Function(OnboardingError value) error,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OnboardingInitial value)? initial,
+    TResult? Function(OnboardingLoading value)? loading,
+    TResult? Function(OnboardingSuccess value)? success,
+    TResult? Function(OnboardingError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnboardingInitial value)? initial,
+    TResult Function(OnboardingLoading value)? loading,
+    TResult Function(OnboardingSuccess value)? success,
+    TResult Function(OnboardingError value)? error,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
 }
 
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'OnboardingState.success()';
+abstract class OnboardingSuccess implements OnboardingState {
+  const factory OnboardingSuccess() = _$OnboardingSuccessImpl;
 }
 
-
+/// @nodoc
+abstract class _$$OnboardingErrorImplCopyWith<$Res> {
+  factory _$$OnboardingErrorImplCopyWith(_$OnboardingErrorImpl value,
+          $Res Function(_$OnboardingErrorImpl) then) =
+      __$$OnboardingErrorImplCopyWithImpl<$Res>;
 }
 
-
-
+/// @nodoc
+class __$$OnboardingErrorImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingErrorImpl>
+    implements _$$OnboardingErrorImplCopyWith<$Res> {
+  __$$OnboardingErrorImplCopyWithImpl(
+      _$OnboardingErrorImpl _value, $Res Function(_$OnboardingErrorImpl) _then)
+      : super(_value, _then);
+}
 
 /// @nodoc
 
+class _$OnboardingErrorImpl implements OnboardingError {
+  const _$OnboardingErrorImpl();
 
-class OnboardingError implements OnboardingState {
-  const OnboardingError();
-  
+  @override
+  String toString() {
+    return 'OnboardingState.error()';
+  }
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OnboardingErrorImpl);
+  }
 
+  @override
+  int get hashCode => runtimeType.hashCode;
 
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingError);
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnboardingInitial value) initial,
+    required TResult Function(OnboardingLoading value) loading,
+    required TResult Function(OnboardingSuccess value) success,
+    required TResult Function(OnboardingError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OnboardingInitial value)? initial,
+    TResult? Function(OnboardingLoading value)? loading,
+    TResult? Function(OnboardingSuccess value)? success,
+    TResult? Function(OnboardingError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnboardingInitial value)? initial,
+    TResult Function(OnboardingLoading value)? loading,
+    TResult Function(OnboardingSuccess value)? success,
+    TResult Function(OnboardingError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
 }
 
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'OnboardingState.error()';
+abstract class OnboardingError implements OnboardingState {
+  const factory OnboardingError() = _$OnboardingErrorImpl;
 }
-
-
-}
-
-
-
-
-// dart format on
