@@ -22,18 +22,23 @@ const UserStatsIsarSchema = CollectionSchema(
       name: r'cigarettesAvoided',
       type: IsarType.long,
     ),
-    r'daysSmokeFree': PropertySchema(
+    r'cravingsLogged': PropertySchema(
       id: 1,
+      name: r'cravingsLogged',
+      type: IsarType.long,
+    ),
+    r'daysSmokeFree': PropertySchema(
+      id: 2,
       name: r'daysSmokeFree',
       type: IsarType.long,
     ),
     r'lastUpdated': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'lastUpdated',
       type: IsarType.dateTime,
     ),
     r'moneySaved': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'moneySaved',
       type: IsarType.double,
     )
@@ -68,9 +73,10 @@ void _userStatsIsarSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeLong(offsets[0], object.cigarettesAvoided);
-  writer.writeLong(offsets[1], object.daysSmokeFree);
-  writer.writeDateTime(offsets[2], object.lastUpdated);
-  writer.writeDouble(offsets[3], object.moneySaved);
+  writer.writeLong(offsets[1], object.cravingsLogged);
+  writer.writeLong(offsets[2], object.daysSmokeFree);
+  writer.writeDateTime(offsets[3], object.lastUpdated);
+  writer.writeDouble(offsets[4], object.moneySaved);
 }
 
 UserStatsIsar _userStatsIsarDeserialize(
@@ -81,10 +87,11 @@ UserStatsIsar _userStatsIsarDeserialize(
 ) {
   final object = UserStatsIsar();
   object.cigarettesAvoided = reader.readLong(offsets[0]);
-  object.daysSmokeFree = reader.readLong(offsets[1]);
+  object.cravingsLogged = reader.readLong(offsets[1]);
+  object.daysSmokeFree = reader.readLong(offsets[2]);
   object.id = id;
-  object.lastUpdated = reader.readDateTimeOrNull(offsets[2]);
-  object.moneySaved = reader.readDouble(offsets[3]);
+  object.lastUpdated = reader.readDateTimeOrNull(offsets[3]);
+  object.moneySaved = reader.readDouble(offsets[4]);
   return object;
 }
 
@@ -100,8 +107,10 @@ P _userStatsIsarDeserializeProp<P>(
     case 1:
       return (reader.readLong(offset)) as P;
     case 2:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 3:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 4:
       return (reader.readDouble(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -252,6 +261,62 @@ extension UserStatsIsarQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'cigarettesAvoided',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterFilterCondition>
+      cravingsLoggedEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'cravingsLogged',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterFilterCondition>
+      cravingsLoggedGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'cravingsLogged',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterFilterCondition>
+      cravingsLoggedLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'cravingsLogged',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterFilterCondition>
+      cravingsLoggedBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'cravingsLogged',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -534,6 +599,20 @@ extension UserStatsIsarQuerySortBy
   }
 
   QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterSortBy>
+      sortByCravingsLogged() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cravingsLogged', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterSortBy>
+      sortByCravingsLoggedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cravingsLogged', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterSortBy>
       sortByDaysSmokeFree() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'daysSmokeFree', Sort.asc);
@@ -587,6 +666,20 @@ extension UserStatsIsarQuerySortThenBy
       thenByCigarettesAvoidedDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cigarettesAvoided', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterSortBy>
+      thenByCravingsLogged() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cravingsLogged', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QAfterSortBy>
+      thenByCravingsLoggedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cravingsLogged', Sort.desc);
     });
   }
 
@@ -653,6 +746,13 @@ extension UserStatsIsarQueryWhereDistinct
   }
 
   QueryBuilder<UserStatsIsar, UserStatsIsar, QDistinct>
+      distinctByCravingsLogged() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'cravingsLogged');
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, UserStatsIsar, QDistinct>
       distinctByDaysSmokeFree() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'daysSmokeFree');
@@ -685,6 +785,12 @@ extension UserStatsIsarQueryProperty
       cigarettesAvoidedProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'cigarettesAvoided');
+    });
+  }
+
+  QueryBuilder<UserStatsIsar, int, QQueryOperations> cravingsLoggedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'cravingsLogged');
     });
   }
 

@@ -5,111 +5,75 @@ import '../../../../core/error/failures.dart';
 import '../../domain/entities/user_stats.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../datasources/home_local_data_source.dart';
-import '../datasources/home_remote_data_source.dart';
 import '../models/user_stats_isar.dart';
+import '../models/craving_event_isar.dart';
 
 @LazySingleton(as: HomeRepository)
 class HomeRepositoryImpl implements HomeRepository {
-  final HomeRemoteDataSource remoteDataSource;
   final HomeLocalDataSource localDataSource;
 
-  HomeRepositoryImpl(this.remoteDataSource, this.localDataSource);
+  HomeRepositoryImpl(this.localDataSource);
 
   @override
   Future<Either<Failure, UserStats>> getHomeStats() async {
     try {
-      // 1. Try to get from local source first
-      final localStats = await localDataSource.getHomeStats();
-      
-      if (localStats != null) {
-        // Return local data immediately (Offline-First)
-        final entity = UserStats(
-          daysSmokeFree: localStats.daysSmokeFree,
-          cigarettesAvoided: localStats.cigarettesAvoided,
-          moneySaved: localStats.moneySaved,
-        );
-
-        // Optional: Trigger background sync in a real app
-        _syncWithRemoteInBackground();
-
-        return Right(entity);
+      final userProfile = await localDataSource.getUserProfile();
+      if (userProfile == null) {
+        return const Left(Failure.databaseError());
       }
 
-      // 2. If no local data, fallback to remote
-      final remoteData = await remoteDataSource.getHomeStats();
-      if (remoteData == null) {
-        return const Left(Failure.serverError());
-      }
+      final now = DateTime.now();
+      final difference = now.difference(userProfile.quitStartDate);
+      final daysSmokeFree = difference.inDays > 0 ? difference.inDays : 0;
+      final cigarettesAvoided = daysSmokeFree * userProfile.cigarettesPerDay;
+      const pricePerCigarette = 0.50; // TODO: Can be pulled from profile optionally
+      final moneySaved = cigarettesAvoided * pricePerCigarette;
 
-      // Calculate stats (logic moved here from old implementation)
-      final stats = _calculateStatsFromRemote(remoteData);
+      final existingLocal = await localDataSource.getHomeStats();
       
-      // Cache the result
+      final stats = UserStats(
+        daysSmokeFree: daysSmokeFree,
+        cigarettesAvoided: cigarettesAvoided,
+        moneySaved: moneySaved,
+        cravingsLogged: existingLocal?.cravingsLogged ?? 0,
+      );
+
+      // Cache updated local stats wrapper
       await localDataSource.cacheHomeStats(UserStatsIsar()
         ..daysSmokeFree = stats.daysSmokeFree
         ..cigarettesAvoided = stats.cigarettesAvoided
         ..moneySaved = stats.moneySaved
-        ..lastUpdated = DateTime.now());
+        ..cravingsLogged = stats.cravingsLogged
+        ..lastUpdated = now);
 
       return Right(stats);
     } catch (e) {
-      return const Left(Failure.serverError());
+      return const Left(Failure.databaseError());
     }
   }
 
   @override
   Future<Either<Failure, Unit>> logCraving() async {
     try {
-      // Optimistic UI: Update local state if needed (not shown for brevity in this reference)
-      
-      // Push to remote
-      await remoteDataSource.logCraving();
-      
-      return const Right(unit);
-    } catch (e) {
-      // In a real Optimistic UI, we might need to rollback local changes here
-      return const Left(Failure.serverError());
-    }
-  }
+      // 1. Log craving event specifically to the new table
+      final event = CravingEventIsar()..timestamp = DateTime.now();
+      await localDataSource.logCravingEvent(event);
 
-  UserStats _calculateStatsFromRemote(Map<String, dynamic> response) {
-    final quitStartDateStr = response['quit_start_date'] as String?;
-    final cigarettesPerDay = response['cigarettes_per_day'] as int? ?? 0;
-
-    if (quitStartDateStr == null) {
-      return const UserStats(daysSmokeFree: 0, cigarettesAvoided: 0, moneySaved: 0);
-    }
-
-    final quitStartDate = DateTime.parse(quitStartDateStr);
-    final now = DateTime.now();
-
-    final difference = now.difference(quitStartDate);
-    final daysSmokeFree = difference.inDays > 0 ? difference.inDays : 0;
-
-    final cigarettesAvoided = daysSmokeFree * cigarettesPerDay;
-    const pricePerCigarette = 0.50;
-    final moneySaved = cigarettesAvoided * pricePerCigarette;
-
-    return UserStats(
-      daysSmokeFree: daysSmokeFree,
-      cigarettesAvoided: cigarettesAvoided,
-      moneySaved: moneySaved,
-    );
-  }
-
-  void _syncWithRemoteInBackground() async {
-    try {
-      final remoteData = await remoteDataSource.getHomeStats();
-      if (remoteData != null) {
-        final stats = _calculateStatsFromRemote(remoteData);
+      // 2. Increment local summary stats directly
+      final localStats = await localDataSource.getHomeStats();
+      if (localStats != null) {
+        localStats.cravingsLogged += 1;
+        await localDataSource.cacheHomeStats(localStats);
+      } else {
         await localDataSource.cacheHomeStats(UserStatsIsar()
-          ..daysSmokeFree = stats.daysSmokeFree
-          ..cigarettesAvoided = stats.cigarettesAvoided
-          ..moneySaved = stats.moneySaved
+          ..cravingsLogged = 1
           ..lastUpdated = DateTime.now());
       }
-    } catch (_) {
-      // Background sync failures are typically ignored or retried silently
+
+      return const Right(unit);
+    } catch (e) {
+      return const Left(Failure.databaseError());
     }
   }
 }
+

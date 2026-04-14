@@ -1,6 +1,13 @@
 # Quitra
 
-A new Flutter project.
+A strictly offline-only smoking cessation app built with Flutter.
+
+## Architecture
+
+- **Local Storage:** Isar Database
+- **Design:** "The Serene Path" system
+- **Privacy:** 100% Offline, no external servers, no tracking.
+- **Portability:** CSV Import/Export for manual data backup.
 
 ## Getting Started
 

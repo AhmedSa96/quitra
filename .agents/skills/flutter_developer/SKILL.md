@@ -6,12 +6,12 @@ modern reactive stack and an **Offline-First** mindset.
 
 ## 1. The Stack
 
-- **State Management:** `flutter_bloc` (Separation of UI and Business Logic)
-- **Routing:** `go_router` (Declarative routing)
-- **DI:** `get_it` + `injectable` (Dependency Injection)
-- **Models:** `freezed` + `json_serializable` (Immutable types & boilerplate-free models)
-- **Networking:** `supabase_flutter` (Remote)
-- **Local Storage:** `isar` (Primary local storage for offline-first data)
+- **State Management:** `flutter_bloc`
+- **Routing:** `go_router`
+- **DI:** `get_it` + `injectable`
+- **Models:** `freezed` + `json_serializable`
+- **Local Storage:** `isar` (Primary and only storage)
+- **Data Portability:** `csv` (For manual import/export)
 - **Testing:** `mocktail` + `bloc_test`
 
 ## 2. Directory Structure (Clean Architecture)
@@ -26,11 +26,9 @@ lib/
 │   ├── error/           # Global Failures & Exceptions
 │   └── di/              # Injection container setup
 ├── features/            # Feature-based modularization
-│   └── smoking_stats/   # Example Feature
+│   └── smoking_stats/
 │       ├── data/
-│       │   ├── datasources/
-│       │   │   ├── local/   # Isar implementations
-│       │   │   └── remote/  # Supabase implementations
+│       │   ├── datasources/ # Isar implementations
 │       │   ├── models/
 │       │   └── repositories_impl/
 │       ├── domain/
@@ -54,30 +52,22 @@ lib/
 
 ### Data Layer (Implementation)
 
-- **Models:** Freezed classes with `fromJson`/`toJson`.
-- **RemoteDataSources:** API calls to Supabase. Interface-based to allow mocking.
-- **LocalDataSources:** Isar database calls. Stores/retrieves local state.
-- **Repository Implementations:** The orchestrator of datasources. Implements the **Offline-First** logic.
+- **Models:** Freezed classes with `fromJson`/`toJson` (for CSV/JSON serialization).
+- **DataSources:** Isar database calls. Stores/retrieves local state.
+- **Repository Implementations:** The orchestrator of data. Implements the business logic for state persistence.
 
 ### Presentation Layer (UI & Logic)
 
 - **Bloc:** Processes Events and emits States. Never holds UI logic.
 - **Rule:** UI should only interact with Bloc. No direct Repository calls in Widgets.
 
-## 4. Offline-First Strategy: Optimistic UI
+## 4. Local-First Architecture
 
-Quitra is an offline-first app. We use an **Optimistic UI** approach for mutations and a **Cache-Fallback** for queries.
+Quitra is a strictly offline app. Data persistence is immediate and local.
 
-### Queries (Reading Data)
-1. Repository checks `LocalDataSource`.
-2. If data exists, it is returned immediately.
-3. Repository may trigger a background sync with `RemoteDataSource` to refresh the `LocalDataSource`.
-
-### Mutations (Writing Data)
-1. Repository updates `LocalDataSource` immediately.
-2. Repository returns `success` to the Bloc (Optimistic UI).
-3. Repository triggers a background push to `RemoteDataSource`.
-4. If remote push fails, the Repository manages retry logic or conflict resolution.
+### Data Portability (CSV)
+1. **Export:** Repositories must provide methods to serialize Isar collections into CSV strings for file export.
+2. **Import:** Repositories must handle CSV parsing and batch-inserting into Isar while maintaining data integrity.
 
 ## 5. Development Rules & Patterns
 
@@ -88,7 +78,7 @@ Use `@injectable` annotations. Always register implementations against interface
 ### Error Handling
 
 - Catch `Exceptions` in the Data layer.
-- Return `Failures` (e.g., `ServerFailure`, `CacheFailure`) using `Either`.
+- Return `Failures` (e.g., `DatabaseFailure`, `FileFailure`) using `Either`.
 - **Failures** should be defined in `lib/core/error/failures.dart`.
 
 ### Model Generation

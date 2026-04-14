@@ -1,15 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../domain/repositories/onboarding_repository.dart';
+import '../datasources/onboarding_local_data_source.dart';
+import '../models/user_profile_isar.dart';
 
 @LazySingleton(as: OnboardingRepository)
 class OnboardingRepositoryImpl implements OnboardingRepository {
-  final SupabaseClient supabase;
+  final OnboardingLocalDataSource localDataSource;
 
-  OnboardingRepositoryImpl(this.supabase);
+  OnboardingRepositoryImpl(this.localDataSource);
 
   @override
   Future<Either<Failure, Unit>> completeOnboarding({
@@ -19,49 +20,28 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
     required DateTime quitStartDate,
   }) async {
     try {
-      // 1. Ensure we have an authenticated user
-      var user = supabase.auth.currentUser;
-      if (user == null) {
-        final authResponse = await supabase.auth.signInAnonymously();
-        user = authResponse.user;
-      }
-
-      if (user == null) {
-        return const Left(Failure.serverError());
-      }
-
-      // 2. Save the onboarding data in profiles table
-      await supabase.from('profiles').upsert({
-        'id': user.id,
-        'cigarettes_per_day': cigarettesPerDay,
-        'years_smoking': yearsSmoking,
-        'quit_method': quitMethod,
-        'quit_start_date': quitStartDate.toIso8601String(),
-        'onboarding_completed': true,
-      });
+      final profile = UserProfileIsar()
+        ..cigarettesPerDay = cigarettesPerDay
+        ..yearsSmoking = yearsSmoking
+        ..quitMethod = quitMethod
+        ..quitStartDate = quitStartDate;
+        
+      await localDataSource.saveUserProfile(profile);
 
       return const Right(unit);
     } catch (e) {
-      return const Left(Failure.serverError());
+      return const Left(Failure.databaseError());
     }
   }
 
   @override
   Future<Either<Failure, bool>> isOnboardingCompleted() async {
     try {
-      final user = supabase.auth.currentUser;
-      if (user == null) return const Right(false);
-
-      final response = await supabase
-          .from('profiles')
-          .select('onboarding_completed')
-          .eq('id', user.id)
-          .maybeSingle();
-
-      if (response == null) return const Right(false);
-      return Right(response['onboarding_completed'] as bool? ?? false);
+      final hasProfile = await localDataSource.hasUserProfile();
+      return Right(hasProfile);
     } catch (e) {
-      return const Left(Failure.serverError());
+      return const Left(Failure.databaseError());
     }
   }
 }
+

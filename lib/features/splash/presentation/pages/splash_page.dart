@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quitra/features/onboarding/domain/repositories/onboarding_repository.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/theme/app_theme.dart';
-import '../../../../core/supabase/supabase_config.dart';
 import '../../../../core/di/injection.dart';
 import 'package:quitra/l10n/app_localizations.dart';
 
@@ -35,16 +33,8 @@ class _SplashPageState extends State<SplashPage>
   }
 
   Future<void> _navigateToNext() async {
-    // Initialize Supabase in parallel with the splash animation
-    try {
-      await Future.wait([
-        _initializeSupabase(),
-        Future.delayed(const Duration(seconds: 2)),
-      ]);
-    } catch (e) {
-      // Log error and proceed to check current state
-      debugPrint('Supabase initialization error: $e');
-    }
+    // Wait for the splash animation
+    await Future.delayed(const Duration(seconds: 2));
 
     if (mounted) {
       final repository = getIt<OnboardingRepository>();
@@ -64,20 +54,6 @@ class _SplashPageState extends State<SplashPage>
     }
   }
 
-  Future<void> _initializeSupabase() async {
-    try {
-      await Supabase.initialize(
-        url: SupabaseConfig.url,
-        anonKey: SupabaseConfig.anonKey,
-      );
-    } catch (e) {
-      // Check if error is 'already initialized'
-      if (e.toString().contains('has already been initialized')) {
-        return;
-      }
-      rethrow;
-    }
-  }
 
   @override
   void dispose() {

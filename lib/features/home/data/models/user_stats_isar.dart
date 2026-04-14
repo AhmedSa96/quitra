@@ -9,5 +9,6 @@ class UserStatsIsar {
   int daysSmokeFree = 0;
   int cigarettesAvoided = 0;
   double moneySaved = 0.0;
+  int cravingsLogged = 0;
   DateTime? lastUpdated;
 }

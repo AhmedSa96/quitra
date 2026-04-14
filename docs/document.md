@@ -1,5 +1,5 @@
 Below is a **complete product + technical specification document** tailored for
-your stack (**Flutter + Supabase**) and your goal of building a **high-retention
+your stack (**Flutter + Isar**) and your goal of building a **high-retention
 smoking cessation app**.
 
 ---
@@ -37,11 +37,11 @@ cravings**.
 
 # 3. 🧱 Core Product Principles
 
-- **Offline-first**
+- **Strictly Offline-only**
 - **Low friction onboarding**
 - **Emotionally supportive UX**
 - **Data-driven insights**
-- **Optional account (privacy-first)**
+- **Complete privacy (No cloud storage)**
 
 ---
 
@@ -176,43 +176,19 @@ Triggers:
 
 ---
 
-## 4.8 Subscription System
+## 4.8 Settings & Data Portability
 
-### Free Tier:
+### Features:
 
-- basic tracking
-- basic stats
-- craving button
-
-### Premium:
-
-- advanced stats
-- smart notifications
-- detailed insights
-- cloud backup
-
-### Pricing:
-
-- Monthly
-- Yearly
-- (optional free trial)
+- Profile management (local only)
+- Notification settings
+- **CSV Data Export:** Backup all local tracking data to a CSV file.
+- **CSV Data Import:** Restore data from a previously exported CSV file.
+- Theme switching (Light/Dark/System)
 
 ---
 
-## 4.9 Optional Account System
 
-### Mode:
-
-- Anonymous by default
-- Optional login:
-
-  - Google
-  - Apple
-
-### Purpose:
-
-- Backup
-- Multi-device sync
 
 ---
 
@@ -235,80 +211,38 @@ Triggers:
 
 ---
 
-## 5.2 Backend (Supabase)
+## 5.2 Local Storage (Isar)
 
-### Services Used:
+### Database:
 
-- PostgreSQL (database)
-- Auth (optional)
-- Storage (optional for future)
-- Edge Functions (optional later)
+- Isar (High-performance NoSQL for Flutter)
+- Encrypted storage (optional for future)
 
 ---
 
-# 6. 🗄️ Database Schema (Supabase)
+# 6. 🗄️ Database Schema (Isar)
 
 ---
 
-## 6.1 Users Table
+## 6.1 Collections
 
-```
-users
-- id (uuid)
-- created_at
-- is_anonymous (bool)
-- subscription_status
-```
-
----
-
-## 6.2 Profile Table
-
-```
-profiles
-- user_id (fk)
+### UserProfile (Collection)
+- id (int)
 - cigarettes_per_day
 - years_smoking
 - quit_method
 - quit_start_date
-```
 
----
-
-## 6.3 Daily Logs
-
-```
-daily_logs
-- id
-- user_id (fk)
-- date
+### DailyLog (Collection)
+- id (int)
+- date (DateTime)
 - smoked (bool)
 - cravings_level (int)
-- notes (text)
-```
+- notes (string)
 
----
-
-## 6.4 Craving Events
-
-```
-craving_events
-- id
-- user_id
-- timestamp
-```
-
----
-
-## 6.5 Stats Cache (optional optimization)
-
-```
-user_stats
-- user_id
-- days_smoke_free
-- money_saved
-- cigarettes_avoided
-```
+### CravingEvent (Collection)
+- id (int)
+- timestamp (DateTime)
 
 ---
 
@@ -316,15 +250,11 @@ user_stats
 
 ---
 
-### Offline-first logic:
+### Local-only logic:
 
-1. User interacts with app → data stored locally (SQLite / Hive)
-2. If online:
-
-   - sync with Supabase
-3. If offline:
-
-   - queue updates
+1. User interacts with app → data stored locally in Isar.
+2. Analytics: None (Privacy-first).
+3. Backup: Manual CSV Export/Import.
 
 ---
 
@@ -405,7 +335,7 @@ Simple heuristic:
 
 - subscriptions
 - cloud sync
-- advanced analytics
+- analytics
 
 ---
 
@@ -460,19 +390,15 @@ Simple heuristic:
 
 ---
 
-### Mobile:
+### Storage:
 
 - Flutter
 - Bloc
-- Hive (local storage)
+- Isar (Local database)
 
-### Backend:
+### External Services:
 
-- Supabase (Postgres + Auth)
-
-### Notifications:
-
-- Firebase Cloud Messaging (FCM)
+- None (100% Offline)
 
 ---
 

@@ -19,6 +19,7 @@ mixin _$UserStats {
   int get daysSmokeFree => throw _privateConstructorUsedError;
   double get moneySaved => throw _privateConstructorUsedError;
   int get cigarettesAvoided => throw _privateConstructorUsedError;
+  int get cravingsLogged => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserStatsCopyWith<UserStats> get copyWith =>
@@ -30,7 +31,11 @@ abstract class $UserStatsCopyWith<$Res> {
   factory $UserStatsCopyWith(UserStats value, $Res Function(UserStats) then) =
       _$UserStatsCopyWithImpl<$Res, UserStats>;
   @useResult
-  $Res call({int daysSmokeFree, double moneySaved, int cigarettesAvoided});
+  $Res call(
+      {int daysSmokeFree,
+      double moneySaved,
+      int cigarettesAvoided,
+      int cravingsLogged});
 }
 
 /// @nodoc
@@ -49,6 +54,7 @@ class _$UserStatsCopyWithImpl<$Res, $Val extends UserStats>
     Object? daysSmokeFree = null,
     Object? moneySaved = null,
     Object? cigarettesAvoided = null,
+    Object? cravingsLogged = null,
   }) {
     return _then(_value.copyWith(
       daysSmokeFree: null == daysSmokeFree
@@ -63,6 +69,10 @@ class _$UserStatsCopyWithImpl<$Res, $Val extends UserStats>
           ? _value.cigarettesAvoided
           : cigarettesAvoided // ignore: cast_nullable_to_non_nullable
               as int,
+      cravingsLogged: null == cravingsLogged
+          ? _value.cravingsLogged
+          : cravingsLogged // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -75,7 +85,11 @@ abstract class _$$UserStatsImplCopyWith<$Res>
       __$$UserStatsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int daysSmokeFree, double moneySaved, int cigarettesAvoided});
+  $Res call(
+      {int daysSmokeFree,
+      double moneySaved,
+      int cigarettesAvoided,
+      int cravingsLogged});
 }
 
 /// @nodoc
@@ -92,6 +106,7 @@ class __$$UserStatsImplCopyWithImpl<$Res>
     Object? daysSmokeFree = null,
     Object? moneySaved = null,
     Object? cigarettesAvoided = null,
+    Object? cravingsLogged = null,
   }) {
     return _then(_$UserStatsImpl(
       daysSmokeFree: null == daysSmokeFree
@@ -106,6 +121,10 @@ class __$$UserStatsImplCopyWithImpl<$Res>
           ? _value.cigarettesAvoided
           : cigarettesAvoided // ignore: cast_nullable_to_non_nullable
               as int,
+      cravingsLogged: null == cravingsLogged
+          ? _value.cravingsLogged
+          : cravingsLogged // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -116,7 +135,8 @@ class _$UserStatsImpl implements _UserStats {
   const _$UserStatsImpl(
       {required this.daysSmokeFree,
       required this.moneySaved,
-      required this.cigarettesAvoided});
+      required this.cigarettesAvoided,
+      this.cravingsLogged = 0});
 
   @override
   final int daysSmokeFree;
@@ -124,10 +144,13 @@ class _$UserStatsImpl implements _UserStats {
   final double moneySaved;
   @override
   final int cigarettesAvoided;
+  @override
+  @JsonKey()
+  final int cravingsLogged;
 
   @override
   String toString() {
-    return 'UserStats(daysSmokeFree: $daysSmokeFree, moneySaved: $moneySaved, cigarettesAvoided: $cigarettesAvoided)';
+    return 'UserStats(daysSmokeFree: $daysSmokeFree, moneySaved: $moneySaved, cigarettesAvoided: $cigarettesAvoided, cravingsLogged: $cravingsLogged)';
   }
 
   @override
@@ -140,12 +163,14 @@ class _$UserStatsImpl implements _UserStats {
             (identical(other.moneySaved, moneySaved) ||
                 other.moneySaved == moneySaved) &&
             (identical(other.cigarettesAvoided, cigarettesAvoided) ||
-                other.cigarettesAvoided == cigarettesAvoided));
+                other.cigarettesAvoided == cigarettesAvoided) &&
+            (identical(other.cravingsLogged, cravingsLogged) ||
+                other.cravingsLogged == cravingsLogged));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, daysSmokeFree, moneySaved, cigarettesAvoided);
+  int get hashCode => Object.hash(runtimeType, daysSmokeFree, moneySaved,
+      cigarettesAvoided, cravingsLogged);
 
   @JsonKey(ignore: true)
   @override
@@ -158,7 +183,8 @@ abstract class _UserStats implements UserStats {
   const factory _UserStats(
       {required final int daysSmokeFree,
       required final double moneySaved,
-      required final int cigarettesAvoided}) = _$UserStatsImpl;
+      required final int cigarettesAvoided,
+      final int cravingsLogged}) = _$UserStatsImpl;
 
   @override
   int get daysSmokeFree;
@@ -166,6 +192,8 @@ abstract class _UserStats implements UserStats {
   double get moneySaved;
   @override
   int get cigarettesAvoided;
+  @override
+  int get cravingsLogged;
   @override
   @JsonKey(ignore: true)
   _$$UserStatsImplCopyWith<_$UserStatsImpl> get copyWith =>

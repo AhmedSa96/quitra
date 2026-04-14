@@ -12,6 +12,7 @@ UI must reduce cortisol, reduce task anxiety, and provide editorial clarity.
 - **Rule of Thumb:** If it feels crowded, add 8px more padding.
 - **Visual Style:** Asymmetric layouts, organic depth, soft overlapping
   transitions. No rigid boxes.
+- **Offline Excellence:** Since the app is strictly offline, design for zero latency. Avoid heavy "loading" states for local data; focus on instant transitions and optimistic UI updates for long-running local operations (like CSV import).
 
 ## 2. Color System (Material 3 Implementation)
 

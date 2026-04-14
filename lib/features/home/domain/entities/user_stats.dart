@@ -8,5 +8,6 @@ abstract class UserStats with _$UserStats {
     required int daysSmokeFree,
     required double moneySaved,
     required int cigarettesAvoided,
+    @Default(0) int cravingsLogged,
   }) = _UserStats;
 }

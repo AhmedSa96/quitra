@@ -21,6 +21,8 @@ mixin _$Failure {
     required TResult Function() serverError,
     required TResult Function() networkError,
     required TResult Function() cacheError,
+    required TResult Function() databaseError,
+    required TResult Function() fileError,
     required TResult Function() unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +31,8 @@ mixin _$Failure {
     TResult? Function()? serverError,
     TResult? Function()? networkError,
     TResult? Function()? cacheError,
+    TResult? Function()? databaseError,
+    TResult? Function()? fileError,
     TResult? Function()? unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +41,8 @@ mixin _$Failure {
     TResult Function()? serverError,
     TResult Function()? networkError,
     TResult Function()? cacheError,
+    TResult Function()? databaseError,
+    TResult Function()? fileError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) =>
@@ -46,6 +52,8 @@ mixin _$Failure {
     required TResult Function(ServerError value) serverError,
     required TResult Function(NetworkError value) networkError,
     required TResult Function(CacheError value) cacheError,
+    required TResult Function(DatabaseError value) databaseError,
+    required TResult Function(FileError value) fileError,
     required TResult Function(UnexpectedError value) unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +62,8 @@ mixin _$Failure {
     TResult? Function(ServerError value)? serverError,
     TResult? Function(NetworkError value)? networkError,
     TResult? Function(CacheError value)? cacheError,
+    TResult? Function(DatabaseError value)? databaseError,
+    TResult? Function(FileError value)? fileError,
     TResult? Function(UnexpectedError value)? unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +72,8 @@ mixin _$Failure {
     TResult Function(ServerError value)? serverError,
     TResult Function(NetworkError value)? networkError,
     TResult Function(CacheError value)? cacheError,
+    TResult Function(DatabaseError value)? databaseError,
+    TResult Function(FileError value)? fileError,
     TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) =>
@@ -126,6 +138,8 @@ class _$ServerErrorImpl implements ServerError {
     required TResult Function() serverError,
     required TResult Function() networkError,
     required TResult Function() cacheError,
+    required TResult Function() databaseError,
+    required TResult Function() fileError,
     required TResult Function() unexpectedError,
   }) {
     return serverError();
@@ -137,6 +151,8 @@ class _$ServerErrorImpl implements ServerError {
     TResult? Function()? serverError,
     TResult? Function()? networkError,
     TResult? Function()? cacheError,
+    TResult? Function()? databaseError,
+    TResult? Function()? fileError,
     TResult? Function()? unexpectedError,
   }) {
     return serverError?.call();
@@ -148,6 +164,8 @@ class _$ServerErrorImpl implements ServerError {
     TResult Function()? serverError,
     TResult Function()? networkError,
     TResult Function()? cacheError,
+    TResult Function()? databaseError,
+    TResult Function()? fileError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
@@ -163,6 +181,8 @@ class _$ServerErrorImpl implements ServerError {
     required TResult Function(ServerError value) serverError,
     required TResult Function(NetworkError value) networkError,
     required TResult Function(CacheError value) cacheError,
+    required TResult Function(DatabaseError value) databaseError,
+    required TResult Function(FileError value) fileError,
     required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return serverError(this);
@@ -174,6 +194,8 @@ class _$ServerErrorImpl implements ServerError {
     TResult? Function(ServerError value)? serverError,
     TResult? Function(NetworkError value)? networkError,
     TResult? Function(CacheError value)? cacheError,
+    TResult? Function(DatabaseError value)? databaseError,
+    TResult? Function(FileError value)? fileError,
     TResult? Function(UnexpectedError value)? unexpectedError,
   }) {
     return serverError?.call(this);
@@ -185,6 +207,8 @@ class _$ServerErrorImpl implements ServerError {
     TResult Function(ServerError value)? serverError,
     TResult Function(NetworkError value)? networkError,
     TResult Function(CacheError value)? cacheError,
+    TResult Function(DatabaseError value)? databaseError,
+    TResult Function(FileError value)? fileError,
     TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
@@ -240,6 +264,8 @@ class _$NetworkErrorImpl implements NetworkError {
     required TResult Function() serverError,
     required TResult Function() networkError,
     required TResult Function() cacheError,
+    required TResult Function() databaseError,
+    required TResult Function() fileError,
     required TResult Function() unexpectedError,
   }) {
     return networkError();
@@ -251,6 +277,8 @@ class _$NetworkErrorImpl implements NetworkError {
     TResult? Function()? serverError,
     TResult? Function()? networkError,
     TResult? Function()? cacheError,
+    TResult? Function()? databaseError,
+    TResult? Function()? fileError,
     TResult? Function()? unexpectedError,
   }) {
     return networkError?.call();
@@ -262,6 +290,8 @@ class _$NetworkErrorImpl implements NetworkError {
     TResult Function()? serverError,
     TResult Function()? networkError,
     TResult Function()? cacheError,
+    TResult Function()? databaseError,
+    TResult Function()? fileError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
@@ -277,6 +307,8 @@ class _$NetworkErrorImpl implements NetworkError {
     required TResult Function(ServerError value) serverError,
     required TResult Function(NetworkError value) networkError,
     required TResult Function(CacheError value) cacheError,
+    required TResult Function(DatabaseError value) databaseError,
+    required TResult Function(FileError value) fileError,
     required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return networkError(this);
@@ -288,6 +320,8 @@ class _$NetworkErrorImpl implements NetworkError {
     TResult? Function(ServerError value)? serverError,
     TResult? Function(NetworkError value)? networkError,
     TResult? Function(CacheError value)? cacheError,
+    TResult? Function(DatabaseError value)? databaseError,
+    TResult? Function(FileError value)? fileError,
     TResult? Function(UnexpectedError value)? unexpectedError,
   }) {
     return networkError?.call(this);
@@ -299,6 +333,8 @@ class _$NetworkErrorImpl implements NetworkError {
     TResult Function(ServerError value)? serverError,
     TResult Function(NetworkError value)? networkError,
     TResult Function(CacheError value)? cacheError,
+    TResult Function(DatabaseError value)? databaseError,
+    TResult Function(FileError value)? fileError,
     TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
@@ -354,6 +390,8 @@ class _$CacheErrorImpl implements CacheError {
     required TResult Function() serverError,
     required TResult Function() networkError,
     required TResult Function() cacheError,
+    required TResult Function() databaseError,
+    required TResult Function() fileError,
     required TResult Function() unexpectedError,
   }) {
     return cacheError();
@@ -365,6 +403,8 @@ class _$CacheErrorImpl implements CacheError {
     TResult? Function()? serverError,
     TResult? Function()? networkError,
     TResult? Function()? cacheError,
+    TResult? Function()? databaseError,
+    TResult? Function()? fileError,
     TResult? Function()? unexpectedError,
   }) {
     return cacheError?.call();
@@ -376,6 +416,8 @@ class _$CacheErrorImpl implements CacheError {
     TResult Function()? serverError,
     TResult Function()? networkError,
     TResult Function()? cacheError,
+    TResult Function()? databaseError,
+    TResult Function()? fileError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
@@ -391,6 +433,8 @@ class _$CacheErrorImpl implements CacheError {
     required TResult Function(ServerError value) serverError,
     required TResult Function(NetworkError value) networkError,
     required TResult Function(CacheError value) cacheError,
+    required TResult Function(DatabaseError value) databaseError,
+    required TResult Function(FileError value) fileError,
     required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return cacheError(this);
@@ -402,6 +446,8 @@ class _$CacheErrorImpl implements CacheError {
     TResult? Function(ServerError value)? serverError,
     TResult? Function(NetworkError value)? networkError,
     TResult? Function(CacheError value)? cacheError,
+    TResult? Function(DatabaseError value)? databaseError,
+    TResult? Function(FileError value)? fileError,
     TResult? Function(UnexpectedError value)? unexpectedError,
   }) {
     return cacheError?.call(this);
@@ -413,6 +459,8 @@ class _$CacheErrorImpl implements CacheError {
     TResult Function(ServerError value)? serverError,
     TResult Function(NetworkError value)? networkError,
     TResult Function(CacheError value)? cacheError,
+    TResult Function(DatabaseError value)? databaseError,
+    TResult Function(FileError value)? fileError,
     TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
@@ -425,6 +473,258 @@ class _$CacheErrorImpl implements CacheError {
 
 abstract class CacheError implements Failure {
   const factory CacheError() = _$CacheErrorImpl;
+}
+
+/// @nodoc
+abstract class _$$DatabaseErrorImplCopyWith<$Res> {
+  factory _$$DatabaseErrorImplCopyWith(
+          _$DatabaseErrorImpl value, $Res Function(_$DatabaseErrorImpl) then) =
+      __$$DatabaseErrorImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DatabaseErrorImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$DatabaseErrorImpl>
+    implements _$$DatabaseErrorImplCopyWith<$Res> {
+  __$$DatabaseErrorImplCopyWithImpl(
+      _$DatabaseErrorImpl _value, $Res Function(_$DatabaseErrorImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DatabaseErrorImpl implements DatabaseError {
+  const _$DatabaseErrorImpl();
+
+  @override
+  String toString() {
+    return 'Failure.databaseError()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DatabaseErrorImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverError,
+    required TResult Function() networkError,
+    required TResult Function() cacheError,
+    required TResult Function() databaseError,
+    required TResult Function() fileError,
+    required TResult Function() unexpectedError,
+  }) {
+    return databaseError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? serverError,
+    TResult? Function()? networkError,
+    TResult? Function()? cacheError,
+    TResult? Function()? databaseError,
+    TResult? Function()? fileError,
+    TResult? Function()? unexpectedError,
+  }) {
+    return databaseError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverError,
+    TResult Function()? networkError,
+    TResult Function()? cacheError,
+    TResult Function()? databaseError,
+    TResult Function()? fileError,
+    TResult Function()? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (databaseError != null) {
+      return databaseError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(NetworkError value) networkError,
+    required TResult Function(CacheError value) cacheError,
+    required TResult Function(DatabaseError value) databaseError,
+    required TResult Function(FileError value) fileError,
+    required TResult Function(UnexpectedError value) unexpectedError,
+  }) {
+    return databaseError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(NetworkError value)? networkError,
+    TResult? Function(CacheError value)? cacheError,
+    TResult? Function(DatabaseError value)? databaseError,
+    TResult? Function(FileError value)? fileError,
+    TResult? Function(UnexpectedError value)? unexpectedError,
+  }) {
+    return databaseError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerError value)? serverError,
+    TResult Function(NetworkError value)? networkError,
+    TResult Function(CacheError value)? cacheError,
+    TResult Function(DatabaseError value)? databaseError,
+    TResult Function(FileError value)? fileError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (databaseError != null) {
+      return databaseError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DatabaseError implements Failure {
+  const factory DatabaseError() = _$DatabaseErrorImpl;
+}
+
+/// @nodoc
+abstract class _$$FileErrorImplCopyWith<$Res> {
+  factory _$$FileErrorImplCopyWith(
+          _$FileErrorImpl value, $Res Function(_$FileErrorImpl) then) =
+      __$$FileErrorImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FileErrorImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$FileErrorImpl>
+    implements _$$FileErrorImplCopyWith<$Res> {
+  __$$FileErrorImplCopyWithImpl(
+      _$FileErrorImpl _value, $Res Function(_$FileErrorImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FileErrorImpl implements FileError {
+  const _$FileErrorImpl();
+
+  @override
+  String toString() {
+    return 'Failure.fileError()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FileErrorImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverError,
+    required TResult Function() networkError,
+    required TResult Function() cacheError,
+    required TResult Function() databaseError,
+    required TResult Function() fileError,
+    required TResult Function() unexpectedError,
+  }) {
+    return fileError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? serverError,
+    TResult? Function()? networkError,
+    TResult? Function()? cacheError,
+    TResult? Function()? databaseError,
+    TResult? Function()? fileError,
+    TResult? Function()? unexpectedError,
+  }) {
+    return fileError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverError,
+    TResult Function()? networkError,
+    TResult Function()? cacheError,
+    TResult Function()? databaseError,
+    TResult Function()? fileError,
+    TResult Function()? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (fileError != null) {
+      return fileError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(NetworkError value) networkError,
+    required TResult Function(CacheError value) cacheError,
+    required TResult Function(DatabaseError value) databaseError,
+    required TResult Function(FileError value) fileError,
+    required TResult Function(UnexpectedError value) unexpectedError,
+  }) {
+    return fileError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(NetworkError value)? networkError,
+    TResult? Function(CacheError value)? cacheError,
+    TResult? Function(DatabaseError value)? databaseError,
+    TResult? Function(FileError value)? fileError,
+    TResult? Function(UnexpectedError value)? unexpectedError,
+  }) {
+    return fileError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerError value)? serverError,
+    TResult Function(NetworkError value)? networkError,
+    TResult Function(CacheError value)? cacheError,
+    TResult Function(DatabaseError value)? databaseError,
+    TResult Function(FileError value)? fileError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (fileError != null) {
+      return fileError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FileError implements Failure {
+  const factory FileError() = _$FileErrorImpl;
 }
 
 /// @nodoc
@@ -468,6 +768,8 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     required TResult Function() serverError,
     required TResult Function() networkError,
     required TResult Function() cacheError,
+    required TResult Function() databaseError,
+    required TResult Function() fileError,
     required TResult Function() unexpectedError,
   }) {
     return unexpectedError();
@@ -479,6 +781,8 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult? Function()? serverError,
     TResult? Function()? networkError,
     TResult? Function()? cacheError,
+    TResult? Function()? databaseError,
+    TResult? Function()? fileError,
     TResult? Function()? unexpectedError,
   }) {
     return unexpectedError?.call();
@@ -490,6 +794,8 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult Function()? serverError,
     TResult Function()? networkError,
     TResult Function()? cacheError,
+    TResult Function()? databaseError,
+    TResult Function()? fileError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
@@ -505,6 +811,8 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     required TResult Function(ServerError value) serverError,
     required TResult Function(NetworkError value) networkError,
     required TResult Function(CacheError value) cacheError,
+    required TResult Function(DatabaseError value) databaseError,
+    required TResult Function(FileError value) fileError,
     required TResult Function(UnexpectedError value) unexpectedError,
   }) {
     return unexpectedError(this);
@@ -516,6 +824,8 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult? Function(ServerError value)? serverError,
     TResult? Function(NetworkError value)? networkError,
     TResult? Function(CacheError value)? cacheError,
+    TResult? Function(DatabaseError value)? databaseError,
+    TResult? Function(FileError value)? fileError,
     TResult? Function(UnexpectedError value)? unexpectedError,
   }) {
     return unexpectedError?.call(this);
@@ -527,6 +837,8 @@ class _$UnexpectedErrorImpl implements UnexpectedError {
     TResult Function(ServerError value)? serverError,
     TResult Function(NetworkError value)? networkError,
     TResult Function(CacheError value)? cacheError,
+    TResult Function(DatabaseError value)? databaseError,
+    TResult Function(FileError value)? fileError,
     TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
