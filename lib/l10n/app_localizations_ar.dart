@@ -84,13 +84,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get journeyComingSoon => 'سجل الخط الزمني قريباً';
 
   @override
-  String get serverError => 'حدث خطأ في الخادم. يرجى المحاولة مرة أخرى.';
+  String get serverError => 'خادمنا يواجه مشكلة حالياً. سنعود إليك قريباً.';
 
   @override
-  String get networkError => 'خطأ في الشبكة. يرجى التحقق من اتصالك.';
+  String get networkError =>
+      'انقطع الاتصال. يرجى التحقق من الإنترنت للبقاء على المسار.';
 
   @override
-  String get unexpectedError => 'حدث خطأ غير متوقع.';
+  String get unexpectedError =>
+      'حدث خطأ غير متوقع. خذ نفساً عميقاً وحاول مجدداً.';
+
+  @override
+  String get cacheError => 'تعذر تحميل تقدمك المحفوظ. نحن نعمل على إصلاح ذلك.';
+
+  @override
+  String get databaseError =>
+      'بيانات رحلتك غير متوفرة حالياً. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get fileError => 'تعذر الوصول إلى الملفات الضرورية. لنحاول مرة أخرى.';
 
   @override
   String homeGreeting(int days) {

@@ -247,20 +247,38 @@ abstract class AppLocalizations {
   /// No description provided for @serverError.
   ///
   /// In en, this message translates to:
-  /// **'A server error occurred. Please try again.'**
+  /// **'Our server is taking a moment. We\'ll be back with you shortly.'**
   String get serverError;
 
   /// No description provided for @networkError.
   ///
   /// In en, this message translates to:
-  /// **'Network error. Please check your connection.'**
+  /// **'Connection lost. Please check your internet to stay on the path.'**
   String get networkError;
 
   /// No description provided for @unexpectedError.
   ///
   /// In en, this message translates to:
-  /// **'An unexpected error occurred.'**
+  /// **'Something went wrong. Let\'s take a breath and try again.'**
   String get unexpectedError;
+
+  /// No description provided for @cacheError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load your saved progress. We\'re working to fix it.'**
+  String get cacheError;
+
+  /// No description provided for @databaseError.
+  ///
+  /// In en, this message translates to:
+  /// **'Your journey data is momentarily unavailable. Please try again.'**
+  String get databaseError;
+
+  /// No description provided for @fileError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t access the necessary files. Let\'s try that again.'**
+  String get fileError;
 
   /// No description provided for @homeGreeting.
   ///

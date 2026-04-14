@@ -47,9 +47,12 @@
   "craveButton": "I feel like smoking",
   "progressComingSoon": "Stats & Milestones coming soon",
   "journeyComingSoon": "Timeline history coming soon",
-  "serverError": "A server error occurred. Please try again.",
-  "networkError": "Network error. Please check your connection.",
-  "unexpectedError": "An unexpected error occurred.",
+  "serverError": "Our server is taking a moment. We'll be back with you shortly.",
+  "networkError": "Connection lost. Please check your internet to stay on the path.",
+  "unexpectedError": "Something went wrong. Let's take a breath and try again.",
+  "cacheError": "We couldn't load your saved progress. We're working to fix it.",
+  "databaseError": "Your journey data is momentarily unavailable. Please try again.",
+  "fileError": "We couldn't access the necessary files. Let's try that again.",
   "homeGreeting": "Day {days} smoke-free",
   "@homeGreeting": {
     "placeholders": {

@@ -85,13 +85,28 @@ class AppLocalizationsTr extends AppLocalizations {
   String get journeyComingSoon => 'Zaman çizelgesi geçmişi yakında';
 
   @override
-  String get serverError => 'Sunucu hatası oluştu. Lütfen tekrar deneyin.';
+  String get serverError =>
+      'Sunucumuz şu anda meşgul. Birazdan yanınızda olacağız.';
 
   @override
-  String get networkError => 'Ağ hatası. Lütfen bağlantınızı kontrol edin.';
+  String get networkError =>
+      'Bağlantı kesildi. Yolunuza devam etmek için lütfen internetinizi kontrol edin.';
 
   @override
-  String get unexpectedError => 'Beklenmedik bir hata oluştu.';
+  String get unexpectedError =>
+      'Beklenmedik bir durum oluştu. Bir nefes alın ve tekrar deneyin.';
+
+  @override
+  String get cacheError =>
+      'Kaydedilen ilerlemeniz yüklenemedi. Sorunu çözmek için çalışıyoruz.';
+
+  @override
+  String get databaseError =>
+      'Yolculuk verilerinize şu an ulaşılamıyor. Lütfen tekrar deneyin.';
+
+  @override
+  String get fileError =>
+      'Gerekli dosyalara erişilemedi. Lütfen tekrar deneyin.';
 
   @override
   String homeGreeting(int days) {

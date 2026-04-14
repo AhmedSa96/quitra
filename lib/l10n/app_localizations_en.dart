@@ -86,13 +86,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get journeyComingSoon => 'Timeline history coming soon';
 
   @override
-  String get serverError => 'A server error occurred. Please try again.';
+  String get serverError =>
+      'Our server is taking a moment. We\'ll be back with you shortly.';
 
   @override
-  String get networkError => 'Network error. Please check your connection.';
+  String get networkError =>
+      'Connection lost. Please check your internet to stay on the path.';
 
   @override
-  String get unexpectedError => 'An unexpected error occurred.';
+  String get unexpectedError =>
+      'Something went wrong. Let\'s take a breath and try again.';
+
+  @override
+  String get cacheError =>
+      'We couldn\'t load your saved progress. We\'re working to fix it.';
+
+  @override
+  String get databaseError =>
+      'Your journey data is momentarily unavailable. Please try again.';
+
+  @override
+  String get fileError =>
+      'We couldn\'t access the necessary files. Let\'s try that again.';
 
   @override
   String homeGreeting(int days) {
