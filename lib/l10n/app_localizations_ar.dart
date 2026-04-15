@@ -159,4 +159,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get privacyPolicyLabel => 'سياسة الخصوصية';
+
+  @override
+  String get cigarettePriceStepTitle => 'ما هو سعر سجائرك؟';
+
+  @override
+  String get priceOptionSingle => 'سيجارة واحدة';
+
+  @override
+  String get priceOptionPacket => 'علبة';
+
+  @override
+  String get singleCigarettePriceLabel => 'سعر السيجارة الواحدة';
+
+  @override
+  String get packetPriceLabel => 'سعر العلبة';
+
+  @override
+  String get cigarettesPerPacketLabel => 'عدد السجائر في العلبة';
+
+  @override
+  String get priceRequired => 'السعر مطلوب';
+
+  @override
+  String get invalidNumber => 'يرجى إدخال رقم صحيح';
 }

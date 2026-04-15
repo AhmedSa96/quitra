@@ -18,13 +18,19 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
     required int yearsSmoking,
     required String quitMethod,
     required DateTime quitStartDate,
+    double? cigarettePrice,
+    double? packetPrice,
+    int? cigarettesPerPacket,
   }) async {
     try {
       final profile = UserProfileIsar()
         ..cigarettesPerDay = cigarettesPerDay
         ..yearsSmoking = yearsSmoking
         ..quitMethod = quitMethod
-        ..quitStartDate = quitStartDate;
+        ..quitStartDate = quitStartDate
+        ..cigarettePrice = cigarettePrice
+        ..packetPrice = packetPrice
+        ..cigarettesPerPacket = cigarettesPerPacket;
         
       await localDataSource.saveUserProfile(profile);
 

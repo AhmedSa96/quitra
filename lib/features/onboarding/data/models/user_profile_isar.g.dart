@@ -17,23 +17,38 @@ const UserProfileIsarSchema = CollectionSchema(
   name: r'UserProfileIsar',
   id: 8363191472987497192,
   properties: {
-    r'cigarettesPerDay': PropertySchema(
+    r'cigarettePrice': PropertySchema(
       id: 0,
+      name: r'cigarettePrice',
+      type: IsarType.double,
+    ),
+    r'cigarettesPerDay': PropertySchema(
+      id: 1,
       name: r'cigarettesPerDay',
       type: IsarType.long,
     ),
+    r'cigarettesPerPacket': PropertySchema(
+      id: 2,
+      name: r'cigarettesPerPacket',
+      type: IsarType.long,
+    ),
+    r'packetPrice': PropertySchema(
+      id: 3,
+      name: r'packetPrice',
+      type: IsarType.double,
+    ),
     r'quitMethod': PropertySchema(
-      id: 1,
+      id: 4,
       name: r'quitMethod',
       type: IsarType.string,
     ),
     r'quitStartDate': PropertySchema(
-      id: 2,
+      id: 5,
       name: r'quitStartDate',
       type: IsarType.dateTime,
     ),
     r'yearsSmoking': PropertySchema(
-      id: 3,
+      id: 6,
       name: r'yearsSmoking',
       type: IsarType.long,
     )
@@ -68,10 +83,13 @@ void _userProfileIsarSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeLong(offsets[0], object.cigarettesPerDay);
-  writer.writeString(offsets[1], object.quitMethod);
-  writer.writeDateTime(offsets[2], object.quitStartDate);
-  writer.writeLong(offsets[3], object.yearsSmoking);
+  writer.writeDouble(offsets[0], object.cigarettePrice);
+  writer.writeLong(offsets[1], object.cigarettesPerDay);
+  writer.writeLong(offsets[2], object.cigarettesPerPacket);
+  writer.writeDouble(offsets[3], object.packetPrice);
+  writer.writeString(offsets[4], object.quitMethod);
+  writer.writeDateTime(offsets[5], object.quitStartDate);
+  writer.writeLong(offsets[6], object.yearsSmoking);
 }
 
 UserProfileIsar _userProfileIsarDeserialize(
@@ -81,11 +99,14 @@ UserProfileIsar _userProfileIsarDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = UserProfileIsar();
-  object.cigarettesPerDay = reader.readLong(offsets[0]);
+  object.cigarettePrice = reader.readDoubleOrNull(offsets[0]);
+  object.cigarettesPerDay = reader.readLong(offsets[1]);
+  object.cigarettesPerPacket = reader.readLongOrNull(offsets[2]);
   object.id = id;
-  object.quitMethod = reader.readString(offsets[1]);
-  object.quitStartDate = reader.readDateTime(offsets[2]);
-  object.yearsSmoking = reader.readLong(offsets[3]);
+  object.packetPrice = reader.readDoubleOrNull(offsets[3]);
+  object.quitMethod = reader.readString(offsets[4]);
+  object.quitStartDate = reader.readDateTime(offsets[5]);
+  object.yearsSmoking = reader.readLong(offsets[6]);
   return object;
 }
 
@@ -97,12 +118,18 @@ P _userProfileIsarDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readLong(offset)) as P;
+      return (reader.readDoubleOrNull(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 2:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 3:
+      return (reader.readDoubleOrNull(offset)) as P;
+    case 4:
+      return (reader.readString(offset)) as P;
+    case 5:
+      return (reader.readDateTime(offset)) as P;
+    case 6:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -205,6 +232,90 @@ extension UserProfileIsarQueryWhere
 extension UserProfileIsarQueryFilter
     on QueryBuilder<UserProfileIsar, UserProfileIsar, QFilterCondition> {
   QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettePriceIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'cigarettePrice',
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettePriceIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'cigarettePrice',
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettePriceEqualTo(
+    double? value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'cigarettePrice',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettePriceGreaterThan(
+    double? value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'cigarettePrice',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettePriceLessThan(
+    double? value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'cigarettePrice',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettePriceBetween(
+    double? lower,
+    double? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'cigarettePrice',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
       cigarettesPerDayEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -252,6 +363,80 @@ extension UserProfileIsarQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'cigarettesPerDay',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettesPerPacketIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'cigarettesPerPacket',
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettesPerPacketIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'cigarettesPerPacket',
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettesPerPacketEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'cigarettesPerPacket',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettesPerPacketGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'cigarettesPerPacket',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettesPerPacketLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'cigarettesPerPacket',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      cigarettesPerPacketBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'cigarettesPerPacket',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -312,6 +497,90 @@ extension UserProfileIsarQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      packetPriceIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'packetPrice',
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      packetPriceIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'packetPrice',
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      packetPriceEqualTo(
+    double? value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'packetPrice',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      packetPriceGreaterThan(
+    double? value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'packetPrice',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      packetPriceLessThan(
+    double? value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'packetPrice',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterFilterCondition>
+      packetPriceBetween(
+    double? lower,
+    double? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'packetPrice',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
       ));
     });
   }
@@ -574,6 +843,20 @@ extension UserProfileIsarQueryLinks
 extension UserProfileIsarQuerySortBy
     on QueryBuilder<UserProfileIsar, UserProfileIsar, QSortBy> {
   QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      sortByCigarettePrice() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cigarettePrice', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      sortByCigarettePriceDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cigarettePrice', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
       sortByCigarettesPerDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cigarettesPerDay', Sort.asc);
@@ -584,6 +867,34 @@ extension UserProfileIsarQuerySortBy
       sortByCigarettesPerDayDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cigarettesPerDay', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      sortByCigarettesPerPacket() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cigarettesPerPacket', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      sortByCigarettesPerPacketDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cigarettesPerPacket', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      sortByPacketPrice() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'packetPrice', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      sortByPacketPriceDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'packetPrice', Sort.desc);
     });
   }
 
@@ -633,6 +944,20 @@ extension UserProfileIsarQuerySortBy
 extension UserProfileIsarQuerySortThenBy
     on QueryBuilder<UserProfileIsar, UserProfileIsar, QSortThenBy> {
   QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      thenByCigarettePrice() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cigarettePrice', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      thenByCigarettePriceDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cigarettePrice', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
       thenByCigarettesPerDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cigarettesPerDay', Sort.asc);
@@ -646,6 +971,20 @@ extension UserProfileIsarQuerySortThenBy
     });
   }
 
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      thenByCigarettesPerPacket() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cigarettesPerPacket', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      thenByCigarettesPerPacketDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'cigarettesPerPacket', Sort.desc);
+    });
+  }
+
   QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -655,6 +994,20 @@ extension UserProfileIsarQuerySortThenBy
   QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      thenByPacketPrice() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'packetPrice', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QAfterSortBy>
+      thenByPacketPriceDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'packetPrice', Sort.desc);
     });
   }
 
@@ -704,9 +1057,30 @@ extension UserProfileIsarQuerySortThenBy
 extension UserProfileIsarQueryWhereDistinct
     on QueryBuilder<UserProfileIsar, UserProfileIsar, QDistinct> {
   QueryBuilder<UserProfileIsar, UserProfileIsar, QDistinct>
+      distinctByCigarettePrice() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'cigarettePrice');
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QDistinct>
       distinctByCigarettesPerDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'cigarettesPerDay');
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QDistinct>
+      distinctByCigarettesPerPacket() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'cigarettesPerPacket');
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, UserProfileIsar, QDistinct>
+      distinctByPacketPrice() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'packetPrice');
     });
   }
 
@@ -740,10 +1114,31 @@ extension UserProfileIsarQueryProperty
     });
   }
 
+  QueryBuilder<UserProfileIsar, double?, QQueryOperations>
+      cigarettePriceProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'cigarettePrice');
+    });
+  }
+
   QueryBuilder<UserProfileIsar, int, QQueryOperations>
       cigarettesPerDayProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'cigarettesPerDay');
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, int?, QQueryOperations>
+      cigarettesPerPacketProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'cigarettesPerPacket');
+    });
+  }
+
+  QueryBuilder<UserProfileIsar, double?, QQueryOperations>
+      packetPriceProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'packetPrice');
     });
   }
 

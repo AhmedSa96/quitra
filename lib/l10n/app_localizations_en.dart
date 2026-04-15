@@ -164,4 +164,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyPolicyLabel => 'Privacy Policy';
+
+  @override
+  String get cigarettePriceStepTitle => 'What is the price of your cigarettes?';
+
+  @override
+  String get priceOptionSingle => 'Single Cigarette';
+
+  @override
+  String get priceOptionPacket => 'Packet';
+
+  @override
+  String get singleCigarettePriceLabel => 'Price per cigarette';
+
+  @override
+  String get packetPriceLabel => 'Price per packet';
+
+  @override
+  String get cigarettesPerPacketLabel => 'Cigarettes per packet';
+
+  @override
+  String get priceRequired => 'Price is required';
+
+  @override
+  String get invalidNumber => 'Please enter a valid number';
 }

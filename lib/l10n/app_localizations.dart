@@ -387,6 +387,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Privacy Policy'**
   String get privacyPolicyLabel;
+
+  /// No description provided for @cigarettePriceStepTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What is the price of your cigarettes?'**
+  String get cigarettePriceStepTitle;
+
+  /// No description provided for @priceOptionSingle.
+  ///
+  /// In en, this message translates to:
+  /// **'Single Cigarette'**
+  String get priceOptionSingle;
+
+  /// No description provided for @priceOptionPacket.
+  ///
+  /// In en, this message translates to:
+  /// **'Packet'**
+  String get priceOptionPacket;
+
+  /// No description provided for @singleCigarettePriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Price per cigarette'**
+  String get singleCigarettePriceLabel;
+
+  /// No description provided for @packetPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Price per packet'**
+  String get packetPriceLabel;
+
+  /// No description provided for @cigarettesPerPacketLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cigarettes per packet'**
+  String get cigarettesPerPacketLabel;
+
+  /// No description provided for @priceRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Price is required'**
+  String get priceRequired;
+
+  /// No description provided for @invalidNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid number'**
+  String get invalidNumber;
 }
 
 class _AppLocalizationsDelegate

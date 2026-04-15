@@ -9,6 +9,7 @@ import '../widgets/cigarettes_step.dart';
 import '../widgets/years_smoking_step.dart';
 import '../widgets/quit_method_step.dart';
 import '../widgets/quit_date_step.dart';
+import '../widgets/cigarette_price_step.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -20,13 +21,18 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
 
-  static const int _totalSteps = 4;
+  static const int _totalSteps = 5;
 
   int _currentPage = 0;
   int _cigarettesPerDay = 10;
   int _yearsSmoking = 5;
   String _quitMethod = 'cold_turkey';
   DateTime _quitStartDate = DateTime.now();
+
+  bool _isPacketPrice = false;
+  String _cigarettePriceStr = '';
+  String _packetPriceStr = '';
+  String _cigarettesPerPacketStr = '';
 
   void _previousPage() {
     if (_currentPage > 0) {
@@ -39,12 +45,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   void _nextPage() {
     if (_currentPage == _totalSteps - 1) {
+      double? cigPrice = _cigarettePriceStr.isNotEmpty ? double.tryParse(_cigarettePriceStr) : null;
+      double? packPrice = _packetPriceStr.isNotEmpty ? double.tryParse(_packetPriceStr) : null;
+      int? cigsPerPack = _cigarettesPerPacketStr.isNotEmpty ? int.tryParse(_cigarettesPerPacketStr) : null;
+
       context.read<OnboardingBloc>().add(
         OnboardingStarted(
           cigarettesPerDay: _cigarettesPerDay,
           yearsSmoking: _yearsSmoking,
           quitMethod: _quitMethod,
           quitStartDate: _quitStartDate,
+          cigarettePrice: cigPrice,
+          packetPrice: packPrice,
+          cigarettesPerPacket: cigsPerPack,
         ),
       );
     } else {
@@ -125,6 +138,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                 value: _quitStartDate,
                                 onChanged: (val) =>
                                     setState(() => _quitStartDate = val),
+                              ),
+                            ),
+                            Center(
+                              child: CigarettePriceStep(
+                                isPacket: _isPacketPrice,
+                                cigarettePriceStr: _cigarettePriceStr,
+                                packetPriceStr: _packetPriceStr,
+                                cigarettesPerPacketStr: _cigarettesPerPacketStr,
+                                onTypeChanged: (val) => setState(() => _isPacketPrice = val),
+                                onCigarettePriceChanged: (val) => setState(() => _cigarettePriceStr = val),
+                                onPacketPriceChanged: (val) => setState(() => _packetPriceStr = val),
+                                onCigarettesPerPacketChanged: (val) => setState(() => _cigarettesPerPacketStr = val),
                               ),
                             ),
                           ],

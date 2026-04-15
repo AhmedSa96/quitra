@@ -26,7 +26,12 @@ class HomeRepositoryImpl implements HomeRepository {
       final difference = now.difference(userProfile.quitStartDate);
       final daysSmokeFree = difference.inDays > 0 ? difference.inDays : 0;
       final cigarettesAvoided = daysSmokeFree * userProfile.cigarettesPerDay;
-      const pricePerCigarette = 0.50; // TODO: Can be pulled from profile optionally
+      double pricePerCigarette = 0.50;
+      if (userProfile.cigarettePrice != null) {
+        pricePerCigarette = userProfile.cigarettePrice!;
+      } else if (userProfile.packetPrice != null && userProfile.cigarettesPerPacket != null && userProfile.cigarettesPerPacket! > 0) {
+        pricePerCigarette = userProfile.packetPrice! / userProfile.cigarettesPerPacket!;
+      }
       final moneySaved = cigarettesAvoided * pricePerCigarette;
 
       final existingLocal = await localDataSource.getHomeStats();

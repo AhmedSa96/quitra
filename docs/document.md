@@ -64,6 +64,7 @@ Capture minimal but critical data to personalize the journey.
   - Cold turkey
   - Gradual reduction
 - Quit start date
+- Cigarette price (single or packet pricing)
 
 ### Output:
 
@@ -232,6 +233,9 @@ Triggers:
 - years_smoking
 - quit_method
 - quit_start_date
+- cigarette_price (double)
+- packet_price (double)
+- cigarettes_per_packet (int)
 
 ### DailyLog (Collection)
 - id (int)

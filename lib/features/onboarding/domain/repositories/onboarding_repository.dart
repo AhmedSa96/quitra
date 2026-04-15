@@ -7,6 +7,9 @@ abstract class OnboardingRepository {
     required int yearsSmoking,
     required String quitMethod,
     required DateTime quitStartDate,
+    double? cigarettePrice,
+    double? packetPrice,
+    int? cigarettesPerPacket,
   });
   Future<Either<Failure, bool>> isOnboardingCompleted();
 }

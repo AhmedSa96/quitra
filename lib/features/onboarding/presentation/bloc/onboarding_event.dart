@@ -7,5 +7,8 @@ abstract class OnboardingEvent with _$OnboardingEvent {
     required int yearsSmoking,
     required String quitMethod,
     required DateTime quitStartDate,
+    double? cigarettePrice,
+    double? packetPrice,
+    int? cigarettesPerPacket,
   }) = OnboardingStarted;
 }

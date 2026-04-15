@@ -19,6 +19,9 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         yearsSmoking: event.yearsSmoking,
         quitMethod: event.quitMethod,
         quitStartDate: event.quitStartDate,
+        cigarettePrice: event.cigarettePrice,
+        packetPrice: event.packetPrice,
+        cigarettesPerPacket: event.cigarettesPerPacket,
       );
       result.fold(
         (failure) => emit(const OnboardingState.error()),

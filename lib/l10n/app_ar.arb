@@ -47,5 +47,13 @@
   "quitPlanLabel": "خطة الإقلاع",
   "notificationsLabel": "الإشعارات",
   "subscriptionLabel": "الاشتراك",
-  "privacyPolicyLabel": "سياسة الخصوصية"
+  "privacyPolicyLabel": "سياسة الخصوصية",
+  "cigarettePriceStepTitle": "ما هو سعر سجائرك؟",
+  "priceOptionSingle": "سيجارة واحدة",
+  "priceOptionPacket": "علبة",
+  "singleCigarettePriceLabel": "سعر السيجارة الواحدة",
+  "packetPriceLabel": "سعر العلبة",
+  "cigarettesPerPacketLabel": "عدد السجائر في العلبة",
+  "priceRequired": "السعر مطلوب",
+  "invalidNumber": "يرجى إدخال رقم صحيح"
 }

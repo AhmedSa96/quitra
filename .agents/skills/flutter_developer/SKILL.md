@@ -61,6 +61,10 @@ lib/
 - **Bloc:** Processes Events and emits States. Never holds UI logic.
 - **Rule:** UI should only interact with Bloc. No direct Repository calls in Widgets.
 
+### Dynamic Computations
+
+- When computing stats (e.g., money saved), DO NOT use hardcoded values. Always fetch the user's custom pricing from the `UserProfile` (e.g., `cigarettePrice` or compute from `packetPrice` and `cigarettesPerPacket`).
+
 ## 4. Local-First Architecture
 
 Quitra is a strictly offline app. Data persistence is immediate and local.

@@ -20,24 +20,45 @@ mixin _$OnboardingEvent {
   int get yearsSmoking => throw _privateConstructorUsedError;
   String get quitMethod => throw _privateConstructorUsedError;
   DateTime get quitStartDate => throw _privateConstructorUsedError;
+  double? get cigarettePrice => throw _privateConstructorUsedError;
+  double? get packetPrice => throw _privateConstructorUsedError;
+  int? get cigarettesPerPacket => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int cigarettesPerDay, int yearsSmoking,
-            String quitMethod, DateTime quitStartDate)
+    required TResult Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)
         started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int cigarettesPerDay, int yearsSmoking, String quitMethod,
-            DateTime quitStartDate)?
+    TResult? Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)?
         started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int cigarettesPerDay, int yearsSmoking, String quitMethod,
-            DateTime quitStartDate)?
+    TResult Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)?
         started,
     required TResult orElse(),
   }) =>
@@ -74,7 +95,10 @@ abstract class $OnboardingEventCopyWith<$Res> {
       {int cigarettesPerDay,
       int yearsSmoking,
       String quitMethod,
-      DateTime quitStartDate});
+      DateTime quitStartDate,
+      double? cigarettePrice,
+      double? packetPrice,
+      int? cigarettesPerPacket});
 }
 
 /// @nodoc
@@ -94,6 +118,9 @@ class _$OnboardingEventCopyWithImpl<$Res, $Val extends OnboardingEvent>
     Object? yearsSmoking = null,
     Object? quitMethod = null,
     Object? quitStartDate = null,
+    Object? cigarettePrice = freezed,
+    Object? packetPrice = freezed,
+    Object? cigarettesPerPacket = freezed,
   }) {
     return _then(_value.copyWith(
       cigarettesPerDay: null == cigarettesPerDay
@@ -112,6 +139,18 @@ class _$OnboardingEventCopyWithImpl<$Res, $Val extends OnboardingEvent>
           ? _value.quitStartDate
           : quitStartDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      cigarettePrice: freezed == cigarettePrice
+          ? _value.cigarettePrice
+          : cigarettePrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      packetPrice: freezed == packetPrice
+          ? _value.packetPrice
+          : packetPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      cigarettesPerPacket: freezed == cigarettesPerPacket
+          ? _value.cigarettesPerPacket
+          : cigarettesPerPacket // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -128,7 +167,10 @@ abstract class _$$OnboardingStartedImplCopyWith<$Res>
       {int cigarettesPerDay,
       int yearsSmoking,
       String quitMethod,
-      DateTime quitStartDate});
+      DateTime quitStartDate,
+      double? cigarettePrice,
+      double? packetPrice,
+      int? cigarettesPerPacket});
 }
 
 /// @nodoc
@@ -146,6 +188,9 @@ class __$$OnboardingStartedImplCopyWithImpl<$Res>
     Object? yearsSmoking = null,
     Object? quitMethod = null,
     Object? quitStartDate = null,
+    Object? cigarettePrice = freezed,
+    Object? packetPrice = freezed,
+    Object? cigarettesPerPacket = freezed,
   }) {
     return _then(_$OnboardingStartedImpl(
       cigarettesPerDay: null == cigarettesPerDay
@@ -164,6 +209,18 @@ class __$$OnboardingStartedImplCopyWithImpl<$Res>
           ? _value.quitStartDate
           : quitStartDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      cigarettePrice: freezed == cigarettePrice
+          ? _value.cigarettePrice
+          : cigarettePrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      packetPrice: freezed == packetPrice
+          ? _value.packetPrice
+          : packetPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      cigarettesPerPacket: freezed == cigarettesPerPacket
+          ? _value.cigarettesPerPacket
+          : cigarettesPerPacket // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -175,7 +232,10 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
       {required this.cigarettesPerDay,
       required this.yearsSmoking,
       required this.quitMethod,
-      required this.quitStartDate});
+      required this.quitStartDate,
+      this.cigarettePrice,
+      this.packetPrice,
+      this.cigarettesPerPacket});
 
   @override
   final int cigarettesPerDay;
@@ -185,10 +245,16 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
   final String quitMethod;
   @override
   final DateTime quitStartDate;
+  @override
+  final double? cigarettePrice;
+  @override
+  final double? packetPrice;
+  @override
+  final int? cigarettesPerPacket;
 
   @override
   String toString() {
-    return 'OnboardingEvent.started(cigarettesPerDay: $cigarettesPerDay, yearsSmoking: $yearsSmoking, quitMethod: $quitMethod, quitStartDate: $quitStartDate)';
+    return 'OnboardingEvent.started(cigarettesPerDay: $cigarettesPerDay, yearsSmoking: $yearsSmoking, quitMethod: $quitMethod, quitStartDate: $quitStartDate, cigarettePrice: $cigarettePrice, packetPrice: $packetPrice, cigarettesPerPacket: $cigarettesPerPacket)';
   }
 
   @override
@@ -203,12 +269,25 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
             (identical(other.quitMethod, quitMethod) ||
                 other.quitMethod == quitMethod) &&
             (identical(other.quitStartDate, quitStartDate) ||
-                other.quitStartDate == quitStartDate));
+                other.quitStartDate == quitStartDate) &&
+            (identical(other.cigarettePrice, cigarettePrice) ||
+                other.cigarettePrice == cigarettePrice) &&
+            (identical(other.packetPrice, packetPrice) ||
+                other.packetPrice == packetPrice) &&
+            (identical(other.cigarettesPerPacket, cigarettesPerPacket) ||
+                other.cigarettesPerPacket == cigarettesPerPacket));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate);
+      runtimeType,
+      cigarettesPerDay,
+      yearsSmoking,
+      quitMethod,
+      quitStartDate,
+      cigarettePrice,
+      packetPrice,
+      cigarettesPerPacket);
 
   @JsonKey(ignore: true)
   @override
@@ -220,34 +299,54 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int cigarettesPerDay, int yearsSmoking,
-            String quitMethod, DateTime quitStartDate)
+    required TResult Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)
         started,
   }) {
-    return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate);
+    return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate,
+        cigarettePrice, packetPrice, cigarettesPerPacket);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int cigarettesPerDay, int yearsSmoking, String quitMethod,
-            DateTime quitStartDate)?
+    TResult? Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)?
         started,
   }) {
-    return started?.call(
-        cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate);
+    return started?.call(cigarettesPerDay, yearsSmoking, quitMethod,
+        quitStartDate, cigarettePrice, packetPrice, cigarettesPerPacket);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int cigarettesPerDay, int yearsSmoking, String quitMethod,
-            DateTime quitStartDate)?
+    TResult Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)?
         started,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate);
+      return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate,
+          cigarettePrice, packetPrice, cigarettesPerPacket);
     }
     return orElse();
   }
@@ -286,7 +385,10 @@ abstract class OnboardingStarted implements OnboardingEvent {
       {required final int cigarettesPerDay,
       required final int yearsSmoking,
       required final String quitMethod,
-      required final DateTime quitStartDate}) = _$OnboardingStartedImpl;
+      required final DateTime quitStartDate,
+      final double? cigarettePrice,
+      final double? packetPrice,
+      final int? cigarettesPerPacket}) = _$OnboardingStartedImpl;
 
   @override
   int get cigarettesPerDay;
@@ -296,6 +398,12 @@ abstract class OnboardingStarted implements OnboardingEvent {
   String get quitMethod;
   @override
   DateTime get quitStartDate;
+  @override
+  double? get cigarettePrice;
+  @override
+  double? get packetPrice;
+  @override
+  int? get cigarettesPerPacket;
   @override
   @JsonKey(ignore: true)
   _$$OnboardingStartedImplCopyWith<_$OnboardingStartedImpl> get copyWith =>

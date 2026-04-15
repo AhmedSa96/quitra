@@ -14,12 +14,18 @@ class CompleteOnboardingUseCase {
     required int yearsSmoking,
     required String quitMethod,
     required DateTime quitStartDate,
+    double? cigarettePrice,
+    double? packetPrice,
+    int? cigarettesPerPacket,
   }) async {
     return await repository.completeOnboarding(
       cigarettesPerDay: cigarettesPerDay,
       yearsSmoking: yearsSmoking,
       quitMethod: quitMethod,
       quitStartDate: quitStartDate,
+      cigarettePrice: cigarettePrice,
+      packetPrice: packetPrice,
+      cigarettesPerPacket: cigarettesPerPacket,
     );
   }
 }

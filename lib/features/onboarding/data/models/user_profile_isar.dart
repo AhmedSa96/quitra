@@ -13,4 +13,10 @@ class UserProfileIsar {
   late String quitMethod;
 
   late DateTime quitStartDate;
+
+  double? cigarettePrice;
+
+  double? packetPrice;
+
+  int? cigarettesPerPacket;
 }
