@@ -10,6 +10,7 @@ abstract class HomeLocalDataSource {
   Future<void> cacheHomeStats(UserStatsIsar stats);
   Future<UserProfileIsar?> getUserProfile();
   Future<void> logCravingEvent(CravingEventIsar event);
+  Future<int> getSmokedCigarettesCount();
 }
 
 @LazySingleton(as: HomeLocalDataSource)
@@ -40,5 +41,10 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
     await isar.writeTxn(() async {
       await isar.cravingEventIsars.put(event);
     });
+  }
+
+  @override
+  Future<int> getSmokedCigarettesCount() async {
+    return isar.cravingEventIsars.filter().wasSmokedEqualTo(true).count();
   }
 }

@@ -5,5 +5,5 @@ part 'home_event.freezed.dart';
 @freezed
 abstract class HomeEvent with _$HomeEvent {
   const factory HomeEvent.loadStats() = LoadStats;
-  const factory HomeEvent.logCraving() = LogCraving;
+  const factory HomeEvent.logCraving({required bool wasSmoked}) = LogCraving;
 }

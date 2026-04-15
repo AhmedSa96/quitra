@@ -21,6 +21,11 @@ const CravingEventIsarSchema = CollectionSchema(
       id: 0,
       name: r'timestamp',
       type: IsarType.dateTime,
+    ),
+    r'wasSmoked': PropertySchema(
+      id: 1,
+      name: r'wasSmoked',
+      type: IsarType.bool,
     )
   },
   estimateSize: _cravingEventIsarEstimateSize,
@@ -53,6 +58,7 @@ void _cravingEventIsarSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeDateTime(offsets[0], object.timestamp);
+  writer.writeBool(offsets[1], object.wasSmoked);
 }
 
 CravingEventIsar _cravingEventIsarDeserialize(
@@ -64,6 +70,7 @@ CravingEventIsar _cravingEventIsarDeserialize(
   final object = CravingEventIsar();
   object.id = id;
   object.timestamp = reader.readDateTime(offsets[0]);
+  object.wasSmoked = reader.readBool(offsets[1]);
   return object;
 }
 
@@ -76,6 +83,8 @@ P _cravingEventIsarDeserializeProp<P>(
   switch (propertyId) {
     case 0:
       return (reader.readDateTime(offset)) as P;
+    case 1:
+      return (reader.readBool(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -286,6 +295,16 @@ extension CravingEventIsarQueryFilter
       ));
     });
   }
+
+  QueryBuilder<CravingEventIsar, CravingEventIsar, QAfterFilterCondition>
+      wasSmokedEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'wasSmoked',
+        value: value,
+      ));
+    });
+  }
 }
 
 extension CravingEventIsarQueryObject
@@ -307,6 +326,20 @@ extension CravingEventIsarQuerySortBy
       sortByTimestampDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'timestamp', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CravingEventIsar, CravingEventIsar, QAfterSortBy>
+      sortByWasSmoked() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'wasSmoked', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CravingEventIsar, CravingEventIsar, QAfterSortBy>
+      sortByWasSmokedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'wasSmoked', Sort.desc);
     });
   }
 }
@@ -339,6 +372,20 @@ extension CravingEventIsarQuerySortThenBy
       return query.addSortBy(r'timestamp', Sort.desc);
     });
   }
+
+  QueryBuilder<CravingEventIsar, CravingEventIsar, QAfterSortBy>
+      thenByWasSmoked() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'wasSmoked', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CravingEventIsar, CravingEventIsar, QAfterSortBy>
+      thenByWasSmokedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'wasSmoked', Sort.desc);
+    });
+  }
 }
 
 extension CravingEventIsarQueryWhereDistinct
@@ -347,6 +394,13 @@ extension CravingEventIsarQueryWhereDistinct
       distinctByTimestamp() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'timestamp');
+    });
+  }
+
+  QueryBuilder<CravingEventIsar, CravingEventIsar, QDistinct>
+      distinctByWasSmoked() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'wasSmoked');
     });
   }
 }
@@ -363,6 +417,12 @@ extension CravingEventIsarQueryProperty
       timestampProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'timestamp');
+    });
+  }
+
+  QueryBuilder<CravingEventIsar, bool, QQueryOperations> wasSmokedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'wasSmoked');
     });
   }
 }

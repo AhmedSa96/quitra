@@ -7,4 +7,6 @@ class CravingEventIsar {
   Id id = Isar.autoIncrement;
 
   late DateTime timestamp;
+
+  bool wasSmoked = false;
 }

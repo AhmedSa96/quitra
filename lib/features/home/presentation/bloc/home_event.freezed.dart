@@ -19,19 +19,19 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadStats,
-    required TResult Function() logCraving,
+    required TResult Function(bool wasSmoked) logCraving,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadStats,
-    TResult? Function()? logCraving,
+    TResult? Function(bool wasSmoked)? logCraving,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadStats,
-    TResult Function()? logCraving,
+    TResult Function(bool wasSmoked)? logCraving,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,7 +112,7 @@ class _$LoadStatsImpl implements LoadStats {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadStats,
-    required TResult Function() logCraving,
+    required TResult Function(bool wasSmoked) logCraving,
   }) {
     return loadStats();
   }
@@ -121,7 +121,7 @@ class _$LoadStatsImpl implements LoadStats {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadStats,
-    TResult? Function()? logCraving,
+    TResult? Function(bool wasSmoked)? logCraving,
   }) {
     return loadStats?.call();
   }
@@ -130,7 +130,7 @@ class _$LoadStatsImpl implements LoadStats {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadStats,
-    TResult Function()? logCraving,
+    TResult Function(bool wasSmoked)? logCraving,
     required TResult orElse(),
   }) {
     if (loadStats != null) {
@@ -180,6 +180,8 @@ abstract class _$$LogCravingImplCopyWith<$Res> {
   factory _$$LogCravingImplCopyWith(
           _$LogCravingImpl value, $Res Function(_$LogCravingImpl) then) =
       __$$LogCravingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool wasSmoked});
 }
 
 /// @nodoc
@@ -189,54 +191,79 @@ class __$$LogCravingImplCopyWithImpl<$Res>
   __$$LogCravingImplCopyWithImpl(
       _$LogCravingImpl _value, $Res Function(_$LogCravingImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? wasSmoked = null,
+  }) {
+    return _then(_$LogCravingImpl(
+      wasSmoked: null == wasSmoked
+          ? _value.wasSmoked
+          : wasSmoked // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LogCravingImpl implements LogCraving {
-  const _$LogCravingImpl();
+  const _$LogCravingImpl({required this.wasSmoked});
+
+  @override
+  final bool wasSmoked;
 
   @override
   String toString() {
-    return 'HomeEvent.logCraving()';
+    return 'HomeEvent.logCraving(wasSmoked: $wasSmoked)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LogCravingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LogCravingImpl &&
+            (identical(other.wasSmoked, wasSmoked) ||
+                other.wasSmoked == wasSmoked));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, wasSmoked);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LogCravingImplCopyWith<_$LogCravingImpl> get copyWith =>
+      __$$LogCravingImplCopyWithImpl<_$LogCravingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadStats,
-    required TResult Function() logCraving,
+    required TResult Function(bool wasSmoked) logCraving,
   }) {
-    return logCraving();
+    return logCraving(wasSmoked);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadStats,
-    TResult? Function()? logCraving,
+    TResult? Function(bool wasSmoked)? logCraving,
   }) {
-    return logCraving?.call();
+    return logCraving?.call(wasSmoked);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadStats,
-    TResult Function()? logCraving,
+    TResult Function(bool wasSmoked)? logCraving,
     required TResult orElse(),
   }) {
     if (logCraving != null) {
-      return logCraving();
+      return logCraving(wasSmoked);
     }
     return orElse();
   }
@@ -274,5 +301,10 @@ class _$LogCravingImpl implements LogCraving {
 }
 
 abstract class LogCraving implements HomeEvent {
-  const factory LogCraving() = _$LogCravingImpl;
+  const factory LogCraving({required final bool wasSmoked}) = _$LogCravingImpl;
+
+  bool get wasSmoked;
+  @JsonKey(ignore: true)
+  _$$LogCravingImplCopyWith<_$LogCravingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

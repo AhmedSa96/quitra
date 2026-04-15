@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quitra/features/onboarding/data/models/user_profile_isar.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/user_stats.dart';
@@ -23,23 +24,20 @@ class HomeRepositoryImpl implements HomeRepository {
       }
 
       final now = DateTime.now();
-      final difference = now.difference(userProfile.quitStartDate);
-      final daysSmokeFree = difference.inDays > 0 ? difference.inDays : 0;
-      final cigarettesAvoided = daysSmokeFree * userProfile.cigarettesPerDay;
-      double pricePerCigarette = 0.50;
-      if (userProfile.cigarettePrice != null) {
-        pricePerCigarette = userProfile.cigarettePrice!;
-      } else if (userProfile.packetPrice != null && userProfile.cigarettesPerPacket != null && userProfile.cigarettesPerPacket! > 0) {
-        pricePerCigarette = userProfile.packetPrice! / userProfile.cigarettesPerPacket!;
-      }
-      final moneySaved = cigarettesAvoided * pricePerCigarette;
+      final smokedCount = await localDataSource.getSmokedCigarettesCount();
+      
+      final daysSmokeFree = _calculateDaysSmokeFree(userProfile.quitStartDate, now);
+      final theoreticalAvoided = _calculateCigarettesAvoided(daysSmokeFree, userProfile.cigarettesPerDay);
+      final effectiveAvoided = theoreticalAvoided - smokedCount;
+      final pricePerCigarette = _calculatePricePerCigarette(userProfile);
+      final moneySaved = _calculateMoneySaved(effectiveAvoided, pricePerCigarette);
 
       final existingLocal = await localDataSource.getHomeStats();
       
       final stats = UserStats(
         daysSmokeFree: daysSmokeFree,
-        cigarettesAvoided: cigarettesAvoided,
-        moneySaved: moneySaved,
+        cigarettesAvoided: effectiveAvoided > 0 ? effectiveAvoided : 0,
+        moneySaved: moneySaved > 0 ? moneySaved : 0.0,
         cravingsLogged: existingLocal?.cravingsLogged ?? 0,
       );
 
@@ -58,10 +56,12 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> logCraving() async {
+  Future<Either<Failure, Unit>> logCraving({required bool wasSmoked}) async {
     try {
       // 1. Log craving event specifically to the new table
-      final event = CravingEventIsar()..timestamp = DateTime.now();
+      final event = CravingEventIsar()
+        ..timestamp = DateTime.now()
+        ..wasSmoked = wasSmoked;
       await localDataSource.logCravingEvent(event);
 
       // 2. Increment local summary stats directly
@@ -82,3 +82,31 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 }
 
+// Pure functions for stats calculations
+
+int _calculateDaysSmokeFree(DateTime quitStartDate, DateTime now) {
+  final difference = now.difference(quitStartDate);
+  return difference.inDays > 0 ? difference.inDays : 0;
+}
+
+int _calculateCigarettesAvoided(int daysSmokeFree, int cigarettesPerDay) {
+  return daysSmokeFree * cigarettesPerDay;
+}
+
+double _calculatePricePerCigarette(UserProfileIsar profile) {
+  if (profile.cigarettePrice != null) {
+    return profile.cigarettePrice!;
+  }
+
+  if (profile.packetPrice != null &&
+      profile.cigarettesPerPacket != null &&
+      profile.cigarettesPerPacket! > 0) {
+    return profile.packetPrice! / profile.cigarettesPerPacket!;
+  }
+
+  return 0.50; // Default fallback price
+}
+
+double _calculateMoneySaved(int effectiveAvoided, double pricePerCigarette) {
+  return effectiveAvoided * pricePerCigarette;
+}

@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/home_bloc.dart';
 import '../bloc/home_event.dart';
 import '../bloc/home_state.dart';
+import '../widgets/craving_outcome_dialog.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -67,11 +68,24 @@ class _HomeView extends StatelessWidget {
           Center(
             child: PillButton(
               label: l10n.craveButton,
-              onPressed: () {
-                context.read<HomeBloc>().add(const HomeEvent.logCraving());
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Craving logged! Breathe deeply.')),
+              onPressed: () async {
+                final bool? wasSmoked = await showDialog<bool>(
+                  context: context,
+                  builder: (context) => const CravingOutcomeDialog(),
                 );
+
+                if (wasSmoked != null && context.mounted) {
+                  context.read<HomeBloc>().add(HomeEvent.logCraving(wasSmoked: wasSmoked));
+                  
+                  if (wasSmoked) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(l10n.setbackStatus), // or a message from brand.md
+                        backgroundColor: AppTheme.onSurfaceVariant,
+                      ),
+                    );
+                  }
+                }
               },
               icon: SolarIconsBold.fire,
             ),

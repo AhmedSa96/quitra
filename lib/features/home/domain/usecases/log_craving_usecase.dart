@@ -9,7 +9,7 @@ class LogCravingUseCase {
 
   LogCravingUseCase(this.repository);
 
-  Future<Either<Failure, Unit>> call() {
-    return repository.logCraving();
+  Future<Either<Failure, Unit>> call({required bool wasSmoked}) {
+    return repository.logCraving(wasSmoked: wasSmoked);
   }
 }

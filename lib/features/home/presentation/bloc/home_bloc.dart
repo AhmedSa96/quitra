@@ -26,21 +26,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _onLogCraving(LogCraving event, Emitter<HomeState> emit) async {
-    // Wait for use logic - this does not need to change the states directly
-    // from stats loaded. Best would be handling it gracefully.
-    final currentState = state;
-    final result = await logCravingUseCase();
+    final result = await logCravingUseCase(wasSmoked: event.wasSmoked);
     result.fold(
       (failure) {
-        // Log error or maybe emit error state, let's just stick to what was there.
-        if (currentState is Loaded) {
-          emit(currentState); // fallback
-        }
+        // Handle failure if needed
       },
       (_) {
-        if (currentState is Loaded) {
-          emit(currentState);
-        }
+        add(const HomeEvent.loadStats());
       },
     );
   }
