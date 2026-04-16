@@ -20,18 +20,24 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loadStats,
     required TResult Function(bool wasSmoked) logCraving,
+    required TResult Function(bool wasSmoked, int cravingLevel, String? note)
+        saveDailyCheckIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadStats,
     TResult? Function(bool wasSmoked)? logCraving,
+    TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadStats,
     TResult Function(bool wasSmoked)? logCraving,
+    TResult Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,21 @@ mixin _$HomeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadStats value) loadStats,
     required TResult Function(LogCraving value) logCraving,
+    required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadStats value)? loadStats,
     TResult? Function(LogCraving value)? logCraving,
+    TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadStats value)? loadStats,
     TResult Function(LogCraving value)? logCraving,
+    TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +122,8 @@ class _$LoadStatsImpl implements LoadStats {
   TResult when<TResult extends Object?>({
     required TResult Function() loadStats,
     required TResult Function(bool wasSmoked) logCraving,
+    required TResult Function(bool wasSmoked, int cravingLevel, String? note)
+        saveDailyCheckIn,
   }) {
     return loadStats();
   }
@@ -122,6 +133,8 @@ class _$LoadStatsImpl implements LoadStats {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadStats,
     TResult? Function(bool wasSmoked)? logCraving,
+    TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
   }) {
     return loadStats?.call();
   }
@@ -131,6 +144,8 @@ class _$LoadStatsImpl implements LoadStats {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadStats,
     TResult Function(bool wasSmoked)? logCraving,
+    TResult Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
     required TResult orElse(),
   }) {
     if (loadStats != null) {
@@ -144,6 +159,7 @@ class _$LoadStatsImpl implements LoadStats {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadStats value) loadStats,
     required TResult Function(LogCraving value) logCraving,
+    required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
   }) {
     return loadStats(this);
   }
@@ -153,6 +169,7 @@ class _$LoadStatsImpl implements LoadStats {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadStats value)? loadStats,
     TResult? Function(LogCraving value)? logCraving,
+    TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
   }) {
     return loadStats?.call(this);
   }
@@ -162,6 +179,7 @@ class _$LoadStatsImpl implements LoadStats {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadStats value)? loadStats,
     TResult Function(LogCraving value)? logCraving,
+    TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
     required TResult orElse(),
   }) {
     if (loadStats != null) {
@@ -242,6 +260,8 @@ class _$LogCravingImpl implements LogCraving {
   TResult when<TResult extends Object?>({
     required TResult Function() loadStats,
     required TResult Function(bool wasSmoked) logCraving,
+    required TResult Function(bool wasSmoked, int cravingLevel, String? note)
+        saveDailyCheckIn,
   }) {
     return logCraving(wasSmoked);
   }
@@ -251,6 +271,8 @@ class _$LogCravingImpl implements LogCraving {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadStats,
     TResult? Function(bool wasSmoked)? logCraving,
+    TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
   }) {
     return logCraving?.call(wasSmoked);
   }
@@ -260,6 +282,8 @@ class _$LogCravingImpl implements LogCraving {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadStats,
     TResult Function(bool wasSmoked)? logCraving,
+    TResult Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
     required TResult orElse(),
   }) {
     if (logCraving != null) {
@@ -273,6 +297,7 @@ class _$LogCravingImpl implements LogCraving {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadStats value) loadStats,
     required TResult Function(LogCraving value) logCraving,
+    required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
   }) {
     return logCraving(this);
   }
@@ -282,6 +307,7 @@ class _$LogCravingImpl implements LogCraving {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadStats value)? loadStats,
     TResult? Function(LogCraving value)? logCraving,
+    TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
   }) {
     return logCraving?.call(this);
   }
@@ -291,6 +317,7 @@ class _$LogCravingImpl implements LogCraving {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadStats value)? loadStats,
     TResult Function(LogCraving value)? logCraving,
+    TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
     required TResult orElse(),
   }) {
     if (logCraving != null) {
@@ -306,5 +333,172 @@ abstract class LogCraving implements HomeEvent {
   bool get wasSmoked;
   @JsonKey(ignore: true)
   _$$LogCravingImplCopyWith<_$LogCravingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SaveDailyCheckInImplCopyWith<$Res> {
+  factory _$$SaveDailyCheckInImplCopyWith(_$SaveDailyCheckInImpl value,
+          $Res Function(_$SaveDailyCheckInImpl) then) =
+      __$$SaveDailyCheckInImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool wasSmoked, int cravingLevel, String? note});
+}
+
+/// @nodoc
+class __$$SaveDailyCheckInImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$SaveDailyCheckInImpl>
+    implements _$$SaveDailyCheckInImplCopyWith<$Res> {
+  __$$SaveDailyCheckInImplCopyWithImpl(_$SaveDailyCheckInImpl _value,
+      $Res Function(_$SaveDailyCheckInImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? wasSmoked = null,
+    Object? cravingLevel = null,
+    Object? note = freezed,
+  }) {
+    return _then(_$SaveDailyCheckInImpl(
+      wasSmoked: null == wasSmoked
+          ? _value.wasSmoked
+          : wasSmoked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      cravingLevel: null == cravingLevel
+          ? _value.cravingLevel
+          : cravingLevel // ignore: cast_nullable_to_non_nullable
+              as int,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SaveDailyCheckInImpl implements SaveDailyCheckIn {
+  const _$SaveDailyCheckInImpl(
+      {required this.wasSmoked, required this.cravingLevel, this.note});
+
+  @override
+  final bool wasSmoked;
+  @override
+  final int cravingLevel;
+  @override
+  final String? note;
+
+  @override
+  String toString() {
+    return 'HomeEvent.saveDailyCheckIn(wasSmoked: $wasSmoked, cravingLevel: $cravingLevel, note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveDailyCheckInImpl &&
+            (identical(other.wasSmoked, wasSmoked) ||
+                other.wasSmoked == wasSmoked) &&
+            (identical(other.cravingLevel, cravingLevel) ||
+                other.cravingLevel == cravingLevel) &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, wasSmoked, cravingLevel, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveDailyCheckInImplCopyWith<_$SaveDailyCheckInImpl> get copyWith =>
+      __$$SaveDailyCheckInImplCopyWithImpl<_$SaveDailyCheckInImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadStats,
+    required TResult Function(bool wasSmoked) logCraving,
+    required TResult Function(bool wasSmoked, int cravingLevel, String? note)
+        saveDailyCheckIn,
+  }) {
+    return saveDailyCheckIn(wasSmoked, cravingLevel, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadStats,
+    TResult? Function(bool wasSmoked)? logCraving,
+    TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
+  }) {
+    return saveDailyCheckIn?.call(wasSmoked, cravingLevel, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadStats,
+    TResult Function(bool wasSmoked)? logCraving,
+    TResult Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
+    required TResult orElse(),
+  }) {
+    if (saveDailyCheckIn != null) {
+      return saveDailyCheckIn(wasSmoked, cravingLevel, note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadStats value) loadStats,
+    required TResult Function(LogCraving value) logCraving,
+    required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
+  }) {
+    return saveDailyCheckIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadStats value)? loadStats,
+    TResult? Function(LogCraving value)? logCraving,
+    TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+  }) {
+    return saveDailyCheckIn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadStats value)? loadStats,
+    TResult Function(LogCraving value)? logCraving,
+    TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    required TResult orElse(),
+  }) {
+    if (saveDailyCheckIn != null) {
+      return saveDailyCheckIn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SaveDailyCheckIn implements HomeEvent {
+  const factory SaveDailyCheckIn(
+      {required final bool wasSmoked,
+      required final int cravingLevel,
+      final String? note}) = _$SaveDailyCheckInImpl;
+
+  bool get wasSmoked;
+  int get cravingLevel;
+  String? get note;
+  @JsonKey(ignore: true)
+  _$$SaveDailyCheckInImplCopyWith<_$SaveDailyCheckInImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

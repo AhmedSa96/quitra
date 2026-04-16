@@ -46,34 +46,49 @@ lib/
 
 ### Domain Layer (Independent)
 
-- **Entities:** Plain Dart classes (or Freezed) representing the business model. No JSON/external logic.
-- **Repositories (Interfaces):** Contract defining what data is needed, not how it's fetched.
+- **Entities:** Plain Dart classes (or Freezed) representing the business model.
+  No JSON/external logic.
+- **Repositories (Interfaces):** Contract defining what data is needed, not how
+  it's fetched.
 - **Use Cases:** Atomic business logic.
 
 ### Data Layer (Implementation)
 
-- **Models:** Freezed classes with `fromJson`/`toJson` (for CSV/JSON serialization).
+- **Models:** Freezed classes with `fromJson`/`toJson` (for CSV/JSON
+  serialization).
 - **DataSources:** Isar database calls. Stores/retrieves local state.
-- **Repository Implementations:** The orchestrator of data. Implements the business logic for state persistence.
+- **Repository Implementations:** The orchestrator of data. Implements the
+  business logic for state persistence.
 
 ### Presentation Layer (UI & Logic)
 
 - **Bloc:** Processes Events and emits States. Never holds UI logic.
-- **Rule:** UI should only interact with Bloc. No direct Repository calls in Widgets.
+- **Rule:** UI should only interact with Bloc. No direct Repository calls in
+  Widgets.
+
+### Dynamic Computations
+
+- When computing stats (e.g., money saved), DO NOT use hardcoded values. Always
+  fetch the user's custom pricing from the `UserProfile` (e.g., `cigarettePrice`
+  or compute from `packetPrice` and `cigarettesPerPacket`).
 
 ## 4. Local-First Architecture
 
 Quitra is a strictly offline app. Data persistence is immediate and local.
 
 ### Data Portability (CSV)
-1. **Export:** Repositories must provide methods to serialize Isar collections into CSV strings for file export.
-2. **Import:** Repositories must handle CSV parsing and batch-inserting into Isar while maintaining data integrity.
+
+1. **Export:** Repositories must provide methods to serialize Isar collections
+   into CSV strings for file export.
+2. **Import:** Repositories must handle CSV parsing and batch-inserting into
+   Isar while maintaining data integrity.
 
 ## 5. Development Rules & Patterns
 
 ### Dependency Injection
 
-Use `@injectable` annotations. Always register implementations against interfaces.
+Use `@injectable` annotations. Always register implementations against
+interfaces.
 
 ### Error Handling
 
@@ -83,4 +98,5 @@ Use `@injectable` annotations. Always register implementations against interface
 
 ### Model Generation
 
-Always run: `dart run build_runner build --delete-conflicting-outputs` whenever modifying Freezed/Injectable/Isar files.
+Always run: `dart run build_runner build --delete-conflicting-outputs` whenever
+modifying Freezed/Injectable/Isar files.

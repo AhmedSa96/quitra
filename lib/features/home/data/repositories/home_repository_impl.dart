@@ -8,6 +8,7 @@ import '../../domain/repositories/home_repository.dart';
 import '../datasources/home_local_data_source.dart';
 import '../models/user_stats_isar.dart';
 import '../models/craving_event_isar.dart';
+import '../models/daily_log_isar.dart';
 
 @LazySingleton(as: HomeRepository)
 class HomeRepositoryImpl implements HomeRepository {
@@ -75,6 +76,26 @@ class HomeRepositoryImpl implements HomeRepository {
           ..lastUpdated = DateTime.now());
       }
 
+      return const Right(unit);
+    } catch (e) {
+      return const Left(Failure.databaseError());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> saveDailyCheckIn({
+    required bool wasSmoked,
+    required int cravingLevel,
+    String? note,
+  }) async {
+    try {
+      final log = DailyLogIsar()
+        ..date = DateTime.now()
+        ..wasSmoked = wasSmoked
+        ..cravingLevel = cravingLevel
+        ..note = note;
+      
+      await localDataSource.saveDailyLog(log);
       return const Right(unit);
     } catch (e) {
       return const Left(Failure.databaseError());

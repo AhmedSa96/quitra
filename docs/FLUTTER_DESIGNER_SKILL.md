@@ -12,7 +12,10 @@ UI must reduce cortisol, reduce task anxiety, and provide editorial clarity.
 - **Rule of Thumb:** If it feels crowded, add 8px more padding.
 - **Visual Style:** Asymmetric layouts, organic depth, soft overlapping
   transitions. No rigid boxes.
-- **Offline Excellence:** Since the app is strictly offline, design for zero latency. Avoid heavy "loading" states for local data; focus on instant transitions and optimistic UI updates for long-running local operations (like CSV import).
+- **Offline Excellence:** Since the app is strictly offline, design for zero
+  latency. Avoid heavy "loading" states for local data; focus on instant
+  transitions and optimistic UI updates for long-running local operations (like
+  CSV import).
 
 ## 2. Color System (Material 3 Implementation)
 
@@ -78,7 +81,8 @@ LinearGradient(
 
 ### Icons: Solar Icons
 
-- **Rule:** Never use standard Material `Icons`. Always use the `solar_icons` package.
+- **Rule:** Never use standard Material `Icons`. Always use the `solar_icons`
+  package.
 - **Style:**
   - **Inactive/Secondary:** Use `SolarIconsOutline`.
   - **Active/Primary:** Use `SolarIconsBold`.
@@ -96,13 +100,21 @@ LinearGradient(
 4. **Spacing:** Standardize on an 8pt grid, but favor 24px and 32px for main
    sections.
 5. **Componentization:** Always split large pages into smaller, focused widgets.
-6. **Icons:** Never use `Icons.xxx`. Always use `SolarIconsOutline.xxx` or `SolarIconsBold.xxx`.
+6. **Icons:** Never use `Icons.xxx`. Always use `SolarIconsOutline.xxx` or
+   `SolarIconsBold.xxx`.
 
 ## 6. Widget Architecture & Componentization
 
-To maintain code clarity and follow Flutter best practices, follow these architectural rules:
+To maintain code clarity and follow Flutter best practices, follow these
+architectural rules:
 
-1. **Split Large Builders**: Never allow a `build` method to exceed 100 lines. If it does, split it into private sub-widgets or external component classes.
-2. **Atomic Widgets**: Extract reusable UI elements (buttons, cards, inputs) into their own files in the `presentation/widgets` directory.
-3. **Prefer Classes over Functions**: When splitting a widget, prefer creating a separate `StatelessWidget` or `StatefulWidget` class over a helper function returning a widget. This allows for better performance (via `const` constructors) and cleaner debugging.
-4. **Feature-Based Widgets**: Keep widgets that are specific to a single feature within that feature's `presentation/widgets` folder.
+1. **Split Large Builders**: Never allow a `build` method to exceed 100 lines.
+   If it does, split it into private sub-widgets or external component classes.
+2. **Atomic Widgets**: Extract reusable UI elements (buttons, cards, inputs)
+   into their own files in the `presentation/widgets` directory.
+3. **Prefer Classes over Functions**: When splitting a widget, prefer creating a
+   separate `StatelessWidget` or `StatefulWidget` class over a helper function
+   returning a widget. This allows for better performance (via `const`
+   constructors) and cleaner debugging.
+4. **Feature-Based Widgets**: Keep widgets that are specific to a single feature
+   within that feature's `presentation/widgets` folder.
