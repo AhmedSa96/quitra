@@ -47,5 +47,9 @@
   "quitPlanLabel": "Bırakma Planı",
   "notificationsLabel": "Bildirimler",
   "subscriptionLabel": "Abonelik",
-  "privacyPolicyLabel": "Gizlilik Politikası"
+  "privacyPolicyLabel": "Gizlilik Politikası",
+  "dayDetailsTitle": "Gün Detayları",
+  "journalNoteLabel": "Günlük Notu",
+  "editNoteAction": "Notu Düzenle",
+  "saveNoteAction": "Değişiklikleri Kaydet"
 }

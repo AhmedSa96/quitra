@@ -95,5 +95,9 @@
   "saveJournal": "Save Journal",
   "detailedInsights": "Detailed Insights",
   "lifeRegainedLabel": "Life Regained",
-  "cleanStreakLabel": "Clean Streak"
+  "cleanStreakLabel": "Clean Streak",
+  "dayDetailsTitle": "Day Details",
+  "journalNoteLabel": "Journal Note",
+  "editNoteAction": "Edit Note",
+  "saveNoteAction": "Save Changes"
 }

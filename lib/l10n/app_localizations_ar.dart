@@ -213,4 +213,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cleanStreakLabel => 'سلسلة أيام نظيفة';
+
+  @override
+  String get dayDetailsTitle => 'تفاصيل اليوم';
+
+  @override
+  String get journalNoteLabel => 'ملاحظة السجل';
+
+  @override
+  String get editNoteAction => 'تعديل الملاحظة';
+
+  @override
+  String get saveNoteAction => 'حفظ التغييرات';
 }

@@ -65,5 +65,9 @@
   "saveJournal": "حفظ السجل",
   "detailedInsights": "إحصائيات مفصلة",
   "lifeRegainedLabel": "حياة مستردة",
-  "cleanStreakLabel": "سلسلة أيام نظيفة"
+  "cleanStreakLabel": "سلسلة أيام نظيفة",
+  "dayDetailsTitle": "تفاصيل اليوم",
+  "journalNoteLabel": "ملاحظة السجل",
+  "editNoteAction": "تعديل الملاحظة",
+  "saveNoteAction": "حفظ التغييرات"
 }

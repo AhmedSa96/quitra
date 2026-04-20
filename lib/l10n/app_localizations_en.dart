@@ -218,4 +218,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cleanStreakLabel => 'Clean Streak';
+
+  @override
+  String get dayDetailsTitle => 'Day Details';
+
+  @override
+  String get journalNoteLabel => 'Journal Note';
+
+  @override
+  String get editNoteAction => 'Edit Note';
+
+  @override
+  String get saveNoteAction => 'Save Changes';
 }

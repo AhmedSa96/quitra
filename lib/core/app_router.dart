@@ -6,6 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../features/onboarding/presentation/bloc/onboarding_bloc.dart';
 import 'di/injection.dart';
 
+import '../features/journey/domain/entities/journey_day.dart';
+import '../features/journey/presentation/pages/journey_day_details_page.dart';
+import '../features/journey/presentation/bloc/journey_bloc.dart';
+
 final goRouter = GoRouter(
   initialLocation: '/',
   routes: [
@@ -23,6 +27,18 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/home',
       builder: (context, state) => const MainPage(),
+    ),
+    GoRoute(
+      path: '/journey-day-details',
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        final day = extra['day'] as JourneyDay;
+        final bloc = extra['bloc'] as JourneyBloc;
+        return BlocProvider.value(
+          value: bloc,
+          child: JourneyDayDetailsPage(day: day),
+        );
+      },
     ),
   ],
 );

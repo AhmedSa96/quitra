@@ -495,6 +495,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clean Streak'**
   String get cleanStreakLabel;
+
+  /// No description provided for @dayDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Day Details'**
+  String get dayDetailsTitle;
+
+  /// No description provided for @journalNoteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Journal Note'**
+  String get journalNoteLabel;
+
+  /// No description provided for @editNoteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Note'**
+  String get editNoteAction;
+
+  /// No description provided for @saveNoteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveNoteAction;
 }
 
 class _AppLocalizationsDelegate

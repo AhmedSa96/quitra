@@ -73,4 +73,24 @@ class JourneyRepositoryImpl implements JourneyRepository {
       return const Left(Failure.databaseError());
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> updateJourneyDay({
+    required DateTime date,
+    bool? wasSmoked,
+    int? cravingLevel,
+    String? note,
+  }) async {
+    try {
+      await localDataSource.updateDailyLog(
+        date: date,
+        wasSmoked: wasSmoked,
+        cravingLevel: cravingLevel,
+        note: note,
+      );
+      return const Right(unit);
+    } catch (e) {
+      return const Left(Failure.databaseError());
+    }
+  }
 }

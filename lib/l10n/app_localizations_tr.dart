@@ -217,4 +217,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get cleanStreakLabel => 'Clean Streak';
+
+  @override
+  String get dayDetailsTitle => 'Gün Detayları';
+
+  @override
+  String get journalNoteLabel => 'Günlük Notu';
+
+  @override
+  String get editNoteAction => 'Notu Düzenle';
+
+  @override
+  String get saveNoteAction => 'Değişiklikleri Kaydet';
 }

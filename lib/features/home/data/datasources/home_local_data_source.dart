@@ -15,6 +15,12 @@ abstract class HomeLocalDataSource {
   Future<void> saveDailyLog(DailyLogIsar log);
   Future<List<DailyLogIsar>> getDailyLogs();
   Future<List<CravingEventIsar>> getCravingEvents();
+  Future<void> updateDailyLog({
+    required DateTime date,
+    bool? wasSmoked,
+    int? cravingLevel,
+    String? note,
+  });
 }
 
 @LazySingleton(as: HomeLocalDataSource)
@@ -67,5 +73,31 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   Future<List<CravingEventIsar>> getCravingEvents() async {
     return isar.cravingEventIsars.where().sortByTimestampDesc().findAll();
+  }
+  
+  @override
+  Future<void> updateDailyLog({
+    required DateTime date,
+    bool? wasSmoked,
+    int? cravingLevel,
+    String? note,
+  }) async {
+    final normalizedDate = DateTime(date.year, date.month, date.day);
+    await isar.writeTxn(() async {
+      final existingLog = await isar.dailyLogIsars.filter().dateEqualTo(normalizedDate).findFirst();
+      if (existingLog != null) {
+        if (wasSmoked != null) existingLog.wasSmoked = wasSmoked;
+        if (cravingLevel != null) existingLog.cravingLevel = cravingLevel;
+        if (note != null) existingLog.note = note;
+        await isar.dailyLogIsars.put(existingLog);
+      } else {
+        final newLog = DailyLogIsar()
+          ..date = normalizedDate
+          ..wasSmoked = wasSmoked ?? false
+          ..cravingLevel = cravingLevel ?? 0
+          ..note = note;
+        await isar.dailyLogIsars.put(newLog);
+      }
+    });
   }
 }
