@@ -435,6 +435,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a valid number'**
   String get invalidNumber;
+
+  /// No description provided for @journeyStartMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your journey starts here.'**
+  String get journeyStartMessage;
+
+  /// No description provided for @cravingsRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Cravings recorded'**
+  String get cravingsRecorded;
+
+  /// No description provided for @setbackRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Setback recorded'**
+  String get setbackRecorded;
+
+  /// No description provided for @didYouSmokeToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you smoke today?'**
+  String get didYouSmokeToday;
+
+  /// No description provided for @cravingsIntensity.
+  ///
+  /// In en, this message translates to:
+  /// **'Cravings intensity'**
+  String get cravingsIntensity;
+
+  /// No description provided for @addNoteOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note (optional)'**
+  String get addNoteOptional;
+
+  /// No description provided for @saveJournal.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Journal'**
+  String get saveJournal;
+
+  /// No description provided for @detailedInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed Insights'**
+  String get detailedInsights;
+
+  /// No description provided for @lifeRegainedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Life Regained'**
+  String get lifeRegainedLabel;
+
+  /// No description provided for @cleanStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean Streak'**
+  String get cleanStreakLabel;
 }
 
 class _AppLocalizationsDelegate

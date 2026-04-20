@@ -63,7 +63,7 @@ class _JourneyView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(32.0),
                           child: Text(
-                            "Your journey starts here.", // TODO: Localize
+                            l10n.journeyStartMessage,
                             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                               color: Theme.of(context).colorScheme.onSurfaceVariant,
                             ),

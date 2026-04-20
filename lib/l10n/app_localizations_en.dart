@@ -188,4 +188,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get invalidNumber => 'Please enter a valid number';
+
+  @override
+  String get journeyStartMessage => 'Your journey starts here.';
+
+  @override
+  String get cravingsRecorded => 'Cravings recorded';
+
+  @override
+  String get setbackRecorded => 'Setback recorded';
+
+  @override
+  String get didYouSmokeToday => 'Did you smoke today?';
+
+  @override
+  String get cravingsIntensity => 'Cravings intensity';
+
+  @override
+  String get addNoteOptional => 'Add a note (optional)';
+
+  @override
+  String get saveJournal => 'Save Journal';
+
+  @override
+  String get detailedInsights => 'Detailed Insights';
+
+  @override
+  String get lifeRegainedLabel => 'Life Regained';
+
+  @override
+  String get cleanStreakLabel => 'Clean Streak';
 }

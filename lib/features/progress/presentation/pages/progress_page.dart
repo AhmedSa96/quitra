@@ -118,7 +118,7 @@ class ProgressPage extends StatelessWidget {
 
             // Detailed Stats Grid
             Text(
-              "Detailed Insights", // TODO: Localize
+              l10n.detailedInsights,
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
@@ -146,13 +146,13 @@ class ProgressPage extends StatelessWidget {
                 ),
                 _buildStatCard(
                   context,
-                  "Life Regained",
+                  l10n.lifeRegainedLabel,
                   "12d",
                   SolarIconsOutline.health,
                 ),
                 _buildStatCard(
                   context,
-                  "Clean Streak",
+                  l10n.cleanStreakLabel,
                   "15 days",
                   SolarIconsOutline.star,
                 ),

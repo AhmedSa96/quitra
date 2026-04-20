@@ -183,4 +183,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get invalidNumber => 'يرجى إدخال رقم صحيح';
+
+  @override
+  String get journeyStartMessage => 'رحلتك تبدأ هنا.';
+
+  @override
+  String get cravingsRecorded => 'تم تسجيل رغبات';
+
+  @override
+  String get setbackRecorded => 'تم تسجيل انتكاسة';
+
+  @override
+  String get didYouSmokeToday => 'هل دخنت اليوم؟';
+
+  @override
+  String get cravingsIntensity => 'شدة الرغبة';
+
+  @override
+  String get addNoteOptional => 'إضافة ملاحظة (اختياري)';
+
+  @override
+  String get saveJournal => 'حفظ السجل';
+
+  @override
+  String get detailedInsights => 'إحصائيات مفصلة';
+
+  @override
+  String get lifeRegainedLabel => 'حياة مستردة';
+
+  @override
+  String get cleanStreakLabel => 'سلسلة أيام نظيفة';
 }

@@ -108,7 +108,7 @@ class _CigarettePriceStepState extends State<CigarettePriceStep> {
           border: Border.all(
             color: isSelected
                 ? AppTheme.primary
-                : AppTheme.primary.withOpacity(0.2),
+                : AppTheme.primary.withValues(alpha: 0.2),
             width: 2,
           ),
         ),
@@ -116,9 +116,9 @@ class _CigarettePriceStepState extends State<CigarettePriceStep> {
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isSelected ? Colors.white : AppTheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: isSelected ? Colors.white : AppTheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
         ),
@@ -146,9 +146,9 @@ class _CigarettePriceStepState extends State<CigarettePriceStep> {
           ? [FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*'))]
           : [FilteringTextInputFormatter.digitsOnly],
       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: AppTheme.onSurface,
-          ),
+        fontWeight: FontWeight.w600,
+        color: AppTheme.onSurface,
+      ),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(color: AppTheme.onSurfaceVariant),
@@ -165,7 +165,7 @@ class _CigarettePriceStepState extends State<CigarettePriceStep> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(
-            color: AppTheme.primary.withOpacity(0.5),
+            color: AppTheme.primary.withValues(alpha: 0.5),
             width: 1,
           ),
         ),

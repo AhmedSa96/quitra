@@ -61,7 +61,9 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
             children: [
               Text(
                 l10n.howWasYourDay,
-                style: Theme.of(context).textTheme.displayLarge?.copyWith(fontSize: 24),
+                style: Theme.of(
+                  context,
+                ).textTheme.displayLarge?.copyWith(fontSize: 24),
               ),
               IconButton(
                 onPressed: () => Navigator.pop(context),
@@ -71,15 +73,15 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
             ],
           ),
           const SizedBox(height: 32),
-          
+
           // Question 1: Smoked?
           _buildActionRow(
             context,
             icon: SolarIconsOutline.fire,
-            title: "Did you smoke today?", // TODO: Localize
+            title: l10n.didYouSmokeToday,
             trailing: Switch.adaptive(
               value: _wasSmoked,
-              activeColor: AppTheme.primary,
+              activeThumbColor: AppTheme.primary,
               onChanged: (value) => setState(() => _wasSmoked = value),
             ),
           ),
@@ -87,10 +89,10 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
 
           // Question 2: Cravings
           Text(
-            "Cravings intensity", // TODO: Localize
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+            l10n.cravingsIntensity,
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           Slider(
@@ -116,7 +118,7 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
             controller: _noteController,
             maxLines: 3,
             decoration: InputDecoration(
-              hintText: "Add a note (optional)", // TODO: Localize
+              hintText: l10n.addNoteOptional,
               filled: true,
               fillColor: AppTheme.surfaceContainerLowest,
               border: OutlineInputBorder(
@@ -138,18 +140,22 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
               ),
               child: ElevatedButton(
                 onPressed: () {
-                  context.read<HomeBloc>().add(HomeEvent.saveDailyCheckIn(
-                    wasSmoked: _wasSmoked,
-                    cravingLevel: _cravingLevel.toInt(),
-                    note: _noteController.text.isNotEmpty ? _noteController.text : null,
-                  ));
+                  context.read<HomeBloc>().add(
+                    HomeEvent.saveDailyCheckIn(
+                      wasSmoked: _wasSmoked,
+                      cravingLevel: _cravingLevel.toInt(),
+                      note: _noteController.text.isNotEmpty
+                          ? _noteController.text
+                          : null,
+                    ),
+                  );
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
                 ),
-                child: const Text("Save Journal"), // TODO: Localize
+                child: Text(l10n.saveJournal),
               ),
             ),
           ),
@@ -158,7 +164,8 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
     );
   }
 
-  Widget _buildActionRow(BuildContext context, {
+  Widget _buildActionRow(
+    BuildContext context, {
     required IconData icon,
     required String title,
     required Widget trailing,
@@ -170,9 +177,9 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
         Expanded(
           child: Text(
             title,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
         trailing,

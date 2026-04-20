@@ -85,5 +85,15 @@
   "packetPriceLabel": "Price per packet",
   "cigarettesPerPacketLabel": "Cigarettes per packet",
   "priceRequired": "Price is required",
-  "invalidNumber": "Please enter a valid number"
+  "invalidNumber": "Please enter a valid number",
+  "journeyStartMessage": "Your journey starts here.",
+  "cravingsRecorded": "Cravings recorded",
+  "setbackRecorded": "Setback recorded",
+  "didYouSmokeToday": "Did you smoke today?",
+  "cravingsIntensity": "Cravings intensity",
+  "addNoteOptional": "Add a note (optional)",
+  "saveJournal": "Save Journal",
+  "detailedInsights": "Detailed Insights",
+  "lifeRegainedLabel": "Life Regained",
+  "cleanStreakLabel": "Clean Streak"
 }

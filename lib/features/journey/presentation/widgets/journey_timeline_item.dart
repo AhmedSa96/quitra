@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:solar_icons/solar_icons.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../domain/entities/journey_day.dart';
 
@@ -11,9 +12,10 @@ class JourneyTimelineItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final statusColor = _getStatusColor(day.status);
     final statusIcon = _getStatusIcon(day.status);
-    final statusText = _getStatusText(day.status);
+    final statusText = _getStatusText(day.status, l10n);
     final dateText = DateFormat('MMMM d').format(day.date);
 
     return Container(
@@ -105,14 +107,14 @@ class JourneyTimelineItem extends StatelessWidget {
     }
   }
 
-  String _getStatusText(JourneyStatus status) {
+  String _getStatusText(JourneyStatus status, AppLocalizations l10n) {
     switch (status) {
       case JourneyStatus.clean:
-        return "Clean"; // TODO: Localize
+        return l10n.cleanStatus;
       case JourneyStatus.craving:
-        return "Cravings recorded"; // TODO: Localize
+        return l10n.cravingsRecorded;
       case JourneyStatus.setback:
-        return "Setback recorded"; // TODO: Localize
+        return l10n.setbackRecorded;
     }
   }
 }

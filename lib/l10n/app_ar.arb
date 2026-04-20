@@ -55,5 +55,15 @@
   "packetPriceLabel": "سعر العلبة",
   "cigarettesPerPacketLabel": "عدد السجائر في العلبة",
   "priceRequired": "السعر مطلوب",
-  "invalidNumber": "يرجى إدخال رقم صحيح"
+  "invalidNumber": "يرجى إدخال رقم صحيح",
+  "journeyStartMessage": "رحلتك تبدأ هنا.",
+  "cravingsRecorded": "تم تسجيل رغبات",
+  "setbackRecorded": "تم تسجيل انتكاسة",
+  "didYouSmokeToday": "هل دخنت اليوم؟",
+  "cravingsIntensity": "شدة الرغبة",
+  "addNoteOptional": "إضافة ملاحظة (اختياري)",
+  "saveJournal": "حفظ السجل",
+  "detailedInsights": "إحصائيات مفصلة",
+  "lifeRegainedLabel": "حياة مستردة",
+  "cleanStreakLabel": "سلسلة أيام نظيفة"
 }
