@@ -11,30 +11,30 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:isar/isar.dart' as _i3;
-import 'package:quitra/core/di/injection.dart' as _i28;
+import 'package:quitra/core/di/injection.dart' as _i31;
 import 'package:quitra/features/home/data/datasources/home_local_data_source.dart'
-    as _i14;
-import 'package:quitra/features/home/data/repositories/home_repository_impl.dart'
-    as _i16;
-import 'package:quitra/features/home/domain/repositories/home_repository.dart'
-    as _i15;
-import 'package:quitra/features/home/domain/usecases/get_home_stats_usecase.dart'
-    as _i24;
-import 'package:quitra/features/home/domain/usecases/log_craving_usecase.dart'
-    as _i19;
-import 'package:quitra/features/home/domain/usecases/save_daily_log.dart'
-    as _i22;
-import 'package:quitra/features/home/presentation/bloc/home_bloc.dart' as _i26;
-import 'package:quitra/features/journey/data/repositories/journey_repository_impl.dart'
-    as _i18;
-import 'package:quitra/features/journey/domain/repositories/journey_repository.dart'
     as _i17;
-import 'package:quitra/features/journey/domain/usecases/get_journey_history.dart'
-    as _i25;
-import 'package:quitra/features/journey/domain/usecases/update_journey_day.dart'
-    as _i23;
-import 'package:quitra/features/journey/presentation/bloc/journey_bloc.dart'
+import 'package:quitra/features/home/data/repositories/home_repository_impl.dart'
+    as _i19;
+import 'package:quitra/features/home/domain/repositories/home_repository.dart'
+    as _i18;
+import 'package:quitra/features/home/domain/usecases/get_home_stats_usecase.dart'
     as _i27;
+import 'package:quitra/features/home/domain/usecases/log_craving_usecase.dart'
+    as _i22;
+import 'package:quitra/features/home/domain/usecases/save_daily_log.dart'
+    as _i25;
+import 'package:quitra/features/home/presentation/bloc/home_bloc.dart' as _i29;
+import 'package:quitra/features/journey/data/repositories/journey_repository_impl.dart'
+    as _i21;
+import 'package:quitra/features/journey/domain/repositories/journey_repository.dart'
+    as _i20;
+import 'package:quitra/features/journey/domain/usecases/get_journey_history.dart'
+    as _i28;
+import 'package:quitra/features/journey/domain/usecases/update_journey_day.dart'
+    as _i26;
+import 'package:quitra/features/journey/presentation/bloc/journey_bloc.dart'
+    as _i30;
 import 'package:quitra/features/onboarding/data/datasources/onboarding_local_data_source.dart'
     as _i5;
 import 'package:quitra/features/onboarding/data/repositories/onboarding_repository_impl.dart'
@@ -44,7 +44,7 @@ import 'package:quitra/features/onboarding/domain/repositories/onboarding_reposi
 import 'package:quitra/features/onboarding/domain/usecases/complete_onboarding_usecase.dart'
     as _i12;
 import 'package:quitra/features/onboarding/presentation/bloc/onboarding_bloc.dart'
-    as _i20;
+    as _i23;
 import 'package:quitra/features/progress/data/datasources/progress_local_data_source.dart'
     as _i8;
 import 'package:quitra/features/progress/data/repositories/progress_repository_impl.dart'
@@ -52,11 +52,17 @@ import 'package:quitra/features/progress/data/repositories/progress_repository_i
 import 'package:quitra/features/progress/domain/repositories/progress_repository.dart'
     as _i9;
 import 'package:quitra/features/progress/domain/usecases/get_progress_stats.dart'
-    as _i13;
+    as _i16;
 import 'package:quitra/features/progress/presentation/bloc/progress_bloc.dart'
-    as _i21;
+    as _i24;
 import 'package:quitra/features/settings/data/datasources/notification_local_data_source.dart'
     as _i4;
+import 'package:quitra/features/settings/data/repositories/data_portability_repository_impl.dart'
+    as _i14;
+import 'package:quitra/features/settings/domain/repositories/data_portability_repository.dart'
+    as _i13;
+import 'package:quitra/features/settings/domain/usecases/export_data_use_case.dart'
+    as _i15;
 import 'package:quitra/features/settings/presentation/bloc/settings_bloc.dart'
     as _i11;
 
@@ -90,41 +96,45 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i11.SettingsBloc>(() => registerSettingsModule.settingsBloc);
     gh.lazySingleton<_i12.CompleteOnboardingUseCase>(
         () => _i12.CompleteOnboardingUseCase(gh<_i6.OnboardingRepository>()));
-    gh.factory<_i13.GetProgressStats>(
-        () => _i13.GetProgressStats(gh<_i9.ProgressRepository>()));
-    gh.lazySingleton<_i14.HomeLocalDataSource>(
-        () => _i14.HomeLocalDataSourceImpl(gh<_i3.Isar>()));
-    gh.lazySingleton<_i15.HomeRepository>(
-        () => _i16.HomeRepositoryImpl(gh<_i14.HomeLocalDataSource>()));
-    gh.lazySingleton<_i17.JourneyRepository>(
-        () => _i18.JourneyRepositoryImpl(gh<_i14.HomeLocalDataSource>()));
-    gh.factory<_i19.LogCravingUseCase>(
-        () => _i19.LogCravingUseCase(gh<_i15.HomeRepository>()));
-    gh.factory<_i20.OnboardingBloc>(
-        () => _i20.OnboardingBloc(gh<_i12.CompleteOnboardingUseCase>()));
-    gh.factory<_i21.ProgressBloc>(
-        () => _i21.ProgressBloc(gh<_i13.GetProgressStats>()));
-    gh.lazySingleton<_i22.SaveDailyLog>(
-        () => _i22.SaveDailyLog(gh<_i15.HomeRepository>()));
-    gh.lazySingleton<_i23.UpdateJourneyDay>(
-        () => _i23.UpdateJourneyDay(gh<_i17.JourneyRepository>()));
-    gh.factory<_i24.GetHomeStatsUseCase>(
-        () => _i24.GetHomeStatsUseCase(gh<_i15.HomeRepository>()));
-    gh.lazySingleton<_i25.GetJourneyHistory>(
-        () => _i25.GetJourneyHistory(gh<_i17.JourneyRepository>()));
-    gh.factory<_i26.HomeBloc>(() => _i26.HomeBloc(
-          gh<_i24.GetHomeStatsUseCase>(),
-          gh<_i19.LogCravingUseCase>(),
-          gh<_i22.SaveDailyLog>(),
+    gh.lazySingleton<_i13.DataPortabilityRepository>(
+        () => _i14.DataPortabilityRepositoryImpl(gh<_i3.Isar>()));
+    gh.lazySingleton<_i15.ExportDataUseCase>(
+        () => _i15.ExportDataUseCase(gh<_i13.DataPortabilityRepository>()));
+    gh.factory<_i16.GetProgressStats>(
+        () => _i16.GetProgressStats(gh<_i9.ProgressRepository>()));
+    gh.lazySingleton<_i17.HomeLocalDataSource>(
+        () => _i17.HomeLocalDataSourceImpl(gh<_i3.Isar>()));
+    gh.lazySingleton<_i18.HomeRepository>(
+        () => _i19.HomeRepositoryImpl(gh<_i17.HomeLocalDataSource>()));
+    gh.lazySingleton<_i20.JourneyRepository>(
+        () => _i21.JourneyRepositoryImpl(gh<_i17.HomeLocalDataSource>()));
+    gh.factory<_i22.LogCravingUseCase>(
+        () => _i22.LogCravingUseCase(gh<_i18.HomeRepository>()));
+    gh.factory<_i23.OnboardingBloc>(
+        () => _i23.OnboardingBloc(gh<_i12.CompleteOnboardingUseCase>()));
+    gh.factory<_i24.ProgressBloc>(
+        () => _i24.ProgressBloc(gh<_i16.GetProgressStats>()));
+    gh.lazySingleton<_i25.SaveDailyLog>(
+        () => _i25.SaveDailyLog(gh<_i18.HomeRepository>()));
+    gh.lazySingleton<_i26.UpdateJourneyDay>(
+        () => _i26.UpdateJourneyDay(gh<_i20.JourneyRepository>()));
+    gh.factory<_i27.GetHomeStatsUseCase>(
+        () => _i27.GetHomeStatsUseCase(gh<_i18.HomeRepository>()));
+    gh.lazySingleton<_i28.GetJourneyHistory>(
+        () => _i28.GetJourneyHistory(gh<_i20.JourneyRepository>()));
+    gh.factory<_i29.HomeBloc>(() => _i29.HomeBloc(
+          gh<_i27.GetHomeStatsUseCase>(),
+          gh<_i22.LogCravingUseCase>(),
+          gh<_i25.SaveDailyLog>(),
         ));
-    gh.factory<_i27.JourneyBloc>(() => _i27.JourneyBloc(
-          gh<_i25.GetJourneyHistory>(),
-          gh<_i23.UpdateJourneyDay>(),
+    gh.factory<_i30.JourneyBloc>(() => _i30.JourneyBloc(
+          gh<_i28.GetJourneyHistory>(),
+          gh<_i26.UpdateJourneyDay>(),
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i28.RegisterModule {}
+class _$RegisterModule extends _i31.RegisterModule {}
 
-class _$RegisterSettingsModule extends _i28.RegisterSettingsModule {}
+class _$RegisterSettingsModule extends _i31.RegisterSettingsModule {}

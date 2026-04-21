@@ -4,22 +4,37 @@ import 'package:isar/isar.dart';
 import 'package:quitra/core/di/injection.dart';
 import 'package:quitra/features/settings/data/models/user_settings_isar.dart';
 import 'package:quitra/features/settings/data/datasources/notification_local_data_source.dart';
+import 'package:quitra/features/settings/domain/usecases/export_data_use_case.dart';
+import 'package:quitra/core/error/failures.dart';
 
 part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final NotificationLocalDataSource _notificationDataSource;
+  final ExportDataUseCase _exportDataUseCase;
 
   SettingsBloc({
     NotificationLocalDataSource? notificationDataSource,
+    ExportDataUseCase? exportDataUseCase,
   })  : _notificationDataSource = notificationDataSource ?? getIt<NotificationLocalDataSource>(),
+        _exportDataUseCase = exportDataUseCase ?? getIt<ExportDataUseCase>(),
         super(const SettingsState()) {
     on<LocaleChanged>(_onLocaleChanged);
     on<LoadSettings>(_onLoadSettings);
     on<DailyReminderToggled>(_onDailyReminderToggled);
     on<DailyReminderTimeChanged>(_onDailyReminderTimeChanged);
     on<MilestoneCelebrationsToggled>(_onMilestoneCelebrationsToggled);
+    on<ExportDataRequested>(_onExportDataRequested);
+  }
+
+  Future<void> _onExportDataRequested(ExportDataRequested event, Emitter<SettingsState> emit) async {
+    emit(state.copyWith(isExporting: true, exportFailure: null));
+    final result = await _exportDataUseCase();
+    result.fold(
+      (failure) => emit(state.copyWith(isExporting: false, exportFailure: failure)),
+      (_) => emit(state.copyWith(isExporting: false)),
+    );
   }
 
   Future<void> _onLoadSettings(LoadSettings event, Emitter<SettingsState> emit) async {

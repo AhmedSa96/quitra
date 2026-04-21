@@ -394,6 +394,66 @@ abstract class AppLocalizations {
   /// **'Privacy Policy'**
   String get privacyPolicyLabel;
 
+  /// No description provided for @privacyCommitment.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data stays on your device'**
+  String get privacyCommitment;
+
+  /// No description provided for @privacyCommitmentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Quitra is designed to be completely offline. Your personal journey data never leaves your device.'**
+  String get privacyCommitmentDesc;
+
+  /// No description provided for @privacyDataWeCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'Data we collect'**
+  String get privacyDataWeCollect;
+
+  /// No description provided for @privacyDataWeCollectDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'We store only what you choose to share: your quit plan, daily check-ins, and settings. This data stays entirely on your device.'**
+  String get privacyDataWeCollectDesc;
+
+  /// No description provided for @privacyDataWeDontCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'Data we don\'t collect'**
+  String get privacyDataWeDontCollect;
+
+  /// No description provided for @privacyDataWeDontCollectDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'No analytics. No cloud sync. No personal identifiers. We have no way to see or share your data.'**
+  String get privacyDataWeDontCollectDesc;
+
+  /// No description provided for @privacyYourControl.
+  ///
+  /// In en, this message translates to:
+  /// **'Your control'**
+  String get privacyYourControl;
+
+  /// No description provided for @privacyYourControlDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Export your data anytime via CSV. Your journey, your files.'**
+  String get privacyYourControlDesc;
+
+  /// No description provided for @privacyContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Get in touch'**
+  String get privacyContact;
+
+  /// No description provided for @privacyContactDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions about privacy? We\'d love to hear from you.'**
+  String get privacyContactDesc;
+
   /// No description provided for @cigarettePriceStepTitle.
   ///
   /// In en, this message translates to:
@@ -693,6 +753,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You\'re free. Congratulations.'**
   String get milestone365Body;
+
+  /// No description provided for @exportDataLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Data'**
+  String get exportDataLabel;
+
+  /// No description provided for @exportDataSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Data exported successfully'**
+  String get exportDataSuccess;
+
+  /// No description provided for @exportDataError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to export data'**
+  String get exportDataError;
+
+  /// No description provided for @exportDataDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Export all your data as a CSV file'**
+  String get exportDataDescription;
 }
 
 class _AppLocalizationsDelegate

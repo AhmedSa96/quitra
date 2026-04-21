@@ -49,6 +49,16 @@
   "notificationsLabel": "الإشعارات",
   "subscriptionLabel": "الاشتراك",
   "privacyPolicyLabel": "سياسة الخصوصية",
+  "privacyCommitment": "بياناتك تظل على جهازك",
+  "privacyCommitmentDesc": "تم تصميم Quitra ليكون بالكامل بدون اتصال. لا تترك بيانات رحلتك الشخصية جهازك أبداً.",
+  "privacyDataWeCollect": "البيانات التي نجمعها",
+  "privacyDataWeCollectDesc": "نخزن فقط ما تختار مشاركته: خطة الإقلاع، عمليات التسجيل اليومية والإعدادات. تظل هذه البيانات بالكامل على جهازك.",
+  "privacyDataWeDontCollect": "البيانات التي لا نجمعها",
+  "privacyDataWeDontCollectDesc": "لا تحليلات. لا مزامنة سحابية. لا معرفات شخصية. ليس لدينا طريقة لرؤية أو مشاركة بياناتك.",
+  "privacyYourControl": "تحكمك",
+  "privacyYourControlDesc": "صدّر بياناتك في أي وقت عبر CSV. رحلتك، ملفاتك.",
+  "privacyContact": "تواصل معنا",
+  "privacyContactDesc": "أسئلة حول الخصوصية؟ نود أن نسمع منك.",
   "cigarettePriceStepTitle": "ما هو سعر سجائرك؟",
   "priceOptionSingle": "سيجارة واحدة",
   "priceOptionPacket": "علبة",
@@ -98,5 +108,9 @@
   "milestone180Title": "نصف سنة.",
   "milestone180Body": "رحلتك وقوتك.",
   "milestone365Title": "سنة كاملة.",
-  "milestone365Body": " أنت حر. مبارك."
+  "milestone365Body": " أنت حر. مبارك.",
+  "exportDataLabel": "تصدير البيانات",
+  "exportDataSuccess": "تم تصدير البيانات بنجاح",
+  "exportDataError": "فشل تصدير البيانات",
+  "exportDataDescription": "تصدير كل بياناتك كملف CSV"
 }

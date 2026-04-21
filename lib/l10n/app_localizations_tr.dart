@@ -168,6 +168,41 @@ class AppLocalizationsTr extends AppLocalizations {
   String get privacyPolicyLabel => 'Gizlilik Politikası';
 
   @override
+  String get privacyCommitment => 'Verileriniz cihazınızda kalır';
+
+  @override
+  String get privacyCommitmentDesc =>
+      'Quitra tamamen çevrimdışı tasarlanmıştır. Kişisel yolculuk verileriniz cihazınızdan asla ayrılmaz.';
+
+  @override
+  String get privacyDataWeCollect => 'Topladığımız veriler';
+
+  @override
+  String get privacyDataWeCollectDesc =>
+      'Yalnızca paylaşmayı seçtiğiniz şeyleri saklarız: bırakma planı, günlük kontroller ve ayarlar. Bu veriler tamamen cihazınızda kalır.';
+
+  @override
+  String get privacyDataWeDontCollect => 'Toplamadığımız veriler';
+
+  @override
+  String get privacyDataWeDontCollectDesc =>
+      'Analitik yok. Bulut senkronizasyonu yok. Kişisel tanımlayıcılar yok. Verilerinizi görme veya paylaşma imkanımız yok.';
+
+  @override
+  String get privacyYourControl => 'Kontrol sizde';
+
+  @override
+  String get privacyYourControlDesc =>
+      'İstediğiniz zaman verilerinizi CSV ile dışa aktarın. Yolculuğunuz, dosyalarınız.';
+
+  @override
+  String get privacyContact => 'Bizimle iletişime geçin';
+
+  @override
+  String get privacyContactDesc =>
+      'Gizlilik hakkında sorularınız mı var? Sizden duymak isteriz.';
+
+  @override
   String get cigarettePriceStepTitle => 'What is the price of your cigarettes?';
 
   @override
@@ -318,4 +353,17 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get milestone365Body => 'Özgürsün. Tebrikler.';
+
+  @override
+  String get exportDataLabel => 'Verileri Dışa Aktar';
+
+  @override
+  String get exportDataSuccess => 'Veriler başarıyla dışa aktarıldı';
+
+  @override
+  String get exportDataError => 'Veriler dışa aktarılamadı';
+
+  @override
+  String get exportDataDescription =>
+      'Tüm verilerinizi CSV olarak dışa aktarın';
 }

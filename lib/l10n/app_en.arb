@@ -79,6 +79,16 @@
   "notificationsLabel": "Notifications",
   "subscriptionLabel": "Subscription",
   "privacyPolicyLabel": "Privacy Policy",
+  "privacyCommitment": "Your data stays on your device",
+  "privacyCommitmentDesc": "Quitra is designed to be completely offline. Your personal journey data never leaves your device.",
+  "privacyDataWeCollect": "Data we collect",
+  "privacyDataWeCollectDesc": "We store only what you choose to share: your quit plan, daily check-ins, and settings. This data stays entirely on your device.",
+  "privacyDataWeDontCollect": "Data we don't collect",
+  "privacyDataWeDontCollectDesc": "No analytics. No cloud sync. No personal identifiers. We have no way to see or share your data.",
+  "privacyYourControl": "Your control",
+  "privacyYourControlDesc": "Export your data anytime via CSV. Your journey, your files.",
+  "privacyContact": "Get in touch",
+  "privacyContactDesc": "Questions about privacy? We'd love to hear from you.",
   "cigarettePriceStepTitle": "What is the price of your cigarettes?",
   "priceOptionSingle": "Single Cigarette",
   "priceOptionPacket": "Packet",
@@ -128,5 +138,9 @@
   "milestone180Title": "Half a year.",
   "milestone180Body": "Your journey, your strength.",
   "milestone365Title": "One year free.",
-  "milestone365Body": "You're free. Congratulations."
+  "milestone365Body": "You're free. Congratulations.",
+  "exportDataLabel": "Export Data",
+  "exportDataSuccess": "Data exported successfully",
+  "exportDataError": "Failed to export data",
+  "exportDataDescription": "Export all your data as a CSV file"
 }

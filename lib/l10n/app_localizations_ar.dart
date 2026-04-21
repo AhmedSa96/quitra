@@ -164,6 +164,40 @@ class AppLocalizationsAr extends AppLocalizations {
   String get privacyPolicyLabel => 'سياسة الخصوصية';
 
   @override
+  String get privacyCommitment => 'بياناتك تظل على جهازك';
+
+  @override
+  String get privacyCommitmentDesc =>
+      'تم تصميم Quitra ليكون بالكامل بدون اتصال. لا تترك بيانات رحلتك الشخصية جهازك أبداً.';
+
+  @override
+  String get privacyDataWeCollect => 'البيانات التي نجمعها';
+
+  @override
+  String get privacyDataWeCollectDesc =>
+      'نخزن فقط ما تختار مشاركته: خطة الإقلاع، عمليات التسجيل اليومية والإعدادات. تظل هذه البيانات بالكامل على جهازك.';
+
+  @override
+  String get privacyDataWeDontCollect => 'البيانات التي لا نجمعها';
+
+  @override
+  String get privacyDataWeDontCollectDesc =>
+      'لا تحليلات. لا مزامنة سحابية. لا معرفات شخصية. ليس لدينا طريقة لرؤية أو مشاركة بياناتك.';
+
+  @override
+  String get privacyYourControl => 'تحكمك';
+
+  @override
+  String get privacyYourControlDesc =>
+      'صدّر بياناتك في أي وقت عبر CSV. رحلتك، ملفاتك.';
+
+  @override
+  String get privacyContact => 'تواصل معنا';
+
+  @override
+  String get privacyContactDesc => 'أسئلة حول الخصوصية؟ نود أن نسمع منك.';
+
+  @override
   String get cigarettePriceStepTitle => 'ما هو سعر سجائرك؟';
 
   @override
@@ -313,4 +347,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get milestone365Body => ' أنت حر. مبارك.';
+
+  @override
+  String get exportDataLabel => 'تصدير البيانات';
+
+  @override
+  String get exportDataSuccess => 'تم تصدير البيانات بنجاح';
+
+  @override
+  String get exportDataError => 'فشل تصدير البيانات';
+
+  @override
+  String get exportDataDescription => 'تصدير كل بياناتك كملف CSV';
 }

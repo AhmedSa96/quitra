@@ -169,6 +169,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get privacyPolicyLabel => 'Privacy Policy';
 
   @override
+  String get privacyCommitment => 'Your data stays on your device';
+
+  @override
+  String get privacyCommitmentDesc =>
+      'Quitra is designed to be completely offline. Your personal journey data never leaves your device.';
+
+  @override
+  String get privacyDataWeCollect => 'Data we collect';
+
+  @override
+  String get privacyDataWeCollectDesc =>
+      'We store only what you choose to share: your quit plan, daily check-ins, and settings. This data stays entirely on your device.';
+
+  @override
+  String get privacyDataWeDontCollect => 'Data we don\'t collect';
+
+  @override
+  String get privacyDataWeDontCollectDesc =>
+      'No analytics. No cloud sync. No personal identifiers. We have no way to see or share your data.';
+
+  @override
+  String get privacyYourControl => 'Your control';
+
+  @override
+  String get privacyYourControlDesc =>
+      'Export your data anytime via CSV. Your journey, your files.';
+
+  @override
+  String get privacyContact => 'Get in touch';
+
+  @override
+  String get privacyContactDesc =>
+      'Questions about privacy? We\'d love to hear from you.';
+
+  @override
   String get cigarettePriceStepTitle => 'What is the price of your cigarettes?';
 
   @override
@@ -319,4 +354,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get milestone365Body => 'You\'re free. Congratulations.';
+
+  @override
+  String get exportDataLabel => 'Export Data';
+
+  @override
+  String get exportDataSuccess => 'Data exported successfully';
+
+  @override
+  String get exportDataError => 'Failed to export data';
+
+  @override
+  String get exportDataDescription => 'Export all your data as a CSV file';
 }

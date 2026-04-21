@@ -39,3 +39,5 @@ class MilestoneCelebrationsToggled extends SettingsEvent {
 
   MilestoneCelebrationsToggled(this.enabled);
 }
+
+class ExportDataRequested extends SettingsEvent {}
