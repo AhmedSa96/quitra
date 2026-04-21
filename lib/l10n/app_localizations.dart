@@ -106,6 +106,12 @@ abstract class AppLocalizations {
   /// **'Quitra'**
   String get appName;
 
+  /// No description provided for @appVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'v1.0.0'**
+  String get appVersion;
+
   /// Slogan for the splash screen
   ///
   /// In en, this message translates to:

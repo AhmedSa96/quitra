@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "appName": "Quitra",
+  "appVersion": "v1.0.0",
   "@appName": {
     "description": "The name of the application"
   },

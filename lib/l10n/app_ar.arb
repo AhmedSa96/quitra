@@ -1,6 +1,7 @@
 {
   "@@locale": "ar",
-  "appName": "َQuitra",
+  "appName": "Quitra",
+  "appVersion": "v1.0.0",
   "digitalSanctuary": "ملاذ رقمي",
   "stepProgress": "الخطوة {current} من {total}",
   "continueButton": "استمرار",

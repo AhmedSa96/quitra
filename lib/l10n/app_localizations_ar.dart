@@ -9,7 +9,10 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appName => 'َQuitra';
+  String get appName => 'Quitra';
+
+  @override
+  String get appVersion => 'v1.0.0';
 
   @override
   String get digitalSanctuary => 'ملاذ رقمي';

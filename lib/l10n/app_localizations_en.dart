@@ -12,6 +12,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appName => 'Quitra';
 
   @override
+  String get appVersion => 'v1.0.0';
+
+  @override
   String get digitalSanctuary => 'DIGITAL SANCTUARY';
 
   @override

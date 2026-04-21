@@ -12,6 +12,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appName => 'Quitra';
 
   @override
+  String get appVersion => 'v1.0.0';
+
+  @override
   String get digitalSanctuary => 'DİJİTAL BARINAK';
 
   @override
