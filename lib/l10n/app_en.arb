@@ -112,5 +112,21 @@
   "dailyReminderDescription": "Get reminded to check in daily",
   "reminderTimeLabel": "Reminder Time",
   "milestoneCelebrationsLabel": "Milestone Celebrations",
-  "milestoneCelebrationsDescription": "Celebrate your progress milestones"
+  "milestoneCelebrationsDescription": "Celebrate your progress milestones",
+  "dailyReminderNotificationTitle": "Quitra",
+  "dailyReminderNotificationBody": "Time for your check-in. We're here for you.",
+  "milestone7Title": "One week strong.",
+  "milestone7Body": "You're doing better than you think.",
+  "milestone14Title": "Two weeks strong.",
+  "milestone14Body": "Every step matters.",
+  "milestone30Title": "One month strong.",
+  "milestone30Body": "This is real progress.",
+  "milestone60Title": "Sixty days strong.",
+  "milestone60Body": "You're building something.",
+  "milestone90Title": "Three months strong.",
+  "milestone90Body": "You've got this.",
+  "milestone180Title": "Half a year.",
+  "milestone180Body": "Your journey, your strength.",
+  "milestone365Title": "One year free.",
+  "milestone365Body": "You're free. Congratulations."
 }

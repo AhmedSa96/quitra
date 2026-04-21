@@ -264,4 +264,53 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get milestoneCelebrationsDescription => 'احتفل بإنجازاتك';
+
+  @override
+  String get dailyReminderNotificationTitle => 'Quitra';
+
+  @override
+  String get dailyReminderNotificationBody =>
+      'حان وقت تسجيلنا. نحن هنا من أجلك.';
+
+  @override
+  String get milestone7Title => 'أسبوع كامل.';
+
+  @override
+  String get milestone7Body => ' أنت أفضل مما تظن.';
+
+  @override
+  String get milestone14Title => 'أسبوعان.';
+
+  @override
+  String get milestone14Body => 'كل خطوة مهمة.';
+
+  @override
+  String get milestone30Title => 'شهر كامل.';
+
+  @override
+  String get milestone30Body => 'هذا تقدم حقيقي.';
+
+  @override
+  String get milestone60Title => 'ستون يوماً.';
+
+  @override
+  String get milestone60Body => 'تبني شيئاً مهماً.';
+
+  @override
+  String get milestone90Title => 'ثلاثة أشهر.';
+
+  @override
+  String get milestone90Body => 'لديك هذا.';
+
+  @override
+  String get milestone180Title => 'نصف سنة.';
+
+  @override
+  String get milestone180Body => 'رحلتك وقوتك.';
+
+  @override
+  String get milestone365Title => 'سنة كاملة.';
+
+  @override
+  String get milestone365Body => ' أنت حر. مبارك.';
 }

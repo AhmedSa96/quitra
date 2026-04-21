@@ -12,14 +12,26 @@ class LoadSettings extends SettingsEvent {}
 
 class DailyReminderToggled extends SettingsEvent {
   final bool enabled;
+  final String notificationTitle;
+  final String notificationBody;
 
-  DailyReminderToggled(this.enabled);
+  DailyReminderToggled({
+    required this.enabled,
+    required this.notificationTitle,
+    required this.notificationBody,
+  });
 }
 
 class DailyReminderTimeChanged extends SettingsEvent {
   final TimeOfDay time;
+  final String notificationTitle;
+  final String notificationBody;
 
-  DailyReminderTimeChanged(this.time);
+  DailyReminderTimeChanged({
+    required this.time,
+    required this.notificationTitle,
+    required this.notificationBody,
+  });
 }
 
 class MilestoneCelebrationsToggled extends SettingsEvent {

@@ -3,12 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:isar/isar.dart';
 import 'package:quitra/core/di/injection.dart';
 import 'package:quitra/features/settings/data/models/user_settings_isar.dart';
+import 'package:quitra/features/settings/data/datasources/notification_local_data_source.dart';
 
 part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  SettingsBloc() : super(const SettingsState()) {
+  final NotificationLocalDataSource _notificationDataSource;
+
+  SettingsBloc({
+    NotificationLocalDataSource? notificationDataSource,
+  })  : _notificationDataSource = notificationDataSource ?? getIt<NotificationLocalDataSource>(),
+        super(const SettingsState()) {
     on<LocaleChanged>(_onLocaleChanged);
     on<LoadSettings>(_onLoadSettings);
     on<DailyReminderToggled>(_onDailyReminderToggled);
@@ -80,6 +86,16 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       await isar.userSettingsIsars.put(settings);
     });
     
+    if (event.enabled) {
+      await _notificationDataSource.scheduleDailyReminder(
+        time: state.dailyReminderTime ?? const TimeOfDay(hour: 9, minute: 0),
+        title: event.notificationTitle,
+        body: event.notificationBody,
+      );
+    } else {
+      await _notificationDataSource.cancelDailyReminder();
+    }
+    
     emit(SettingsState(
       locale: state.locale,
       dailyReminderEnabled: event.enabled,
@@ -104,6 +120,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     await isar.writeTxn(() async {
       await isar.userSettingsIsars.put(settings);
     });
+    
+    if (settings.dailyReminderEnabled) {
+      await _notificationDataSource.scheduleDailyReminder(
+        time: event.time,
+        title: event.notificationTitle,
+        body: event.notificationBody,
+      );
+    }
     
     emit(SettingsState(
       locale: state.locale,

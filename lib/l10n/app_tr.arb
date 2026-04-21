@@ -63,5 +63,21 @@
   "dailyReminderDescription": "Günlük check-in için hatırlat",
   "reminderTimeLabel": "Hatırlatıcı Saati",
   "milestoneCelebrationsLabel": "Kilometre Taşı Kutlamaları",
-  "milestoneCelebrationsDescription": "İlerleme kilometre taşlarını kutla"
+  "milestoneCelebrationsDescription": "İlerleme kilometre taşlarını kutla",
+  "dailyReminderNotificationTitle": "Quitra",
+  "dailyReminderNotificationBody": "Kontrol zamanı. Seni düşünüyoruz.",
+  "milestone7Title": "Bir hafta güçlü.",
+  "milestone7Body": "Sandığından daha iyisin.",
+  "milestone14Title": "İki hafta güçlü.",
+  "milestone14Body": "Her adım önemli.",
+  "milestone30Title": "Bir ay güçlü.",
+  "milestone30Body": "Bu gerçek bir ilerleme.",
+  "milestone60Title": "Altmış gün güçlü.",
+  "milestone60Body": "Bir şeyler inşa ediyorsun.",
+  "milestone90Title": "Üç ay güçlü.",
+  "milestone90Body": "Bunu başarabilirsin.",
+  "milestone180Title": "Altı aydır.",
+  "milestone180Body": "Yolculuğun, gücün.",
+  "milestone365Title": "Bir yıl özgür.",
+  "milestone365Body": "Özgürsün. Tebrikler."
 }

@@ -269,4 +269,53 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get milestoneCelebrationsDescription =>
       'İlerleme kilometre taşlarını kutla';
+
+  @override
+  String get dailyReminderNotificationTitle => 'Quitra';
+
+  @override
+  String get dailyReminderNotificationBody =>
+      'Kontrol zamanı. Seni düşünüyoruz.';
+
+  @override
+  String get milestone7Title => 'Bir hafta güçlü.';
+
+  @override
+  String get milestone7Body => 'Sandığından daha iyisin.';
+
+  @override
+  String get milestone14Title => 'İki hafta güçlü.';
+
+  @override
+  String get milestone14Body => 'Her adım önemli.';
+
+  @override
+  String get milestone30Title => 'Bir ay güçlü.';
+
+  @override
+  String get milestone30Body => 'Bu gerçek bir ilerleme.';
+
+  @override
+  String get milestone60Title => 'Altmış gün güçlü.';
+
+  @override
+  String get milestone60Body => 'Bir şeyler inşa ediyorsun.';
+
+  @override
+  String get milestone90Title => 'Üç ay güçlü.';
+
+  @override
+  String get milestone90Body => 'Bunu başarabilirsin.';
+
+  @override
+  String get milestone180Title => 'Altı aydır.';
+
+  @override
+  String get milestone180Body => 'Yolculuğun, gücün.';
+
+  @override
+  String get milestone365Title => 'Bir yıl özgür.';
+
+  @override
+  String get milestone365Body => 'Özgürsün. Tebrikler.';
 }

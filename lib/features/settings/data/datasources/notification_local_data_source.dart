@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:isar/isar.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quitra/main.dart';
 import '../models/user_settings_isar.dart';
 
 class NotificationSettingsEntity {
@@ -22,8 +24,11 @@ class NotificationSettingsEntity {
   }) {
     return NotificationSettingsEntity(
       dailyReminderEnabled: dailyReminderEnabled ?? this.dailyReminderEnabled,
-      dailyReminderTime: clearReminderTime ? null : (dailyReminderTime ?? this.dailyReminderTime),
-      milestoneCelebrationsEnabled: milestoneCelebrationsEnabled ?? this.milestoneCelebrationsEnabled,
+      dailyReminderTime: clearReminderTime
+          ? null
+          : (dailyReminderTime ?? this.dailyReminderTime),
+      milestoneCelebrationsEnabled:
+          milestoneCelebrationsEnabled ?? this.milestoneCelebrationsEnabled,
     );
   }
 }
@@ -31,9 +36,17 @@ class NotificationSettingsEntity {
 abstract class NotificationLocalDataSource {
   Future<NotificationSettingsEntity> getNotificationSettings();
   Future<void> saveNotificationSettings(NotificationSettingsEntity settings);
-  Future<void> scheduleDailyReminder(TimeOfDay time);
+  Future<void> scheduleDailyReminder({
+    required TimeOfDay time,
+    required String title,
+    required String body,
+  });
   Future<void> cancelDailyReminder();
-  Future<void> showMilestoneNotification(int days);
+  Future<void> showMilestoneNotification({
+    required int days,
+    required String title,
+    required String body,
+  });
 }
 
 @LazySingleton(as: NotificationLocalDataSource)
@@ -48,7 +61,7 @@ class NotificationLocalDataSourceImpl implements NotificationLocalDataSource {
     if (settings == null) {
       return const NotificationSettingsEntity();
     }
-    
+
     TimeOfDay? reminderTime;
     if (settings.dailyReminderTime != null) {
       final parts = settings.dailyReminderTime!.split(':');
@@ -57,7 +70,7 @@ class NotificationLocalDataSourceImpl implements NotificationLocalDataSource {
         minute: int.parse(parts[1]),
       );
     }
-    
+
     return NotificationSettingsEntity(
       dailyReminderEnabled: settings.dailyReminderEnabled,
       dailyReminderTime: reminderTime,
@@ -66,9 +79,12 @@ class NotificationLocalDataSourceImpl implements NotificationLocalDataSource {
   }
 
   @override
-  Future<void> saveNotificationSettings(NotificationSettingsEntity settings) async {
+  Future<void> saveNotificationSettings(
+    NotificationSettingsEntity settings,
+  ) async {
     await isar.writeTxn(() async {
-      final existing = await isar.userSettingsIsars.get(0) ?? UserSettingsIsar();
+      final existing =
+          await isar.userSettingsIsars.get(0) ?? UserSettingsIsar();
       final newSettings = UserSettingsIsar()
         ..id = 0
         ..locale = existing.locale
@@ -82,14 +98,75 @@ class NotificationLocalDataSourceImpl implements NotificationLocalDataSource {
   }
 
   @override
-  Future<void> scheduleDailyReminder(TimeOfDay time) async {
+  Future<void> scheduleDailyReminder({
+    required TimeOfDay time,
+    required String title,
+    required String body,
+  }) async {
+    const androidDetails = AndroidNotificationDetails(
+      'daily_reminder_channel',
+      'Daily Check-in',
+      channelDescription: 'Daily check-in reminder',
+      importance: Importance.high,
+      priority: Priority.high,
+    );
+
+    const iosDetails = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
+
+    const details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
+
+    await flutterLocalNotificationsPlugin.periodicallyShow(
+      1,
+      title,
+      body,
+      RepeatInterval.daily,
+      details,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+    );
   }
 
   @override
   Future<void> cancelDailyReminder() async {
+    await flutterLocalNotificationsPlugin.cancel(1);
   }
 
   @override
-  Future<void> showMilestoneNotification(int days) async {
+  Future<void> showMilestoneNotification({
+    required int days,
+    required String title,
+    required String body,
+  }) async {
+    const androidDetails = AndroidNotificationDetails(
+      'milestone_channel',
+      'Milestone Celebration',
+      channelDescription: 'Milestone celebrations',
+      importance: Importance.high,
+      priority: Priority.high,
+    );
+
+    const iosDetails = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
+
+    const details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
+
+    await flutterLocalNotificationsPlugin.show(
+      100 + days,
+      title,
+      body,
+      details,
+    );
   }
 }

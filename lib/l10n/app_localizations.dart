@@ -597,6 +597,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Celebrate your progress milestones'**
   String get milestoneCelebrationsDescription;
+
+  /// No description provided for @dailyReminderNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quitra'**
+  String get dailyReminderNotificationTitle;
+
+  /// No description provided for @dailyReminderNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Time for your check-in. We\'re here for you.'**
+  String get dailyReminderNotificationBody;
+
+  /// No description provided for @milestone7Title.
+  ///
+  /// In en, this message translates to:
+  /// **'One week strong.'**
+  String get milestone7Title;
+
+  /// No description provided for @milestone7Body.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re doing better than you think.'**
+  String get milestone7Body;
+
+  /// No description provided for @milestone14Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Two weeks strong.'**
+  String get milestone14Title;
+
+  /// No description provided for @milestone14Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Every step matters.'**
+  String get milestone14Body;
+
+  /// No description provided for @milestone30Title.
+  ///
+  /// In en, this message translates to:
+  /// **'One month strong.'**
+  String get milestone30Title;
+
+  /// No description provided for @milestone30Body.
+  ///
+  /// In en, this message translates to:
+  /// **'This is real progress.'**
+  String get milestone30Body;
+
+  /// No description provided for @milestone60Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Sixty days strong.'**
+  String get milestone60Title;
+
+  /// No description provided for @milestone60Body.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re building something.'**
+  String get milestone60Body;
+
+  /// No description provided for @milestone90Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Three months strong.'**
+  String get milestone90Title;
+
+  /// No description provided for @milestone90Body.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve got this.'**
+  String get milestone90Body;
+
+  /// No description provided for @milestone180Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Half a year.'**
+  String get milestone180Title;
+
+  /// No description provided for @milestone180Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Your journey, your strength.'**
+  String get milestone180Body;
+
+  /// No description provided for @milestone365Title.
+  ///
+  /// In en, this message translates to:
+  /// **'One year free.'**
+  String get milestone365Title;
+
+  /// No description provided for @milestone365Body.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re free. Congratulations.'**
+  String get milestone365Body;
 }
 
 class _AppLocalizationsDelegate

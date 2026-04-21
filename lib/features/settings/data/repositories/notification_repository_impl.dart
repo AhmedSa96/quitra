@@ -23,11 +23,6 @@ class NotificationRepositoryImpl implements NotificationRepository {
   Future<Either<Failure, Unit>> updateNotificationSettings(NotificationSettingsEntity settings) async {
     try {
       await localDataSource.saveNotificationSettings(settings);
-      if (settings.dailyReminderEnabled && settings.dailyReminderTime != null) {
-        await localDataSource.scheduleDailyReminder(settings.dailyReminderTime!);
-      } else {
-        await localDataSource.cancelDailyReminder();
-      }
       return const Right(unit);
     } catch (e) {
       return Left(Failure.cacheError());
@@ -35,9 +30,17 @@ class NotificationRepositoryImpl implements NotificationRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> scheduleDailyReminder(TimeOfDay time) async {
+  Future<Either<Failure, Unit>> scheduleDailyReminder({
+    required TimeOfDay time,
+    required String title,
+    required String body,
+  }) async {
     try {
-      await localDataSource.scheduleDailyReminder(time);
+      await localDataSource.scheduleDailyReminder(
+        time: time,
+        title: title,
+        body: body,
+      );
       return const Right(unit);
     } catch (e) {
       return Left(Failure.cacheError());
@@ -55,9 +58,17 @@ class NotificationRepositoryImpl implements NotificationRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> showMilestoneNotification(int days) async {
+  Future<Either<Failure, Unit>> showMilestoneNotification({
+    required int days,
+    required String title,
+    required String body,
+  }) async {
     try {
-      await localDataSource.showMilestoneNotification(days);
+      await localDataSource.showMilestoneNotification(
+        days: days,
+        title: title,
+        body: body,
+      );
       return const Right(unit);
     } catch (e) {
       return Left(Failure.cacheError());

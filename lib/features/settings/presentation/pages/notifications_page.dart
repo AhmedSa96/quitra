@@ -37,7 +37,11 @@ class NotificationsPage extends StatelessWidget {
                         subtitle: l10n.dailyReminderDescription,
                         value: state.dailyReminderEnabled,
                         onChanged: (value) {
-                          context.read<SettingsBloc>().add(DailyReminderToggled(value));
+                          context.read<SettingsBloc>().add(DailyReminderToggled(
+                            enabled: value,
+                            notificationTitle: l10n.dailyReminderNotificationTitle,
+                            notificationBody: l10n.dailyReminderNotificationBody,
+                          ));
                         },
                       ),
                       if (state.dailyReminderEnabled)
@@ -161,7 +165,12 @@ class NotificationsPage extends StatelessWidget {
     );
 
     if (time != null && context.mounted) {
-      context.read<SettingsBloc>().add(DailyReminderTimeChanged(time));
+      final l10n = AppLocalizations.of(context)!;
+      context.read<SettingsBloc>().add(DailyReminderTimeChanged(
+        time: time,
+        notificationTitle: l10n.dailyReminderNotificationTitle,
+        notificationBody: l10n.dailyReminderNotificationBody,
+      ));
     }
   }
 }

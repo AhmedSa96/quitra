@@ -82,5 +82,21 @@
   "dailyReminderDescription": "احصل على تذكير لتسجيل يومك",
   "reminderTimeLabel": "وقت التذكير",
   "milestoneCelebrationsLabel": "احتفالات الإنجازات",
-  "milestoneCelebrationsDescription": "احتفل بإنجازاتك"
+  "milestoneCelebrationsDescription": "احتفل بإنجازاتك",
+  "dailyReminderNotificationTitle": "Quitra",
+  "dailyReminderNotificationBody": "حان وقت تسجيلنا. نحن هنا من أجلك.",
+  "milestone7Title": "أسبوع كامل.",
+  "milestone7Body": " أنت أفضل مما تظن.",
+  "milestone14Title": "أسبوعان.",
+  "milestone14Body": "كل خطوة مهمة.",
+  "milestone30Title": "شهر كامل.",
+  "milestone30Body": "هذا تقدم حقيقي.",
+  "milestone60Title": "ستون يوماً.",
+  "milestone60Body": "تبني شيئاً مهماً.",
+  "milestone90Title": "ثلاثة أشهر.",
+  "milestone90Body": "لديك هذا.",
+  "milestone180Title": "نصف سنة.",
+  "milestone180Body": "رحلتك وقوتك.",
+  "milestone365Title": "سنة كاملة.",
+  "milestone365Body": " أنت حر. مبارك."
 }

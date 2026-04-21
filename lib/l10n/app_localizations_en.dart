@@ -270,4 +270,53 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get milestoneCelebrationsDescription =>
       'Celebrate your progress milestones';
+
+  @override
+  String get dailyReminderNotificationTitle => 'Quitra';
+
+  @override
+  String get dailyReminderNotificationBody =>
+      'Time for your check-in. We\'re here for you.';
+
+  @override
+  String get milestone7Title => 'One week strong.';
+
+  @override
+  String get milestone7Body => 'You\'re doing better than you think.';
+
+  @override
+  String get milestone14Title => 'Two weeks strong.';
+
+  @override
+  String get milestone14Body => 'Every step matters.';
+
+  @override
+  String get milestone30Title => 'One month strong.';
+
+  @override
+  String get milestone30Body => 'This is real progress.';
+
+  @override
+  String get milestone60Title => 'Sixty days strong.';
+
+  @override
+  String get milestone60Body => 'You\'re building something.';
+
+  @override
+  String get milestone90Title => 'Three months strong.';
+
+  @override
+  String get milestone90Body => 'You\'ve got this.';
+
+  @override
+  String get milestone180Title => 'Half a year.';
+
+  @override
+  String get milestone180Body => 'Your journey, your strength.';
+
+  @override
+  String get milestone365Title => 'One year free.';
+
+  @override
+  String get milestone365Body => 'You\'re free. Congratulations.';
 }
