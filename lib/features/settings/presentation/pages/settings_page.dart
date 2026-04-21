@@ -104,7 +104,7 @@ class SettingsPage extends StatelessWidget {
   Widget _buildSettingsGroup(BuildContext context, List<Widget> tiles) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.surfaceContainerLow.withValues(alpha: 0.5),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
