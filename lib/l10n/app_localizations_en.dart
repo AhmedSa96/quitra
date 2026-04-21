@@ -366,4 +366,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exportDataDescription => 'Export all your data as a CSV file';
+
+  @override
+  String get onboardingImportTitle => 'Import your data';
+
+  @override
+  String get onboardingImportDescription =>
+      'Already have a backup? Import your CSV file to continue where you left off.';
+
+  @override
+  String get onboardingImportAction => 'Select CSV File';
+
+  @override
+  String get onboardingImportSkip => 'I\'m new here, skip';
+
+  @override
+  String get onboardingImportSuccess => 'Data imported successfully!';
 }

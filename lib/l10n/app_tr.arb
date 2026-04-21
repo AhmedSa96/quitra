@@ -93,5 +93,10 @@
   "exportDataLabel": "Verileri Dışa Aktar",
   "exportDataSuccess": "Veriler başarıyla dışa aktarıldı",
   "exportDataError": "Veriler dışa aktarılamadı",
-  "exportDataDescription": "Tüm verilerinizi CSV olarak dışa aktarın"
+  "exportDataDescription": "Tüm verilerinizi CSV olarak dışa aktarın",
+  "onboardingImportTitle": "Verilerinizi içe aktarın",
+  "onboardingImportDescription": "Zaten bir yedeğiniz mi var? Kaldığınız yerden devam etmek için CSV dosyanızı içe aktarın.",
+  "onboardingImportAction": "CSV Dosyası Seç",
+  "onboardingImportSkip": "Burada yeniyim, atla",
+  "onboardingImportSuccess": "Veriler başarıyla içe aktarıldı!"
 }

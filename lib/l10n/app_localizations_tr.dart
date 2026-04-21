@@ -366,4 +366,20 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get exportDataDescription =>
       'Tüm verilerinizi CSV olarak dışa aktarın';
+
+  @override
+  String get onboardingImportTitle => 'Verilerinizi içe aktarın';
+
+  @override
+  String get onboardingImportDescription =>
+      'Zaten bir yedeğiniz mi var? Kaldığınız yerden devam etmek için CSV dosyanızı içe aktarın.';
+
+  @override
+  String get onboardingImportAction => 'CSV Dosyası Seç';
+
+  @override
+  String get onboardingImportSkip => 'Burada yeniyim, atla';
+
+  @override
+  String get onboardingImportSuccess => 'Veriler başarıyla içe aktarıldı!';
 }

@@ -11,4 +11,8 @@ abstract class OnboardingEvent with _$OnboardingEvent {
     double? packetPrice,
     int? cigarettesPerPacket,
   }) = OnboardingStarted;
+
+  const factory OnboardingEvent.importRequested({
+    required String filePath,
+  }) = OnboardingImportRequested;
 }

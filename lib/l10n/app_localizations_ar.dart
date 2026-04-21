@@ -359,4 +359,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exportDataDescription => 'تصدير كل بياناتك كملف CSV';
+
+  @override
+  String get onboardingImportTitle => 'استيراد بياناتك';
+
+  @override
+  String get onboardingImportDescription =>
+      'هل لديك نسخة احتياطية؟ استورد ملف CSV للمتابعة من حيث توقفت.';
+
+  @override
+  String get onboardingImportAction => 'اختر ملف CSV';
+
+  @override
+  String get onboardingImportSkip => 'أنا جديد هنا، تخطي';
+
+  @override
+  String get onboardingImportSuccess => 'تم استيراد البيانات بنجاح!';
 }

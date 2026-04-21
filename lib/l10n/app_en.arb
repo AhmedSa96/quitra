@@ -142,5 +142,10 @@
   "exportDataLabel": "Export Data",
   "exportDataSuccess": "Data exported successfully",
   "exportDataError": "Failed to export data",
-  "exportDataDescription": "Export all your data as a CSV file"
+  "exportDataDescription": "Export all your data as a CSV file",
+  "onboardingImportTitle": "Import your data",
+  "onboardingImportDescription": "Already have a backup? Import your CSV file to continue where you left off.",
+  "onboardingImportAction": "Select CSV File",
+  "onboardingImportSkip": "I'm new here, skip",
+  "onboardingImportSuccess": "Data imported successfully!"
 }

@@ -10,6 +10,7 @@ import '../widgets/years_smoking_step.dart';
 import '../widgets/quit_method_step.dart';
 import '../widgets/quit_date_step.dart';
 import '../widgets/cigarette_price_step.dart';
+import '../widgets/import_data_step.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -21,7 +22,7 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
 
-  static const int _totalSteps = 5;
+  static const int _totalSteps = 6;
 
   int _currentPage = 0;
   int _cigarettesPerDay = 10;
@@ -112,6 +113,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             });
                           },
                           children: [
+                            const Center(child: ImportDataStep()),
                             Center(
                               child: CigarettesStep(
                                 value: _cigarettesPerDay,
@@ -260,7 +262,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     ),
                   )
                 : Text(
-                    AppLocalizations.of(context)!.continueButton,
+                    _currentPage == 0 
+                        ? AppLocalizations.of(context)!.onboardingImportSkip 
+                        : AppLocalizations.of(context)!.continueButton,
                     style: const TextStyle(color: Colors.white, fontSize: 16),
                   ),
           ),

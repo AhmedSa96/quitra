@@ -777,6 +777,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Export all your data as a CSV file'**
   String get exportDataDescription;
+
+  /// No description provided for @onboardingImportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Import your data'**
+  String get onboardingImportTitle;
+
+  /// No description provided for @onboardingImportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have a backup? Import your CSV file to continue where you left off.'**
+  String get onboardingImportDescription;
+
+  /// No description provided for @onboardingImportAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Select CSV File'**
+  String get onboardingImportAction;
+
+  /// No description provided for @onboardingImportSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m new here, skip'**
+  String get onboardingImportSkip;
+
+  /// No description provided for @onboardingImportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Data imported successfully!'**
+  String get onboardingImportSuccess;
 }
 
 class _AppLocalizationsDelegate

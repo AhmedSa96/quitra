@@ -137,4 +137,87 @@ class DataPortabilityRepositoryImpl implements DataPortabilityRepository {
       return const Left(Failure.databaseError());
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> importDataFromCsv(String filePath) async {
+    try {
+      final file = File(filePath);
+      final csvString = await file.readAsString();
+      final List<List<dynamic>> rows = const CsvToListConverter().convert(csvString);
+
+      if (rows.isEmpty) return const Left(Failure.fileError());
+
+      await isar.writeTxn(() async {
+        // Clear all relevant collections
+        await isar.userProfileIsars.clear();
+        await isar.dailyLogIsars.clear();
+        await isar.cravingEventIsars.clear();
+        await isar.userStatsIsars.clear();
+        await isar.userSettingsIsars.clear();
+
+        String currentSection = '';
+        List<String> headers = [];
+
+        for (final row in rows) {
+          if (row.isEmpty) continue;
+
+          final firstCell = row[0].toString();
+          if (firstCell.startsWith('---')) {
+            currentSection = firstCell;
+            headers = [];
+            continue;
+          }
+
+          if (headers.isEmpty) {
+            headers = row.map((e) => e.toString()).toList();
+            continue;
+          }
+
+          // Process row based on current section
+          if (currentSection == '--- USER PROFILE ---') {
+            final profile = UserProfileIsar()
+              ..cigarettesPerDay = row[1] as int
+              ..yearsSmoking = row[2] as int
+              ..quitMethod = row[3].toString()
+              ..quitStartDate = DateTime.parse(row[4].toString())
+              ..cigarettePrice = double.tryParse(row[5].toString())
+              ..packetPrice = double.tryParse(row[6].toString())
+              ..cigarettesPerPacket = int.tryParse(row[7].toString());
+            await isar.userProfileIsars.put(profile);
+          } else if (currentSection == '--- DAILY LOGS ---') {
+            final log = DailyLogIsar()
+              ..date = DateTime.parse(row[0].toString())
+              ..wasSmoked = row[1] as bool
+              ..cravingLevel = row[2] as int
+              ..note = row[3].toString().isNotEmpty ? row[3].toString() : null;
+            await isar.dailyLogIsars.put(log);
+          } else if (currentSection == '--- CRAVING EVENTS ---') {
+            final craving = CravingEventIsar()
+              ..timestamp = DateTime.parse(row[0].toString())
+              ..wasSmoked = row[1] as bool;
+            await isar.cravingEventIsars.put(craving);
+          } else if (currentSection == '--- USER STATS ---') {
+            final stats = UserStatsIsar()
+              ..daysSmokeFree = row[0] as int
+              ..cigarettesAvoided = row[1] as int
+              ..moneySaved = double.parse(row[2].toString())
+              ..cravingsLogged = row[3] as int
+              ..lastUpdated = row[4].toString().isNotEmpty ? DateTime.parse(row[4].toString()) : null;
+            await isar.userStatsIsars.put(stats);
+          } else if (currentSection == '--- USER SETTINGS ---') {
+            final settings = UserSettingsIsar()
+              ..locale = row[0].toString().isNotEmpty ? row[0].toString() : null
+              ..dailyReminderEnabled = row[1] as bool
+              ..dailyReminderTime = row[2].toString().isNotEmpty ? row[2].toString() : null
+              ..milestoneCelebrationsEnabled = row[3] as bool;
+            await isar.userSettingsIsars.put(settings);
+          }
+        }
+      });
+
+      return const Right(unit);
+    } catch (e) {
+      return const Left(Failure.databaseError());
+    }
+  }
 }

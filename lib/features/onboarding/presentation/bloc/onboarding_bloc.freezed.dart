@@ -16,13 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OnboardingEvent {
-  int get cigarettesPerDay => throw _privateConstructorUsedError;
-  int get yearsSmoking => throw _privateConstructorUsedError;
-  String get quitMethod => throw _privateConstructorUsedError;
-  DateTime get quitStartDate => throw _privateConstructorUsedError;
-  double? get cigarettePrice => throw _privateConstructorUsedError;
-  double? get packetPrice => throw _privateConstructorUsedError;
-  int? get cigarettesPerPacket => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -34,6 +27,7 @@ mixin _$OnboardingEvent {
             double? packetPrice,
             int? cigarettesPerPacket)
         started,
+    required TResult Function(String filePath) importRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +41,7 @@ mixin _$OnboardingEvent {
             double? packetPrice,
             int? cigarettesPerPacket)?
         started,
+    TResult? Function(String filePath)? importRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,28 +55,28 @@ mixin _$OnboardingEvent {
             double? packetPrice,
             int? cigarettesPerPacket)?
         started,
+    TResult Function(String filePath)? importRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OnboardingStarted value) started,
+    required TResult Function(OnboardingImportRequested value) importRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OnboardingStarted value)? started,
+    TResult? Function(OnboardingImportRequested value)? importRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OnboardingStarted value)? started,
+    TResult Function(OnboardingImportRequested value)? importRequested,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $OnboardingEventCopyWith<OnboardingEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -90,15 +85,6 @@ abstract class $OnboardingEventCopyWith<$Res> {
   factory $OnboardingEventCopyWith(
           OnboardingEvent value, $Res Function(OnboardingEvent) then) =
       _$OnboardingEventCopyWithImpl<$Res, OnboardingEvent>;
-  @useResult
-  $Res call(
-      {int cigarettesPerDay,
-      int yearsSmoking,
-      String quitMethod,
-      DateTime quitStartDate,
-      double? cigarettePrice,
-      double? packetPrice,
-      int? cigarettesPerPacket});
 }
 
 /// @nodoc
@@ -110,58 +96,13 @@ class _$OnboardingEventCopyWithImpl<$Res, $Val extends OnboardingEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? cigarettesPerDay = null,
-    Object? yearsSmoking = null,
-    Object? quitMethod = null,
-    Object? quitStartDate = null,
-    Object? cigarettePrice = freezed,
-    Object? packetPrice = freezed,
-    Object? cigarettesPerPacket = freezed,
-  }) {
-    return _then(_value.copyWith(
-      cigarettesPerDay: null == cigarettesPerDay
-          ? _value.cigarettesPerDay
-          : cigarettesPerDay // ignore: cast_nullable_to_non_nullable
-              as int,
-      yearsSmoking: null == yearsSmoking
-          ? _value.yearsSmoking
-          : yearsSmoking // ignore: cast_nullable_to_non_nullable
-              as int,
-      quitMethod: null == quitMethod
-          ? _value.quitMethod
-          : quitMethod // ignore: cast_nullable_to_non_nullable
-              as String,
-      quitStartDate: null == quitStartDate
-          ? _value.quitStartDate
-          : quitStartDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      cigarettePrice: freezed == cigarettePrice
-          ? _value.cigarettePrice
-          : cigarettePrice // ignore: cast_nullable_to_non_nullable
-              as double?,
-      packetPrice: freezed == packetPrice
-          ? _value.packetPrice
-          : packetPrice // ignore: cast_nullable_to_non_nullable
-              as double?,
-      cigarettesPerPacket: freezed == cigarettesPerPacket
-          ? _value.cigarettesPerPacket
-          : cigarettesPerPacket // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$OnboardingStartedImplCopyWith<$Res>
-    implements $OnboardingEventCopyWith<$Res> {
+abstract class _$$OnboardingStartedImplCopyWith<$Res> {
   factory _$$OnboardingStartedImplCopyWith(_$OnboardingStartedImpl value,
           $Res Function(_$OnboardingStartedImpl) then) =
       __$$OnboardingStartedImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call(
       {int cigarettesPerDay,
@@ -308,6 +249,7 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
             double? packetPrice,
             int? cigarettesPerPacket)
         started,
+    required TResult Function(String filePath) importRequested,
   }) {
     return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate,
         cigarettePrice, packetPrice, cigarettesPerPacket);
@@ -325,6 +267,7 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
             double? packetPrice,
             int? cigarettesPerPacket)?
         started,
+    TResult? Function(String filePath)? importRequested,
   }) {
     return started?.call(cigarettesPerDay, yearsSmoking, quitMethod,
         quitStartDate, cigarettePrice, packetPrice, cigarettesPerPacket);
@@ -342,6 +285,7 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
             double? packetPrice,
             int? cigarettesPerPacket)?
         started,
+    TResult Function(String filePath)? importRequested,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -355,6 +299,7 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OnboardingStarted value) started,
+    required TResult Function(OnboardingImportRequested value) importRequested,
   }) {
     return started(this);
   }
@@ -363,6 +308,7 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OnboardingStarted value)? started,
+    TResult? Function(OnboardingImportRequested value)? importRequested,
   }) {
     return started?.call(this);
   }
@@ -371,6 +317,7 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OnboardingStarted value)? started,
+    TResult Function(OnboardingImportRequested value)? importRequested,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -390,24 +337,178 @@ abstract class OnboardingStarted implements OnboardingEvent {
       final double? packetPrice,
       final int? cigarettesPerPacket}) = _$OnboardingStartedImpl;
 
-  @override
   int get cigarettesPerDay;
-  @override
   int get yearsSmoking;
-  @override
   String get quitMethod;
-  @override
   DateTime get quitStartDate;
-  @override
   double? get cigarettePrice;
-  @override
   double? get packetPrice;
-  @override
   int? get cigarettesPerPacket;
-  @override
   @JsonKey(ignore: true)
   _$$OnboardingStartedImplCopyWith<_$OnboardingStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnboardingImportRequestedImplCopyWith<$Res> {
+  factory _$$OnboardingImportRequestedImplCopyWith(
+          _$OnboardingImportRequestedImpl value,
+          $Res Function(_$OnboardingImportRequestedImpl) then) =
+      __$$OnboardingImportRequestedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String filePath});
+}
+
+/// @nodoc
+class __$$OnboardingImportRequestedImplCopyWithImpl<$Res>
+    extends _$OnboardingEventCopyWithImpl<$Res, _$OnboardingImportRequestedImpl>
+    implements _$$OnboardingImportRequestedImplCopyWith<$Res> {
+  __$$OnboardingImportRequestedImplCopyWithImpl(
+      _$OnboardingImportRequestedImpl _value,
+      $Res Function(_$OnboardingImportRequestedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+  }) {
+    return _then(_$OnboardingImportRequestedImpl(
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnboardingImportRequestedImpl implements OnboardingImportRequested {
+  const _$OnboardingImportRequestedImpl({required this.filePath});
+
+  @override
+  final String filePath;
+
+  @override
+  String toString() {
+    return 'OnboardingEvent.importRequested(filePath: $filePath)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnboardingImportRequestedImpl &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filePath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnboardingImportRequestedImplCopyWith<_$OnboardingImportRequestedImpl>
+      get copyWith => __$$OnboardingImportRequestedImplCopyWithImpl<
+          _$OnboardingImportRequestedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)
+        started,
+    required TResult Function(String filePath) importRequested,
+  }) {
+    return importRequested(filePath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)?
+        started,
+    TResult? Function(String filePath)? importRequested,
+  }) {
+    return importRequested?.call(filePath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            int cigarettesPerDay,
+            int yearsSmoking,
+            String quitMethod,
+            DateTime quitStartDate,
+            double? cigarettePrice,
+            double? packetPrice,
+            int? cigarettesPerPacket)?
+        started,
+    TResult Function(String filePath)? importRequested,
+    required TResult orElse(),
+  }) {
+    if (importRequested != null) {
+      return importRequested(filePath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnboardingStarted value) started,
+    required TResult Function(OnboardingImportRequested value) importRequested,
+  }) {
+    return importRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OnboardingStarted value)? started,
+    TResult? Function(OnboardingImportRequested value)? importRequested,
+  }) {
+    return importRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnboardingStarted value)? started,
+    TResult Function(OnboardingImportRequested value)? importRequested,
+    required TResult orElse(),
+  }) {
+    if (importRequested != null) {
+      return importRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnboardingImportRequested implements OnboardingEvent {
+  const factory OnboardingImportRequested({required final String filePath}) =
+      _$OnboardingImportRequestedImpl;
+
+  String get filePath;
+  @JsonKey(ignore: true)
+  _$$OnboardingImportRequestedImplCopyWith<_$OnboardingImportRequestedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

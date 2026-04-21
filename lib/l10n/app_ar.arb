@@ -112,5 +112,10 @@
   "exportDataLabel": "تصدير البيانات",
   "exportDataSuccess": "تم تصدير البيانات بنجاح",
   "exportDataError": "فشل تصدير البيانات",
-  "exportDataDescription": "تصدير كل بياناتك كملف CSV"
+  "exportDataDescription": "تصدير كل بياناتك كملف CSV",
+  "onboardingImportTitle": "استيراد بياناتك",
+  "onboardingImportDescription": "هل لديك نسخة احتياطية؟ استورد ملف CSV للمتابعة من حيث توقفت.",
+  "onboardingImportAction": "اختر ملف CSV",
+  "onboardingImportSkip": "أنا جديد هنا، تخطي",
+  "onboardingImportSuccess": "تم استيراد البيانات بنجاح!"
 }
