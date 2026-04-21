@@ -70,5 +70,12 @@
   "dayDetailsTitle": "تفاصيل اليوم",
   "journalNoteLabel": "ملاحظة السجل",
   "editNoteAction": "تعديل الملاحظة",
-  "saveNoteAction": "حفظ التغييرات"
+  "saveNoteAction": "حفظ التغييرات",
+  "languageLabel": "اللغة",
+  "cigarettePriceLabel": "سعر السيجارة",
+  "saveAction": "حفظ",
+  "cancelAction": "إلغاء",
+  "arabic": "العربية",
+  "english": "الإنجليزية",
+  "turkish": "التركية"
 }

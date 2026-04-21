@@ -7,10 +7,7 @@ import '../features/main/presentation/pages/main_page.dart';
 import '../features/journey/domain/entities/journey_day.dart';
 import '../features/journey/presentation/pages/journey_day_details_page.dart';
 import '../features/journey/presentation/bloc/journey_bloc.dart';
-import '../features/settings/presentation/pages/profile_page.dart';
-import '../features/settings/presentation/pages/quit_plan_page.dart';
 import '../features/settings/presentation/pages/notifications_page.dart';
-import '../features/settings/presentation/pages/subscription_page.dart';
 import '../features/settings/presentation/pages/privacy_policy_page.dart';
 import 'di/injection.dart';
 
@@ -45,20 +42,8 @@ final goRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: '/profile',
-      builder: (_, __) => const ProfilePage(),
-    ),
-    GoRoute(
-      path: '/quit-plan',
-      builder: (_, __) => const QuitPlanPage(),
-    ),
-    GoRoute(
       path: '/notifications',
       builder: (_, __) => const NotificationsPage(),
-    ),
-    GoRoute(
-      path: '/subscription',
-      builder: (_, __) => const SubscriptionPage(),
     ),
     GoRoute(
       path: '/privacy-policy',

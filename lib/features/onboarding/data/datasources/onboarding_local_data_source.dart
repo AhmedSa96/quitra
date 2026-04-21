@@ -6,6 +6,7 @@ import '../models/user_profile_isar.dart';
 abstract class OnboardingLocalDataSource {
   Future<void> saveUserProfile(UserProfileIsar profile);
   Future<bool> hasUserProfile();
+  Future<UserProfileIsar?> getUserProfile();
 }
 
 @LazySingleton(as: OnboardingLocalDataSource)
@@ -25,5 +26,10 @@ class OnboardingLocalDataSourceImpl implements OnboardingLocalDataSource {
   Future<bool> hasUserProfile() async {
     final count = await isar.userProfileIsars.count();
     return count > 0;
+  }
+
+  @override
+  Future<UserProfileIsar?> getUserProfile() async {
+    return isar.userProfileIsars.where().findFirst();
   }
 }

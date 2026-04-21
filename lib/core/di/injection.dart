@@ -6,6 +6,8 @@ import '../../features/onboarding/data/models/user_profile_isar.dart';
 import '../../features/home/data/models/user_stats_isar.dart';
 import '../../features/home/data/models/craving_event_isar.dart';
 import '../../features/home/data/models/daily_log_isar.dart';
+import '../../features/settings/data/models/user_settings_isar.dart';
+import '../../features/settings/presentation/bloc/settings_bloc.dart';
 import 'injection.config.dart';
 
 final getIt = GetIt.instance;
@@ -22,10 +24,17 @@ abstract class RegisterModule {
         UserProfileIsarSchema,
         CravingEventIsarSchema,
         DailyLogIsarSchema,
+        UserSettingsIsarSchema,
       ],
       directory: dir.path,
     );
   }
+}
+
+@module
+abstract class RegisterSettingsModule {
+  @injectable
+  SettingsBloc get settingsBloc => SettingsBloc();
 }
 
 

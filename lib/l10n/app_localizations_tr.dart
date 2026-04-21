@@ -232,4 +232,25 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get saveNoteAction => 'Değişiklikleri Kaydet';
+
+  @override
+  String get languageLabel => 'Dil';
+
+  @override
+  String get cigarettePriceLabel => 'Sigara Fiyatı';
+
+  @override
+  String get saveAction => 'Kaydet';
+
+  @override
+  String get cancelAction => 'İptal';
+
+  @override
+  String get arabic => 'Arapça';
+
+  @override
+  String get english => 'İngilizce';
+
+  @override
+  String get turkish => 'Türkçe';
 }

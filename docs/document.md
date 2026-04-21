@@ -181,11 +181,19 @@ Triggers:
 
 ### Features:
 
-- Profile management (local only)
+- Language picker (Arabic, English, Turkish)
+- Quit Plan (method + start date)
+- Cigarette price (single or packet pricing)
 - Notification settings
+- Privacy Policy
 - **CSV Data Export:** Backup all local tracking data to a CSV file.
 - **CSV Data Import:** Restore data from a previously exported CSV file.
 - Theme switching (Light/Dark/System)
+
+### Note:
+
+- Profile and Subscription features have been removed
+- All settings changes are made via dialogs (not pages)
 
 ---
 
@@ -301,7 +309,7 @@ Simple heuristic:
 
    - streak
    - stats
-   - “Craving Button”
+   - "Craving Button"
 
 2. **Daily Check-in**
 
@@ -318,8 +326,11 @@ Simple heuristic:
 
 5. **Settings**
 
-   - profile
-   - subscription
+   - Language picker (opens dialog)
+   - Quit Plan (opens dialog)
+   - Cigarette Price (opens dialog)
+   - Notifications
+   - Privacy Policy
 
 ---
 
@@ -334,10 +345,10 @@ Simple heuristic:
 - streak + stats
 - craving button
 - basic notifications
+- settings (language, quit plan, cigarette price)
 
 ### Exclude initially:
 
-- subscriptions
 - cloud sync
 - analytics
 

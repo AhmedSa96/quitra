@@ -3,10 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:solar_icons/solar_icons.dart';
 import 'package:quitra/l10n/app_localizations.dart';
 import '../widgets/settings_header.dart';
-import '../widgets/profile_summary_card.dart';
 import '../widgets/settings_group.dart';
 import '../widgets/settings_tile.dart';
 import '../widgets/settings_version_footer.dart';
+import '../widgets/language_picker_dialog.dart';
+import '../widgets/quit_plan_dialog.dart';
+import '../widgets/cigarette_price_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -24,27 +26,22 @@ class SettingsPage extends StatelessWidget {
           children: [
             SettingsHeader(title: l10n.settingsTitle),
             const SizedBox(height: 32),
-            const ProfileSummaryCard(
-              name: "Ahmed Salah",
-              membershipStatus: "Premium Member",
-            ),
-            const SizedBox(height: 32),
             SettingsGroup(
               children: [
                 SettingsTile(
-                  title: l10n.profileLabel,
-                  icon: SolarIconsOutline.user,
-                  onTap: () => context.push('/profile'),
+                  title: l10n.languageLabel,
+                  icon: SolarIconsOutline.global,
+                  onTap: () => _showLanguagePicker(context),
                 ),
                 SettingsTile(
                   title: l10n.quitPlanLabel,
                   icon: SolarIconsOutline.route,
-                  onTap: () => context.push('/quit-plan'),
+                  onTap: () => _showQuitPlanDialog(context),
                 ),
                 SettingsTile(
-                  title: l10n.notificationsLabel,
-                  icon: SolarIconsOutline.bell,
-                  onTap: () => context.push('/notifications'),
+                  title: l10n.cigarettePriceLabel,
+                  icon: SolarIconsOutline.walletMoney,
+                  onTap: () => _showCigarettePriceDialog(context),
                 ),
               ],
             ),
@@ -52,9 +49,9 @@ class SettingsPage extends StatelessWidget {
             SettingsGroup(
               children: [
                 SettingsTile(
-                  title: l10n.subscriptionLabel,
-                  icon: SolarIconsOutline.star,
-                  onTap: () => context.push('/subscription'),
+                  title: l10n.notificationsLabel,
+                  icon: SolarIconsOutline.bell,
+                  onTap: () => context.push('/notifications'),
                 ),
                 SettingsTile(
                   title: l10n.privacyPolicyLabel,
@@ -72,6 +69,24 @@ class SettingsPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showLanguagePicker(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const LanguagePickerDialog(),
+    );
+  }
+
+  void _showQuitPlanDialog(BuildContext context) {
+    showDialog(context: context, builder: (context) => const QuitPlanDialog());
+  }
+
+  void _showCigarettePriceDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const CigarettePriceDialog(),
     );
   }
 }

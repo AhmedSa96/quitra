@@ -100,5 +100,12 @@
   "dayDetailsTitle": "Day Details",
   "journalNoteLabel": "Journal Note",
   "editNoteAction": "Edit Note",
-  "saveNoteAction": "Save Changes"
+  "saveNoteAction": "Save Changes",
+  "languageLabel": "Language",
+  "cigarettePriceLabel": "Cigarette Price",
+  "saveAction": "Save",
+  "cancelAction": "Cancel",
+  "arabic": "Arabic",
+  "english": "English",
+  "turkish": "Turkish"
 }

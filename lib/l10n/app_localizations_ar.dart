@@ -228,4 +228,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get saveNoteAction => 'حفظ التغييرات';
+
+  @override
+  String get languageLabel => 'اللغة';
+
+  @override
+  String get cigarettePriceLabel => 'سعر السيجارة';
+
+  @override
+  String get saveAction => 'حفظ';
+
+  @override
+  String get cancelAction => 'إلغاء';
+
+  @override
+  String get arabic => 'العربية';
+
+  @override
+  String get english => 'الإنجليزية';
+
+  @override
+  String get turkish => 'التركية';
 }

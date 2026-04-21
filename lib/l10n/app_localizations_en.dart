@@ -233,4 +233,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saveNoteAction => 'Save Changes';
+
+  @override
+  String get languageLabel => 'Language';
+
+  @override
+  String get cigarettePriceLabel => 'Cigarette Price';
+
+  @override
+  String get saveAction => 'Save';
+
+  @override
+  String get cancelAction => 'Cancel';
+
+  @override
+  String get arabic => 'Arabic';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get turkish => 'Turkish';
 }

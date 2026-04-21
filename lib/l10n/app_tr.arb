@@ -51,5 +51,12 @@
   "dayDetailsTitle": "Gün Detayları",
   "journalNoteLabel": "Günlük Notu",
   "editNoteAction": "Notu Düzenle",
-  "saveNoteAction": "Değişiklikleri Kaydet"
+  "saveNoteAction": "Değişiklikleri Kaydet",
+  "languageLabel": "Dil",
+  "cigarettePriceLabel": "Sigara Fiyatı",
+  "saveAction": "Kaydet",
+  "cancelAction": "İptal",
+  "arabic": "Arapça",
+  "english": "İngilizce",
+  "turkish": "Türkçe"
 }
