@@ -65,13 +65,13 @@ class JourneyDayStatusCard extends StatelessWidget {
               children: [
                 Text(
                   l10n.didYouSmokeToday,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Switch.adaptive(
                   value: wasSmoked,
-                  activeColor: statusColor,
+                  activeThumbColor: statusColor,
                   onChanged: onWasSmokedChanged,
                 ),
               ],
@@ -84,14 +84,16 @@ class JourneyDayStatusCard extends StatelessWidget {
               final level = index + 1;
               final isActive = level <= (day.cravingLevel ?? 0);
               return GestureDetector(
-                onTap: isInteractive ? () => onCravingLevelChanged?.call(level) : null,
+                onTap: isInteractive
+                    ? () => onCravingLevelChanged?.call(level)
+                    : null,
                 child: Container(
                   width: 48,
                   height: 10,
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
-                    color: isActive 
-                        ? const Color(0xFFFFA726) 
+                    color: isActive
+                        ? const Color(0xFFFFA726)
                         : AppTheme.surfaceContainerLow,
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -102,9 +104,9 @@ class JourneyDayStatusCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             l10n.cravingsIntensity,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: AppTheme.onSurfaceVariant,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: AppTheme.onSurfaceVariant),
           ),
         ],
       ),
@@ -113,25 +115,34 @@ class JourneyDayStatusCard extends StatelessWidget {
 
   Color _getStatusColor(JourneyStatus status) {
     switch (status) {
-      case JourneyStatus.clean: return const Color(0xFF66BB6A);
-      case JourneyStatus.craving: return const Color(0xFFFFA726);
-      case JourneyStatus.setback: return const Color(0xFFEF5350);
+      case JourneyStatus.clean:
+        return const Color(0xFF66BB6A);
+      case JourneyStatus.craving:
+        return const Color(0xFFFFA726);
+      case JourneyStatus.setback:
+        return const Color(0xFFEF5350);
     }
   }
 
   IconData _getStatusIcon(JourneyStatus status) {
     switch (status) {
-      case JourneyStatus.clean: return SolarIconsBold.checkCircle;
-      case JourneyStatus.craving: return SolarIconsBold.fire;
-      case JourneyStatus.setback: return SolarIconsBold.closeCircle;
+      case JourneyStatus.clean:
+        return SolarIconsBold.checkCircle;
+      case JourneyStatus.craving:
+        return SolarIconsBold.fire;
+      case JourneyStatus.setback:
+        return SolarIconsBold.closeCircle;
     }
   }
 
   String _getStatusText(JourneyStatus status, AppLocalizations l10n) {
     switch (status) {
-      case JourneyStatus.clean: return l10n.cleanStatus;
-      case JourneyStatus.craving: return l10n.cravingsRecorded;
-      case JourneyStatus.setback: return l10n.setbackRecorded;
+      case JourneyStatus.clean:
+        return l10n.cleanStatus;
+      case JourneyStatus.craving:
+        return l10n.cravingsRecorded;
+      case JourneyStatus.setback:
+        return l10n.setbackRecorded;
     }
   }
 }

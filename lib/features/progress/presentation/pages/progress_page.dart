@@ -1,168 +1,277 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quitra/l10n/app_localizations.dart';
 import 'package:solar_icons/solar_icons.dart';
+import 'package:intl/intl.dart';
+import '../../../../core/di/injection.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/presentation/widgets/sanctuary_card.dart';
+import '../bloc/progress_bloc.dart';
+import '../bloc/progress_event.dart';
+import '../bloc/progress_state.dart';
 
 class ProgressPage extends StatelessWidget {
   const ProgressPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<ProgressBloc>()..add(ProgressEvent.loadProgress()),
+      child: const _ProgressPageContent(),
+    );
+  }
+}
+
+class _ProgressPageContent extends StatelessWidget {
+  const _ProgressPageContent();
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.progressTitle,
-              style: Theme.of(context).textTheme.displayLarge,
-            ),
-            const SizedBox(height: 32),
+    final currencyFormat = NumberFormat.currency(symbol: '\$');
 
-            // Health Milestones Header
-            Text(
-              l10n.healthMilestonesTitle,
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
+    return BlocBuilder<ProgressBloc, ProgressState>(
+      builder: (context, state) {
+        if (state is Loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-            // Heart Milestone
-            SanctuaryCard(
-              padding: const EdgeInsets.all(20),
+        if (state is Error) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        SolarIconsOutline.heart,
-                        color: Color(0xFFE57373),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          l10n.heartRateLabel,
-                          style: const TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      const Text(
-                        "100%",
-                        style: TextStyle(
-                          color: AppTheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  LinearProgressIndicator(
-                    value: 1.0,
-                    backgroundColor: AppTheme.surfaceContainerLow,
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      AppTheme.primary,
-                    ),
-                    borderRadius: BorderRadius.circular(4),
+                  Text(l10n.databaseError, textAlign: TextAlign.center),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<ProgressBloc>().add(
+                        ProgressEvent.loadProgress(),
+                      );
+                    },
+                    child: Text(l10n.continueButton),
                   ),
                 ],
               ),
             ),
+          );
+        }
 
-            const SizedBox(height: 16),
+        final stats = state is Loaded ? state.stats : null;
+        final heartProgress = stats?.heartRateProgress ?? 0.0;
+        final circulationProgress = stats?.circulationProgress ?? 0.0;
+        final lungProgress = stats?.lungFunctionProgress ?? 0.0;
+        final moneySaved = stats?.moneySaved ?? 0.0;
+        final cigsAvoided = stats?.cigarettesAvoided ?? 0;
+        final lifeRegained = stats?.lifeRegainedMinutes ?? 0;
+        final currentStreak = stats?.currentStreak ?? 0;
 
-            // Lung Milestone
-            SanctuaryCard(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        SolarIconsOutline.wind,
-                        color: Color(0xFF64B5F6),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          l10n.lungFunctionLabel,
-                          style: const TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      const Text(
-                        "65%",
-                        style: TextStyle(
-                          color: AppTheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  LinearProgressIndicator(
-                    value: 0.65,
-                    backgroundColor: AppTheme.surfaceContainerLow,
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      AppTheme.primary,
-                    ),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ],
-              ),
+        final lifeRegainedDays = (lifeRegained / 1440).floor();
+        final streakText = currentStreak == 1 ? '1 day' : '$currentStreak days';
+
+        return SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 32.0,
             ),
-
-            const SizedBox(height: 48),
-
-            // Detailed Stats Grid
-            Text(
-              l10n.detailedInsights,
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              mainAxisSpacing: 16,
-              crossAxisSpacing: 16,
-              childAspectRatio: 1.3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildStatCard(
-                  context,
-                  l10n.moneySavedLabel,
-                  "\$1,240",
-                  SolarIconsOutline.cardTransfer,
+                Text(
+                  l10n.progressTitle,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
-                _buildStatCard(
-                  context,
-                  l10n.cigsAvoidedLabel,
-                  "2,480",
-                  SolarIconsOutline.maskHapply,
+                const SizedBox(height: 32),
+
+                Text(
+                  l10n.healthMilestonesTitle,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                _buildStatCard(
-                  context,
-                  l10n.lifeRegainedLabel,
-                  "12d",
-                  SolarIconsOutline.health,
+                const SizedBox(height: 16),
+
+                SanctuaryCard(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            SolarIconsOutline.heart,
+                            color: Color(0xFFE57373),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              l10n.heartRateLabel,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '${(heartProgress * 100).toInt()}%',
+                            style: const TextStyle(
+                              color: AppTheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      LinearProgressIndicator(
+                        value: heartProgress,
+                        backgroundColor: AppTheme.surfaceContainerLow,
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                          AppTheme.primary,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ],
+                  ),
                 ),
-                _buildStatCard(
-                  context,
-                  l10n.cleanStreakLabel,
-                  "15 days",
-                  SolarIconsOutline.star,
+
+                const SizedBox(height: 16),
+
+                SanctuaryCard(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.favorite_border,
+                            color: Color(0xFF64B5F6),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              l10n.circulationLabel,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '${(circulationProgress * 100).toInt()}%',
+                            style: const TextStyle(
+                              color: AppTheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      LinearProgressIndicator(
+                        value: circulationProgress,
+                        backgroundColor: AppTheme.surfaceContainerLow,
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                          AppTheme.primary,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ],
+                  ),
                 ),
+
+                const SizedBox(height: 16),
+
+                SanctuaryCard(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            SolarIconsOutline.wind,
+                            color: Color(0xFF64B5F6),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              l10n.lungFunctionLabel,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '${(lungProgress * 100).toInt()}%',
+                            style: const TextStyle(
+                              color: AppTheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      LinearProgressIndicator(
+                        value: lungProgress,
+                        backgroundColor: AppTheme.surfaceContainerLow,
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                          AppTheme.primary,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 48),
+
+                Text(
+                  l10n.detailedInsights,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  childAspectRatio: 1.3,
+                  children: [
+                    _buildStatCard(
+                      context,
+                      l10n.moneySavedLabel,
+                      currencyFormat.format(moneySaved),
+                      SolarIconsOutline.cardTransfer,
+                    ),
+                    _buildStatCard(
+                      context,
+                      l10n.cigsAvoidedLabel,
+                      NumberFormat.decimalPattern().format(cigsAvoided),
+                      SolarIconsOutline.maskHapply,
+                    ),
+                    _buildStatCard(
+                      context,
+                      l10n.lifeRegainedLabel,
+                      lifeRegainedDays > 0 ? '${lifeRegainedDays}d' : '<1d',
+                      SolarIconsOutline.health,
+                    ),
+                    _buildStatCard(
+                      context,
+                      l10n.cleanStreakLabel,
+                      streakText,
+                      SolarIconsOutline.star,
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 32),
               ],
             ),
-
-            const SizedBox(height: 32),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
