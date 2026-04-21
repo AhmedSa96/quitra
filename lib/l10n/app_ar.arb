@@ -77,5 +77,10 @@
   "cancelAction": "إلغاء",
   "arabic": "العربية",
   "english": "الإنجليزية",
-  "turkish": "التركية"
+  "turkish": "التركية",
+  "dailyReminderLabel": "تذكير يومي",
+  "dailyReminderDescription": "احصل على تذكير لتسجيل يومك",
+  "reminderTimeLabel": "وقت التذكير",
+  "milestoneCelebrationsLabel": "احتفالات الإنجازات",
+  "milestoneCelebrationsDescription": "احتفل بإنجازاتك"
 }

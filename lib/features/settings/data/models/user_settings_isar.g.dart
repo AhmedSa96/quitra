@@ -17,10 +17,25 @@ const UserSettingsIsarSchema = CollectionSchema(
   name: r'UserSettingsIsar',
   id: -897199500488509727,
   properties: {
-    r'locale': PropertySchema(
+    r'dailyReminderEnabled': PropertySchema(
       id: 0,
+      name: r'dailyReminderEnabled',
+      type: IsarType.bool,
+    ),
+    r'dailyReminderTime': PropertySchema(
+      id: 1,
+      name: r'dailyReminderTime',
+      type: IsarType.string,
+    ),
+    r'locale': PropertySchema(
+      id: 2,
       name: r'locale',
       type: IsarType.string,
+    ),
+    r'milestoneCelebrationsEnabled': PropertySchema(
+      id: 3,
+      name: r'milestoneCelebrationsEnabled',
+      type: IsarType.bool,
     )
   },
   estimateSize: _userSettingsIsarEstimateSize,
@@ -44,6 +59,12 @@ int _userSettingsIsarEstimateSize(
 ) {
   var bytesCount = offsets.last;
   {
+    final value = object.dailyReminderTime;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
     final value = object.locale;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
@@ -58,7 +79,10 @@ void _userSettingsIsarSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.locale);
+  writer.writeBool(offsets[0], object.dailyReminderEnabled);
+  writer.writeString(offsets[1], object.dailyReminderTime);
+  writer.writeString(offsets[2], object.locale);
+  writer.writeBool(offsets[3], object.milestoneCelebrationsEnabled);
 }
 
 UserSettingsIsar _userSettingsIsarDeserialize(
@@ -68,8 +92,11 @@ UserSettingsIsar _userSettingsIsarDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = UserSettingsIsar();
+  object.dailyReminderEnabled = reader.readBool(offsets[0]);
+  object.dailyReminderTime = reader.readStringOrNull(offsets[1]);
   object.id = id;
-  object.locale = reader.readStringOrNull(offsets[0]);
+  object.locale = reader.readStringOrNull(offsets[2]);
+  object.milestoneCelebrationsEnabled = reader.readBool(offsets[3]);
   return object;
 }
 
@@ -81,7 +108,13 @@ P _userSettingsIsarDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
+      return (reader.readBool(offset)) as P;
+    case 1:
       return (reader.readStringOrNull(offset)) as P;
+    case 2:
+      return (reader.readStringOrNull(offset)) as P;
+    case 3:
+      return (reader.readBool(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -181,6 +214,170 @@ extension UserSettingsIsarQueryWhere
 
 extension UserSettingsIsarQueryFilter
     on QueryBuilder<UserSettingsIsar, UserSettingsIsar, QFilterCondition> {
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderEnabledEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dailyReminderEnabled',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'dailyReminderTime',
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'dailyReminderTime',
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dailyReminderTime',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'dailyReminderTime',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'dailyReminderTime',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'dailyReminderTime',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'dailyReminderTime',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'dailyReminderTime',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'dailyReminderTime',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'dailyReminderTime',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dailyReminderTime',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      dailyReminderTimeIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'dailyReminderTime',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
       idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
@@ -390,6 +587,16 @@ extension UserSettingsIsarQueryFilter
       ));
     });
   }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      milestoneCelebrationsEnabledEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'milestoneCelebrationsEnabled',
+        value: value,
+      ));
+    });
+  }
 }
 
 extension UserSettingsIsarQueryObject
@@ -400,6 +607,34 @@ extension UserSettingsIsarQueryLinks
 
 extension UserSettingsIsarQuerySortBy
     on QueryBuilder<UserSettingsIsar, UserSettingsIsar, QSortBy> {
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByDailyReminderEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyReminderEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByDailyReminderEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyReminderEnabled', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByDailyReminderTime() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyReminderTime', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByDailyReminderTimeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyReminderTime', Sort.desc);
+    });
+  }
+
   QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
       sortByLocale() {
     return QueryBuilder.apply(this, (query) {
@@ -413,10 +648,52 @@ extension UserSettingsIsarQuerySortBy
       return query.addSortBy(r'locale', Sort.desc);
     });
   }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByMilestoneCelebrationsEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'milestoneCelebrationsEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByMilestoneCelebrationsEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'milestoneCelebrationsEnabled', Sort.desc);
+    });
+  }
 }
 
 extension UserSettingsIsarQuerySortThenBy
     on QueryBuilder<UserSettingsIsar, UserSettingsIsar, QSortThenBy> {
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByDailyReminderEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyReminderEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByDailyReminderEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyReminderEnabled', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByDailyReminderTime() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyReminderTime', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByDailyReminderTimeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyReminderTime', Sort.desc);
+    });
+  }
+
   QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -443,14 +720,50 @@ extension UserSettingsIsarQuerySortThenBy
       return query.addSortBy(r'locale', Sort.desc);
     });
   }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByMilestoneCelebrationsEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'milestoneCelebrationsEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByMilestoneCelebrationsEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'milestoneCelebrationsEnabled', Sort.desc);
+    });
+  }
 }
 
 extension UserSettingsIsarQueryWhereDistinct
     on QueryBuilder<UserSettingsIsar, UserSettingsIsar, QDistinct> {
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QDistinct>
+      distinctByDailyReminderEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dailyReminderEnabled');
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QDistinct>
+      distinctByDailyReminderTime({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dailyReminderTime',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<UserSettingsIsar, UserSettingsIsar, QDistinct> distinctByLocale(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'locale', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QDistinct>
+      distinctByMilestoneCelebrationsEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'milestoneCelebrationsEnabled');
     });
   }
 }
@@ -463,9 +776,30 @@ extension UserSettingsIsarQueryProperty
     });
   }
 
+  QueryBuilder<UserSettingsIsar, bool, QQueryOperations>
+      dailyReminderEnabledProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dailyReminderEnabled');
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, String?, QQueryOperations>
+      dailyReminderTimeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dailyReminderTime');
+    });
+  }
+
   QueryBuilder<UserSettingsIsar, String?, QQueryOperations> localeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'locale');
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, bool, QQueryOperations>
+      milestoneCelebrationsEnabledProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'milestoneCelebrationsEnabled');
     });
   }
 }

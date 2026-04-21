@@ -254,4 +254,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get turkish => 'Turkish';
+
+  @override
+  String get dailyReminderLabel => 'Daily Reminder';
+
+  @override
+  String get dailyReminderDescription => 'Get reminded to check in daily';
+
+  @override
+  String get reminderTimeLabel => 'Reminder Time';
+
+  @override
+  String get milestoneCelebrationsLabel => 'Milestone Celebrations';
+
+  @override
+  String get milestoneCelebrationsDescription =>
+      'Celebrate your progress milestones';
 }

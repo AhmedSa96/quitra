@@ -58,5 +58,10 @@
   "cancelAction": "İptal",
   "arabic": "Arapça",
   "english": "İngilizce",
-  "turkish": "Türkçe"
+  "turkish": "Türkçe",
+  "dailyReminderLabel": "Günlük Hatırlatıcı",
+  "dailyReminderDescription": "Günlük check-in için hatırlat",
+  "reminderTimeLabel": "Hatırlatıcı Saati",
+  "milestoneCelebrationsLabel": "Kilometre Taşı Kutlamaları",
+  "milestoneCelebrationsDescription": "İlerleme kilometre taşlarını kutla"
 }

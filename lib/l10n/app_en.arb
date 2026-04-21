@@ -107,5 +107,10 @@
   "cancelAction": "Cancel",
   "arabic": "Arabic",
   "english": "English",
-  "turkish": "Turkish"
+  "turkish": "Turkish",
+  "dailyReminderLabel": "Daily Reminder",
+  "dailyReminderDescription": "Get reminded to check in daily",
+  "reminderTimeLabel": "Reminder Time",
+  "milestoneCelebrationsLabel": "Milestone Celebrations",
+  "milestoneCelebrationsDescription": "Celebrate your progress milestones"
 }

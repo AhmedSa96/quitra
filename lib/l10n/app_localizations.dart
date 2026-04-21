@@ -567,6 +567,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Turkish'**
   String get turkish;
+
+  /// No description provided for @dailyReminderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Reminder'**
+  String get dailyReminderLabel;
+
+  /// No description provided for @dailyReminderDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Get reminded to check in daily'**
+  String get dailyReminderDescription;
+
+  /// No description provided for @reminderTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder Time'**
+  String get reminderTimeLabel;
+
+  /// No description provided for @milestoneCelebrationsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone Celebrations'**
+  String get milestoneCelebrationsLabel;
+
+  /// No description provided for @milestoneCelebrationsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Celebrate your progress milestones'**
+  String get milestoneCelebrationsDescription;
 }
 
 class _AppLocalizationsDelegate

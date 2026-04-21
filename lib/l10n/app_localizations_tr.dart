@@ -253,4 +253,20 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get turkish => 'Türkçe';
+
+  @override
+  String get dailyReminderLabel => 'Günlük Hatırlatıcı';
+
+  @override
+  String get dailyReminderDescription => 'Günlük check-in için hatırlat';
+
+  @override
+  String get reminderTimeLabel => 'Hatırlatıcı Saati';
+
+  @override
+  String get milestoneCelebrationsLabel => 'Kilometre Taşı Kutlamaları';
+
+  @override
+  String get milestoneCelebrationsDescription =>
+      'İlerleme kilometre taşlarını kutla';
 }

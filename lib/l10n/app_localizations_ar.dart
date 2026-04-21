@@ -249,4 +249,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get turkish => 'التركية';
+
+  @override
+  String get dailyReminderLabel => 'تذكير يومي';
+
+  @override
+  String get dailyReminderDescription => 'احصل على تذكير لتسجيل يومك';
+
+  @override
+  String get reminderTimeLabel => 'وقت التذكير';
+
+  @override
+  String get milestoneCelebrationsLabel => 'احتفالات الإنجازات';
+
+  @override
+  String get milestoneCelebrationsDescription => 'احتفل بإنجازاتك';
 }

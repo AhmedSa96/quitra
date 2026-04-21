@@ -9,3 +9,21 @@ class LocaleChanged extends SettingsEvent {
 }
 
 class LoadSettings extends SettingsEvent {}
+
+class DailyReminderToggled extends SettingsEvent {
+  final bool enabled;
+
+  DailyReminderToggled(this.enabled);
+}
+
+class DailyReminderTimeChanged extends SettingsEvent {
+  final TimeOfDay time;
+
+  DailyReminderTimeChanged(this.time);
+}
+
+class MilestoneCelebrationsToggled extends SettingsEvent {
+  final bool enabled;
+
+  MilestoneCelebrationsToggled(this.enabled);
+}

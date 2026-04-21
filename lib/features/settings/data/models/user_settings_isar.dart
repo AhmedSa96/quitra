@@ -7,4 +7,7 @@ class UserSettingsIsar {
   Id id = 0;
 
   String? locale;
+  bool dailyReminderEnabled = false;
+  String? dailyReminderTime;
+  bool milestoneCelebrationsEnabled = true;
 }
