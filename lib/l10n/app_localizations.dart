@@ -807,6 +807,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Data imported successfully!'**
   String get onboardingImportSuccess;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Journey'**
+  String get share;
 }
 
 class _AppLocalizationsDelegate

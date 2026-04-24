@@ -382,4 +382,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingImportSuccess => 'Data imported successfully!';
+
+  @override
+  String get share => 'Share Journey';
 }

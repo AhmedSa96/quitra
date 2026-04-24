@@ -375,4 +375,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get onboardingImportSuccess => 'تم استيراد البيانات بنجاح!';
+
+  @override
+  String get share => 'مشاركة الرحلة';
 }

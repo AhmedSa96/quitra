@@ -98,5 +98,6 @@
   "onboardingImportDescription": "Zaten bir yedeğiniz mi var? Kaldığınız yerden devam etmek için CSV dosyanızı içe aktarın.",
   "onboardingImportAction": "CSV Dosyası Seç",
   "onboardingImportSkip": "Burada yeniyim, atla",
-  "onboardingImportSuccess": "Veriler başarıyla içe aktarıldı!"
+  "onboardingImportSuccess": "Veriler başarıyla içe aktarıldı!",
+  "share": "Yolculuğu Paylaş"
 }

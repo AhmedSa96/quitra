@@ -117,5 +117,6 @@
   "onboardingImportDescription": "هل لديك نسخة احتياطية؟ استورد ملف CSV للمتابعة من حيث توقفت.",
   "onboardingImportAction": "اختر ملف CSV",
   "onboardingImportSkip": "أنا جديد هنا، تخطي",
-  "onboardingImportSuccess": "تم استيراد البيانات بنجاح!"
+  "onboardingImportSuccess": "تم استيراد البيانات بنجاح!",
+  "share": "مشاركة الرحلة"
 }

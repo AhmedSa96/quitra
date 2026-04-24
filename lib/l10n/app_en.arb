@@ -147,5 +147,6 @@
   "onboardingImportDescription": "Already have a backup? Import your CSV file to continue where you left off.",
   "onboardingImportAction": "Select CSV File",
   "onboardingImportSkip": "I'm new here, skip",
-  "onboardingImportSuccess": "Data imported successfully!"
+  "onboardingImportSuccess": "Data imported successfully!",
+  "share": "Share Journey"
 }

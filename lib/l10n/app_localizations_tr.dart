@@ -382,4 +382,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get onboardingImportSuccess => 'Veriler başarıyla içe aktarıldı!';
+
+  @override
+  String get share => 'Yolculuğu Paylaş';
 }
