@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';
+import 'package:quitra/core/services/ad_service.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/journey_day.dart';
@@ -60,22 +61,53 @@ class JourneyDayStatusCard extends StatelessWidget {
           ),
           if (isInteractive) ...[
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  l10n.didYouSmokeToday,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+            GestureDetector(
+              onTap: () => _handleSmokeToggle(context, !wasSmoked),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
                 ),
-                Switch.adaptive(
-                  value: wasSmoked,
-                  activeThumbColor: statusColor,
-                  onChanged: onWasSmokedChanged,
+                decoration: BoxDecoration(
+                  color: wasSmoked
+                      ? AppTheme.primary.withValues(alpha: 0.1)
+                      : AppTheme.surfaceContainerLow,
+                  borderRadius: BorderRadius.circular(16),
                 ),
-              ],
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!wasSmoked) ...[
+                      const Icon(
+                        SolarIconsOutline.play,
+                        color: AppTheme.primary,
+                        size: 16,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+                    Text(
+                      wasSmoked ? l10n.cleanStatus : "Mark as smoked",
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: wasSmoked
+                            ? AppTheme.primary
+                            : AppTheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
+            if (!wasSmoked)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  "Watch ad to record",
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: AppTheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
           ],
           const SizedBox(height: 20),
           Row(
@@ -111,6 +143,18 @@ class JourneyDayStatusCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _handleSmokeToggle(
+    BuildContext context,
+    bool wantToMarkSmoked,
+  ) async {
+    if (wantToMarkSmoked && onWasSmokedChanged != null) {
+      await AdService.showRewardedAd();
+      onWasSmokedChanged!(true);
+    } else if (!wantToMarkSmoked && onWasSmokedChanged != null) {
+      onWasSmokedChanged!(false);
+    }
   }
 
   Color _getStatusColor(JourneyStatus status) {

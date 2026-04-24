@@ -1,6 +1,8 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:quitra/core/di/injection.dart';
 import 'package:quitra/core/app_router.dart';
@@ -8,13 +10,29 @@ import 'package:quitra/core/theme/app_theme.dart';
 import 'package:quitra/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
+  await dotenv.load(fileName: '.env');
+
+  final appId = Platform.isIOS
+      ? dotenv.env['ADMOB_IOS_APP_ID']
+      : dotenv.env['ADMOB_APP_ID'];
+  if (appId != null && appId.isNotEmpty) {
+    MobileAds.instance.initialize().then((_) {
+      MobileAds.instance.updateRequestConfiguration(
+        RequestConfiguration(
+          tagForChildDirectedTreatment: TagForChildDirectedTreatment.unspecified,
+        ),
+      );
+    });
+  }
+
   tz.initializeTimeZones();
   
   const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');

@@ -37,7 +37,8 @@ class _JourneyDayDetailsPageState extends State<JourneyDayDetailsPage> {
     final l10n = AppLocalizations.of(context)!;
     final dateText = DateFormat('MMMM d, yyyy').format(widget.day.date);
     final now = DateTime.now();
-    final isToday = widget.day.date.year == now.year &&
+    final isToday =
+        widget.day.date.year == now.year &&
         widget.day.date.month == now.month &&
         widget.day.date.day == now.day;
 
@@ -63,7 +64,7 @@ class _JourneyDayDetailsPageState extends State<JourneyDayDetailsPage> {
         ),
         centerTitle: true,
       ),
-body: BlocBuilder<JourneyBloc, JourneyState>(
+      body: BlocBuilder<JourneyBloc, JourneyState>(
         builder: (context, state) {
           final currentDay = state.maybeWhen(
             loaded: (history) => history.firstWhere(
@@ -78,7 +79,9 @@ body: BlocBuilder<JourneyBloc, JourneyState>(
 
           final daysSmokeFree = state.maybeWhen(
             loaded: (history) {
-              final cleanDays = history.where((d) => d.status == JourneyStatus.clean).length;
+              final cleanDays = history
+                  .where((d) => d.status == JourneyStatus.clean)
+                  .length;
               return cleanDays;
             },
             orElse: () => 0,
@@ -98,11 +101,12 @@ body: BlocBuilder<JourneyBloc, JourneyState>(
                       children: [
                         Text(
                           dateText,
-                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                            color: AppTheme.onSurface,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: -0.5,
-                          ),
+                          style: Theme.of(context).textTheme.headlineMedium
+                              ?.copyWith(
+                                color: AppTheme.onSurface,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: -0.5,
+                              ),
                         ),
                         const SizedBox(height: 32),
                         JourneyDayStatusCard(
@@ -110,19 +114,19 @@ body: BlocBuilder<JourneyBloc, JourneyState>(
                           isInteractive: isToday,
                           onWasSmokedChanged: (value) {
                             context.read<JourneyBloc>().add(
-                                  JourneyEvent.updateDay(
-                                    date: currentDay.date,
-                                    wasSmoked: value,
-                                  ),
-                                );
+                              JourneyEvent.updateDay(
+                                date: currentDay.date,
+                                wasSmoked: value,
+                              ),
+                            );
                           },
                           onCravingLevelChanged: (level) {
                             context.read<JourneyBloc>().add(
-                                  JourneyEvent.updateDay(
-                                    date: currentDay.date,
-                                    cravingLevel: level,
-                                  ),
-                                );
+                              JourneyEvent.updateDay(
+                                date: currentDay.date,
+                                cravingLevel: level,
+                              ),
+                            );
                           },
                         ),
                         const SizedBox(height: 24),
@@ -179,7 +183,9 @@ body: BlocBuilder<JourneyBloc, JourneyState>(
     setState(() => _isSharing = true);
 
     try {
-      final boundary = _screenshotKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      final boundary =
+          _screenshotKey.currentContext?.findRenderObject()
+              as RenderRepaintBoundary?;
       if (boundary == null) {
         setState(() => _isSharing = false);
         return;
@@ -194,7 +200,9 @@ body: BlocBuilder<JourneyBloc, JourneyState>(
 
       final pngBytes = byteData.buffer.asUint8List();
       final tempDir = await getTemporaryDirectory();
-      final file = File('${tempDir.path}/quitra_journey_${DateTime.now().millisecondsSinceEpoch}.png');
+      final file = File(
+        '${tempDir.path}/quitra_journey_${DateTime.now().millisecondsSinceEpoch}.png',
+      );
       await file.writeAsBytes(pngBytes);
 
       final shareText = daysSmokeFree > 0

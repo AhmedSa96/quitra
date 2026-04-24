@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quitra/core/services/ad_service.dart';
 import 'package:quitra/features/onboarding/domain/repositories/onboarding_repository.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/di/injection.dart';
@@ -29,6 +30,8 @@ class _SplashPageState extends State<SplashPage>
 
     _controller.forward();
 
+    AdService.loadRewardedAd();
+
     _navigateToNext();
   }
 
@@ -53,7 +56,6 @@ class _SplashPageState extends State<SplashPage>
       );
     }
   }
-
 
   @override
   void dispose() {
