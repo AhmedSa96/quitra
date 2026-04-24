@@ -808,6 +808,54 @@ abstract class AppLocalizations {
   /// **'Data imported successfully!'**
   String get onboardingImportSuccess;
 
+  /// Share text when starting journey
+  ///
+  /// In en, this message translates to:
+  /// **'Starting my smoke-free journey! Join me on Quitra'**
+  String get shareJourneyStarting;
+
+  /// Share text with days smoke-free
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m {days} days smoke-free! Join me on Quitra'**
+  String shareJourneyDaysSmokeFree(int days);
+
+  /// Prompt in craving dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Take a breath. Be honest with yourself.'**
+  String get takeBreathHonest;
+
+  /// Button when resisting craving
+  ///
+  /// In en, this message translates to:
+  /// **'I stayed strong'**
+  String get iStayedStrong;
+
+  /// Button when having smoked
+  ///
+  /// In en, this message translates to:
+  /// **'I had one cigarette'**
+  String get iHadOneCigarette;
+
+  /// Ad prompt for recording
+  ///
+  /// In en, this message translates to:
+  /// **'Watch ad to record'**
+  String get watchAdToRecord;
+
+  /// Mark day as smoked
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as smoked'**
+  String get markAsSmoked;
+
+  /// Generic error message
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get somethingWentWrong;
+
   /// No description provided for @share.
   ///
   /// In en, this message translates to:

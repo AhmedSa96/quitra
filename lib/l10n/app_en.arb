@@ -148,5 +148,42 @@
   "onboardingImportAction": "Select CSV File",
   "onboardingImportSkip": "I'm new here, skip",
   "onboardingImportSuccess": "Data imported successfully!",
+  "shareJourneyStarting": "Starting my smoke-free journey! Join me on Quitra",
+  "@shareJourneyStarting": {
+    "description": "Share text when starting journey"
+  },
+  "shareJourneyDaysSmokeFree": "I'm {days} days smoke-free! Join me on Quitra",
+  "@shareJourneyDaysSmokeFree": {
+    "description": "Share text with days smoke-free",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "takeBreathHonest": "Take a breath. Be honest with yourself.",
+  "@takeBreathHonest": {
+    "description": "Prompt in craving dialog"
+  },
+  "iStayedStrong": "I stayed strong",
+  "@iStayedStrong": {
+    "description": "Button when resisting craving"
+  },
+  "iHadOneCigarette": "I had one cigarette",
+  "@iHadOneCigarette": {
+    "description": "Button when having smoked"
+  },
+  "watchAdToRecord": "Watch ad to record",
+  "@watchAdToRecord": {
+    "description": "Ad prompt for recording"
+  },
+  "markAsSmoked": "Mark as smoked",
+  "@markAsSmoked": {
+    "description": "Mark day as smoked"
+  },
+  "somethingWentWrong": "Something went wrong",
+  "@somethingWentWrong": {
+    "description": "Generic error message"
+  },
   "share": "Share Journey"
 }

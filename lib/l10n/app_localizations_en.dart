@@ -384,5 +384,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingImportSuccess => 'Data imported successfully!';
 
   @override
+  String get shareJourneyStarting =>
+      'Starting my smoke-free journey! Join me on Quitra';
+
+  @override
+  String shareJourneyDaysSmokeFree(int days) {
+    return 'I\'m $days days smoke-free! Join me on Quitra';
+  }
+
+  @override
+  String get takeBreathHonest => 'Take a breath. Be honest with yourself.';
+
+  @override
+  String get iStayedStrong => 'I stayed strong';
+
+  @override
+  String get iHadOneCigarette => 'I had one cigarette';
+
+  @override
+  String get watchAdToRecord => 'Watch ad to record';
+
+  @override
+  String get markAsSmoked => 'Mark as smoked';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
+
+  @override
   String get share => 'Share Journey';
 }

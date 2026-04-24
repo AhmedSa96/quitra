@@ -203,7 +203,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Gizlilik hakkında sorularınız mı var? Sizden duymak isteriz.';
 
   @override
-  String get cigarettePriceStepTitle => 'What is the price of your cigarettes?';
+  String get cigarettePriceStepTitle => 'Sigara fiyatı nedir?';
 
   @override
   String get priceOptionSingle => 'Single Cigarette';
@@ -212,49 +212,49 @@ class AppLocalizationsTr extends AppLocalizations {
   String get priceOptionPacket => 'Packet';
 
   @override
-  String get singleCigarettePriceLabel => 'Price per cigarette';
+  String get singleCigarettePriceLabel => 'Sigara başına fiyat';
 
   @override
-  String get packetPriceLabel => 'Price per packet';
+  String get packetPriceLabel => 'Paket başına fiyat';
 
   @override
-  String get cigarettesPerPacketLabel => 'Cigarettes per packet';
+  String get cigarettesPerPacketLabel => 'Paketteki sigara sayısı';
 
   @override
-  String get priceRequired => 'Price is required';
+  String get priceRequired => 'Fiyat gereklidir';
 
   @override
-  String get invalidNumber => 'Please enter a valid number';
+  String get invalidNumber => 'Lütfen geçerli bir sayı girin';
 
   @override
-  String get journeyStartMessage => 'Your journey starts here.';
+  String get journeyStartMessage => 'Yolculuğun burada başlıyor.';
 
   @override
-  String get cravingsRecorded => 'Cravings recorded';
+  String get cravingsRecorded => 'Kaydedilmiş istekler';
 
   @override
-  String get setbackRecorded => 'Setback recorded';
+  String get setbackRecorded => 'Gerileme kaydedildi';
 
   @override
-  String get didYouSmokeToday => 'Did you smoke today?';
+  String get didYouSmokeToday => 'Bugün içtiniz mi?';
 
   @override
-  String get cravingsIntensity => 'Cravings intensity';
+  String get cravingsIntensity => 'İstek şiddeti';
 
   @override
-  String get addNoteOptional => 'Add a note (optional)';
+  String get addNoteOptional => 'Not ekle (opsiyonel)';
 
   @override
-  String get saveJournal => 'Save Journal';
+  String get saveJournal => 'Günlüğü Kaydet';
 
   @override
-  String get detailedInsights => 'Detailed Insights';
+  String get detailedInsights => 'Detaylı İçgörüler';
 
   @override
-  String get lifeRegainedLabel => 'Life Regained';
+  String get lifeRegainedLabel => 'Kazanılan Hayat';
 
   @override
-  String get cleanStreakLabel => 'Clean Streak';
+  String get cleanStreakLabel => 'Temiz Seri';
 
   @override
   String get dayDetailsTitle => 'Gün Detayları';
@@ -382,6 +382,33 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get onboardingImportSuccess => 'Veriler başarıyla içe aktarıldı!';
+
+  @override
+  String get shareJourneyStarting =>
+      'Sigarasız yolculuğuma başlıyorum! Quitra\'ya katıl';
+
+  @override
+  String shareJourneyDaysSmokeFree(int days) {
+    return '$days gündür sigarasım! Quitra\'ya katıl';
+  }
+
+  @override
+  String get takeBreathHonest => 'Nefes al. Kendinle dürüst ol.';
+
+  @override
+  String get iStayedStrong => 'Güçlü kaldım';
+
+  @override
+  String get iHadOneCigarette => 'Bir sigara içtim';
+
+  @override
+  String get watchAdToRecord => 'Kaydetmek için reklam izle';
+
+  @override
+  String get markAsSmoked => 'İçti olarak işaretle';
+
+  @override
+  String get somethingWentWrong => 'Bir şeyler ters gitti';
 
   @override
   String get share => 'Yolculuğu Paylaş';

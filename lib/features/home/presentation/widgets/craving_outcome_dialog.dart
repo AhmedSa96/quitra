@@ -63,7 +63,7 @@ class _CravingOutcomeDialogState extends State<CravingOutcomeDialog> {
               ),
               const SizedBox(height: 8),
               Text(
-                "Take a breath. Be honest with yourself.",
+                l10n.takeBreathHonest,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppTheme.onSurfaceVariant,
@@ -80,9 +80,9 @@ class _CravingOutcomeDialogState extends State<CravingOutcomeDialog> {
                     gradient: AppTheme.signatureGradient,
                     borderRadius: BorderRadius.circular(24),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      "I stayed strong",
+                      l10n.iStayedStrong,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -121,7 +121,7 @@ class _CravingOutcomeDialogState extends State<CravingOutcomeDialog> {
                             ),
                           ),
                         )
-                      : const Column(
+                      : Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Row(
@@ -132,9 +132,9 @@ class _CravingOutcomeDialogState extends State<CravingOutcomeDialog> {
                                   color: AppTheme.onSurface,
                                   size: 20,
                                 ),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Text(
-                                  "I had one cigarette",
+                                  l10n.iHadOneCigarette,
                                   style: TextStyle(
                                     color: AppTheme.onSurface,
                                     fontWeight: FontWeight.bold,
@@ -143,9 +143,9 @@ class _CravingOutcomeDialogState extends State<CravingOutcomeDialog> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 4),
+                            const SizedBox(height: 4),
                             Text(
-                              "Watch ad to record",
+                              l10n.watchAdToRecord,
                               style: TextStyle(
                                 color: AppTheme.onSurfaceVariant,
                                 fontSize: 12,

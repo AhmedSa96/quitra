@@ -205,9 +205,10 @@ class _JourneyDayDetailsPageState extends State<JourneyDayDetailsPage> {
       );
       await file.writeAsBytes(pngBytes);
 
-      final shareText = daysSmokeFree > 0
-          ? "I'm $daysSmokeFree days smoke-free! Join me on Quitra"
-          : "Starting my smoke-free journey! Join me on Quitra";
+    final l10n = AppLocalizations.of(context)!;
+    final shareText = daysSmokeFree > 0
+        ? l10n.shareJourneyDaysSmokeFree(daysSmokeFree)
+        : l10n.shareJourneyStarting;
 
       await Share.shareXFiles([XFile(file.path)], text: shareText);
     } finally {

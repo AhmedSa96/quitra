@@ -86,7 +86,7 @@ class JourneyDayStatusCard extends StatelessWidget {
                       const SizedBox(width: 8),
                     ],
                     Text(
-                      wasSmoked ? l10n.cleanStatus : "Mark as smoked",
+                      wasSmoked ? l10n.cleanStatus : l10n.markAsSmoked,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: wasSmoked
@@ -102,7 +102,7 @@ class JourneyDayStatusCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  "Watch ad to record",
+                  l10n.watchAdToRecord,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: AppTheme.onSurfaceVariant,
                   ),

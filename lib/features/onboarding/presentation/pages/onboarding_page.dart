@@ -85,9 +85,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
             state.maybeWhen(
               success: () => context.go('/home'),
               error: () {
+                final l10n = AppLocalizations.of(context)!;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Something went wrong'),
+                    content: Text(l10n.somethingWentWrong),
                     backgroundColor: Colors.red,
                   ),
                 );

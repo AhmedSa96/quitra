@@ -99,7 +99,7 @@ class _SplashPageState extends State<SplashPage>
                 const SizedBox(height: 24),
 
                 Text(
-                  AppLocalizations.of(context)!.appName.toUpperCase(),
+                  AppLocalizations.of(context)!.digitalSanctuary,
                   style: Theme.of(context).textTheme.displayLarge?.copyWith(
                     color: Colors.white,
                     letterSpacing: 8,

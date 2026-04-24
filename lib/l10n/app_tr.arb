@@ -99,5 +99,58 @@
   "onboardingImportAction": "CSV Dosyası Seç",
   "onboardingImportSkip": "Burada yeniyim, atla",
   "onboardingImportSuccess": "Veriler başarıyla içe aktarıldı!",
-  "share": "Yolculuğu Paylaş"
+  "shareJourneyStarting": "Sigarasız yolculuğuma başlıyorum! Quitra'ya katıl",
+  "@shareJourneyStarting": {
+    "description": "Paylaşım metni - yolculuk başlarken"
+  },
+  "shareJourneyDaysSmokeFree": "{days} gündür sigarasım! Quitra'ya katıl",
+  "@shareJourneyDaysSmokeFree": {
+    "description": "Paylaşım metni - gün sayısı ile",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "takeBreathHonest": "Nefes al. Kendinle dürüst ol.",
+  "@takeBreathHonest": {
+    "description": "Istek dialogunda istem"
+  },
+  "iStayedStrong": "Güçlü kaldım",
+  "@iStayedStrong": {
+    "description": "Istek direnci butonu"
+  },
+  "iHadOneCigarette": "Bir sigara içtim",
+  "@iHadOneCigarette": {
+    "description": "İçtiğinde buton"
+  },
+  "watchAdToRecord": "Kaydetmek için reklam izle",
+  "@watchAdToRecord": {
+    "description": "Kayıt için reklam istemi"
+  },
+  "markAsSmoked": "İçti olarak işaretle",
+  "@markAsSmoked": {
+    "description": "Günü içilmiş olarak işaretle"
+  },
+  "somethingWentWrong": "Bir şeyler ters gitti",
+  "@somethingWentWrong": {
+    "description": "Genel hata mesajı"
+  },
+  "share": "Yolculuğu Paylaş",
+  "cigarettePriceStepTitle": "Sigara fiyatı nedir?",
+  "singleCigarettePriceLabel": "Sigara başına fiyat",
+  "packetPriceLabel": "Paket başına fiyat",
+  "cigarettesPerPacketLabel": "Paketteki sigara sayısı",
+  "priceRequired": "Fiyat gereklidir",
+  "invalidNumber": "Lütfen geçerli bir sayı girin",
+  "journeyStartMessage": "Yolculuğun burada başlıyor.",
+  "cravingsRecorded": "Kaydedilmiş istekler",
+  "setbackRecorded": "Gerileme kaydedildi",
+  "didYouSmokeToday": "Bugün içtiniz mi?",
+  "cravingsIntensity": "İstek şiddeti",
+  "addNoteOptional": "Not ekle (opsiyonel)",
+  "saveJournal": "Günlüğü Kaydet",
+  "detailedInsights": "Detaylı İçgörüler",
+  "lifeRegainedLabel": "Kazanılan Hayat",
+  "cleanStreakLabel": "Temiz Seri"
 }
