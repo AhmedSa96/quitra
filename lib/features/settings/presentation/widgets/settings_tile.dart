@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';
 import 'package:quitra/core/theme/app_theme.dart';
@@ -33,7 +34,9 @@ class SettingsTile extends StatelessWidget {
         ),
       ),
       trailing: Icon(
-        SolarIconsOutline.altArrowRight,
+        Directionality.of(context) == ui.TextDirection.rtl
+            ? SolarIconsOutline.altArrowLeft
+            : SolarIconsOutline.altArrowRight,
         size: 16,
         color: AppTheme.onSurfaceVariant.withValues(alpha: 0.5),
       ),

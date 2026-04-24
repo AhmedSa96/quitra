@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -90,7 +91,9 @@ class JourneyTimelineItem extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Icon(
-                SolarIconsOutline.altArrowRight,
+                Directionality.of(context) == ui.TextDirection.rtl
+                    ? SolarIconsOutline.altArrowLeft
+                    : SolarIconsOutline.altArrowRight,
                 size: 20,
                 color: AppTheme.onSurfaceVariant.withValues(alpha: 0.5),
               ),

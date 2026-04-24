@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:isar/isar.dart';
 import '../../../onboarding/data/models/user_profile_isar.dart';
 import '../../../home/data/models/daily_log_isar.dart';
+import '../../../home/data/models/craving_event_isar.dart';
 import '../../domain/entities/progress_stats.dart';
 
 abstract class ProgressLocalDataSource {
@@ -31,6 +32,7 @@ class ProgressLocalDataSourceImpl implements ProgressLocalDataSource {
     }
 
     final dailyLogs = await isar.dailyLogIsars.where().findAll();
+    final cravingEvents = await isar.cravingEventIsars.where().findAll();
     final now = DateTime.now();
     final quitStartDate = userProfile.quitStartDate;
 
@@ -39,12 +41,12 @@ class ProgressLocalDataSourceImpl implements ProgressLocalDataSource {
       daysSmokeFree,
       userProfile.cigarettesPerDay,
     );
-    final smokedCount = await _countSmokedCigarettes(dailyLogs);
+    final smokedCount = await _countSmokedCigarettes(dailyLogs, cravingEvents);
     final effectiveAvoided = cigarettesAvoided - smokedCount;
     final pricePerCigarette = _calculatePricePerCigarette(userProfile);
     final moneySaved = _calculateMoneySaved(effectiveAvoided, pricePerCigarette);
     final lifeRegainedMinutes = _calculateLifeRegained(effectiveAvoided);
-    final currentStreak = _calculateCurrentStreak(dailyLogs, quitStartDate);
+    final currentStreak = _calculateCurrentStreak(dailyLogs, cravingEvents, quitStartDate);
 
     final heartRateProgress = _calculateHeartRateProgress(daysSmokeFree);
     final circulationProgress = _calculateCirculationProgress(daysSmokeFree);
@@ -71,10 +73,15 @@ class ProgressLocalDataSourceImpl implements ProgressLocalDataSource {
     return daysSmokeFree * cigarettesPerDay;
   }
 
-  Future<int> _countSmokedCigarettes(List<DailyLogIsar> logs) async {
+  Future<int> _countSmokedCigarettes(List<DailyLogIsar> logs, List<CravingEventIsar> events) async {
     int count = 0;
     for (final log in logs) {
       if (log.wasSmoked) {
+        count++;
+      }
+    }
+    for (final event in events) {
+      if (event.wasSmoked) {
         count++;
       }
     }
@@ -101,16 +108,29 @@ class ProgressLocalDataSourceImpl implements ProgressLocalDataSource {
     return cigarettesAvoided * 15;
   }
 
-  int _calculateCurrentStreak(List<DailyLogIsar> logs, DateTime quitStartDate) {
-    if (logs.isEmpty) {
+  int _calculateCurrentStreak(List<DailyLogIsar> logs, List<CravingEventIsar> events, DateTime quitStartDate) {
+    final allEvents = <DateTime, bool>{};
+
+    for (final log in logs) {
+      allEvents[log.date] = log.wasSmoked;
+    }
+
+    for (final event in events) {
+      final eventDate = DateTime(event.timestamp.year, event.timestamp.month, event.timestamp.day);
+      if (!allEvents.containsKey(eventDate)) {
+        allEvents[eventDate] = event.wasSmoked;
+      }
+    }
+
+    if (allEvents.isEmpty) {
       return _calculateDaysSmokeFree(quitStartDate, DateTime.now());
     }
 
-    logs.sort((a, b) => b.date.compareTo(a.date));
+    final sortedDates = allEvents.keys.toList()..sort((a, b) => b.compareTo(a));
 
     int streak = 0;
-    for (final log in logs) {
-      if (!log.wasSmoked) {
+    for (final date in sortedDates) {
+      if (allEvents[date] == false) {
         streak++;
       } else {
         break;

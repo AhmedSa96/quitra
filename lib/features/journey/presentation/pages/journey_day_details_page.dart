@@ -47,8 +47,10 @@ class _JourneyDayDetailsPageState extends State<JourneyDayDetailsPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
-            SolarIconsOutline.altArrowLeft,
+          icon: Icon(
+            Directionality.of(context) == ui.TextDirection.rtl
+                ? SolarIconsOutline.altArrowRight
+                : SolarIconsOutline.altArrowLeft,
             color: AppTheme.onSurface,
           ),
           onPressed: () => context.pop(),
