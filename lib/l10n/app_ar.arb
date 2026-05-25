@@ -118,5 +118,13 @@
   "onboardingImportAction": "اختر ملف CSV",
   "onboardingImportSkip": "أنا جديد هنا، تخطي",
   "onboardingImportSuccess": "تم استيراد البيانات بنجاح!",
-  "share": "مشاركة الرحلة"
+  "share": "مشاركة الرحلة",
+  "shareJourneyStarting": "أبدأ رحلتي بدون تدخين! انضم إلي على Quitra",
+  "shareJourneyDaysSmokeFree": "{days} يوم بدون تدخين! انضم إلي على Quitra",
+  "takeBreathHonest": "خذ نفساً. كن صادقاً مع نفسك.",
+  "iStayedStrong": "بقيت قوياً",
+  "iHadOneCigarette": "دخنت سيجارة واحدة",
+  "watchAdToRecord": "شاهد إعلاناً للتسجيل",
+  "markAsSmoked": "علّم كمدخن",
+  "somethingWentWrong": "حدث خطأ ما"
 }

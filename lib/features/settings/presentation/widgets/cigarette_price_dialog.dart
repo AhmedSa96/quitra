@@ -87,11 +87,13 @@ class _CigarettePriceDialogState extends State<CigarettePriceDialog> {
       }
     }
 
-    final profile = existingProfile ?? UserProfileIsar()
-      ..cigarettesPerDay = 10
-      ..yearsSmoking = 1
-      ..quitMethod = 'cold_turkey'
-      ..quitStartDate = DateTime.now();
+    final profile =
+        existingProfile ??
+        (UserProfileIsar()
+          ..cigarettesPerDay = 10
+          ..yearsSmoking = 1
+          ..quitMethod = 'cold_turkey'
+          ..quitStartDate = DateTime.now());
 
     profile.cigarettePrice = cigPrice;
     profile.packetPrice = packPrice;

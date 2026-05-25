@@ -1,6 +1,7 @@
 {
   "@@locale": "tr",
   "appName": "Quitra",
+  "appVersion": "v1.0.0",
   "digitalSanctuary": "DİJİTAL BARINAK",
   "stepProgress": "Adım {current} / {total}",
   "continueButton": "Devam Et",
@@ -138,6 +139,8 @@
   },
   "share": "Yolculuğu Paylaş",
   "cigarettePriceStepTitle": "Sigara fiyatı nedir?",
+  "priceOptionSingle": "Tek Sigara",
+  "priceOptionPacket": "Paket",
   "singleCigarettePriceLabel": "Sigara başına fiyat",
   "packetPriceLabel": "Paket başına fiyat",
   "cigarettesPerPacketLabel": "Paketteki sigara sayısı",

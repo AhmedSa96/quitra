@@ -100,7 +100,7 @@ class _SplashPageState extends State<SplashPage>
 
                 Text(
                   AppLocalizations.of(context)!.digitalSanctuary,
-                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Colors.white,
                     letterSpacing: 8,
                     fontWeight: FontWeight.w300,
@@ -108,7 +108,7 @@ class _SplashPageState extends State<SplashPage>
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  AppLocalizations.of(context)!.digitalSanctuary,
+                  AppLocalizations.of(context)!.appVersion,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: Colors.white.withValues(alpha: 0.7),
                     letterSpacing: 2,

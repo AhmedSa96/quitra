@@ -11,16 +11,20 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 32, 24, 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BlocBuilder<HomeBloc, HomeState>(
+            buildWhen: (previous, current) => previous != current,
             builder: (context, state) {
               final daysCount = state.maybeWhen(
+                initial: () => -1,
                 loaded: (stats) => stats.daysSmokeFree,
+                error: (stats) => -2,
+                loading: () => -3,
                 orElse: () => 0,
               );
               return Text(
@@ -32,9 +36,9 @@ class HomeHeader extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             l10n.homeWelcome,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: AppTheme.onSurfaceVariant,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: AppTheme.onSurfaceVariant),
           ),
         ],
       ),

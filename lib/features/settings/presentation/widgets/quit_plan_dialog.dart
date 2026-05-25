@@ -48,11 +48,11 @@ class _QuitPlanDialogState extends State<QuitPlanDialog> {
     final dataSource = getIt<OnboardingLocalDataSource>();
     final existingProfile = await dataSource.getUserProfile();
 
-    final profile = existingProfile ?? UserProfileIsar()
+    final profile = existingProfile ?? (UserProfileIsar()
       ..cigarettesPerDay = 10
       ..yearsSmoking = 1
       ..quitMethod = _quitMethod
-      ..quitStartDate = _quitStartDate!;
+      ..quitStartDate = _quitStartDate!);
 
     profile.quitMethod = _quitMethod;
     profile.quitStartDate = _quitStartDate!;

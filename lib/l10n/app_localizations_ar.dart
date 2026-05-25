@@ -378,30 +378,30 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get shareJourneyStarting =>
-      'Starting my smoke-free journey! Join me on Quitra';
+      'أبدأ رحلتي بدون تدخين! انضم إلي على Quitra';
 
   @override
   String shareJourneyDaysSmokeFree(int days) {
-    return 'I\'m $days days smoke-free! Join me on Quitra';
+    return '$days يوم بدون تدخين! انضم إلي على Quitra';
   }
 
   @override
-  String get takeBreathHonest => 'Take a breath. Be honest with yourself.';
+  String get takeBreathHonest => 'خذ نفساً. كن صادقاً مع نفسك.';
 
   @override
-  String get iStayedStrong => 'I stayed strong';
+  String get iStayedStrong => 'بقيت قوياً';
 
   @override
-  String get iHadOneCigarette => 'I had one cigarette';
+  String get iHadOneCigarette => 'دخنت سيجارة واحدة';
 
   @override
-  String get watchAdToRecord => 'Watch ad to record';
+  String get watchAdToRecord => 'شاهد إعلاناً للتسجيل';
 
   @override
-  String get markAsSmoked => 'Mark as smoked';
+  String get markAsSmoked => 'علّم كمدخن';
 
   @override
-  String get somethingWentWrong => 'Something went wrong';
+  String get somethingWentWrong => 'حدث خطأ ما';
 
   @override
   String get share => 'مشاركة الرحلة';

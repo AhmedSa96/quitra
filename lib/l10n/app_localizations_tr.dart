@@ -206,10 +206,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get cigarettePriceStepTitle => 'Sigara fiyatı nedir?';
 
   @override
-  String get priceOptionSingle => 'Single Cigarette';
+  String get priceOptionSingle => 'Tek Sigara';
 
   @override
-  String get priceOptionPacket => 'Packet';
+  String get priceOptionPacket => 'Paket';
 
   @override
   String get singleCigarettePriceLabel => 'Sigara başına fiyat';
