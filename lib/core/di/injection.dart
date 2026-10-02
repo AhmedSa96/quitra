@@ -7,6 +7,7 @@ import '../../features/home/data/models/user_stats_isar.dart';
 import '../../features/home/data/models/craving_event_isar.dart';
 import '../../features/home/data/models/daily_log_isar.dart';
 import '../../features/settings/data/models/user_settings_isar.dart';
+import '../../features/streak/data/models/streak_isar.dart';
 import '../../features/settings/presentation/bloc/settings_bloc.dart';
 import 'injection.config.dart';
 
@@ -25,6 +26,7 @@ abstract class RegisterModule {
         CravingEventIsarSchema,
         DailyLogIsarSchema,
         UserSettingsIsarSchema,
+        StreakIsarSchema,
       ],
       directory: dir.path,
     );
