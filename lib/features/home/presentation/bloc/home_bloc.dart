@@ -3,17 +3,26 @@ import 'package:injectable/injectable.dart';
 import '../../domain/usecases/get_home_stats_usecase.dart';
 import '../../domain/usecases/log_craving_usecase.dart';
 import '../../domain/usecases/save_daily_log.dart';
+import '../../../streak/domain/usecases/get_streak.dart';
+import '../../../streak/domain/usecases/process_check_in.dart';
 import 'home_event.dart';
 import 'home_state.dart';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final SaveDailyLog saveDailyLog;
   final GetHomeStatsUseCase getHomeStatsUseCase;
   final LogCravingUseCase logCravingUseCase;
+  final SaveDailyLog saveDailyLog;
+  final GetStreak getStreak;
+  final ProcessCheckIn processCheckIn;
 
-  HomeBloc(this.getHomeStatsUseCase, this.logCravingUseCase, this.saveDailyLog)
-    : super(const HomeState.initial()) {
+  HomeBloc(
+    this.getHomeStatsUseCase,
+    this.logCravingUseCase,
+    this.saveDailyLog,
+    this.getStreak,
+    this.processCheckIn,
+  ) : super(const HomeState.initial()) {
     on<LoadStats>(_onLoadStats);
     on<LogCraving>(_onLogCraving);
     on<SaveDailyCheckIn>(_onSaveDailyCheckIn);
@@ -21,44 +30,40 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onLoadStats(LoadStats event, Emitter<HomeState> emit) async {
     emit(const HomeState.loading());
-    final result = await getHomeStatsUseCase();
-    result.fold(
+    final statsResult = await getHomeStatsUseCase();
+    final streakResult = await getStreak();
+
+    statsResult.fold(
       (failure) => emit(const HomeState.error('Failed to load stats')),
-      (stats) => emit(HomeState.loaded(stats)),
+      (stats) {
+        streakResult.fold(
+          (failure) => emit(const HomeState.error('Failed to load streak')),
+          (streak) => emit(HomeState.loaded(stats: stats, streak: streak)),
+        );
+      },
     );
   }
 
   Future<void> _onLogCraving(LogCraving event, Emitter<HomeState> emit) async {
-    final result = await logCravingUseCase(wasSmoked: event.wasSmoked);
-    result.fold(
-      (failure) {
-        // Handle failure if needed
-      },
-      (_) {
-        add(const HomeEvent.loadStats());
-      },
-    );
+    await logCravingUseCase(wasSmoked: event.wasSmoked);
+    if (event.wasSmoked) {
+      await processCheckIn(wasSmoked: true);
+    }
+    add(const HomeEvent.loadStats());
   }
 
   Future<void> _onSaveDailyCheckIn(
     SaveDailyCheckIn event,
     Emitter<HomeState> emit,
   ) async {
-    final result = await saveDailyLog(
+    await saveDailyLog(
       SaveDailyLogParams(
         wasSmoked: event.wasSmoked,
         cravingLevel: event.cravingLevel,
         note: event.note,
       ),
     );
-
-    result.fold(
-      (failure) {
-        // Handle failure if needed
-      },
-      (_) {
-        add(const HomeEvent.loadStats());
-      },
-    );
+    await processCheckIn(wasSmoked: event.wasSmoked);
+    add(const HomeEvent.loadStats());
   }
 }
