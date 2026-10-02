@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';
+import '../../../../core/presentation/animations/animated_count_up.dart';
+import '../../../../core/presentation/animations/fade_scale_switcher.dart';
 import '../../../../core/presentation/widgets/sanctuary_card.dart';
 import '../../../../core/presentation/widgets/stat_item.dart';
 import '../../../../core/theme/app_theme.dart';
@@ -39,13 +41,16 @@ class StreakHeroCard extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      '${streak.currentCount}',
-                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                            color: AppTheme.primary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40,
-                          ),
+                    FadeScaleSwitcher(
+                      key: ValueKey('streak_${streak.currentCount}'),
+                      child: Text(
+                        '${streak.currentCount}',
+                        style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                              color: AppTheme.primary,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40,
+                            ),
+                      ),
                     ),
                     const SizedBox(width: 8),
                     const Text('🔥', style: TextStyle(fontSize: 28)),
@@ -70,16 +75,39 @@ class StreakHeroCard extends StatelessWidget {
               children: [
                 StatItem(
                   value: '\$${stats.moneySaved.toStringAsFixed(0)}',
+                  valueWidget: AnimatedCountUp(
+                    value: stats.moneySaved,
+                    prefix: '\$',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.onSurface,
+                        ),
+                  ),
                   label: l10n.moneySavedLabel,
                   icon: SolarIconsOutline.walletMoney,
                 ),
                 StatItem(
                   value: '${stats.cigarettesAvoided}',
+                  valueWidget: AnimatedCountUp(
+                    value: stats.cigarettesAvoided,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.onSurface,
+                        ),
+                  ),
                   label: l10n.cigsAvoidedLabel,
                   icon: SolarIconsOutline.maskHapply,
                 ),
                 StatItem(
                   value: '${stats.daysSmokeFree}d',
+                  valueWidget: AnimatedCountUp(
+                    value: stats.daysSmokeFree,
+                    suffix: 'd',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.onSurface,
+                        ),
+                  ),
                   label: l10n.timeSmokeFreeLabel,
                   icon: SolarIconsOutline.clockCircle,
                 ),

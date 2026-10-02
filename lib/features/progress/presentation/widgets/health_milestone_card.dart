@@ -42,12 +42,33 @@ class HealthMilestoneCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          LinearProgressIndicator(
-            value: progress,
-            backgroundColor: AppTheme.surfaceContainerLow,
-            valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.primary),
-            borderRadius: BorderRadius.circular(4),
-            minHeight: 8,
+          Builder(
+            builder: (context) {
+              final disableAnimations = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+              if (disableAnimations) {
+                return LinearProgressIndicator(
+                  value: progress,
+                  backgroundColor: AppTheme.surfaceContainerLow,
+                  valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.primary),
+                  borderRadius: BorderRadius.circular(4),
+                  minHeight: 8,
+                );
+              }
+              return TweenAnimationBuilder<double>(
+                tween: Tween<double>(begin: 0.0, end: progress),
+                duration: const Duration(milliseconds: 800),
+                curve: Curves.easeOutCubic,
+                builder: (context, animatedValue, _) {
+                  return LinearProgressIndicator(
+                    value: animatedValue,
+                    backgroundColor: AppTheme.surfaceContainerLow,
+                    valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.primary),
+                    borderRadius: BorderRadius.circular(4),
+                    minHeight: 8,
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
