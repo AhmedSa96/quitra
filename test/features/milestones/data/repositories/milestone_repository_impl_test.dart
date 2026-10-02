@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quitra/features/milestones/data/datasources/milestone_local_data_source.dart';
 import 'package:quitra/features/milestones/data/repositories/milestone_repository_impl.dart';
-import 'package:quitra/features/milestones/domain/entities/milestone.dart';
 
 class MockMilestoneLocalDataSource extends Mock implements MilestoneLocalDataSource {}
 

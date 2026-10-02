@@ -2,30 +2,55 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quitra/l10n/app_localizations.dart';
 import '../../../../core/di/injection.dart';
+import '../../../milestones/domain/entities/milestone.dart';
+import '../../../milestones/domain/repositories/milestone_repository.dart';
+import '../../../milestones/presentation/widgets/milestones_section.dart';
 import '../bloc/journey_bloc.dart';
 import '../bloc/journey_event.dart';
 import '../bloc/journey_state.dart';
 import '../widgets/journey_timeline_item.dart';
 
-class JourneyPage extends StatelessWidget {
+class JourneyPage extends StatefulWidget {
   const JourneyPage({super.key});
+
+  @override
+  State<JourneyPage> createState() => _JourneyPageState();
+}
+
+class _JourneyPageState extends State<JourneyPage> {
+  List<Milestone> _milestones = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMilestones();
+  }
+
+  Future<void> _loadMilestones() async {
+    final result = await getIt<MilestoneRepository>().getAllMilestones();
+    result.fold((_) {}, (milestones) {
+      if (mounted) setState(() => _milestones = milestones);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<JourneyBloc>()..add(const JourneyEvent.loadHistory()),
-      child: const _JourneyView(),
+      child: _JourneyView(milestones: _milestones),
     );
   }
 }
 
 class _JourneyView extends StatelessWidget {
-  const _JourneyView();
+  final List<Milestone> milestones;
+
+  const _JourneyView({required this.milestones});
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Padding(
@@ -37,16 +62,28 @@ class _JourneyView extends StatelessWidget {
               l10n.journeyTitle,
               style: Theme.of(context).textTheme.displayLarge,
             ),
-            const SizedBox(height: 32),
-            
+            const SizedBox(height: 24),
+
+            if (milestones.isNotEmpty) ...[
+              MilestonesSection(
+                title: 'Strength & Dedication',
+                milestones: milestones,
+                allowedCategories: const [
+                  MilestoneCategory.strength,
+                  MilestoneCategory.dedication,
+                ],
+              ),
+              const SizedBox(height: 32),
+            ],
+
             Text(
               l10n.journeyHistoryTitle,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 24),
-            
+
             BlocBuilder<JourneyBloc, JourneyState>(
               builder: (context, state) {
                 return state.when(
@@ -65,8 +102,8 @@ class _JourneyView extends StatelessWidget {
                           child: Text(
                             l10n.journeyStartMessage,
                             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
-                            ),
+                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                ),
                           ),
                         ),
                       );
@@ -87,7 +124,7 @@ class _JourneyView extends StatelessWidget {
                 );
               },
             ),
-            
+
             const SizedBox(height: 32),
           ],
         ),
