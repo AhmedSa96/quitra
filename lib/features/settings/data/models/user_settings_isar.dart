@@ -10,4 +10,6 @@ class UserSettingsIsar {
   bool dailyReminderEnabled = false;
   String? dailyReminderTime;
   bool milestoneCelebrationsEnabled = true;
+  int streakModeIndex = 0; // 0: strict, 1: forgiving
+  bool streakRemindersEnabled = true;
 }

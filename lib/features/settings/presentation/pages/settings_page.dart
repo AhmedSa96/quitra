@@ -11,6 +11,7 @@ import '../widgets/settings_version_footer.dart';
 import '../widgets/language_picker_dialog.dart';
 import '../widgets/quit_plan_dialog.dart';
 import '../widgets/cigarette_price_dialog.dart';
+import '../widgets/streak_mode_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -64,6 +65,11 @@ class SettingsPage extends StatelessWidget {
                     title: l10n.cigarettePriceLabel,
                     icon: SolarIconsOutline.walletMoney,
                     onTap: () => _showCigarettePriceDialog(context),
+                  ),
+                  SettingsTile(
+                    title: 'Streak Mode',
+                    icon: SolarIconsOutline.fire,
+                    onTap: () => _showStreakModeDialog(context),
                   ),
                 ],
               ),
@@ -125,6 +131,13 @@ class SettingsPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => const CigarettePriceDialog(),
+    );
+  }
+
+  void _showStreakModeDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const StreakModeDialog(),
     );
   }
 }

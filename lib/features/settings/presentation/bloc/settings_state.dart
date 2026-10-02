@@ -5,6 +5,8 @@ class SettingsState {
   final bool dailyReminderEnabled;
   final TimeOfDay? dailyReminderTime;
   final bool milestoneCelebrationsEnabled;
+  final StreakMode streakMode;
+  final bool streakRemindersEnabled;
   final bool isExporting;
   final Failure? exportFailure;
 
@@ -13,6 +15,8 @@ class SettingsState {
     this.dailyReminderEnabled = false,
     this.dailyReminderTime,
     this.milestoneCelebrationsEnabled = true,
+    this.streakMode = StreakMode.strict,
+    this.streakRemindersEnabled = true,
     this.isExporting = false,
     this.exportFailure,
   });
@@ -22,6 +26,8 @@ class SettingsState {
     bool? dailyReminderEnabled,
     TimeOfDay? dailyReminderTime,
     bool? milestoneCelebrationsEnabled,
+    StreakMode? streakMode,
+    bool? streakRemindersEnabled,
     bool? isExporting,
     Failure? exportFailure,
   }) {
@@ -30,6 +36,8 @@ class SettingsState {
       dailyReminderEnabled: dailyReminderEnabled ?? this.dailyReminderEnabled,
       dailyReminderTime: dailyReminderTime ?? this.dailyReminderTime,
       milestoneCelebrationsEnabled: milestoneCelebrationsEnabled ?? this.milestoneCelebrationsEnabled,
+      streakMode: streakMode ?? this.streakMode,
+      streakRemindersEnabled: streakRemindersEnabled ?? this.streakRemindersEnabled,
       isExporting: isExporting ?? this.isExporting,
       exportFailure: exportFailure,
     );

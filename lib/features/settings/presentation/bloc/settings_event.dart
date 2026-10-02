@@ -1,14 +1,30 @@
 part of 'settings_bloc.dart';
 
-abstract class SettingsEvent {}
+abstract class SettingsEvent {
+  const SettingsEvent();
+}
 
 class LocaleChanged extends SettingsEvent {
   final Locale locale;
 
-  LocaleChanged(this.locale);
+  const LocaleChanged(this.locale);
 }
 
-class LoadSettings extends SettingsEvent {}
+class LoadSettings extends SettingsEvent {
+  const LoadSettings();
+}
+
+class StreakModeChanged extends SettingsEvent {
+  final StreakMode mode;
+
+  const StreakModeChanged(this.mode);
+}
+
+class StreakRemindersToggled extends SettingsEvent {
+  final bool enabled;
+
+  const StreakRemindersToggled(this.enabled);
+}
 
 class DailyReminderToggled extends SettingsEvent {
   final bool enabled;

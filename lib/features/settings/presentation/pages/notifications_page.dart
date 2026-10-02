@@ -64,6 +64,15 @@ class NotificationsPage extends StatelessWidget {
                           context.read<SettingsBloc>().add(MilestoneCelebrationsToggled(value));
                         },
                       ),
+                      _buildSwitchTile(
+                        context: context,
+                        title: 'Streak At-Risk Alerts',
+                        subtitle: 'Evening alert if you haven\'t logged a check-in yet',
+                        value: state.streakRemindersEnabled,
+                        onChanged: (value) {
+                          context.read<SettingsBloc>().add(StreakRemindersToggled(value));
+                        },
+                      ),
                     ],
                   ),
                   const SizedBox(height: 32),

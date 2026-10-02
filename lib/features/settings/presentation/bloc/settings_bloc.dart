@@ -5,6 +5,8 @@ import 'package:quitra/core/di/injection.dart';
 import 'package:quitra/features/settings/data/models/user_settings_isar.dart';
 import 'package:quitra/features/settings/data/datasources/notification_local_data_source.dart';
 import 'package:quitra/features/settings/domain/usecases/export_data_use_case.dart';
+import 'package:quitra/features/streak/domain/entities/streak.dart';
+import 'package:quitra/features/streak/domain/usecases/update_streak_mode.dart';
 import 'package:quitra/core/error/failures.dart';
 
 part 'settings_event.dart';
@@ -22,6 +24,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         super(const SettingsState()) {
     on<LocaleChanged>(_onLocaleChanged);
     on<LoadSettings>(_onLoadSettings);
+    on<StreakModeChanged>(_onStreakModeChanged);
+    on<StreakRemindersToggled>(_onStreakRemindersToggled);
     on<DailyReminderToggled>(_onDailyReminderToggled);
     on<DailyReminderTimeChanged>(_onDailyReminderTimeChanged);
     on<MilestoneCelebrationsToggled>(_onMilestoneCelebrationsToggled);
@@ -55,13 +59,60 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         minute: int.parse(parts[1]),
       );
     }
+
+    final mode = settings != null
+        ? StreakMode.values[settings.streakModeIndex.clamp(0, StreakMode.values.length - 1)]
+        : StreakMode.strict;
     
     emit(SettingsState(
       locale: locale,
       dailyReminderEnabled: settings?.dailyReminderEnabled ?? false,
       dailyReminderTime: reminderTime,
       milestoneCelebrationsEnabled: settings?.milestoneCelebrationsEnabled ?? true,
+      streakMode: mode,
+      streakRemindersEnabled: settings?.streakRemindersEnabled ?? true,
     ));
+  }
+
+  Future<void> _onStreakModeChanged(StreakModeChanged event, Emitter<SettingsState> emit) async {
+    final isar = getIt<Isar>();
+    final existing = await isar.userSettingsIsars.get(0);
+    final settings = UserSettingsIsar()
+      ..id = 0
+      ..locale = existing?.locale
+      ..dailyReminderEnabled = existing?.dailyReminderEnabled ?? false
+      ..dailyReminderTime = existing?.dailyReminderTime
+      ..milestoneCelebrationsEnabled = existing?.milestoneCelebrationsEnabled ?? true
+      ..streakModeIndex = event.mode.index
+      ..streakRemindersEnabled = existing?.streakRemindersEnabled ?? true;
+
+    await isar.writeTxn(() async {
+      await isar.userSettingsIsars.put(settings);
+    });
+
+    final updateStreakMode = getIt<UpdateStreakMode>();
+    await updateStreakMode(event.mode);
+
+    emit(state.copyWith(streakMode: event.mode));
+  }
+
+  Future<void> _onStreakRemindersToggled(StreakRemindersToggled event, Emitter<SettingsState> emit) async {
+    final isar = getIt<Isar>();
+    final existing = await isar.userSettingsIsars.get(0);
+    final settings = UserSettingsIsar()
+      ..id = 0
+      ..locale = existing?.locale
+      ..dailyReminderEnabled = existing?.dailyReminderEnabled ?? false
+      ..dailyReminderTime = existing?.dailyReminderTime
+      ..milestoneCelebrationsEnabled = existing?.milestoneCelebrationsEnabled ?? true
+      ..streakModeIndex = existing?.streakModeIndex ?? 0
+      ..streakRemindersEnabled = event.enabled;
+
+    await isar.writeTxn(() async {
+      await isar.userSettingsIsars.put(settings);
+    });
+
+    emit(state.copyWith(streakRemindersEnabled: event.enabled));
   }
 
   Future<void> _onLocaleChanged(LocaleChanged event, Emitter<SettingsState> emit) async {
@@ -72,18 +123,15 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       ..locale = event.locale.toString()
       ..dailyReminderEnabled = existing?.dailyReminderEnabled ?? false
       ..dailyReminderTime = existing?.dailyReminderTime
-      ..milestoneCelebrationsEnabled = existing?.milestoneCelebrationsEnabled ?? true;
+      ..milestoneCelebrationsEnabled = existing?.milestoneCelebrationsEnabled ?? true
+      ..streakModeIndex = existing?.streakModeIndex ?? 0
+      ..streakRemindersEnabled = existing?.streakRemindersEnabled ?? true;
     
     await isar.writeTxn(() async {
       await isar.userSettingsIsars.put(settings);
     });
     
-    emit(SettingsState(
-      locale: event.locale,
-      dailyReminderEnabled: settings.dailyReminderEnabled,
-      dailyReminderTime: state.dailyReminderTime,
-      milestoneCelebrationsEnabled: settings.milestoneCelebrationsEnabled,
-    ));
+    emit(state.copyWith(locale: event.locale));
   }
 
   Future<void> _onDailyReminderToggled(DailyReminderToggled event, Emitter<SettingsState> emit) async {
@@ -95,7 +143,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       ..locale = existing?.locale
       ..dailyReminderEnabled = event.enabled
       ..dailyReminderTime = existing?.dailyReminderTime
-      ..milestoneCelebrationsEnabled = existing?.milestoneCelebrationsEnabled ?? true;
+      ..milestoneCelebrationsEnabled = existing?.milestoneCelebrationsEnabled ?? true
+      ..streakModeIndex = existing?.streakModeIndex ?? 0
+      ..streakRemindersEnabled = existing?.streakRemindersEnabled ?? true;
     
     await isar.writeTxn(() async {
       await isar.userSettingsIsars.put(settings);
@@ -111,12 +161,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       await _notificationDataSource.cancelDailyReminder();
     }
     
-    emit(SettingsState(
-      locale: state.locale,
-      dailyReminderEnabled: event.enabled,
-      dailyReminderTime: state.dailyReminderTime,
-      milestoneCelebrationsEnabled: settings.milestoneCelebrationsEnabled,
-    ));
+    emit(state.copyWith(dailyReminderEnabled: event.enabled));
   }
 
   Future<void> _onDailyReminderTimeChanged(DailyReminderTimeChanged event, Emitter<SettingsState> emit) async {
@@ -130,7 +175,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       ..locale = existing?.locale
       ..dailyReminderEnabled = existing?.dailyReminderEnabled ?? false
       ..dailyReminderTime = timeString
-      ..milestoneCelebrationsEnabled = existing?.milestoneCelebrationsEnabled ?? true;
+      ..milestoneCelebrationsEnabled = existing?.milestoneCelebrationsEnabled ?? true
+      ..streakModeIndex = existing?.streakModeIndex ?? 0
+      ..streakRemindersEnabled = existing?.streakRemindersEnabled ?? true;
     
     await isar.writeTxn(() async {
       await isar.userSettingsIsars.put(settings);
@@ -144,12 +191,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       );
     }
     
-    emit(SettingsState(
-      locale: state.locale,
-      dailyReminderEnabled: settings.dailyReminderEnabled,
-      dailyReminderTime: event.time,
-      milestoneCelebrationsEnabled: settings.milestoneCelebrationsEnabled,
-    ));
+    emit(state.copyWith(dailyReminderTime: event.time));
   }
 
   Future<void> _onMilestoneCelebrationsToggled(MilestoneCelebrationsToggled event, Emitter<SettingsState> emit) async {
@@ -161,17 +203,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       ..locale = existing?.locale
       ..dailyReminderEnabled = existing?.dailyReminderEnabled ?? false
       ..dailyReminderTime = existing?.dailyReminderTime
-      ..milestoneCelebrationsEnabled = event.enabled;
+      ..milestoneCelebrationsEnabled = event.enabled
+      ..streakModeIndex = existing?.streakModeIndex ?? 0
+      ..streakRemindersEnabled = existing?.streakRemindersEnabled ?? true;
     
     await isar.writeTxn(() async {
       await isar.userSettingsIsars.put(settings);
     });
     
-    emit(SettingsState(
-      locale: state.locale,
-      dailyReminderEnabled: settings.dailyReminderEnabled,
-      dailyReminderTime: state.dailyReminderTime,
-      milestoneCelebrationsEnabled: event.enabled,
-    ));
+    emit(state.copyWith(milestoneCelebrationsEnabled: event.enabled));
   }
 }

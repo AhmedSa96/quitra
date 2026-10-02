@@ -36,6 +36,16 @@ const UserSettingsIsarSchema = CollectionSchema(
       id: 3,
       name: r'milestoneCelebrationsEnabled',
       type: IsarType.bool,
+    ),
+    r'streakModeIndex': PropertySchema(
+      id: 4,
+      name: r'streakModeIndex',
+      type: IsarType.long,
+    ),
+    r'streakRemindersEnabled': PropertySchema(
+      id: 5,
+      name: r'streakRemindersEnabled',
+      type: IsarType.bool,
     )
   },
   estimateSize: _userSettingsIsarEstimateSize,
@@ -83,6 +93,8 @@ void _userSettingsIsarSerialize(
   writer.writeString(offsets[1], object.dailyReminderTime);
   writer.writeString(offsets[2], object.locale);
   writer.writeBool(offsets[3], object.milestoneCelebrationsEnabled);
+  writer.writeLong(offsets[4], object.streakModeIndex);
+  writer.writeBool(offsets[5], object.streakRemindersEnabled);
 }
 
 UserSettingsIsar _userSettingsIsarDeserialize(
@@ -97,6 +109,8 @@ UserSettingsIsar _userSettingsIsarDeserialize(
   object.id = id;
   object.locale = reader.readStringOrNull(offsets[2]);
   object.milestoneCelebrationsEnabled = reader.readBool(offsets[3]);
+  object.streakModeIndex = reader.readLong(offsets[4]);
+  object.streakRemindersEnabled = reader.readBool(offsets[5]);
   return object;
 }
 
@@ -114,6 +128,10 @@ P _userSettingsIsarDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
+      return (reader.readBool(offset)) as P;
+    case 4:
+      return (reader.readLong(offset)) as P;
+    case 5:
       return (reader.readBool(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -597,6 +615,72 @@ extension UserSettingsIsarQueryFilter
       ));
     });
   }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      streakModeIndexEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'streakModeIndex',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      streakModeIndexGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'streakModeIndex',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      streakModeIndexLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'streakModeIndex',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      streakModeIndexBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'streakModeIndex',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterFilterCondition>
+      streakRemindersEnabledEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'streakRemindersEnabled',
+        value: value,
+      ));
+    });
+  }
 }
 
 extension UserSettingsIsarQueryObject
@@ -660,6 +744,34 @@ extension UserSettingsIsarQuerySortBy
       sortByMilestoneCelebrationsEnabledDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'milestoneCelebrationsEnabled', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByStreakModeIndex() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streakModeIndex', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByStreakModeIndexDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streakModeIndex', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByStreakRemindersEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streakRemindersEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      sortByStreakRemindersEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streakRemindersEnabled', Sort.desc);
     });
   }
 }
@@ -734,6 +846,34 @@ extension UserSettingsIsarQuerySortThenBy
       return query.addSortBy(r'milestoneCelebrationsEnabled', Sort.desc);
     });
   }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByStreakModeIndex() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streakModeIndex', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByStreakModeIndexDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streakModeIndex', Sort.desc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByStreakRemindersEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streakRemindersEnabled', Sort.asc);
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QAfterSortBy>
+      thenByStreakRemindersEnabledDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streakRemindersEnabled', Sort.desc);
+    });
+  }
 }
 
 extension UserSettingsIsarQueryWhereDistinct
@@ -764,6 +904,20 @@ extension UserSettingsIsarQueryWhereDistinct
       distinctByMilestoneCelebrationsEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'milestoneCelebrationsEnabled');
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QDistinct>
+      distinctByStreakModeIndex() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'streakModeIndex');
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, UserSettingsIsar, QDistinct>
+      distinctByStreakRemindersEnabled() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'streakRemindersEnabled');
     });
   }
 }
@@ -800,6 +954,20 @@ extension UserSettingsIsarQueryProperty
       milestoneCelebrationsEnabledProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'milestoneCelebrationsEnabled');
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, int, QQueryOperations>
+      streakModeIndexProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'streakModeIndex');
+    });
+  }
+
+  QueryBuilder<UserSettingsIsar, bool, QQueryOperations>
+      streakRemindersEnabledProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'streakRemindersEnabled');
     });
   }
 }
