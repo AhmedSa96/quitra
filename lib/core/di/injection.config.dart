@@ -11,7 +11,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:isar/isar.dart' as _i3;
-import 'package:quitra/core/di/injection.dart' as _i40;
+import 'package:quitra/core/di/injection.dart' as _i41;
 import 'package:quitra/features/home/data/datasources/home_local_data_source.dart'
     as _i23;
 import 'package:quitra/features/home/data/repositories/home_repository_impl.dart'
@@ -19,22 +19,22 @@ import 'package:quitra/features/home/data/repositories/home_repository_impl.dart
 import 'package:quitra/features/home/domain/repositories/home_repository.dart'
     as _i24;
 import 'package:quitra/features/home/domain/usecases/get_home_stats_usecase.dart'
-    as _i36;
+    as _i37;
 import 'package:quitra/features/home/domain/usecases/log_craving_usecase.dart'
     as _i30;
 import 'package:quitra/features/home/domain/usecases/save_daily_log.dart'
-    as _i34;
-import 'package:quitra/features/home/presentation/bloc/home_bloc.dart' as _i38;
+    as _i35;
+import 'package:quitra/features/home/presentation/bloc/home_bloc.dart' as _i39;
 import 'package:quitra/features/journey/data/repositories/journey_repository_impl.dart'
     as _i29;
 import 'package:quitra/features/journey/domain/repositories/journey_repository.dart'
     as _i28;
 import 'package:quitra/features/journey/domain/usecases/get_journey_history.dart'
-    as _i37;
+    as _i38;
 import 'package:quitra/features/journey/domain/usecases/update_journey_day.dart'
-    as _i35;
+    as _i36;
 import 'package:quitra/features/journey/presentation/bloc/journey_bloc.dart'
-    as _i39;
+    as _i40;
 import 'package:quitra/features/onboarding/data/datasources/onboarding_local_data_source.dart'
     as _i5;
 import 'package:quitra/features/onboarding/data/repositories/onboarding_repository_impl.dart'
@@ -54,7 +54,7 @@ import 'package:quitra/features/progress/domain/repositories/progress_repository
 import 'package:quitra/features/progress/domain/usecases/get_progress_stats.dart'
     as _i21;
 import 'package:quitra/features/progress/presentation/bloc/progress_bloc.dart'
-    as _i32;
+    as _i33;
 import 'package:quitra/features/settings/data/datasources/notification_local_data_source.dart'
     as _i4;
 import 'package:quitra/features/settings/data/repositories/data_portability_repository_impl.dart'
@@ -76,8 +76,10 @@ import 'package:quitra/features/streak/domain/repositories/streak_repository.dar
 import 'package:quitra/features/streak/domain/usecases/get_streak.dart' as _i22;
 import 'package:quitra/features/streak/domain/usecases/increment_streak.dart'
     as _i27;
+import 'package:quitra/features/streak/domain/usecases/process_check_in.dart'
+    as _i32;
 import 'package:quitra/features/streak/domain/usecases/reset_streak.dart'
-    as _i33;
+    as _i34;
 import 'package:quitra/features/streak/domain/usecases/update_streak_mode.dart'
     as _i15;
 import 'package:quitra/features/streak/domain/usecases/use_forgiveness_token.dart'
@@ -145,31 +147,33 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i17.CompleteOnboardingUseCase>(),
           gh<_i26.ImportDataUseCase>(),
         ));
-    gh.factory<_i32.ProgressBloc>(
-        () => _i32.ProgressBloc(gh<_i21.GetProgressStats>()));
-    gh.lazySingleton<_i33.ResetStreak>(
-        () => _i33.ResetStreak(gh<_i13.StreakRepository>()));
-    gh.lazySingleton<_i34.SaveDailyLog>(
-        () => _i34.SaveDailyLog(gh<_i24.HomeRepository>()));
-    gh.lazySingleton<_i35.UpdateJourneyDay>(
-        () => _i35.UpdateJourneyDay(gh<_i28.JourneyRepository>()));
-    gh.factory<_i36.GetHomeStatsUseCase>(
-        () => _i36.GetHomeStatsUseCase(gh<_i24.HomeRepository>()));
-    gh.lazySingleton<_i37.GetJourneyHistory>(
-        () => _i37.GetJourneyHistory(gh<_i28.JourneyRepository>()));
-    gh.factory<_i38.HomeBloc>(() => _i38.HomeBloc(
-          gh<_i36.GetHomeStatsUseCase>(),
+    gh.lazySingleton<_i32.ProcessCheckIn>(
+        () => _i32.ProcessCheckIn(gh<_i13.StreakRepository>()));
+    gh.factory<_i33.ProgressBloc>(
+        () => _i33.ProgressBloc(gh<_i21.GetProgressStats>()));
+    gh.lazySingleton<_i34.ResetStreak>(
+        () => _i34.ResetStreak(gh<_i13.StreakRepository>()));
+    gh.lazySingleton<_i35.SaveDailyLog>(
+        () => _i35.SaveDailyLog(gh<_i24.HomeRepository>()));
+    gh.lazySingleton<_i36.UpdateJourneyDay>(
+        () => _i36.UpdateJourneyDay(gh<_i28.JourneyRepository>()));
+    gh.factory<_i37.GetHomeStatsUseCase>(
+        () => _i37.GetHomeStatsUseCase(gh<_i24.HomeRepository>()));
+    gh.lazySingleton<_i38.GetJourneyHistory>(
+        () => _i38.GetJourneyHistory(gh<_i28.JourneyRepository>()));
+    gh.factory<_i39.HomeBloc>(() => _i39.HomeBloc(
+          gh<_i37.GetHomeStatsUseCase>(),
           gh<_i30.LogCravingUseCase>(),
-          gh<_i34.SaveDailyLog>(),
+          gh<_i35.SaveDailyLog>(),
         ));
-    gh.factory<_i39.JourneyBloc>(() => _i39.JourneyBloc(
-          gh<_i37.GetJourneyHistory>(),
-          gh<_i35.UpdateJourneyDay>(),
+    gh.factory<_i40.JourneyBloc>(() => _i40.JourneyBloc(
+          gh<_i38.GetJourneyHistory>(),
+          gh<_i36.UpdateJourneyDay>(),
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i40.RegisterModule {}
+class _$RegisterModule extends _i41.RegisterModule {}
 
-class _$RegisterSettingsModule extends _i40.RegisterSettingsModule {}
+class _$RegisterSettingsModule extends _i41.RegisterSettingsModule {}
