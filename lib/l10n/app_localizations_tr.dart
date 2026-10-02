@@ -412,4 +412,33 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get share => 'Yolculuğu Paylaş';
+
+  @override
+  String get thisWeekTitle => 'This Week';
+
+  @override
+  String get yourStreakLabel => 'Your Streak';
+
+  @override
+  String get streakAtRiskTitle => 'Keep your streak going.';
+
+  @override
+  String get streakAtRiskBody => 'Take a minute to log your day in Quitra.';
+
+  @override
+  String get streakModeLabel => 'Streak Mode';
+
+  @override
+  String get forgivingModeLabel => 'Forgiving Mode';
+
+  @override
+  String get strictModeLabel => 'Strict Mode';
+
+  @override
+  String get forgivingModeDesc =>
+      'One grace pass per week so one difficult moment doesn\'t reset all your hard work.';
+
+  @override
+  String get strictModeDesc =>
+      'Streak resets immediately to 0 on any setback or missed check-in.';
 }

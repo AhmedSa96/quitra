@@ -405,4 +405,33 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get share => 'مشاركة الرحلة';
+
+  @override
+  String get thisWeekTitle => 'هذا الأسبوع';
+
+  @override
+  String get yourStreakLabel => 'سلسلتك';
+
+  @override
+  String get streakAtRiskTitle => 'حافظ على سلسلتك مستمرة.';
+
+  @override
+  String get streakAtRiskBody => 'خذ دقيقة لتسجيل يومك في Quitra.';
+
+  @override
+  String get streakModeLabel => 'وضع السلسلة';
+
+  @override
+  String get forgivingModeLabel => 'الوضع المرن';
+
+  @override
+  String get strictModeLabel => 'الوضع الصارم';
+
+  @override
+  String get forgivingModeDesc =>
+      'فرصة سماح واحدة أسبوعياً حتى لا تفقد تقدمك بعد لحظة صعبة واحدة.';
+
+  @override
+  String get strictModeDesc =>
+      'تتم إعادة ضبط السلسلة إلى الصفر فوراً عند أي انتكاسة.';
 }

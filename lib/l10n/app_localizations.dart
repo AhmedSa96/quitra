@@ -861,6 +861,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share Journey'**
   String get share;
+
+  /// No description provided for @thisWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get thisWeekTitle;
+
+  /// No description provided for @yourStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Streak'**
+  String get yourStreakLabel;
+
+  /// No description provided for @streakAtRiskTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your streak going.'**
+  String get streakAtRiskTitle;
+
+  /// No description provided for @streakAtRiskBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a minute to log your day in Quitra.'**
+  String get streakAtRiskBody;
+
+  /// No description provided for @streakModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak Mode'**
+  String get streakModeLabel;
+
+  /// No description provided for @forgivingModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgiving Mode'**
+  String get forgivingModeLabel;
+
+  /// No description provided for @strictModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Strict Mode'**
+  String get strictModeLabel;
+
+  /// No description provided for @forgivingModeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'One grace pass per week so one difficult moment doesn\'t reset all your hard work.'**
+  String get forgivingModeDesc;
+
+  /// No description provided for @strictModeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak resets immediately to 0 on any setback or missed check-in.'**
+  String get strictModeDesc;
 }
 
 class _AppLocalizationsDelegate

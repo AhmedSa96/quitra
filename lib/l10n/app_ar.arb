@@ -126,5 +126,14 @@
   "iHadOneCigarette": "دخنت سيجارة واحدة",
   "watchAdToRecord": "شاهد إعلاناً للتسجيل",
   "markAsSmoked": "علّم كمدخن",
-  "somethingWentWrong": "حدث خطأ ما"
+  "somethingWentWrong": "حدث خطأ ما",
+  "thisWeekTitle": "هذا الأسبوع",
+  "yourStreakLabel": "سلسلتك",
+  "streakAtRiskTitle": "حافظ على سلسلتك مستمرة.",
+  "streakAtRiskBody": "خذ دقيقة لتسجيل يومك في Quitra.",
+  "streakModeLabel": "وضع السلسلة",
+  "forgivingModeLabel": "الوضع المرن",
+  "strictModeLabel": "الوضع الصارم",
+  "forgivingModeDesc": "فرصة سماح واحدة أسبوعياً حتى لا تفقد تقدمك بعد لحظة صعبة واحدة.",
+  "strictModeDesc": "تتم إعادة ضبط السلسلة إلى الصفر فوراً عند أي انتكاسة."
 }

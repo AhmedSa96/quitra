@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';
+import '../../../../l10n/app_localizations.dart';
 import 'health_milestone_card.dart';
 
 class HealthMilestonesSection extends StatelessWidget {
@@ -22,11 +23,13 @@ class HealthMilestonesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Health Milestones',
+          l10n?.healthMilestonesTitle ?? 'Health Milestones',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),

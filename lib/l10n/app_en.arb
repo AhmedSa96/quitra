@@ -185,5 +185,14 @@
   "@somethingWentWrong": {
     "description": "Generic error message"
   },
-  "share": "Share Journey"
+  "share": "Share Journey",
+  "thisWeekTitle": "This Week",
+  "yourStreakLabel": "Your Streak",
+  "streakAtRiskTitle": "Keep your streak going.",
+  "streakAtRiskBody": "Take a minute to log your day in Quitra.",
+  "streakModeLabel": "Streak Mode",
+  "forgivingModeLabel": "Forgiving Mode",
+  "strictModeLabel": "Strict Mode",
+  "forgivingModeDesc": "One grace pass per week so one difficult moment doesn't reset all your hard work.",
+  "strictModeDesc": "Streak resets immediately to 0 on any setback or missed check-in."
 }

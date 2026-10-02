@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solar_icons/solar_icons.dart';
 import 'package:intl/intl.dart';
+import '../../../../l10n/app_localizations.dart';
 import 'stat_card.dart';
 
 class DetailedInsightsSection extends StatelessWidget {
@@ -19,6 +20,7 @@ class DetailedInsightsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final currencyFormat = NumberFormat.currency(symbol: '\$');
     final lifeRegainedDays = (lifeRegainedMinutes / 1440).floor();
     final streakText = currentStreak == 1 ? '1 day' : '$currentStreak days';
@@ -27,7 +29,7 @@ class DetailedInsightsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Detailed Insights',
+          l10n?.detailedInsights ?? 'Detailed Insights',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -42,22 +44,22 @@ class DetailedInsightsSection extends StatelessWidget {
           childAspectRatio: 1.3,
           children: [
             StatCard(
-              label: 'Money Saved',
+              label: l10n?.moneySavedLabel ?? 'Money Saved',
               value: currencyFormat.format(moneySaved),
               icon: SolarIconsOutline.cardTransfer,
             ),
             StatCard(
-              label: 'Cigarettes Avoided',
+              label: l10n?.cigsAvoidedLabel ?? 'Cigarettes Avoided',
               value: NumberFormat.decimalPattern().format(cigarettesAvoided),
               icon: SolarIconsOutline.maskHapply,
             ),
             StatCard(
-              label: 'Life Regained',
+              label: l10n?.lifeRegainedLabel ?? 'Life Regained',
               value: lifeRegainedDays > 0 ? '${lifeRegainedDays}d' : '<1d',
               icon: SolarIconsOutline.health,
             ),
             StatCard(
-              label: 'Clean Streak',
+              label: l10n?.yourStreakLabel ?? 'Your Streak',
               value: streakText,
               icon: SolarIconsOutline.star,
             ),
