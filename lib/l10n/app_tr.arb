@@ -155,5 +155,14 @@
   "saveJournal": "Günlüğü Kaydet",
   "detailedInsights": "Detaylı İçgörüler",
   "lifeRegainedLabel": "Kazanılan Hayat",
-  "cleanStreakLabel": "Temiz Seri"
+  "cleanStreakLabel": "Temiz Seri",
+  "thisWeekTitle": "Bu Hafta",
+  "yourStreakLabel": "Seriniz",
+  "streakAtRiskTitle": "Serinizi sürdürün.",
+  "streakAtRiskBody": "Gününüzü Quitra'ya kaydetmek için bir dakika ayırın.",
+  "streakModeLabel": "Seri Modu",
+  "forgivingModeLabel": "Esnek Mod",
+  "strictModeLabel": "Sıkı Mod",
+  "forgivingModeDesc": "Zor bir anın tüm emeğinizi sıfırlamaması için haftada bir hak.",
+  "strictModeDesc": "Herhangi bir gerilemede veya kaçırılan kayıtta seri hemen sıfırlanır."
 }

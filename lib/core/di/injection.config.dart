@@ -184,6 +184,7 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i40.SaveDailyLog>(),
           gh<_i27.GetStreak>(),
           gh<_i37.ProcessCheckIn>(),
+          gh<_i21.CheckMilestones>(),
         ));
     gh.factory<_i45.JourneyBloc>(() => _i45.JourneyBloc(
           gh<_i43.GetJourneyHistory>(),

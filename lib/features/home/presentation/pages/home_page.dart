@@ -10,6 +10,7 @@ import '../widgets/daily_check_in_card.dart';
 import '../widgets/home_action_section.dart';
 import '../widgets/home_header.dart';
 import '../widgets/streak_hero_card.dart';
+import '../../../milestones/presentation/widgets/milestone_unlock_sheet.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -53,6 +54,9 @@ class _HomeViewState extends State<_HomeView> {
       listener: (context, state) {
         if (state is Loaded) {
           _loadJourneyHistory();
+          if (state.newlyUnlockedMilestone != null) {
+            MilestoneUnlockSheet.show(context, state.newlyUnlockedMilestone!);
+          }
         }
       },
       builder: (context, state) {

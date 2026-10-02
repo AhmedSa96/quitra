@@ -20,7 +20,9 @@ mixin _$HomeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserStats stats, Streak streak) loaded,
+    required TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)
+        loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +30,9 @@ mixin _$HomeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserStats stats, Streak streak)? loaded,
+    TResult? Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +40,9 @@ mixin _$HomeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserStats stats, Streak streak)? loaded,
+    TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -125,7 +131,9 @@ class _$InitialImpl implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserStats stats, Streak streak) loaded,
+    required TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -136,7 +144,9 @@ class _$InitialImpl implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserStats stats, Streak streak)? loaded,
+    TResult? Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -147,7 +157,9 @@ class _$InitialImpl implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserStats stats, Streak streak)? loaded,
+    TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -239,7 +251,9 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserStats stats, Streak streak) loaded,
+    required TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -250,7 +264,9 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserStats stats, Streak streak)? loaded,
+    TResult? Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -261,7 +277,9 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserStats stats, Streak streak)? loaded,
+    TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -319,10 +337,12 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserStats stats, Streak streak});
+  $Res call(
+      {UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone});
 
   $UserStatsCopyWith<$Res> get stats;
   $StreakCopyWith<$Res> get streak;
+  $MilestoneCopyWith<$Res>? get newlyUnlockedMilestone;
 }
 
 /// @nodoc
@@ -338,6 +358,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? stats = null,
     Object? streak = null,
+    Object? newlyUnlockedMilestone = freezed,
   }) {
     return _then(_$LoadedImpl(
       stats: null == stats
@@ -348,6 +369,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.streak
           : streak // ignore: cast_nullable_to_non_nullable
               as Streak,
+      newlyUnlockedMilestone: freezed == newlyUnlockedMilestone
+          ? _value.newlyUnlockedMilestone
+          : newlyUnlockedMilestone // ignore: cast_nullable_to_non_nullable
+              as Milestone?,
     ));
   }
 
@@ -366,21 +391,36 @@ class __$$LoadedImplCopyWithImpl<$Res>
       return _then(_value.copyWith(streak: value));
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MilestoneCopyWith<$Res>? get newlyUnlockedMilestone {
+    if (_value.newlyUnlockedMilestone == null) {
+      return null;
+    }
+
+    return $MilestoneCopyWith<$Res>(_value.newlyUnlockedMilestone!, (value) {
+      return _then(_value.copyWith(newlyUnlockedMilestone: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements Loaded {
-  const _$LoadedImpl({required this.stats, required this.streak});
+  const _$LoadedImpl(
+      {required this.stats, required this.streak, this.newlyUnlockedMilestone});
 
   @override
   final UserStats stats;
   @override
   final Streak streak;
+  @override
+  final Milestone? newlyUnlockedMilestone;
 
   @override
   String toString() {
-    return 'HomeState.loaded(stats: $stats, streak: $streak)';
+    return 'HomeState.loaded(stats: $stats, streak: $streak, newlyUnlockedMilestone: $newlyUnlockedMilestone)';
   }
 
   @override
@@ -389,11 +429,14 @@ class _$LoadedImpl implements Loaded {
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
             (identical(other.stats, stats) || other.stats == stats) &&
-            (identical(other.streak, streak) || other.streak == streak));
+            (identical(other.streak, streak) || other.streak == streak) &&
+            (identical(other.newlyUnlockedMilestone, newlyUnlockedMilestone) ||
+                other.newlyUnlockedMilestone == newlyUnlockedMilestone));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stats, streak);
+  int get hashCode =>
+      Object.hash(runtimeType, stats, streak, newlyUnlockedMilestone);
 
   @JsonKey(ignore: true)
   @override
@@ -406,10 +449,12 @@ class _$LoadedImpl implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserStats stats, Streak streak) loaded,
+    required TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)
+        loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(stats, streak);
+    return loaded(stats, streak, newlyUnlockedMilestone);
   }
 
   @override
@@ -417,10 +462,12 @@ class _$LoadedImpl implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserStats stats, Streak streak)? loaded,
+    TResult? Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(stats, streak);
+    return loaded?.call(stats, streak, newlyUnlockedMilestone);
   }
 
   @override
@@ -428,12 +475,14 @@ class _$LoadedImpl implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserStats stats, Streak streak)? loaded,
+    TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(stats, streak);
+      return loaded(stats, streak, newlyUnlockedMilestone);
     }
     return orElse();
   }
@@ -479,10 +528,12 @@ class _$LoadedImpl implements Loaded {
 abstract class Loaded implements HomeState {
   const factory Loaded(
       {required final UserStats stats,
-      required final Streak streak}) = _$LoadedImpl;
+      required final Streak streak,
+      final Milestone? newlyUnlockedMilestone}) = _$LoadedImpl;
 
   UserStats get stats;
   Streak get streak;
+  Milestone? get newlyUnlockedMilestone;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -554,7 +605,9 @@ class _$ErrorImpl implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserStats stats, Streak streak) loaded,
+    required TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -565,7 +618,9 @@ class _$ErrorImpl implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserStats stats, Streak streak)? loaded,
+    TResult? Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -576,7 +631,9 @@ class _$ErrorImpl implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserStats stats, Streak streak)? loaded,
+    TResult Function(
+            UserStats stats, Streak streak, Milestone? newlyUnlockedMilestone)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

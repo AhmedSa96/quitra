@@ -12,11 +12,14 @@ import 'package:quitra/features/streak/domain/entities/streak.dart';
 import 'package:quitra/features/streak/domain/usecases/get_streak.dart';
 import 'package:quitra/features/streak/domain/usecases/process_check_in.dart';
 
+import 'package:quitra/features/milestones/domain/usecases/check_milestones.dart';
+
 class MockGetHomeStatsUseCase extends Mock implements GetHomeStatsUseCase {}
 class MockLogCravingUseCase extends Mock implements LogCravingUseCase {}
 class MockSaveDailyLog extends Mock implements SaveDailyLog {}
 class MockGetStreak extends Mock implements GetStreak {}
 class MockProcessCheckIn extends Mock implements ProcessCheckIn {}
+class MockCheckMilestones extends Mock implements CheckMilestones {}
 
 void main() {
   late HomeBloc bloc;
@@ -25,6 +28,7 @@ void main() {
   late MockSaveDailyLog mockSaveDailyLog;
   late MockGetStreak mockGetStreak;
   late MockProcessCheckIn mockProcessCheckIn;
+  late MockCheckMilestones mockCheckMilestones;
 
   const mockStats = UserStats(
     daysSmokeFree: 10,
@@ -46,6 +50,7 @@ void main() {
     mockSaveDailyLog = MockSaveDailyLog();
     mockGetStreak = MockGetStreak();
     mockProcessCheckIn = MockProcessCheckIn();
+    mockCheckMilestones = MockCheckMilestones();
 
     bloc = HomeBloc(
       mockStatsUseCase,
@@ -53,6 +58,7 @@ void main() {
       mockSaveDailyLog,
       mockGetStreak,
       mockProcessCheckIn,
+      mockCheckMilestones,
     );
   });
 
