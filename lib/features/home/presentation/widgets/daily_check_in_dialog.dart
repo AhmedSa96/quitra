@@ -40,7 +40,7 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
     }
     final homeState = context.read<HomeBloc>().state;
     homeState.maybeWhen(
-      loaded: (_, __, ___, todayStatus) {
+      loaded: (stats, streak, journeyHistory, newlyUnlockedMilestone, todayStatus) {
         if (todayStatus != null && todayStatus.hasCheckedIn) {
           _wasSmoked = todayStatus.wasSmoked;
           _cravingLevel = todayStatus.cravingLevel.toDouble().clamp(1.0, 5.0);
@@ -78,7 +78,7 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
     final homeState = context.watch<HomeBloc>().state;
     final notesCount = homeState.maybeWhen(
-      loaded: (_, __, ___, todayStatus) => todayStatus?.notesCount ?? 0,
+      loaded: (stats, streak, journeyHistory, newlyUnlockedMilestone, todayStatus) => todayStatus?.notesCount ?? 0,
       orElse: () => 0,
     );
 

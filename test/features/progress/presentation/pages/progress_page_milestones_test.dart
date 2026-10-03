@@ -6,6 +6,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:quitra/features/milestones/data/milestone_definitions.dart';
 import 'package:quitra/features/milestones/domain/repositories/milestone_repository.dart';
 import 'package:quitra/features/milestones/presentation/widgets/milestones_section.dart';
+import 'package:quitra/features/progress/domain/entities/progress_stats.dart';
 import 'package:quitra/features/progress/presentation/bloc/progress_bloc.dart';
 import 'package:quitra/features/progress/presentation/bloc/progress_state.dart';
 import 'package:quitra/features/progress/presentation/pages/progress_page.dart';
@@ -33,9 +34,22 @@ void main() {
     getIt.registerSingleton<MilestoneRepository>(mockMilestoneRepo);
     getIt.registerFactory<ProgressBloc>(() => mockProgressBloc);
 
+    const mockStats = ProgressStats(
+      daysSmokeFree: 1,
+      moneySaved: 10,
+      cigarettesAvoided: 5,
+      lifeRegainedMinutes: 55,
+      currentStreak: 1,
+      heartRateProgress: 0.1,
+      circulationProgress: 0.1,
+      lungFunctionProgress: 0.1,
+    );
     when(() => mockMilestoneRepo.getAllMilestones())
         .thenAnswer((_) async => const Right(predefinedMilestones));
-    when(() => mockProgressBloc.state).thenReturn(const ProgressState.initial());
+    when(() => mockProgressBloc.state).thenReturn(const ProgressState.loaded(
+      stats: mockStats,
+      milestones: predefinedMilestones,
+    ));
     when(() => mockProgressBloc.stream).thenAnswer((_) => const Stream.empty());
     when(() => mockProgressBloc.close()).thenAnswer((_) async {});
   });

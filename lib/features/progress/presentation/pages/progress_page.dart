@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quitra/l10n/app_localizations.dart';
 import '../../../../core/di/injection.dart';
 import '../../../milestones/domain/entities/milestone.dart';
-import '../../../milestones/domain/repositories/milestone_repository.dart';
 import '../../../milestones/presentation/widgets/milestones_section.dart';
 import '../bloc/progress_bloc.dart';
 import '../bloc/progress_event.dart';
@@ -14,42 +13,20 @@ import '../widgets/detailed_insights_section.dart';
 import '../widgets/progress_loading_view.dart';
 import '../widgets/progress_error_view.dart';
 
-class ProgressPage extends StatefulWidget {
+class ProgressPage extends StatelessWidget {
   const ProgressPage({super.key});
-
-  @override
-  State<ProgressPage> createState() => _ProgressPageState();
-}
-
-class _ProgressPageState extends State<ProgressPage> {
-  List<Milestone> _milestones = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _loadMilestones();
-  }
-
-  Future<void> _loadMilestones() async {
-    final result = await getIt<MilestoneRepository>().getAllMilestones();
-    result.fold((_) {}, (milestones) {
-      if (mounted) setState(() => _milestones = milestones);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<ProgressBloc>()..add(ProgressEvent.loadProgress()),
-      child: _ProgressPageContent(milestones: _milestones),
+      create: (_) => getIt<ProgressBloc>()..add(const ProgressEvent.loadProgress()),
+      child: const _ProgressPageContent(),
     );
   }
 }
 
 class _ProgressPageContent extends StatelessWidget {
-  final List<Milestone> milestones;
-
-  const _ProgressPageContent({required this.milestones});
+  const _ProgressPageContent();
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +43,7 @@ class _ProgressPageContent extends StatelessWidget {
         }
 
         final stats = state is Loaded ? state.stats : null;
+        final milestones = state is Loaded ? state.milestones : const <Milestone>[];
         final heartProgress = stats?.heartRateProgress ?? 0.0;
         final circulationProgress = stats?.circulationProgress ?? 0.0;
         final lungProgress = stats?.lungFunctionProgress ?? 0.0;

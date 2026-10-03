@@ -55,7 +55,7 @@ void main() {
       ],
     );
 
-    when(() => mockBloc.state).thenReturn(JourneyState.loaded([todayDay]));
+    when(() => mockBloc.state).thenReturn(JourneyState.loaded(history: [todayDay]));
 
     await tester.pumpWidget(buildTestableWidget(todayDay));
     await tester.pumpAndSettle();
@@ -91,7 +91,7 @@ void main() {
       ],
     );
 
-    when(() => mockBloc.state).thenReturn(JourneyState.loaded([pastDay]));
+    when(() => mockBloc.state).thenReturn(JourneyState.loaded(history: [pastDay]));
 
     await tester.pumpWidget(buildTestableWidget(pastDay));
     await tester.pumpAndSettle();

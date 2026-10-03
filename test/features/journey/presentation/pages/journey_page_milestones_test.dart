@@ -34,7 +34,10 @@ void main() {
 
     when(() => mockMilestoneRepo.getAllMilestones())
         .thenAnswer((_) async => const Right(predefinedMilestones));
-    when(() => mockJourneyBloc.state).thenReturn(const JourneyState.initial());
+    when(() => mockJourneyBloc.state).thenReturn(const JourneyState.loaded(
+          history: [],
+          milestones: predefinedMilestones,
+        ));
     when(() => mockJourneyBloc.stream).thenAnswer((_) => const Stream.empty());
     when(() => mockJourneyBloc.close()).thenAnswer((_) async {});
   });

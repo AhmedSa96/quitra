@@ -17,7 +17,7 @@ class HomeActionSection extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final homeState = context.watch<HomeBloc>().state;
     final hasCheckedIn = homeState.maybeWhen(
-      loaded: (_, __, ___, todayStatus) => todayStatus?.hasCheckedIn ?? false,
+      loaded: (stats, streak, journeyHistory, newlyUnlockedMilestone, todayStatus) => todayStatus?.hasCheckedIn ?? false,
       orElse: () => false,
     );
 

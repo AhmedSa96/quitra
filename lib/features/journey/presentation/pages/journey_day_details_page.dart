@@ -68,7 +68,7 @@ class _JourneyDayDetailsPageState extends State<JourneyDayDetailsPage> {
       body: BlocBuilder<JourneyBloc, JourneyState>(
         builder: (context, state) {
           final currentDay = state.maybeWhen(
-            loaded: (history) => history.firstWhere(
+            loaded: (history, _) => history.firstWhere(
               (d) =>
                   d.date.year == widget.day.date.year &&
                   d.date.month == widget.day.date.month &&
@@ -79,7 +79,7 @@ class _JourneyDayDetailsPageState extends State<JourneyDayDetailsPage> {
           );
 
           final daysSmokeFree = state.maybeWhen(
-            loaded: (history) {
+            loaded: (history, _) {
               final cleanDays = history
                   .where((d) => d.status == JourneyStatus.clean)
                   .length;
