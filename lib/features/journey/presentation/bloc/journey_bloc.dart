@@ -1,6 +1,9 @@
+import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/events/app_event_bus.dart';
+import '../../../milestones/domain/usecases/get_all_milestones.dart';
 import '../../domain/usecases/add_journey_note.dart';
 import '../../domain/usecases/get_journey_history.dart';
 import '../../domain/usecases/update_journey_day.dart';
@@ -12,15 +15,26 @@ class JourneyBloc extends Bloc<JourneyEvent, JourneyState> {
   final GetJourneyHistory getJourneyHistory;
   final UpdateJourneyDay updateJourneyDay;
   final AddJourneyNote addJourneyNote;
+  final GetAllMilestones getAllMilestones;
+  final AppEventBus appEventBus;
+  StreamSubscription<AppEvent>? _busSubscription;
 
   JourneyBloc(
     this.getJourneyHistory,
     this.updateJourneyDay,
     this.addJourneyNote,
+    this.getAllMilestones,
+    this.appEventBus,
   ) : super(const JourneyState.initial()) {
     on<LoadHistory>(_onLoadHistory);
     on<UpdateDay>(_onUpdateDay);
     on<AddNote>(_onAddNote);
+
+    _busSubscription = appEventBus.stream.listen((event) {
+      if (event is CheckInUpdatedEvent || event is NoteAddedEvent) {
+        add(const JourneyEvent.loadHistory());
+      }
+    });
   }
 
   Future<void> _onLoadHistory(
@@ -29,9 +43,14 @@ class JourneyBloc extends Bloc<JourneyEvent, JourneyState> {
   ) async {
     emit(const JourneyState.loading());
     final result = await getJourneyHistory();
+    final milestonesResult = await getAllMilestones();
+
     result.fold(
       (failure) => emit(const JourneyState.error('Failed to load history')),
-      (history) => emit(JourneyState.loaded(history)),
+      (history) {
+        final milestones = milestonesResult.getOrElse(() => []);
+        emit(JourneyState.loaded(history: history, milestones: milestones));
+      },
     );
   }
 
@@ -48,7 +67,10 @@ class JourneyBloc extends Bloc<JourneyEvent, JourneyState> {
 
     result.fold(
       (failure) => emit(const JourneyState.error('Failed to update day')),
-      (_) => add(const JourneyEvent.loadHistory()),
+      (_) {
+        appEventBus.emit(JourneyDayUpdatedEvent(date: event.date));
+        add(const JourneyEvent.loadHistory());
+      },
     );
   }
 
@@ -63,7 +85,16 @@ class JourneyBloc extends Bloc<JourneyEvent, JourneyState> {
 
     result.fold(
       (failure) => emit(const JourneyState.error('Failed to add note')),
-      (_) => add(const JourneyEvent.loadHistory()),
+      (_) {
+        appEventBus.emit(NoteAddedEvent(date: event.date));
+        add(const JourneyEvent.loadHistory());
+      },
     );
+  }
+
+  @override
+  Future<void> close() {
+    _busSubscription?.cancel();
+    return super.close();
   }
 }

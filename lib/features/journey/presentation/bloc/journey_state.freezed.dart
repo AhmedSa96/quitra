@@ -20,7 +20,9 @@ mixin _$JourneyState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<JourneyDay> history) loaded,
+    required TResult Function(
+            List<JourneyDay> history, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +30,8 @@ mixin _$JourneyState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history)? loaded,
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +39,8 @@ mixin _$JourneyState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history)? loaded,
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +130,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<JourneyDay> history) loaded,
+    required TResult Function(
+            List<JourneyDay> history, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +143,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history)? loaded,
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +155,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history)? loaded,
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +248,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<JourneyDay> history) loaded,
+    required TResult Function(
+            List<JourneyDay> history, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -251,7 +261,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history)? loaded,
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -262,7 +273,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history)? loaded,
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +332,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<JourneyDay> history});
+  $Res call({List<JourneyDay> history, List<Milestone> milestones});
 }
 
 /// @nodoc
@@ -335,12 +347,17 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? history = null,
+    Object? milestones = null,
   }) {
     return _then(_$LoadedImpl(
-      null == history
+      history: null == history
           ? _value._history
           : history // ignore: cast_nullable_to_non_nullable
               as List<JourneyDay>,
+      milestones: null == milestones
+          ? _value._milestones
+          : milestones // ignore: cast_nullable_to_non_nullable
+              as List<Milestone>,
     ));
   }
 }
@@ -348,7 +365,11 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<JourneyDay> history) : _history = history;
+  const _$LoadedImpl(
+      {required final List<JourneyDay> history,
+      final List<Milestone> milestones = const []})
+      : _history = history,
+        _milestones = milestones;
 
   final List<JourneyDay> _history;
   @override
@@ -358,9 +379,18 @@ class _$LoadedImpl implements _Loaded {
     return EqualUnmodifiableListView(_history);
   }
 
+  final List<Milestone> _milestones;
+  @override
+  @JsonKey()
+  List<Milestone> get milestones {
+    if (_milestones is EqualUnmodifiableListView) return _milestones;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_milestones);
+  }
+
   @override
   String toString() {
-    return 'JourneyState.loaded(history: $history)';
+    return 'JourneyState.loaded(history: $history, milestones: $milestones)';
   }
 
   @override
@@ -368,12 +398,16 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._history, _history));
+            const DeepCollectionEquality().equals(other._history, _history) &&
+            const DeepCollectionEquality()
+                .equals(other._milestones, _milestones));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_history));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_history),
+      const DeepCollectionEquality().hash(_milestones));
 
   @JsonKey(ignore: true)
   @override
@@ -386,10 +420,12 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<JourneyDay> history) loaded,
+    required TResult Function(
+            List<JourneyDay> history, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(history);
+    return loaded(history, milestones);
   }
 
   @override
@@ -397,10 +433,11 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history)? loaded,
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(history);
+    return loaded?.call(history, milestones);
   }
 
   @override
@@ -408,12 +445,13 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history)? loaded,
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(history);
+      return loaded(history, milestones);
     }
     return orElse();
   }
@@ -457,9 +495,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements JourneyState {
-  const factory _Loaded(final List<JourneyDay> history) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<JourneyDay> history,
+      final List<Milestone> milestones}) = _$LoadedImpl;
 
   List<JourneyDay> get history;
+  List<Milestone> get milestones;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -531,7 +572,9 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<JourneyDay> history) loaded,
+    required TResult Function(
+            List<JourneyDay> history, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -542,7 +585,8 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history)? loaded,
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -553,7 +597,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history)? loaded,
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+        loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
