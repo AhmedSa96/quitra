@@ -11,4 +11,8 @@ abstract class JourneyEvent with _$JourneyEvent {
     int? cravingLevel,
     String? note,
   }) = UpdateDay;
+  const factory JourneyEvent.addNote({
+    required DateTime date,
+    required String text,
+  }) = AddNote;
 }

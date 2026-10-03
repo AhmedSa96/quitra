@@ -22,6 +22,7 @@ mixin _$JourneyEvent {
     required TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
         updateDay,
+    required TResult Function(DateTime date, String text) addNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$JourneyEvent {
     TResult? Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
+    TResult? Function(DateTime date, String text)? addNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$JourneyEvent {
     TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
+    TResult Function(DateTime date, String text)? addNote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,18 +48,21 @@ mixin _$JourneyEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadHistory value) loadHistory,
     required TResult Function(UpdateDay value) updateDay,
+    required TResult Function(AddNote value) addNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadHistory value)? loadHistory,
     TResult? Function(UpdateDay value)? updateDay,
+    TResult? Function(AddNote value)? addNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadHistory value)? loadHistory,
     TResult Function(UpdateDay value)? updateDay,
+    TResult Function(AddNote value)? addNote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -122,6 +128,7 @@ class _$LoadHistoryImpl implements LoadHistory {
     required TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
         updateDay,
+    required TResult Function(DateTime date, String text) addNote,
   }) {
     return loadHistory();
   }
@@ -133,6 +140,7 @@ class _$LoadHistoryImpl implements LoadHistory {
     TResult? Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
+    TResult? Function(DateTime date, String text)? addNote,
   }) {
     return loadHistory?.call();
   }
@@ -144,6 +152,7 @@ class _$LoadHistoryImpl implements LoadHistory {
     TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
+    TResult Function(DateTime date, String text)? addNote,
     required TResult orElse(),
   }) {
     if (loadHistory != null) {
@@ -157,6 +166,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadHistory value) loadHistory,
     required TResult Function(UpdateDay value) updateDay,
+    required TResult Function(AddNote value) addNote,
   }) {
     return loadHistory(this);
   }
@@ -166,6 +176,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadHistory value)? loadHistory,
     TResult? Function(UpdateDay value)? updateDay,
+    TResult? Function(AddNote value)? addNote,
   }) {
     return loadHistory?.call(this);
   }
@@ -175,6 +186,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadHistory value)? loadHistory,
     TResult Function(UpdateDay value)? updateDay,
+    TResult Function(AddNote value)? addNote,
     required TResult orElse(),
   }) {
     if (loadHistory != null) {
@@ -284,6 +296,7 @@ class _$UpdateDayImpl implements UpdateDay {
     required TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
         updateDay,
+    required TResult Function(DateTime date, String text) addNote,
   }) {
     return updateDay(date, wasSmoked, cravingLevel, note);
   }
@@ -295,6 +308,7 @@ class _$UpdateDayImpl implements UpdateDay {
     TResult? Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
+    TResult? Function(DateTime date, String text)? addNote,
   }) {
     return updateDay?.call(date, wasSmoked, cravingLevel, note);
   }
@@ -306,6 +320,7 @@ class _$UpdateDayImpl implements UpdateDay {
     TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
+    TResult Function(DateTime date, String text)? addNote,
     required TResult orElse(),
   }) {
     if (updateDay != null) {
@@ -319,6 +334,7 @@ class _$UpdateDayImpl implements UpdateDay {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadHistory value) loadHistory,
     required TResult Function(UpdateDay value) updateDay,
+    required TResult Function(AddNote value) addNote,
   }) {
     return updateDay(this);
   }
@@ -328,6 +344,7 @@ class _$UpdateDayImpl implements UpdateDay {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadHistory value)? loadHistory,
     TResult? Function(UpdateDay value)? updateDay,
+    TResult? Function(AddNote value)? addNote,
   }) {
     return updateDay?.call(this);
   }
@@ -337,6 +354,7 @@ class _$UpdateDayImpl implements UpdateDay {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadHistory value)? loadHistory,
     TResult Function(UpdateDay value)? updateDay,
+    TResult Function(AddNote value)? addNote,
     required TResult orElse(),
   }) {
     if (updateDay != null) {
@@ -359,5 +377,161 @@ abstract class UpdateDay implements JourneyEvent {
   String? get note;
   @JsonKey(ignore: true)
   _$$UpdateDayImplCopyWith<_$UpdateDayImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddNoteImplCopyWith<$Res> {
+  factory _$$AddNoteImplCopyWith(
+          _$AddNoteImpl value, $Res Function(_$AddNoteImpl) then) =
+      __$$AddNoteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime date, String text});
+}
+
+/// @nodoc
+class __$$AddNoteImplCopyWithImpl<$Res>
+    extends _$JourneyEventCopyWithImpl<$Res, _$AddNoteImpl>
+    implements _$$AddNoteImplCopyWith<$Res> {
+  __$$AddNoteImplCopyWithImpl(
+      _$AddNoteImpl _value, $Res Function(_$AddNoteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+    Object? text = null,
+  }) {
+    return _then(_$AddNoteImpl(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddNoteImpl implements AddNote {
+  const _$AddNoteImpl({required this.date, required this.text});
+
+  @override
+  final DateTime date;
+  @override
+  final String text;
+
+  @override
+  String toString() {
+    return 'JourneyEvent.addNote(date: $date, text: $text)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddNoteImpl &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.text, text) || other.text == text));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, date, text);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddNoteImplCopyWith<_$AddNoteImpl> get copyWith =>
+      __$$AddNoteImplCopyWithImpl<_$AddNoteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadHistory,
+    required TResult Function(
+            DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
+        updateDay,
+    required TResult Function(DateTime date, String text) addNote,
+  }) {
+    return addNote(date, text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadHistory,
+    TResult? Function(
+            DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
+        updateDay,
+    TResult? Function(DateTime date, String text)? addNote,
+  }) {
+    return addNote?.call(date, text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadHistory,
+    TResult Function(
+            DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
+        updateDay,
+    TResult Function(DateTime date, String text)? addNote,
+    required TResult orElse(),
+  }) {
+    if (addNote != null) {
+      return addNote(date, text);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadHistory value) loadHistory,
+    required TResult Function(UpdateDay value) updateDay,
+    required TResult Function(AddNote value) addNote,
+  }) {
+    return addNote(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadHistory value)? loadHistory,
+    TResult? Function(UpdateDay value)? updateDay,
+    TResult? Function(AddNote value)? addNote,
+  }) {
+    return addNote?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadHistory value)? loadHistory,
+    TResult Function(UpdateDay value)? updateDay,
+    TResult Function(AddNote value)? addNote,
+    required TResult orElse(),
+  }) {
+    if (addNote != null) {
+      return addNote(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddNote implements JourneyEvent {
+  const factory AddNote(
+      {required final DateTime date,
+      required final String text}) = _$AddNoteImpl;
+
+  DateTime get date;
+  String get text;
+  @JsonKey(ignore: true)
+  _$$AddNoteImplCopyWith<_$AddNoteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

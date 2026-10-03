@@ -17,7 +17,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../bloc/journey_bloc.dart';
 import '../bloc/journey_event.dart';
 import '../widgets/journey_day_status_card.dart';
-import '../widgets/journey_day_note_card.dart';
+import '../widgets/journey_day_notes_list.dart';
 
 class JourneyDayDetailsPage extends StatefulWidget {
   final JourneyDay day;
@@ -131,13 +131,14 @@ class _JourneyDayDetailsPageState extends State<JourneyDayDetailsPage> {
                           },
                         ),
                         const SizedBox(height: 24),
-                        JourneyDayNoteCard(
-                          initialNote: currentDay.note,
-                          onSave: (newNote) {
+                        JourneyDayNotesList(
+                          notes: currentDay.notes,
+                          isInteractive: isToday,
+                          onAddNote: (newNote) {
                             context.read<JourneyBloc>().add(
-                              JourneyEvent.updateDay(
+                              JourneyEvent.addNote(
                                 date: currentDay.date,
-                                note: newNote,
+                                text: newNote,
                               ),
                             );
                           },

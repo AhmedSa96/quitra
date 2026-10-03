@@ -198,6 +198,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i47.JourneyBloc>(() => _i47.JourneyBloc(
           gh<_i44.GetJourneyHistory>(),
           gh<_i41.UpdateJourneyDay>(),
+          gh<_i42.AddJourneyNote>(),
         ));
     return this;
   }

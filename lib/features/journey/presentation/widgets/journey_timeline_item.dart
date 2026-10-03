@@ -72,7 +72,36 @@ class JourneyTimelineItem extends StatelessWidget {
                         color: AppTheme.onSurfaceVariant,
                       ),
                     ),
-                    if (day.note != null && day.note!.isNotEmpty) ...[
+                    if (day.notes.isNotEmpty) ...[
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Icon(
+                            SolarIconsOutline.notes,
+                            size: 13,
+                            color: AppTheme.primary,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            l10n.notesCount(day.notes.length),
+                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: AppTheme.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        day.notes.last.text,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppTheme.onSurfaceVariant,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ] else if (day.note != null && day.note!.isNotEmpty) ...[
                       const SizedBox(height: 8),
                       Text(
                         day.note!,
