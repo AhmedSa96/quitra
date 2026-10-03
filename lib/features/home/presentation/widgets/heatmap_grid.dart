@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' hide TextDirection;
 import '../../../../core/theme/app_theme.dart';
 import '../../../journey/domain/entities/journey_day.dart';
 
@@ -9,6 +10,23 @@ class HeatmapGrid extends StatelessWidget {
     super.key,
     required this.history,
   });
+
+  String? _getDayLabel(BuildContext context, int rowIndex) {
+    if (rowIndex != 0 && rowIndex != 2 && rowIndex != 4) return null;
+    try {
+      final locale = Localizations.localeOf(context).toString();
+      final symbols = DateFormat.E(locale).dateSymbols.NARROWWEEKDAYS;
+      if (symbols.length >= 7) {
+        if (rowIndex == 0) return symbols[1];
+        if (rowIndex == 2) return symbols[3];
+        if (rowIndex == 4) return symbols[5];
+      }
+    } catch (_) {}
+    if (rowIndex == 0) return 'M';
+    if (rowIndex == 2) return 'W';
+    if (rowIndex == 4) return 'F';
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,76 +42,92 @@ class HeatmapGrid extends StatelessWidget {
       historyMap[key] = day.status;
     }
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(right: 6, top: 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text('M', style: TextStyle(fontSize: 9, color: AppTheme.onSurfaceVariant)),
-              SizedBox(height: 7),
-              Text('W', style: TextStyle(fontSize: 9, color: AppTheme.onSurfaceVariant)),
-              SizedBox(height: 7),
-              Text('F', style: TextStyle(fontSize: 9, color: AppTheme.onSurfaceVariant)),
-            ],
-          ),
-        ),
-        Expanded(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              const columns = 12;
-              const rows = 7;
-              const spacing = 3.0;
-              const totalSpacing = spacing * (columns - 1);
-              final cellSize = ((constraints.maxWidth - totalSpacing) / columns).clamp(6.0, 14.0);
+    const columns = 12;
+    const rows = 7;
+    const spacing = 3.5;
+    const labelWidth = 14.0;
+    const labelSpacing = 8.0;
 
-              return SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                child: Row(
-                  children: List.generate(columns, (colIndex) {
-                    return Padding(
-                      padding: EdgeInsets.only(right: colIndex == columns - 1 ? 0 : spacing),
-                      child: Column(
-                        children: List.generate(rows, (rowIndex) {
-                          final dayOffset = colIndex * 7 + rowIndex;
-                          final date = startOfGrid.add(Duration(days: dayOffset));
-                          final isFuture = date.isAfter(today);
-                          final key = '${date.year}-${date.month}-${date.day}';
-                          final status = historyMap[key];
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final availableGridWidth = constraints.maxWidth - labelWidth - labelSpacing;
+        const totalSpacing = spacing * (columns - 1);
+        final cellSize = ((availableGridWidth - totalSpacing) / columns).clamp(8.0, 24.0);
 
-                          Color cellColor = AppTheme.surfaceContainerLow;
-                          if (!isFuture) {
-                            if (status == JourneyStatus.clean) {
-                              cellColor = AppTheme.primary;
-                            } else if (status == JourneyStatus.setback) {
-                              cellColor = const Color(0xFFE57373);
-                            } else if (status == JourneyStatus.craving) {
-                              cellColor = const Color(0xFFF59E0B);
-                            }
-                          }
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: labelWidth,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(rows, (rowIndex) {
+                  final labelText = _getDayLabel(context, rowIndex);
 
-                          return Container(
-                            width: cellSize,
-                            height: cellSize,
-                            margin: EdgeInsets.only(bottom: rowIndex == rows - 1 ? 0 : spacing),
-                            decoration: BoxDecoration(
-                              color: cellColor,
-                              borderRadius: BorderRadius.circular(3),
+                  return Container(
+                    height: cellSize,
+                    margin: EdgeInsets.only(
+                      bottom: rowIndex == rows - 1 ? 0 : spacing,
+                    ),
+                    alignment: Alignment.center,
+                    child: labelText != null
+                        ? Text(
+                            labelText,
+                            style: const TextStyle(
+                              fontSize: 9,
+                              fontWeight: FontWeight.w600,
+                              color: AppTheme.onSurfaceVariant,
                             ),
-                          );
-                        }),
-                      ),
-                    );
-                  }),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
+                          )
+                        : null,
+                  );
+                }),
+              ),
+            ),
+            const SizedBox(width: labelSpacing),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(columns, (colIndex) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: List.generate(rows, (rowIndex) {
+                      final dayOffset = colIndex * 7 + rowIndex;
+                      final date = startOfGrid.add(Duration(days: dayOffset));
+                      final isFuture = date.isAfter(today);
+                      final key = '${date.year}-${date.month}-${date.day}';
+                      final status = historyMap[key];
+
+                      Color cellColor = AppTheme.surfaceContainerLow;
+                      if (!isFuture) {
+                        if (status == JourneyStatus.clean) {
+                          cellColor = AppTheme.primary;
+                        } else if (status == JourneyStatus.setback) {
+                          cellColor = const Color(0xFFE57373);
+                        } else if (status == JourneyStatus.craving) {
+                          cellColor = const Color(0xFFF59E0B);
+                        }
+                      }
+
+                      return Container(
+                        width: cellSize,
+                        height: cellSize,
+                        margin: EdgeInsets.only(
+                          bottom: rowIndex == rows - 1 ? 0 : spacing,
+                        ),
+                        decoration: BoxDecoration(
+                          color: cellColor,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      );
+                    }),
+                  );
+                }),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

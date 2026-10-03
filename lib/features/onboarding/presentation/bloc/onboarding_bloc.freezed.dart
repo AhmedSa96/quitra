@@ -25,7 +25,8 @@ mixin _$OnboardingEvent {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)
+            int? cigarettesPerPacket,
+            StreakMode streakMode)
         started,
     required TResult Function(String filePath) importRequested,
   }) =>
@@ -39,7 +40,8 @@ mixin _$OnboardingEvent {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)?
+            int? cigarettesPerPacket,
+            StreakMode streakMode)?
         started,
     TResult? Function(String filePath)? importRequested,
   }) =>
@@ -53,7 +55,8 @@ mixin _$OnboardingEvent {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)?
+            int? cigarettesPerPacket,
+            StreakMode streakMode)?
         started,
     TResult Function(String filePath)? importRequested,
     required TResult orElse(),
@@ -111,7 +114,8 @@ abstract class _$$OnboardingStartedImplCopyWith<$Res> {
       DateTime quitStartDate,
       double? cigarettePrice,
       double? packetPrice,
-      int? cigarettesPerPacket});
+      int? cigarettesPerPacket,
+      StreakMode streakMode});
 }
 
 /// @nodoc
@@ -132,6 +136,7 @@ class __$$OnboardingStartedImplCopyWithImpl<$Res>
     Object? cigarettePrice = freezed,
     Object? packetPrice = freezed,
     Object? cigarettesPerPacket = freezed,
+    Object? streakMode = null,
   }) {
     return _then(_$OnboardingStartedImpl(
       cigarettesPerDay: null == cigarettesPerDay
@@ -162,6 +167,10 @@ class __$$OnboardingStartedImplCopyWithImpl<$Res>
           ? _value.cigarettesPerPacket
           : cigarettesPerPacket // ignore: cast_nullable_to_non_nullable
               as int?,
+      streakMode: null == streakMode
+          ? _value.streakMode
+          : streakMode // ignore: cast_nullable_to_non_nullable
+              as StreakMode,
     ));
   }
 }
@@ -176,7 +185,8 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
       required this.quitStartDate,
       this.cigarettePrice,
       this.packetPrice,
-      this.cigarettesPerPacket});
+      this.cigarettesPerPacket,
+      this.streakMode = StreakMode.forgiving});
 
   @override
   final int cigarettesPerDay;
@@ -192,10 +202,13 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
   final double? packetPrice;
   @override
   final int? cigarettesPerPacket;
+  @override
+  @JsonKey()
+  final StreakMode streakMode;
 
   @override
   String toString() {
-    return 'OnboardingEvent.started(cigarettesPerDay: $cigarettesPerDay, yearsSmoking: $yearsSmoking, quitMethod: $quitMethod, quitStartDate: $quitStartDate, cigarettePrice: $cigarettePrice, packetPrice: $packetPrice, cigarettesPerPacket: $cigarettesPerPacket)';
+    return 'OnboardingEvent.started(cigarettesPerDay: $cigarettesPerDay, yearsSmoking: $yearsSmoking, quitMethod: $quitMethod, quitStartDate: $quitStartDate, cigarettePrice: $cigarettePrice, packetPrice: $packetPrice, cigarettesPerPacket: $cigarettesPerPacket, streakMode: $streakMode)';
   }
 
   @override
@@ -216,7 +229,9 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
             (identical(other.packetPrice, packetPrice) ||
                 other.packetPrice == packetPrice) &&
             (identical(other.cigarettesPerPacket, cigarettesPerPacket) ||
-                other.cigarettesPerPacket == cigarettesPerPacket));
+                other.cigarettesPerPacket == cigarettesPerPacket) &&
+            (identical(other.streakMode, streakMode) ||
+                other.streakMode == streakMode));
   }
 
   @override
@@ -228,7 +243,8 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
       quitStartDate,
       cigarettePrice,
       packetPrice,
-      cigarettesPerPacket);
+      cigarettesPerPacket,
+      streakMode);
 
   @JsonKey(ignore: true)
   @override
@@ -247,12 +263,13 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)
+            int? cigarettesPerPacket,
+            StreakMode streakMode)
         started,
     required TResult Function(String filePath) importRequested,
   }) {
     return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate,
-        cigarettePrice, packetPrice, cigarettesPerPacket);
+        cigarettePrice, packetPrice, cigarettesPerPacket, streakMode);
   }
 
   @override
@@ -265,12 +282,20 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)?
+            int? cigarettesPerPacket,
+            StreakMode streakMode)?
         started,
     TResult? Function(String filePath)? importRequested,
   }) {
-    return started?.call(cigarettesPerDay, yearsSmoking, quitMethod,
-        quitStartDate, cigarettePrice, packetPrice, cigarettesPerPacket);
+    return started?.call(
+        cigarettesPerDay,
+        yearsSmoking,
+        quitMethod,
+        quitStartDate,
+        cigarettePrice,
+        packetPrice,
+        cigarettesPerPacket,
+        streakMode);
   }
 
   @override
@@ -283,14 +308,15 @@ class _$OnboardingStartedImpl implements OnboardingStarted {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)?
+            int? cigarettesPerPacket,
+            StreakMode streakMode)?
         started,
     TResult Function(String filePath)? importRequested,
     required TResult orElse(),
   }) {
     if (started != null) {
       return started(cigarettesPerDay, yearsSmoking, quitMethod, quitStartDate,
-          cigarettePrice, packetPrice, cigarettesPerPacket);
+          cigarettePrice, packetPrice, cigarettesPerPacket, streakMode);
     }
     return orElse();
   }
@@ -335,7 +361,8 @@ abstract class OnboardingStarted implements OnboardingEvent {
       required final DateTime quitStartDate,
       final double? cigarettePrice,
       final double? packetPrice,
-      final int? cigarettesPerPacket}) = _$OnboardingStartedImpl;
+      final int? cigarettesPerPacket,
+      final StreakMode streakMode}) = _$OnboardingStartedImpl;
 
   int get cigarettesPerDay;
   int get yearsSmoking;
@@ -344,6 +371,7 @@ abstract class OnboardingStarted implements OnboardingEvent {
   double? get cigarettePrice;
   double? get packetPrice;
   int? get cigarettesPerPacket;
+  StreakMode get streakMode;
   @JsonKey(ignore: true)
   _$$OnboardingStartedImplCopyWith<_$OnboardingStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -424,7 +452,8 @@ class _$OnboardingImportRequestedImpl implements OnboardingImportRequested {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)
+            int? cigarettesPerPacket,
+            StreakMode streakMode)
         started,
     required TResult Function(String filePath) importRequested,
   }) {
@@ -441,7 +470,8 @@ class _$OnboardingImportRequestedImpl implements OnboardingImportRequested {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)?
+            int? cigarettesPerPacket,
+            StreakMode streakMode)?
         started,
     TResult? Function(String filePath)? importRequested,
   }) {
@@ -458,7 +488,8 @@ class _$OnboardingImportRequestedImpl implements OnboardingImportRequested {
             DateTime quitStartDate,
             double? cigarettePrice,
             double? packetPrice,
-            int? cigarettesPerPacket)?
+            int? cigarettesPerPacket,
+            StreakMode streakMode)?
         started,
     TResult Function(String filePath)? importRequested,
     required TResult orElse(),

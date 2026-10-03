@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quitra/features/streak/domain/entities/streak.dart';
 import 'package:quitra/l10n/app_localizations.dart';
+import 'package:solar_icons/solar_icons.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../bloc/onboarding_bloc.dart';
 
 import '../widgets/cigarettes_step.dart';
 import '../widgets/years_smoking_step.dart';
 import '../widgets/quit_method_step.dart';
+import '../widgets/streak_mode_step.dart';
 import '../widgets/quit_date_step.dart';
 import '../widgets/cigarette_price_step.dart';
 import '../widgets/import_data_step.dart';
@@ -22,12 +25,13 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
 
-  static const int _totalSteps = 6;
+  static const int _totalSteps = 7;
 
   int _currentPage = 0;
   int _cigarettesPerDay = 10;
   int _yearsSmoking = 5;
   String _quitMethod = 'cold_turkey';
+  StreakMode _streakMode = StreakMode.forgiving;
   DateTime _quitStartDate = DateTime.now();
 
   bool _isPacketPrice = false;
@@ -59,6 +63,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           cigarettePrice: cigPrice,
           packetPrice: packPrice,
           cigarettesPerPacket: cigsPerPack,
+          streakMode: _streakMode,
         ),
       );
     } else {
@@ -137,6 +142,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               ),
                             ),
                             Center(
+                              child: StreakModeStep(
+                                value: _streakMode,
+                                onChanged: (val) =>
+                                    setState(() => _streakMode = val),
+                              ),
+                            ),
+                            Center(
                               child: QuitDateStep(
                                 value: _quitStartDate,
                                 onChanged: (val) =>
@@ -149,7 +161,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                 cigarettePriceStr: _cigarettePriceStr,
                                 packetPriceStr: _packetPriceStr,
                                 cigarettesPerPacketStr: _cigarettesPerPacketStr,
-                                onTypeChanged: (val) => setState(() => _isPacketPrice = val),
+                                onTypeChanged: (val) => setState(() {
+                                  _isPacketPrice = val;
+                                  if (val) {
+                                    _cigarettePriceStr = '';
+                                  } else {
+                                    _packetPriceStr = '';
+                                    _cigarettesPerPacketStr = '';
+                                  }
+                                }),
                                 onCigarettePriceChanged: (val) => setState(() => _cigarettePriceStr = val),
                                 onPacketPriceChanged: (val) => setState(() => _packetPriceStr = val),
                                 onCigarettesPerPacketChanged: (val) => setState(() => _cigarettesPerPacketStr = val),
@@ -192,7 +212,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               if (_currentPage > 0)
                 IconButton(
                   onPressed: _previousPage,
-                  icon: const Icon(Icons.arrow_back_ios, size: 20),
+                  icon: const Icon(SolarIconsOutline.altArrowLeft, size: 20),
                   color: AppTheme.onSurfaceVariant,
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),

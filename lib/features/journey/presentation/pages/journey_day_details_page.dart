@@ -35,7 +35,8 @@ class _JourneyDayDetailsPageState extends State<JourneyDayDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final dateText = DateFormat('MMMM d, yyyy').format(widget.day.date);
+    final locale = Localizations.localeOf(context).toString();
+    final dateText = DateFormat.yMMMMd(locale).format(widget.day.date);
     final now = DateTime.now();
     final isToday =
         widget.day.date.year == now.year &&

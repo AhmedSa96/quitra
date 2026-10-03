@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/error/failures.dart';
+import '../../../streak/domain/entities/streak.dart';
 import '../repositories/onboarding_repository.dart';
 
 @lazySingleton
@@ -17,6 +18,7 @@ class CompleteOnboardingUseCase {
     double? cigarettePrice,
     double? packetPrice,
     int? cigarettesPerPacket,
+    StreakMode streakMode = StreakMode.forgiving,
   }) async {
     return await repository.completeOnboarding(
       cigarettesPerDay: cigarettesPerDay,
@@ -26,6 +28,7 @@ class CompleteOnboardingUseCase {
       cigarettePrice: cigarettePrice,
       packetPrice: packetPrice,
       cigarettesPerPacket: cigarettesPerPacket,
+      streakMode: streakMode,
     );
   }
 }

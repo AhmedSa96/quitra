@@ -9,7 +9,6 @@ import '../bloc/progress_bloc.dart';
 import '../bloc/progress_event.dart';
 import '../bloc/progress_state.dart';
 import '../widgets/progress_header.dart';
-import '../widgets/weekly_trend_section.dart';
 import '../widgets/health_milestones_section.dart';
 import '../widgets/detailed_insights_section.dart';
 import '../widgets/progress_loading_view.dart';
@@ -84,10 +83,6 @@ class _ProgressPageContent extends StatelessWidget {
               children: [
                 ProgressHeader(title: l10n.progressTitle),
                 const SizedBox(height: 32),
-                const WeeklyTrendSection(
-                  dailyCravingCounts: [0, 0, 0, 0, 0, 0, 0],
-                ),
-                const SizedBox(height: 32),
                 HealthMilestonesSection(
                   heartProgress: heartProgress,
                   circulationProgress: circulationProgress,
@@ -99,6 +94,7 @@ class _ProgressPageContent extends StatelessWidget {
                 const SizedBox(height: 32),
                 if (milestones.isNotEmpty)
                   MilestonesSection(
+                    title: l10n.yourMilestonesTitle,
                     milestones: milestones,
                     allowedCategories: const [
                       MilestoneCategory.time,

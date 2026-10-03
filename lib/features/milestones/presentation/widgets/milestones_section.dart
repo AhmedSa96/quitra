@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/milestone.dart';
+import '../extensions/milestone_localization_extension.dart';
 import 'milestone_card.dart';
 
 class MilestonesSection extends StatefulWidget {
   final List<Milestone> milestones;
   final List<MilestoneCategory> allowedCategories;
-  final String title;
+  final String? title;
 
   const MilestonesSection({
     super.key,
@@ -17,7 +19,7 @@ class MilestonesSection extends StatefulWidget {
       MilestoneCategory.savings,
       MilestoneCategory.consistency,
     ],
-    this.title = 'Your Milestones',
+    this.title,
   });
 
   @override
@@ -29,35 +31,36 @@ class _MilestonesSectionState extends State<MilestonesSection> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final displayTitle = widget.title ?? l10n?.yourMilestonesTitle ?? 'Your Milestones';
+
     final filtered = widget.milestones.where((m) {
       if (!widget.allowedCategories.contains(m.category)) return false;
-      if (_selectedCategory != null && m.category != _selectedCategory) return false;
+      if (_selectedCategory != null && m.category != _selectedCategory) {
+        return false;
+      }
       return true;
     }).toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Text(
-            widget.title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
+        Text(
+          displayTitle,
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
         // Category filter chips
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Row(
             children: [
               FilterChip(
                 selected: _selectedCategory == null,
-                label: const Text('All'),
+                label: Text(l10n?.milestoneCategoryAll ?? 'All'),
                 onSelected: (_) => setState(() => _selectedCategory = null),
                 backgroundColor: AppTheme.surfaceContainerLow,
                 selectedColor: AppTheme.primary.withValues(alpha: 0.15),
@@ -70,7 +73,7 @@ class _MilestonesSectionState extends State<MilestonesSection> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: FilterChip(
                     selected: _selectedCategory == cat,
-                    label: Text(_getCategoryLabel(cat)),
+                    label: Text(cat.localizedName(context)),
                     onSelected: (_) => setState(() => _selectedCategory = cat),
                     backgroundColor: AppTheme.surfaceContainerLow,
                     selectedColor: AppTheme.primary.withValues(alpha: 0.15),
@@ -89,7 +92,6 @@ class _MilestonesSectionState extends State<MilestonesSection> {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             itemCount: filtered.length,
             separatorBuilder: (_, __) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
@@ -99,22 +101,5 @@ class _MilestonesSectionState extends State<MilestonesSection> {
         ),
       ],
     );
-  }
-
-  String _getCategoryLabel(MilestoneCategory category) {
-    switch (category) {
-      case MilestoneCategory.time:
-        return 'Time';
-      case MilestoneCategory.healthRecovery:
-        return 'Health';
-      case MilestoneCategory.savings:
-        return 'Savings';
-      case MilestoneCategory.consistency:
-        return 'Streak';
-      case MilestoneCategory.strength:
-        return 'Strength';
-      case MilestoneCategory.dedication:
-        return 'Dedication';
-    }
   }
 }

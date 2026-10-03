@@ -66,7 +66,7 @@ class _JourneyView extends StatelessWidget {
 
             if (milestones.isNotEmpty) ...[
               MilestonesSection(
-                title: 'Strength & Dedication',
+                title: l10n.strengthAndDedicationTitle,
                 milestones: milestones,
                 allowedCategories: const [
                   MilestoneCategory.strength,

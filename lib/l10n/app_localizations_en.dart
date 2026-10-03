@@ -429,6 +429,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get streakModeLabel => 'Streak Mode';
 
   @override
+  String get streakModeDescription =>
+      'Choose how your daily streak handles setbacks.';
+
+  @override
   String get forgivingModeLabel => 'Forgiving Mode';
 
   @override
@@ -441,4 +445,238 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get strictModeDesc =>
       'Streak resets immediately to 0 on any setback or missed check-in.';
+
+  @override
+  String get recommendedLabel => 'Recommended';
+
+  @override
+  String get dayStreak => 'Day streak';
+
+  @override
+  String get startYourStreak => 'Start your streak';
+
+  @override
+  String get cravingTrendTitle => 'Craving Trend';
+
+  @override
+  String cravingMomentsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count moments',
+      one: '1 moment',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dayShort => 'd';
+
+  @override
+  String get watchAdAndSaveJournal => 'Watch Ad & Save Journal';
+
+  @override
+  String get watchAdHint =>
+      'Watching ads helps us keep Quitra free and constantly improving.';
+
+  @override
+  String get yourMilestonesTitle => 'Your Milestones';
+
+  @override
+  String get strengthAndDedicationTitle => 'Strength & Dedication';
+
+  @override
+  String get milestoneCategoryAll => 'All';
+
+  @override
+  String get milestoneCategoryTime => 'Time';
+
+  @override
+  String get milestoneCategoryHealth => 'Health';
+
+  @override
+  String get milestoneCategorySavings => 'Savings';
+
+  @override
+  String get milestoneCategoryStreak => 'Streak';
+
+  @override
+  String get milestoneCategoryStrength => 'Strength';
+
+  @override
+  String get milestoneCategoryDedication => 'Dedication';
+
+  @override
+  String get milestoneFirstDayTitle => 'Day One';
+
+  @override
+  String get milestoneFirstDayDesc =>
+      'The first step is always the hardest. You took it.';
+
+  @override
+  String get milestoneThreeDaysTitle => 'Three Days Clean';
+
+  @override
+  String get milestoneThreeDaysDesc =>
+      'Nicotine is leaving your body. You\'re regaining control.';
+
+  @override
+  String get milestoneOneWeekTitle => 'One Week Strong';
+
+  @override
+  String get milestoneOneWeekDesc =>
+      'You\'re doing better than you think. A full week behind you.';
+
+  @override
+  String get milestoneTwoWeeksTitle => 'Two Weeks Clean';
+
+  @override
+  String get milestoneTwoWeeksDesc =>
+      'Every step matters. Cravings are losing their grip.';
+
+  @override
+  String get milestoneOneMonthTitle => 'One Month Free';
+
+  @override
+  String get milestoneOneMonthDesc =>
+      'This is real progress. You\'ve redefined your daily rhythm.';
+
+  @override
+  String get milestoneThreeMonthsTitle => 'Three Months';
+
+  @override
+  String get milestoneThreeMonthsDesc =>
+      'You\'ve built lasting resilience. You\'ve got this.';
+
+  @override
+  String get milestoneSixMonthsTitle => 'Half a Year';
+
+  @override
+  String get milestoneSixMonthsDesc =>
+      'Six months of freedom. Your journey, your strength.';
+
+  @override
+  String get milestoneOneYearTitle => 'One Year Free';
+
+  @override
+  String get milestoneOneYearDesc =>
+      'A full year of choosing yourself. You\'re free.';
+
+  @override
+  String get milestoneHeartHealingTitle => 'Heart Rhythm Restored';
+
+  @override
+  String get milestoneHeartHealingDesc =>
+      'Your heart rate and blood pressure have returned to normal levels.';
+
+  @override
+  String get milestoneCirculationTitle => 'Vital Circulation';
+
+  @override
+  String get milestoneCirculationDesc =>
+      'Oxygen flows freely again. Movement and energy feel lighter.';
+
+  @override
+  String get milestoneBreathingTitle => 'Clearer Breathing';
+
+  @override
+  String get milestoneBreathingDesc =>
+      'Your airways are recovering. Breathing is calm and deep.';
+
+  @override
+  String get milestoneSaved10Title => 'First Savings';
+
+  @override
+  String get milestoneSaved10Desc =>
+      'Your first money saved. Proof that every decision counts.';
+
+  @override
+  String get milestoneSaved50Title => 'Growing Pocket';
+
+  @override
+  String get milestoneSaved50Desc =>
+      'Fifty saved. Money kept in your pocket, not burned in smoke.';
+
+  @override
+  String get milestoneSaved100Title => 'Milestone Century';
+
+  @override
+  String get milestoneSaved100Desc =>
+      'A hundred saved. A tangible reward for your commitment.';
+
+  @override
+  String get milestoneSaved500Title => 'Financial Freedom';
+
+  @override
+  String get milestoneSaved500Desc =>
+      'Five hundred preserved. Taking back control of your resources.';
+
+  @override
+  String get milestoneStreak7Title => '7-Day Focus';
+
+  @override
+  String get milestoneStreak7Desc =>
+      'Seven consecutive days of self-control. Momentum is building.';
+
+  @override
+  String get milestoneStreak30Title => 'Solid Habit';
+
+  @override
+  String get milestoneStreak30Desc =>
+      'Thirty straight days. New neural pathways are flourishing.';
+
+  @override
+  String get milestoneStreak100Title => 'Unshakeable';
+
+  @override
+  String get milestoneStreak100Desc =>
+      'One hundred unbroken days. You are truly in control.';
+
+  @override
+  String get milestoneFirstMomentTitle => 'First Moment Passed';
+
+  @override
+  String get milestoneFirstMomentDesc =>
+      'You paused, breathed, and let it pass. Proof that cravings fade.';
+
+  @override
+  String get milestoneTenMomentsTitle => 'Ten Victories';
+
+  @override
+  String get milestoneTenMomentsDesc =>
+      'Ten difficult urges faced and overcome without giving in.';
+
+  @override
+  String get milestoneFiftyMomentsTitle => 'Master of Moments';
+
+  @override
+  String get milestoneFiftyMomentsDesc =>
+      'Fifty moments mastered. Cravings no longer dictate your choices.';
+
+  @override
+  String get milestoneSevenCheckInsTitle => 'First Week of Check-Ins';
+
+  @override
+  String get milestoneSevenCheckInsDesc =>
+      'Seven daily logs. Honest reflection keeps you anchored.';
+
+  @override
+  String get milestoneThirtyCheckInsTitle => 'A Month of Awareness';
+
+  @override
+  String get milestoneThirtyCheckInsDesc =>
+      'Thirty daily reflections. Self-awareness is your superpower.';
+
+  @override
+  String get nextMilestoneTitle => 'Next Milestone';
+
+  @override
+  String get milestoneComplete => 'Completed';
+
+  @override
+  String get allMilestonesAchieved => 'All Milestones Achieved!';
+
+  @override
+  String get allMilestonesAchievedDesc =>
+      'You have achieved every single milestone on your journey. Truly remarkable!';
 }

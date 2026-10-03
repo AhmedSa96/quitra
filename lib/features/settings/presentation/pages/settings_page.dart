@@ -67,7 +67,7 @@ class SettingsPage extends StatelessWidget {
                     onTap: () => _showCigarettePriceDialog(context),
                   ),
                   SettingsTile(
-                    title: 'Streak Mode',
+                    title: l10n.streakModeLabel,
                     icon: SolarIconsOutline.fire,
                     onTap: () => _showStreakModeDialog(context),
                   ),

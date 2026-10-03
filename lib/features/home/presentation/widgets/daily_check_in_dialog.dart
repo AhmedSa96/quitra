@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solar_icons/solar_icons.dart';
+import '../../../../core/services/ad_service.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../bloc/home_bloc.dart';
@@ -29,11 +30,36 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
   bool _wasSmoked = false;
   double _cravingLevel = 1;
   final _noteController = TextEditingController();
+  bool _isSubmitting = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (!AdService.isAdReady) {
+      AdService.loadRewardedAd();
+    }
+  }
 
   @override
   void dispose() {
     _noteController.dispose();
     super.dispose();
+  }
+
+  Future<void> _saveAndShowAd() async {
+    if (_isSubmitting) return;
+    setState(() => _isSubmitting = true);
+
+    context.read<HomeBloc>().add(
+      HomeEvent.saveDailyCheckIn(
+        wasSmoked: _wasSmoked,
+        cravingLevel: _cravingLevel.toInt(),
+        note: _noteController.text.isNotEmpty ? _noteController.text : null,
+      ),
+    );
+
+    Navigator.pop(context);
+    await AdService.showRewardedAd();
   }
 
   @override
@@ -127,7 +153,34 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
               ),
             ),
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
+
+          // Hint above submit button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  SolarIconsOutline.heart,
+                  size: 16,
+                  color: AppTheme.primary.withValues(alpha: 0.7),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    l10n.watchAdHint,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppTheme.onSurfaceVariant,
+                          height: 1.3,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
 
           // Submit Button
           SizedBox(
@@ -139,23 +192,31 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
                 borderRadius: BorderRadius.circular(28),
               ),
               child: ElevatedButton(
-                onPressed: () {
-                  context.read<HomeBloc>().add(
-                    HomeEvent.saveDailyCheckIn(
-                      wasSmoked: _wasSmoked,
-                      cravingLevel: _cravingLevel.toInt(),
-                      note: _noteController.text.isNotEmpty
-                          ? _noteController.text
-                          : null,
-                    ),
-                  );
-                  Navigator.pop(context);
-                },
+                onPressed: _isSubmitting ? null : _saveAndShowAd,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
+                  disabledBackgroundColor: Colors.transparent,
                 ),
-                child: Text(l10n.saveJournal),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      SolarIconsOutline.play,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      l10n.watchAdAndSaveJournal,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

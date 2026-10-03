@@ -1,30 +1,54 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' hide TextDirection;
 import '../../../../core/presentation/widgets/sanctuary_card.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class WeeklyTrendSection extends StatelessWidget {
   final List<int> dailyCravingCounts;
   final int? todayIndex;
-  final String title;
+  final String? title;
 
   const WeeklyTrendSection({
     super.key,
     required this.dailyCravingCounts,
     this.todayIndex,
-    this.title = 'This Week',
+    this.title,
   });
+
+  List<String> _getLocalizedDayLabels(BuildContext context) {
+    try {
+      final locale = Localizations.localeOf(context).toString();
+      final symbols = DateFormat.E(locale).dateSymbols.NARROWWEEKDAYS;
+      if (symbols.length >= 7) {
+        return [
+          symbols[1],
+          symbols[2],
+          symbols[3],
+          symbols[4],
+          symbols[5],
+          symbols[6],
+          symbols[0],
+        ];
+      }
+    } catch (_) {}
+    return const ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final total = dailyCravingCounts.fold<int>(0, (sum, count) => sum + count);
     final effectiveTodayIndex = todayIndex ?? (DateTime.now().weekday - 1);
+    final displayTitle = title ?? l10n?.thisWeekTitle ?? 'This Week';
+    final dayLabels = _getLocalizedDayLabels(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
+          displayTitle,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -39,14 +63,14 @@ class WeeklyTrendSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Craving Trend',
+                    l10n?.cravingTrendTitle ?? 'Craving Trend',
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w600,
                           color: AppTheme.onSurface,
                         ),
                   ),
                   Text(
-                    '$total moments',
+                    l10n?.cravingMomentsCount(total) ?? '$total moments',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.w600,
                           color: AppTheme.primary,
@@ -65,6 +89,7 @@ class WeeklyTrendSection extends StatelessWidget {
                     primaryColor: AppTheme.primary,
                     surfaceColor: AppTheme.surfaceContainerLow,
                     textColor: AppTheme.onSurfaceVariant,
+                    dayLabels: dayLabels,
                   ),
                 ),
               ),
@@ -82,8 +107,9 @@ class WeeklyTrendPainter extends CustomPainter {
   final Color primaryColor;
   final Color surfaceColor;
   final Color textColor;
+  final List<String> dayLabels;
 
-  static const List<String> _dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  static const List<String> _defaultDayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
   WeeklyTrendPainter({
     required this.counts,
@@ -91,6 +117,7 @@ class WeeklyTrendPainter extends CustomPainter {
     required this.primaryColor,
     required this.surfaceColor,
     required this.textColor,
+    this.dayLabels = _defaultDayLabels,
   });
 
   @override
@@ -149,7 +176,7 @@ class WeeklyTrendPainter extends CustomPainter {
 
       // Draw day label text
       final textSpan = TextSpan(
-        text: _dayLabels[i],
+        text: i < dayLabels.length ? dayLabels[i] : '',
         style: TextStyle(
           color: i == todayIndex ? primaryColor : textColor,
           fontWeight: i == todayIndex ? FontWeight.bold : FontWeight.w500,
@@ -172,6 +199,7 @@ class WeeklyTrendPainter extends CustomPainter {
   bool shouldRepaint(covariant WeeklyTrendPainter oldDelegate) {
     return oldDelegate.counts != counts ||
         oldDelegate.todayIndex != todayIndex ||
-        oldDelegate.primaryColor != primaryColor;
+        oldDelegate.primaryColor != primaryColor ||
+        oldDelegate.dayLabels != dayLabels;
   }
 }

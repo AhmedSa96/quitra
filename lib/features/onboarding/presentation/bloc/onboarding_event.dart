@@ -10,6 +10,7 @@ abstract class OnboardingEvent with _$OnboardingEvent {
     double? cigarettePrice,
     double? packetPrice,
     int? cigarettesPerPacket,
+    @Default(StreakMode.forgiving) StreakMode streakMode,
   }) = OnboardingStarted;
 
   const factory OnboardingEvent.importRequested({

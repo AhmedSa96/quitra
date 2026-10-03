@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../../streak/domain/entities/streak.dart';
 import '../../domain/repositories/onboarding_repository.dart';
 import '../datasources/onboarding_local_data_source.dart';
 import '../models/user_profile_isar.dart';
@@ -21,6 +22,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
     double? cigarettePrice,
     double? packetPrice,
     int? cigarettesPerPacket,
+    StreakMode streakMode = StreakMode.forgiving,
   }) async {
     try {
       final profile = UserProfileIsar()
@@ -33,6 +35,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
         ..cigarettesPerPacket = cigarettesPerPacket;
         
       await localDataSource.saveUserProfile(profile);
+      await localDataSource.saveStreakMode(streakMode.index);
 
       return const Right(unit);
     } catch (e) {

@@ -9,43 +9,45 @@ class StepContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            title,
-            style: Theme.of(
-              context,
-            ).textTheme.displaySmall?.copyWith(letterSpacing: -0.02),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 32),
-          Card(
-            color: AppTheme.surfaceContainerLowest,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: Theme.of(
+                context,
+              ).textTheme.displaySmall?.copyWith(letterSpacing: -0.02),
+              textAlign: TextAlign.center,
             ),
-            child: Container(
-              padding: const EdgeInsets.all(24.0),
-              decoration: BoxDecoration(
-                color: AppTheme.surfaceContainerLowest,
+            const SizedBox(height: 32),
+            Card(
+              color: AppTheme.surfaceContainerLowest,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xFF005C55).withValues(alpha: 0.06),
-                    blurRadius: 40,
-                    offset: const Offset(0, 8),
-                  ),
-                ],
               ),
-              child: content,
+              child: Container(
+                padding: const EdgeInsets.all(24.0),
+                decoration: BoxDecoration(
+                  color: AppTheme.surfaceContainerLowest,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF005C55).withValues(alpha: 0.06),
+                      blurRadius: 40,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
+                ),
+                child: content,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

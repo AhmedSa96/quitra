@@ -422,6 +422,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get streakModeLabel => 'وضع السلسلة';
 
   @override
+  String get streakModeDescription =>
+      'اختر كيف تتعامل سلسلتك اليومية مع الصعوبات والانتكاسات.';
+
+  @override
   String get forgivingModeLabel => 'الوضع المرن';
 
   @override
@@ -434,4 +438,241 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get strictModeDesc =>
       'تتم إعادة ضبط السلسلة إلى الصفر فوراً عند أي انتكاسة.';
+
+  @override
+  String get recommendedLabel => 'موصى به';
+
+  @override
+  String get dayStreak => 'أيام متتالية';
+
+  @override
+  String get startYourStreak => 'ابدأ سلسلتك';
+
+  @override
+  String get cravingTrendTitle => 'مسار الرغبات';
+
+  @override
+  String cravingMomentsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count لحظة',
+      many: '$count لحظة',
+      few: '$count لحظات',
+      two: 'لحظتان',
+      one: 'لحظة واحدة',
+      zero: '0 لحظات',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dayShort => 'ي';
+
+  @override
+  String get watchAdAndSaveJournal => 'شاهد إعلاناً واحفظ اليوميات';
+
+  @override
+  String get watchAdHint =>
+      'مشاهدة الإعلانات تساعدنا على الاستمرار في تطوير Quitra مجاناً.';
+
+  @override
+  String get yourMilestonesTitle => 'إنجازاتك';
+
+  @override
+  String get strengthAndDedicationTitle => 'القوة والالتزام';
+
+  @override
+  String get milestoneCategoryAll => 'الكل';
+
+  @override
+  String get milestoneCategoryTime => 'الوقت';
+
+  @override
+  String get milestoneCategoryHealth => 'الصحة';
+
+  @override
+  String get milestoneCategorySavings => 'التوفير';
+
+  @override
+  String get milestoneCategoryStreak => 'الاستمرار';
+
+  @override
+  String get milestoneCategoryStrength => 'القوة';
+
+  @override
+  String get milestoneCategoryDedication => 'الالتزام';
+
+  @override
+  String get milestoneFirstDayTitle => 'اليوم الأول';
+
+  @override
+  String get milestoneFirstDayDesc =>
+      'الخطوة الأولى هي الأهم دائماً. وقد خطوتها بنجاح.';
+
+  @override
+  String get milestoneThreeDaysTitle => 'ثلاثة أيام من النقاء';
+
+  @override
+  String get milestoneThreeDaysDesc =>
+      'النيكوتين يغادر جسدك. أنت تستعيد زمام السيطرة.';
+
+  @override
+  String get milestoneOneWeekTitle => 'أسبوع كامل';
+
+  @override
+  String get milestoneOneWeekDesc => 'أنت أفضل مما تظن. أسبوع كامل وراء ظهرك.';
+
+  @override
+  String get milestoneTwoWeeksTitle => 'أسبوعان من النقاء';
+
+  @override
+  String get milestoneTwoWeeksDesc =>
+      'كل خطوة تصنع فارقاً. الرغبة الملحة تفقد سيطرتها.';
+
+  @override
+  String get milestoneOneMonthTitle => 'شهر من الحرية';
+
+  @override
+  String get milestoneOneMonthDesc =>
+      'هذا تقدم حقيقي. لقد أعدت رسم إيقاع يومك.';
+
+  @override
+  String get milestoneThreeMonthsTitle => 'ثلاثة أشهر';
+
+  @override
+  String get milestoneThreeMonthsDesc =>
+      'بنيت ثباتاً متيناً. أنت قادر على المضي قدماً.';
+
+  @override
+  String get milestoneSixMonthsTitle => 'نصف عام';
+
+  @override
+  String get milestoneSixMonthsDesc =>
+      'ستة أشهر من الحرية. رحلتك، وقوتك الحقيقية.';
+
+  @override
+  String get milestoneOneYearTitle => 'عام كامل من الحرية';
+
+  @override
+  String get milestoneOneYearDesc =>
+      'عام كامل اخترت فيه صحتك ونفسك. أنت حر الآن.';
+
+  @override
+  String get milestoneHeartHealingTitle => 'انتظام نبض القلب';
+
+  @override
+  String get milestoneHeartHealingDesc =>
+      'معدل ضربات قلبك وضغط دمك عادا إلى مستوياتهما الطبيعية.';
+
+  @override
+  String get milestoneCirculationTitle => 'حيوية الدورة الدموية';
+
+  @override
+  String get milestoneCirculationDesc =>
+      'الأكسجين يتدفق بحرية أكبر. تشعر بخفة ونشاط متجدد.';
+
+  @override
+  String get milestoneBreathingTitle => 'تنفس أعمق';
+
+  @override
+  String get milestoneBreathingDesc =>
+      'مسالكك التنفسية تتعافى. التنفس أصبح أكثر راحة وهدوءاً.';
+
+  @override
+  String get milestoneSaved10Title => 'أول توفير';
+
+  @override
+  String get milestoneSaved10Desc =>
+      'أول مبلغ تدخره لصالحك. برهان على أن كل قرار يهم.';
+
+  @override
+  String get milestoneSaved50Title => 'مدخرات تنمو';
+
+  @override
+  String get milestoneSaved50Desc =>
+      'خمسون ادخرتها. مال احتفظت به بدلاً من حرقه في الدخان.';
+
+  @override
+  String get milestoneSaved100Title => 'مئة محفوظة';
+
+  @override
+  String get milestoneSaved100Desc =>
+      'مئة محفوظة. مكافأة ملموسة لالتزامك وصبرك.';
+
+  @override
+  String get milestoneSaved500Title => 'حرية مالية';
+
+  @override
+  String get milestoneSaved500Desc =>
+      'خمسمائة وفرتها. استعدت السيطرة الكاملة على مواردك.';
+
+  @override
+  String get milestoneStreak7Title => 'تركيز لسبعة أيام';
+
+  @override
+  String get milestoneStreak7Desc =>
+      'سبعة أيام متواصلة من التحكم بالذات. الزخم يزداد قوة.';
+
+  @override
+  String get milestoneStreak30Title => 'عادة راسخة';
+
+  @override
+  String get milestoneStreak30Desc =>
+      'ثلاثون يوماً مستمراً. نمط حياتك الجديد يترسخ بقوة.';
+
+  @override
+  String get milestoneStreak100Title => 'عزيمة لا تلين';
+
+  @override
+  String get milestoneStreak100Desc =>
+      'مئة يوم بلا انقطاع. أنت المسيطر الحقيقي على قراراتك.';
+
+  @override
+  String get milestoneFirstMomentTitle => 'تجاوز أول رغبة';
+
+  @override
+  String get milestoneFirstMomentDesc =>
+      'توقفت، تنفست، وتركتها تمضي. الرغبة تزول وأنت تبقى.';
+
+  @override
+  String get milestoneTenMomentsTitle => 'عشر انتصارات';
+
+  @override
+  String get milestoneTenMomentsDesc =>
+      'عشر لحظات صعبة واجهتها بوعي وهدوء وتغلبت عليها.';
+
+  @override
+  String get milestoneFiftyMomentsTitle => 'سيد اللحظات';
+
+  @override
+  String get milestoneFiftyMomentsDesc =>
+      'خمسون لحظة انتصرت فيها. الرغبات لم تعد تحكمك.';
+
+  @override
+  String get milestoneSevenCheckInsTitle => 'أسبوع من المتابعة';
+
+  @override
+  String get milestoneSevenCheckInsDesc =>
+      'سبع مراجعات يومية. المصارحة مع نفسك تمنحك الأمان والثبات.';
+
+  @override
+  String get milestoneThirtyCheckInsTitle => 'شهر من الوعي';
+
+  @override
+  String get milestoneThirtyCheckInsDesc =>
+      'ثلاثون تسجيلاً يومياً. الوعي بذاتك هو سلاحك الأقوى.';
+
+  @override
+  String get nextMilestoneTitle => 'المحطة التالية';
+
+  @override
+  String get milestoneComplete => 'مكتمل';
+
+  @override
+  String get allMilestonesAchieved => 'تم تحقيق جميع المحطات!';
+
+  @override
+  String get allMilestonesAchievedDesc =>
+      'لقد حققت جميع الإنجازات في رحلتك بنجاح. إنجاز استثنائي حقاً!';
 }

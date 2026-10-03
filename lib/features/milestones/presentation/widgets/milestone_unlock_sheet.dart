@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:solar_icons/solar_icons.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/milestone.dart';
+import '../extensions/milestone_localization_extension.dart';
 
 class MilestoneUnlockSheet extends StatelessWidget {
   final Milestone milestone;
@@ -23,6 +25,8 @@ class MilestoneUnlockSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(24),
@@ -54,7 +58,7 @@ class MilestoneUnlockSheet extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            milestone.titleKey,
+            milestone.localizedTitle(context),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppTheme.onSurface,
@@ -62,7 +66,7 @@ class MilestoneUnlockSheet extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            milestone.descriptionKey,
+            milestone.localizedDescription(context),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppTheme.onSurfaceVariant,
@@ -72,7 +76,7 @@ class MilestoneUnlockSheet extends StatelessWidget {
           const SizedBox(height: 20),
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Continue'),
+            child: Text(l10n?.continueButton ?? 'Continue'),
           ),
         ],
       ),

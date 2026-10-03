@@ -8,6 +8,7 @@ class AdService {
   static bool _isAdLoaded = false;
 
   static Future<void> loadRewardedAd() async {
+    if (!dotenv.isInitialized) return;
     final unitId = Platform.isIOS
         ? dotenv.env['ADMOB_IOS_UNIT_ID']
         : dotenv.env['ADMOB_UNIT_ID'];

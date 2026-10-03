@@ -892,6 +892,12 @@ abstract class AppLocalizations {
   /// **'Streak Mode'**
   String get streakModeLabel;
 
+  /// No description provided for @streakModeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how your daily streak handles setbacks.'**
+  String get streakModeDescription;
+
   /// No description provided for @forgivingModeLabel.
   ///
   /// In en, this message translates to:
@@ -915,6 +921,408 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Streak resets immediately to 0 on any setback or missed check-in.'**
   String get strictModeDesc;
+
+  /// No description provided for @recommendedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended'**
+  String get recommendedLabel;
+
+  /// No description provided for @dayStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Day streak'**
+  String get dayStreak;
+
+  /// No description provided for @startYourStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your streak'**
+  String get startYourStreak;
+
+  /// No description provided for @cravingTrendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Craving Trend'**
+  String get cravingTrendTitle;
+
+  /// Number of craving moments in trend chart
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 moment} other{{count} moments}}'**
+  String cravingMomentsCount(int count);
+
+  /// No description provided for @dayShort.
+  ///
+  /// In en, this message translates to:
+  /// **'d'**
+  String get dayShort;
+
+  /// Button to watch rewarded ad and save daily check-in journal
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Ad & Save Journal'**
+  String get watchAdAndSaveJournal;
+
+  /// Hint text explaining that ads support ongoing improvements
+  ///
+  /// In en, this message translates to:
+  /// **'Watching ads helps us keep Quitra free and constantly improving.'**
+  String get watchAdHint;
+
+  /// No description provided for @yourMilestonesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Milestones'**
+  String get yourMilestonesTitle;
+
+  /// No description provided for @strengthAndDedicationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Strength & Dedication'**
+  String get strengthAndDedicationTitle;
+
+  /// No description provided for @milestoneCategoryAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get milestoneCategoryAll;
+
+  /// No description provided for @milestoneCategoryTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get milestoneCategoryTime;
+
+  /// No description provided for @milestoneCategoryHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health'**
+  String get milestoneCategoryHealth;
+
+  /// No description provided for @milestoneCategorySavings.
+  ///
+  /// In en, this message translates to:
+  /// **'Savings'**
+  String get milestoneCategorySavings;
+
+  /// No description provided for @milestoneCategoryStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak'**
+  String get milestoneCategoryStreak;
+
+  /// No description provided for @milestoneCategoryStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Strength'**
+  String get milestoneCategoryStrength;
+
+  /// No description provided for @milestoneCategoryDedication.
+  ///
+  /// In en, this message translates to:
+  /// **'Dedication'**
+  String get milestoneCategoryDedication;
+
+  /// No description provided for @milestoneFirstDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Day One'**
+  String get milestoneFirstDayTitle;
+
+  /// No description provided for @milestoneFirstDayDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The first step is always the hardest. You took it.'**
+  String get milestoneFirstDayDesc;
+
+  /// No description provided for @milestoneThreeDaysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Three Days Clean'**
+  String get milestoneThreeDaysTitle;
+
+  /// No description provided for @milestoneThreeDaysDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Nicotine is leaving your body. You\'re regaining control.'**
+  String get milestoneThreeDaysDesc;
+
+  /// No description provided for @milestoneOneWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One Week Strong'**
+  String get milestoneOneWeekTitle;
+
+  /// No description provided for @milestoneOneWeekDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re doing better than you think. A full week behind you.'**
+  String get milestoneOneWeekDesc;
+
+  /// No description provided for @milestoneTwoWeeksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Two Weeks Clean'**
+  String get milestoneTwoWeeksTitle;
+
+  /// No description provided for @milestoneTwoWeeksDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Every step matters. Cravings are losing their grip.'**
+  String get milestoneTwoWeeksDesc;
+
+  /// No description provided for @milestoneOneMonthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One Month Free'**
+  String get milestoneOneMonthTitle;
+
+  /// No description provided for @milestoneOneMonthDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'This is real progress. You\'ve redefined your daily rhythm.'**
+  String get milestoneOneMonthDesc;
+
+  /// No description provided for @milestoneThreeMonthsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Three Months'**
+  String get milestoneThreeMonthsTitle;
+
+  /// No description provided for @milestoneThreeMonthsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve built lasting resilience. You\'ve got this.'**
+  String get milestoneThreeMonthsDesc;
+
+  /// No description provided for @milestoneSixMonthsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Half a Year'**
+  String get milestoneSixMonthsTitle;
+
+  /// No description provided for @milestoneSixMonthsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Six months of freedom. Your journey, your strength.'**
+  String get milestoneSixMonthsDesc;
+
+  /// No description provided for @milestoneOneYearTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One Year Free'**
+  String get milestoneOneYearTitle;
+
+  /// No description provided for @milestoneOneYearDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A full year of choosing yourself. You\'re free.'**
+  String get milestoneOneYearDesc;
+
+  /// No description provided for @milestoneHeartHealingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart Rhythm Restored'**
+  String get milestoneHeartHealingTitle;
+
+  /// No description provided for @milestoneHeartHealingDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your heart rate and blood pressure have returned to normal levels.'**
+  String get milestoneHeartHealingDesc;
+
+  /// No description provided for @milestoneCirculationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Vital Circulation'**
+  String get milestoneCirculationTitle;
+
+  /// No description provided for @milestoneCirculationDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Oxygen flows freely again. Movement and energy feel lighter.'**
+  String get milestoneCirculationDesc;
+
+  /// No description provided for @milestoneBreathingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clearer Breathing'**
+  String get milestoneBreathingTitle;
+
+  /// No description provided for @milestoneBreathingDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your airways are recovering. Breathing is calm and deep.'**
+  String get milestoneBreathingDesc;
+
+  /// No description provided for @milestoneSaved10Title.
+  ///
+  /// In en, this message translates to:
+  /// **'First Savings'**
+  String get milestoneSaved10Title;
+
+  /// No description provided for @milestoneSaved10Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first money saved. Proof that every decision counts.'**
+  String get milestoneSaved10Desc;
+
+  /// No description provided for @milestoneSaved50Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Growing Pocket'**
+  String get milestoneSaved50Title;
+
+  /// No description provided for @milestoneSaved50Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fifty saved. Money kept in your pocket, not burned in smoke.'**
+  String get milestoneSaved50Desc;
+
+  /// No description provided for @milestoneSaved100Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone Century'**
+  String get milestoneSaved100Title;
+
+  /// No description provided for @milestoneSaved100Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'A hundred saved. A tangible reward for your commitment.'**
+  String get milestoneSaved100Desc;
+
+  /// No description provided for @milestoneSaved500Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Freedom'**
+  String get milestoneSaved500Title;
+
+  /// No description provided for @milestoneSaved500Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Five hundred preserved. Taking back control of your resources.'**
+  String get milestoneSaved500Desc;
+
+  /// No description provided for @milestoneStreak7Title.
+  ///
+  /// In en, this message translates to:
+  /// **'7-Day Focus'**
+  String get milestoneStreak7Title;
+
+  /// No description provided for @milestoneStreak7Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Seven consecutive days of self-control. Momentum is building.'**
+  String get milestoneStreak7Desc;
+
+  /// No description provided for @milestoneStreak30Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Solid Habit'**
+  String get milestoneStreak30Title;
+
+  /// No description provided for @milestoneStreak30Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Thirty straight days. New neural pathways are flourishing.'**
+  String get milestoneStreak30Desc;
+
+  /// No description provided for @milestoneStreak100Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Unshakeable'**
+  String get milestoneStreak100Title;
+
+  /// No description provided for @milestoneStreak100Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'One hundred unbroken days. You are truly in control.'**
+  String get milestoneStreak100Desc;
+
+  /// No description provided for @milestoneFirstMomentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Moment Passed'**
+  String get milestoneFirstMomentTitle;
+
+  /// No description provided for @milestoneFirstMomentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You paused, breathed, and let it pass. Proof that cravings fade.'**
+  String get milestoneFirstMomentDesc;
+
+  /// No description provided for @milestoneTenMomentsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ten Victories'**
+  String get milestoneTenMomentsTitle;
+
+  /// No description provided for @milestoneTenMomentsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ten difficult urges faced and overcome without giving in.'**
+  String get milestoneTenMomentsDesc;
+
+  /// No description provided for @milestoneFiftyMomentsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Master of Moments'**
+  String get milestoneFiftyMomentsTitle;
+
+  /// No description provided for @milestoneFiftyMomentsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fifty moments mastered. Cravings no longer dictate your choices.'**
+  String get milestoneFiftyMomentsDesc;
+
+  /// No description provided for @milestoneSevenCheckInsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Week of Check-Ins'**
+  String get milestoneSevenCheckInsTitle;
+
+  /// No description provided for @milestoneSevenCheckInsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Seven daily logs. Honest reflection keeps you anchored.'**
+  String get milestoneSevenCheckInsDesc;
+
+  /// No description provided for @milestoneThirtyCheckInsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A Month of Awareness'**
+  String get milestoneThirtyCheckInsTitle;
+
+  /// No description provided for @milestoneThirtyCheckInsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Thirty daily reflections. Self-awareness is your superpower.'**
+  String get milestoneThirtyCheckInsDesc;
+
+  /// No description provided for @nextMilestoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Milestone'**
+  String get nextMilestoneTitle;
+
+  /// No description provided for @milestoneComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get milestoneComplete;
+
+  /// No description provided for @allMilestonesAchieved.
+  ///
+  /// In en, this message translates to:
+  /// **'All Milestones Achieved!'**
+  String get allMilestonesAchieved;
+
+  /// No description provided for @allMilestonesAchievedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You have achieved every single milestone on your journey. Truly remarkable!'**
+  String get allMilestonesAchievedDesc;
 }
 
 class _AppLocalizationsDelegate

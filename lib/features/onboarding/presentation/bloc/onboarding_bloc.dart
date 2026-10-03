@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quitra/features/onboarding/domain/usecases/complete_onboarding_usecase.dart';
 import 'package:quitra/features/settings/domain/usecases/import_data_use_case.dart';
+import 'package:quitra/features/streak/domain/entities/streak.dart';
 
 part 'onboarding_event.dart';
 part 'onboarding_state.dart';
@@ -27,6 +28,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         cigarettePrice: event.cigarettePrice,
         packetPrice: event.packetPrice,
         cigarettesPerPacket: event.cigarettesPerPacket,
+        streakMode: event.streakMode,
       );
       result.fold(
         (failure) => emit(const OnboardingState.error()),

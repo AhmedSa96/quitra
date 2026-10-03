@@ -3,13 +3,17 @@ import 'package:solar_icons/solar_icons.dart';
 import '../../../../core/presentation/widgets/sanctuary_card.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../domain/entities/milestone.dart';
+import '../extensions/milestone_localization_extension.dart';
+import 'milestone_unlock_sheet.dart';
 
 class MilestoneCard extends StatelessWidget {
   final Milestone milestone;
+  final VoidCallback? onTap;
 
   const MilestoneCard({
     super.key,
     required this.milestone,
+    this.onTap,
   });
 
   IconData _getIconData(String name) {
@@ -38,40 +42,43 @@ class MilestoneCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Opacity(
       opacity: milestone.isUnlocked ? 1.0 : 0.4,
-      child: SanctuaryCard(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: SizedBox(
-          width: 110,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: milestone.isUnlocked
-                      ? const Color(0xFF22C55E).withValues(alpha: 0.12)
-                      : AppTheme.surfaceContainerLow,
-                  shape: BoxShape.circle,
+      child: GestureDetector(
+        onTap: onTap ?? () => MilestoneUnlockSheet.show(context, milestone),
+        child: SanctuaryCard(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: SizedBox(
+            width: 110,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: milestone.isUnlocked
+                        ? const Color(0xFF22C55E).withValues(alpha: 0.12)
+                        : AppTheme.surfaceContainerLow,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    _getIconData(milestone.iconName),
+                    color: milestone.isUnlocked ? const Color(0xFF22C55E) : AppTheme.onSurfaceVariant,
+                    size: 28,
+                  ),
                 ),
-                child: Icon(
-                  _getIconData(milestone.iconName),
-                  color: milestone.isUnlocked ? const Color(0xFF22C55E) : AppTheme.onSurfaceVariant,
-                  size: 28,
+                const SizedBox(height: 8),
+                Text(
+                  milestone.localizedTitle(context),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: milestone.isUnlocked ? AppTheme.onSurface : AppTheme.onSurfaceVariant,
+                      ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                milestone.titleKey,
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: milestone.isUnlocked ? AppTheme.onSurface : AppTheme.onSurfaceVariant,
-                    ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

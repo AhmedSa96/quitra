@@ -6,7 +6,6 @@ import '../../../journey/domain/entities/journey_day.dart';
 import '../bloc/home_bloc.dart';
 import '../bloc/home_event.dart';
 import '../bloc/home_state.dart';
-import '../widgets/daily_check_in_card.dart';
 import '../widgets/home_action_section.dart';
 import '../widgets/home_header.dart';
 import '../widgets/streak_hero_card.dart';
@@ -72,10 +71,8 @@ class _HomeViewState extends State<_HomeView> {
                   stats: state.stats,
                   journeyHistory: _history,
                 ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 64),
               const HomeActionSection(),
-              const SizedBox(height: 16),
-              const DailyCheckInCard(),
               const SizedBox(height: 32),
             ],
           ),

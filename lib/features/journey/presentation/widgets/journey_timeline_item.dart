@@ -20,16 +20,14 @@ class JourneyTimelineItem extends StatelessWidget {
     final statusColor = _getStatusColor(day.status);
     final statusIcon = _getStatusIcon(day.status);
     final statusText = _getStatusText(day.status, l10n);
-    final dateText = DateFormat('MMMM d').format(day.date);
-    final router = GoRouter.of(context);
-    final bloc = context.read<JourneyBloc>();
-
+    final locale = Localizations.localeOf(context).toString();
+    final dateText = DateFormat.MMMMd(locale).format(day.date);
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       child: InkWell(
-        onTap: () => router.push(
+        onTap: () => GoRouter.of(context).push(
           '/journey-day-details',
-          extra: {'day': day, 'bloc': bloc},
+          extra: {'day': day, 'bloc': context.read<JourneyBloc>()},
         ),
         borderRadius: BorderRadius.circular(24),
         child: Container(

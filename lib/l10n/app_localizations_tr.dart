@@ -430,6 +430,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get streakModeLabel => 'Seri Modu';
 
   @override
+  String get streakModeDescription =>
+      'Günlük serinizin aksaklıkları nasıl ele alacağını seçin.';
+
+  @override
   String get forgivingModeLabel => 'Esnek Mod';
 
   @override
@@ -442,4 +446,238 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get strictModeDesc =>
       'Herhangi bir gerilemede veya kaçırılan kayıtta seri hemen sıfırlanır.';
+
+  @override
+  String get recommendedLabel => 'Önerilen';
+
+  @override
+  String get dayStreak => 'Günlük seri';
+
+  @override
+  String get startYourStreak => 'Serini başlat';
+
+  @override
+  String get cravingTrendTitle => 'İstek Eğilimi';
+
+  @override
+  String cravingMomentsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count an',
+      one: '1 an',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dayShort => 'g';
+
+  @override
+  String get watchAdAndSaveJournal => 'Reklam İzle ve Günlüğü Kaydet';
+
+  @override
+  String get watchAdHint =>
+      'Reklam izlemek, Quitra\'yı ücretsiz tutmamıza ve geliştirmemize yardımcı olur.';
+
+  @override
+  String get yourMilestonesTitle => 'Kilometre Taşların';
+
+  @override
+  String get strengthAndDedicationTitle => 'Güç ve Kararlılık';
+
+  @override
+  String get milestoneCategoryAll => 'Tümü';
+
+  @override
+  String get milestoneCategoryTime => 'Zaman';
+
+  @override
+  String get milestoneCategoryHealth => 'Sağlık';
+
+  @override
+  String get milestoneCategorySavings => 'Tasarruf';
+
+  @override
+  String get milestoneCategoryStreak => 'Seri';
+
+  @override
+  String get milestoneCategoryStrength => 'Güç';
+
+  @override
+  String get milestoneCategoryDedication => 'Kararlılık';
+
+  @override
+  String get milestoneFirstDayTitle => 'İlk Gün';
+
+  @override
+  String get milestoneFirstDayDesc =>
+      'En zor adım ilk adımdır. Ve sen bunu kararlılıkla attın.';
+
+  @override
+  String get milestoneThreeDaysTitle => 'Üç Gün Temiz';
+
+  @override
+  String get milestoneThreeDaysDesc =>
+      'Nikotin vücudundan ayrılıyor. Kontrolü geri kazanıyorsun.';
+
+  @override
+  String get milestoneOneWeekTitle => 'Bir Hafta Güçlü';
+
+  @override
+  String get milestoneOneWeekDesc =>
+      'Sandığından çok daha iyisin. Koca bir hafta geride kaldı.';
+
+  @override
+  String get milestoneTwoWeeksTitle => 'İki Hafta Temiz';
+
+  @override
+  String get milestoneTwoWeeksDesc =>
+      'Her adım değerli. Sigara isteği gücünü yitiriyor.';
+
+  @override
+  String get milestoneOneMonthTitle => 'Bir Ay Özgür';
+
+  @override
+  String get milestoneOneMonthDesc =>
+      'Bu gerçek bir ilerleme. Günlük ritmini baştan yazdın.';
+
+  @override
+  String get milestoneThreeMonthsTitle => 'Üç Ay';
+
+  @override
+  String get milestoneThreeMonthsDesc =>
+      'Kalıcı bir direnç inşa ettin. Bunu başarabilirsin.';
+
+  @override
+  String get milestoneSixMonthsTitle => 'Yarım Yıl';
+
+  @override
+  String get milestoneSixMonthsDesc =>
+      'Altı aylık özgürlük. Senin yolculuğun, senin gücün.';
+
+  @override
+  String get milestoneOneYearTitle => 'Bir Yıl Özgür';
+
+  @override
+  String get milestoneOneYearDesc =>
+      'Kendini seçtiğin koca bir yıl. Artık tamamen özgürsün.';
+
+  @override
+  String get milestoneHeartHealingTitle => 'Kalp Ritmi Dengelendi';
+
+  @override
+  String get milestoneHeartHealingDesc =>
+      'Kalp atış hızın ve kan basıncın normal seviyelere döndü.';
+
+  @override
+  String get milestoneCirculationTitle => 'Canlanan Dolaşım';
+
+  @override
+  String get milestoneCirculationDesc =>
+      'Oksijen serbestçe dolaşıyor. Hareket etmek artık daha hafif.';
+
+  @override
+  String get milestoneBreathingTitle => 'Rahat Nefes';
+
+  @override
+  String get milestoneBreathingDesc =>
+      'Hava yolların yenileniyor. Nefes almak artık derin ve huzurlu.';
+
+  @override
+  String get milestoneSaved10Title => 'İlk Tasarruf';
+
+  @override
+  String get milestoneSaved10Desc =>
+      'Biriken ilk paran. Her seçimin bir fark yarattığının kanıtı.';
+
+  @override
+  String get milestoneSaved50Title => 'Büyüyen Birikim';
+
+  @override
+  String get milestoneSaved50Desc =>
+      'Ellilik tasarruf. Duman yerine cebinde kalan değer.';
+
+  @override
+  String get milestoneSaved100Title => 'Yüzlük Birikim';
+
+  @override
+  String get milestoneSaved100Desc =>
+      'Yüz birim birikti. Kararlılığının somut bir ödülü.';
+
+  @override
+  String get milestoneSaved500Title => 'Maddi Özgürlük';
+
+  @override
+  String get milestoneSaved500Desc =>
+      'Beş yüz birim korundu. Kaynaklarının kontrolünü geri aldın.';
+
+  @override
+  String get milestoneStreak7Title => '7 Günlük Odak';
+
+  @override
+  String get milestoneStreak7Desc =>
+      'Yedi gün kesintisiz irade. Güçlü bir ivme yakalıyorsun.';
+
+  @override
+  String get milestoneStreak30Title => 'Sağlam Alışkanlık';
+
+  @override
+  String get milestoneStreak30Desc =>
+      'Otuz gün art arda. Yeni ve sağlıklı alışkanlıkların kök salıyor.';
+
+  @override
+  String get milestoneStreak100Title => 'Sarsılmaz İrade';
+
+  @override
+  String get milestoneStreak100Desc =>
+      'Yüz kesintisiz gün. Hayatının kontrolü tamamen sende.';
+
+  @override
+  String get milestoneFirstMomentTitle => 'İlk Direnç';
+
+  @override
+  String get milestoneFirstMomentDesc =>
+      'Duraksadın, derin nefes aldın ve geçmesini bekledin. İstekler geçer.';
+
+  @override
+  String get milestoneTenMomentsTitle => 'On Zafer';
+
+  @override
+  String get milestoneTenMomentsDesc =>
+      'Karşılaştığın ve pes etmeden aştığın on zorlu an.';
+
+  @override
+  String get milestoneFiftyMomentsTitle => 'Anların Ustası';
+
+  @override
+  String get milestoneFiftyMomentsDesc =>
+      'Elli zorlu an aşıldı. İstekler artık kararlarına yön veremez.';
+
+  @override
+  String get milestoneSevenCheckInsTitle => 'Bir Haftalık Takip';
+
+  @override
+  String get milestoneSevenCheckInsDesc =>
+      'Yedi günlük kayıt. Kendinle dürüst olmak seni dengede tutar.';
+
+  @override
+  String get milestoneThirtyCheckInsTitle => 'Bir Aylık Farkındalık';
+
+  @override
+  String get milestoneThirtyCheckInsDesc =>
+      'Otuz günlük iç gözlem. Öz farkındalık senin en büyük gücün.';
+
+  @override
+  String get nextMilestoneTitle => 'Sıradaki Kilometre Taşı';
+
+  @override
+  String get milestoneComplete => 'Tamamlandı';
+
+  @override
+  String get allMilestonesAchieved => 'Tüm Kilometre Taşları Aşıldı!';
+
+  @override
+  String get allMilestonesAchievedDesc =>
+      'Yolculuğundaki tüm hedefleri başardın. Gerçekten olağanüstü!';
 }

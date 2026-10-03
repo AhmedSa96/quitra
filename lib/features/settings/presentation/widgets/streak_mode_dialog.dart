@@ -39,14 +39,14 @@ class StreakModeDialog extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Streak Mode',
+                    l10n.streakModeLabel,
                     style: Theme.of(context).textTheme.displayLarge?.copyWith(
                           fontSize: 24,
                         ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Choose how your daily streak handles setbacks.',
+                    l10n.streakModeDescription,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppTheme.onSurfaceVariant.withValues(alpha: 0.8),
                         ),
@@ -54,8 +54,8 @@ class StreakModeDialog extends StatelessWidget {
                   const SizedBox(height: 24),
                   _buildModeOption(
                     context,
-                    title: 'Forgiving Mode (Recommended)',
-                    description: 'One grace pass per week so one difficult moment doesn\'t reset all your hard work.',
+                    title: '${l10n.forgivingModeLabel} (${l10n.recommendedLabel})',
+                    description: l10n.forgivingModeDesc,
                     icon: SolarIconsOutline.shieldCheck,
                     isSelected: currentMode == StreakMode.forgiving,
                     onTap: () {
@@ -66,8 +66,8 @@ class StreakModeDialog extends StatelessWidget {
                   const SizedBox(height: 12),
                   _buildModeOption(
                     context,
-                    title: 'Strict Mode',
-                    description: 'Streak resets immediately to 0 on any setback or missed check-in.',
+                    title: l10n.strictModeLabel,
+                    description: l10n.strictModeDesc,
                     icon: SolarIconsOutline.fire,
                     isSelected: currentMode == StreakMode.strict,
                     onTap: () {

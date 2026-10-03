@@ -46,7 +46,13 @@ class _CigarettePriceStepState extends State<CigarettePriceStep> {
                   context,
                   title: l10n.priceOptionSingle,
                   isSelected: !widget.isPacket,
-                  onTap: () => widget.onTypeChanged(false),
+                  onTap: () {
+                    if (widget.isPacket) {
+                      widget.onPacketPriceChanged('');
+                      widget.onCigarettesPerPacketChanged('');
+                      widget.onTypeChanged(false);
+                    }
+                  },
                 ),
               ),
               const SizedBox(width: 16),
@@ -55,7 +61,12 @@ class _CigarettePriceStepState extends State<CigarettePriceStep> {
                   context,
                   title: l10n.priceOptionPacket,
                   isSelected: widget.isPacket,
-                  onTap: () => widget.onTypeChanged(true),
+                  onTap: () {
+                    if (!widget.isPacket) {
+                      widget.onCigarettePriceChanged('');
+                      widget.onTypeChanged(true);
+                    }
+                  },
                 ),
               ),
             ],
