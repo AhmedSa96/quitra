@@ -714,4 +714,32 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noNotesRecorded => 'Bu gün için kayıtlı not bulunmuyor.';
+
+  @override
+  String get appendNote => 'Not Ekle';
+
+  @override
+  String get iSmoked => 'Sigara İçtim';
+
+  @override
+  String get captureReflection => 'Düşünceni Kaydet';
+
+  @override
+  String get reflectionHint => 'Şu an aklından neler geçiyor?';
+
+  @override
+  String get saveReflection => 'Notu Kaydet';
+
+  @override
+  String get setbackTitle => 'Bir Tökezleme Yenilgi Değildir';
+
+  @override
+  String get setbackSubtitle =>
+      'Her nefes yeni bir başlangıçtır. Kendine dürüst olman en büyük gücündür.';
+
+  @override
+  String get logSetbackAction => 'Tökezlemeyi Kaydet ve Devam Et';
+
+  @override
+  String get triggerReflectionHint => 'Bu ana ne sebep oldu? (İsteğe bağlı)';
 }

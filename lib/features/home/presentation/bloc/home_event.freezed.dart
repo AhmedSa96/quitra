@@ -22,6 +22,7 @@ mixin _$HomeEvent {
     required TResult Function(bool wasSmoked) logCraving,
     required TResult Function(bool wasSmoked, int cravingLevel, String? note)
         saveDailyCheckIn,
+    required TResult Function(String note) appendNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$HomeEvent {
     TResult? Function(bool wasSmoked)? logCraving,
     TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
         saveDailyCheckIn,
+    TResult? Function(String note)? appendNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$HomeEvent {
     TResult Function(bool wasSmoked)? logCraving,
     TResult Function(bool wasSmoked, int cravingLevel, String? note)?
         saveDailyCheckIn,
+    TResult Function(String note)? appendNote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,6 +49,7 @@ mixin _$HomeEvent {
     required TResult Function(LoadStats value) loadStats,
     required TResult Function(LogCraving value) logCraving,
     required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
+    required TResult Function(AppendNote value) appendNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +57,7 @@ mixin _$HomeEvent {
     TResult? Function(LoadStats value)? loadStats,
     TResult? Function(LogCraving value)? logCraving,
     TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult? Function(AppendNote value)? appendNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +65,7 @@ mixin _$HomeEvent {
     TResult Function(LoadStats value)? loadStats,
     TResult Function(LogCraving value)? logCraving,
     TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult Function(AppendNote value)? appendNote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,6 +130,7 @@ class _$LoadStatsImpl implements LoadStats {
     required TResult Function(bool wasSmoked) logCraving,
     required TResult Function(bool wasSmoked, int cravingLevel, String? note)
         saveDailyCheckIn,
+    required TResult Function(String note) appendNote,
   }) {
     return loadStats();
   }
@@ -135,6 +142,7 @@ class _$LoadStatsImpl implements LoadStats {
     TResult? Function(bool wasSmoked)? logCraving,
     TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
         saveDailyCheckIn,
+    TResult? Function(String note)? appendNote,
   }) {
     return loadStats?.call();
   }
@@ -146,6 +154,7 @@ class _$LoadStatsImpl implements LoadStats {
     TResult Function(bool wasSmoked)? logCraving,
     TResult Function(bool wasSmoked, int cravingLevel, String? note)?
         saveDailyCheckIn,
+    TResult Function(String note)? appendNote,
     required TResult orElse(),
   }) {
     if (loadStats != null) {
@@ -160,6 +169,7 @@ class _$LoadStatsImpl implements LoadStats {
     required TResult Function(LoadStats value) loadStats,
     required TResult Function(LogCraving value) logCraving,
     required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
+    required TResult Function(AppendNote value) appendNote,
   }) {
     return loadStats(this);
   }
@@ -170,6 +180,7 @@ class _$LoadStatsImpl implements LoadStats {
     TResult? Function(LoadStats value)? loadStats,
     TResult? Function(LogCraving value)? logCraving,
     TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult? Function(AppendNote value)? appendNote,
   }) {
     return loadStats?.call(this);
   }
@@ -180,6 +191,7 @@ class _$LoadStatsImpl implements LoadStats {
     TResult Function(LoadStats value)? loadStats,
     TResult Function(LogCraving value)? logCraving,
     TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult Function(AppendNote value)? appendNote,
     required TResult orElse(),
   }) {
     if (loadStats != null) {
@@ -262,6 +274,7 @@ class _$LogCravingImpl implements LogCraving {
     required TResult Function(bool wasSmoked) logCraving,
     required TResult Function(bool wasSmoked, int cravingLevel, String? note)
         saveDailyCheckIn,
+    required TResult Function(String note) appendNote,
   }) {
     return logCraving(wasSmoked);
   }
@@ -273,6 +286,7 @@ class _$LogCravingImpl implements LogCraving {
     TResult? Function(bool wasSmoked)? logCraving,
     TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
         saveDailyCheckIn,
+    TResult? Function(String note)? appendNote,
   }) {
     return logCraving?.call(wasSmoked);
   }
@@ -284,6 +298,7 @@ class _$LogCravingImpl implements LogCraving {
     TResult Function(bool wasSmoked)? logCraving,
     TResult Function(bool wasSmoked, int cravingLevel, String? note)?
         saveDailyCheckIn,
+    TResult Function(String note)? appendNote,
     required TResult orElse(),
   }) {
     if (logCraving != null) {
@@ -298,6 +313,7 @@ class _$LogCravingImpl implements LogCraving {
     required TResult Function(LoadStats value) loadStats,
     required TResult Function(LogCraving value) logCraving,
     required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
+    required TResult Function(AppendNote value) appendNote,
   }) {
     return logCraving(this);
   }
@@ -308,6 +324,7 @@ class _$LogCravingImpl implements LogCraving {
     TResult? Function(LoadStats value)? loadStats,
     TResult? Function(LogCraving value)? logCraving,
     TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult? Function(AppendNote value)? appendNote,
   }) {
     return logCraving?.call(this);
   }
@@ -318,6 +335,7 @@ class _$LogCravingImpl implements LogCraving {
     TResult Function(LoadStats value)? loadStats,
     TResult Function(LogCraving value)? logCraving,
     TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult Function(AppendNote value)? appendNote,
     required TResult orElse(),
   }) {
     if (logCraving != null) {
@@ -424,6 +442,7 @@ class _$SaveDailyCheckInImpl implements SaveDailyCheckIn {
     required TResult Function(bool wasSmoked) logCraving,
     required TResult Function(bool wasSmoked, int cravingLevel, String? note)
         saveDailyCheckIn,
+    required TResult Function(String note) appendNote,
   }) {
     return saveDailyCheckIn(wasSmoked, cravingLevel, note);
   }
@@ -435,6 +454,7 @@ class _$SaveDailyCheckInImpl implements SaveDailyCheckIn {
     TResult? Function(bool wasSmoked)? logCraving,
     TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
         saveDailyCheckIn,
+    TResult? Function(String note)? appendNote,
   }) {
     return saveDailyCheckIn?.call(wasSmoked, cravingLevel, note);
   }
@@ -446,6 +466,7 @@ class _$SaveDailyCheckInImpl implements SaveDailyCheckIn {
     TResult Function(bool wasSmoked)? logCraving,
     TResult Function(bool wasSmoked, int cravingLevel, String? note)?
         saveDailyCheckIn,
+    TResult Function(String note)? appendNote,
     required TResult orElse(),
   }) {
     if (saveDailyCheckIn != null) {
@@ -460,6 +481,7 @@ class _$SaveDailyCheckInImpl implements SaveDailyCheckIn {
     required TResult Function(LoadStats value) loadStats,
     required TResult Function(LogCraving value) logCraving,
     required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
+    required TResult Function(AppendNote value) appendNote,
   }) {
     return saveDailyCheckIn(this);
   }
@@ -470,6 +492,7 @@ class _$SaveDailyCheckInImpl implements SaveDailyCheckIn {
     TResult? Function(LoadStats value)? loadStats,
     TResult? Function(LogCraving value)? logCraving,
     TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult? Function(AppendNote value)? appendNote,
   }) {
     return saveDailyCheckIn?.call(this);
   }
@@ -480,6 +503,7 @@ class _$SaveDailyCheckInImpl implements SaveDailyCheckIn {
     TResult Function(LoadStats value)? loadStats,
     TResult Function(LogCraving value)? logCraving,
     TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult Function(AppendNote value)? appendNote,
     required TResult orElse(),
   }) {
     if (saveDailyCheckIn != null) {
@@ -500,5 +524,153 @@ abstract class SaveDailyCheckIn implements HomeEvent {
   String? get note;
   @JsonKey(ignore: true)
   _$$SaveDailyCheckInImplCopyWith<_$SaveDailyCheckInImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AppendNoteImplCopyWith<$Res> {
+  factory _$$AppendNoteImplCopyWith(
+          _$AppendNoteImpl value, $Res Function(_$AppendNoteImpl) then) =
+      __$$AppendNoteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String note});
+}
+
+/// @nodoc
+class __$$AppendNoteImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$AppendNoteImpl>
+    implements _$$AppendNoteImplCopyWith<$Res> {
+  __$$AppendNoteImplCopyWithImpl(
+      _$AppendNoteImpl _value, $Res Function(_$AppendNoteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? note = null,
+  }) {
+    return _then(_$AppendNoteImpl(
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AppendNoteImpl implements AppendNote {
+  const _$AppendNoteImpl({required this.note});
+
+  @override
+  final String note;
+
+  @override
+  String toString() {
+    return 'HomeEvent.appendNote(note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppendNoteImpl &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AppendNoteImplCopyWith<_$AppendNoteImpl> get copyWith =>
+      __$$AppendNoteImplCopyWithImpl<_$AppendNoteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadStats,
+    required TResult Function(bool wasSmoked) logCraving,
+    required TResult Function(bool wasSmoked, int cravingLevel, String? note)
+        saveDailyCheckIn,
+    required TResult Function(String note) appendNote,
+  }) {
+    return appendNote(note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadStats,
+    TResult? Function(bool wasSmoked)? logCraving,
+    TResult? Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
+    TResult? Function(String note)? appendNote,
+  }) {
+    return appendNote?.call(note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadStats,
+    TResult Function(bool wasSmoked)? logCraving,
+    TResult Function(bool wasSmoked, int cravingLevel, String? note)?
+        saveDailyCheckIn,
+    TResult Function(String note)? appendNote,
+    required TResult orElse(),
+  }) {
+    if (appendNote != null) {
+      return appendNote(note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadStats value) loadStats,
+    required TResult Function(LogCraving value) logCraving,
+    required TResult Function(SaveDailyCheckIn value) saveDailyCheckIn,
+    required TResult Function(AppendNote value) appendNote,
+  }) {
+    return appendNote(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadStats value)? loadStats,
+    TResult? Function(LogCraving value)? logCraving,
+    TResult? Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult? Function(AppendNote value)? appendNote,
+  }) {
+    return appendNote?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadStats value)? loadStats,
+    TResult Function(LogCraving value)? logCraving,
+    TResult Function(SaveDailyCheckIn value)? saveDailyCheckIn,
+    TResult Function(AppendNote value)? appendNote,
+    required TResult orElse(),
+  }) {
+    if (appendNote != null) {
+      return appendNote(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AppendNote implements HomeEvent {
+  const factory AppendNote({required final String note}) = _$AppendNoteImpl;
+
+  String get note;
+  @JsonKey(ignore: true)
+  _$$AppendNoteImplCopyWith<_$AppendNoteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

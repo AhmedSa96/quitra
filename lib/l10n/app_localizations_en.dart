@@ -713,4 +713,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noNotesRecorded => 'No notes recorded for this day.';
+
+  @override
+  String get appendNote => 'Append Note';
+
+  @override
+  String get iSmoked => 'I Smoked';
+
+  @override
+  String get captureReflection => 'Capture a Reflection';
+
+  @override
+  String get reflectionHint => 'What\'s on your mind right now?';
+
+  @override
+  String get saveReflection => 'Save Reflection';
+
+  @override
+  String get setbackTitle => 'A Setback is Not Defeat';
+
+  @override
+  String get setbackSubtitle =>
+      'Every breath is a fresh opportunity. Honesty with yourself is your greatest strength.';
+
+  @override
+  String get logSetbackAction => 'Log Setback & Keep Going';
+
+  @override
+  String get triggerReflectionHint => 'What triggered this moment? (Optional)';
 }

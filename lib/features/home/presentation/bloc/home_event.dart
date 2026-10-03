@@ -11,4 +11,7 @@ abstract class HomeEvent with _$HomeEvent {
     required int cravingLevel,
     String? note,
   }) = SaveDailyCheckIn;
+  const factory HomeEvent.appendNote({
+    required String note,
+  }) = AppendNote;
 }

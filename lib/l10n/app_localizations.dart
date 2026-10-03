@@ -1359,6 +1359,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No notes recorded for this day.'**
   String get noNotesRecorded;
+
+  /// No description provided for @appendNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Append Note'**
+  String get appendNote;
+
+  /// No description provided for @iSmoked.
+  ///
+  /// In en, this message translates to:
+  /// **'I Smoked'**
+  String get iSmoked;
+
+  /// No description provided for @captureReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Capture a Reflection'**
+  String get captureReflection;
+
+  /// No description provided for @reflectionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s on your mind right now?'**
+  String get reflectionHint;
+
+  /// No description provided for @saveReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Reflection'**
+  String get saveReflection;
+
+  /// No description provided for @setbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A Setback is Not Defeat'**
+  String get setbackTitle;
+
+  /// No description provided for @setbackSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Every breath is a fresh opportunity. Honesty with yourself is your greatest strength.'**
+  String get setbackSubtitle;
+
+  /// No description provided for @logSetbackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Setback & Keep Going'**
+  String get logSetbackAction;
+
+  /// No description provided for @triggerReflectionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What triggered this moment? (Optional)'**
+  String get triggerReflectionHint;
 }
 
 class _AppLocalizationsDelegate

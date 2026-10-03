@@ -102,4 +102,40 @@ void main() {
     expectLater(bloc.stream, emitsInOrder(expectedStates));
     bloc.add(const HomeEvent.loadStats());
   });
+
+  test('AppendNote saves daily log with existing status and triggers loadStats', () async {
+    registerFallbackValue(
+      SaveDailyLogParams(
+        wasSmoked: false,
+        cravingLevel: 1,
+      ),
+    );
+
+    when(() => mockGetTodayCheckInStatus()).thenAnswer(
+      (_) async => const Right(TodayCheckInStatus(
+        hasCheckedIn: true,
+        wasSmoked: false,
+        cravingLevel: 2,
+        notesCount: 1,
+      )),
+    );
+    when(() => mockSaveDailyLog(any())).thenAnswer((_) async => const Right(unit));
+    when(() => mockStatsUseCase()).thenAnswer((_) async => const Right(mockStats));
+    when(() => mockGetStreak()).thenAnswer((_) async => const Right(mockStreak));
+
+    bloc.add(const HomeEvent.appendNote(note: 'Felt stronger today'));
+
+    await untilCalled(() => mockSaveDailyLog(any()));
+
+    verify(
+      () => mockSaveDailyLog(
+        any(
+          that: isA<SaveDailyLogParams>()
+              .having((p) => p.wasSmoked, 'wasSmoked', isFalse)
+              .having((p) => p.cravingLevel, 'cravingLevel', 2)
+              .having((p) => p.note, 'note', 'Felt stronger today'),
+        ),
+      ),
+    ).called(1);
+  });
 }

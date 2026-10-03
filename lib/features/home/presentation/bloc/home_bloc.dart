@@ -34,6 +34,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<LoadStats>(_onLoadStats);
     on<LogCraving>(_onLogCraving);
     on<SaveDailyCheckIn>(_onSaveDailyCheckIn);
+    on<AppendNote>(_onAppendNote);
   }
 
   Future<void> _onLoadStats(LoadStats event, Emitter<HomeState> emit) async {
@@ -119,6 +120,27 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ));
       return;
     }
+
+    add(const HomeEvent.loadStats());
+  }
+
+  Future<void> _onAppendNote(
+    AppendNote event,
+    Emitter<HomeState> emit,
+  ) async {
+    final todayStatusResult = await getTodayCheckInStatus();
+    final todayStatus = todayStatusResult.fold(
+      (_) => null,
+      (status) => status,
+    );
+
+    await saveDailyLog(
+      SaveDailyLogParams(
+        wasSmoked: todayStatus?.wasSmoked ?? false,
+        cravingLevel: todayStatus?.cravingLevel ?? 1,
+        note: event.note,
+      ),
+    );
 
     add(const HomeEvent.loadStats());
   }

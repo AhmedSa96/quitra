@@ -717,4 +717,32 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noNotesRecorded => 'لا توجد ملاحظات مسجلة لهذا اليوم.';
+
+  @override
+  String get appendNote => 'إضافة خاطرة';
+
+  @override
+  String get iSmoked => 'دخّنت سيجارة';
+
+  @override
+  String get captureReflection => 'تسجيل خاطرة';
+
+  @override
+  String get reflectionHint => 'ما الذي يدور في ذهنك الآن؟';
+
+  @override
+  String get saveReflection => 'حفظ الخاطرة';
+
+  @override
+  String get setbackTitle => 'العثرة ليست نهاية المطاف';
+
+  @override
+  String get setbackSubtitle =>
+      'كل لحظة بداية جديدة. صدقك مع نفسك هو مصدر قوتك الحقيقي.';
+
+  @override
+  String get logSetbackAction => 'تسجيل العثرة والمواصلة';
+
+  @override
+  String get triggerReflectionHint => 'ما الذي أدى إلى هذا الموقف؟ (اختياري)';
 }

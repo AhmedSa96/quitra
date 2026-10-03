@@ -297,5 +297,14 @@
   "addNoteHint": "Add a reflection or thought...",
   "addNoteAction": "Add Note",
   "todayNotesTitle": "Today's Reflections",
-  "noNotesRecorded": "No notes recorded for this day."
+  "noNotesRecorded": "No notes recorded for this day.",
+  "appendNote": "Append Note",
+  "iSmoked": "I Smoked",
+  "captureReflection": "Capture a Reflection",
+  "reflectionHint": "What's on your mind right now?",
+  "saveReflection": "Save Reflection",
+  "setbackTitle": "A Setback is Not Defeat",
+  "setbackSubtitle": "Every breath is a fresh opportunity. Honesty with yourself is your greatest strength.",
+  "logSetbackAction": "Log Setback & Keep Going",
+  "triggerReflectionHint": "What triggered this moment? (Optional)"
 }

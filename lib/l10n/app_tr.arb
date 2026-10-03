@@ -238,5 +238,14 @@
   "addNoteHint": "Bir düşünce veya not ekle...",
   "addNoteAction": "Not Ekle",
   "todayNotesTitle": "Bugünün Notları",
-  "noNotesRecorded": "Bu gün için kayıtlı not bulunmuyor."
+  "noNotesRecorded": "Bu gün için kayıtlı not bulunmuyor.",
+  "appendNote": "Not Ekle",
+  "iSmoked": "Sigara İçtim",
+  "captureReflection": "Düşünceni Kaydet",
+  "reflectionHint": "Şu an aklından neler geçiyor?",
+  "saveReflection": "Notu Kaydet",
+  "setbackTitle": "Bir Tökezleme Yenilgi Değildir",
+  "setbackSubtitle": "Her nefes yeni bir başlangıçtır. Kendine dürüst olman en büyük gücündür.",
+  "logSetbackAction": "Tökezlemeyi Kaydet ve Devam Et",
+  "triggerReflectionHint": "Bu ana ne sebep oldu? (İsteğe bağlı)"
 }

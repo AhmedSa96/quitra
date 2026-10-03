@@ -209,5 +209,14 @@
   "addNoteHint": "أضف خاطرة أو ملاحظة...",
   "addNoteAction": "إضافة ملاحظة",
   "todayNotesTitle": "تأملات اليوم",
-  "noNotesRecorded": "لا توجد ملاحظات مسجلة لهذا اليوم."
+  "noNotesRecorded": "لا توجد ملاحظات مسجلة لهذا اليوم.",
+  "appendNote": "إضافة خاطرة",
+  "iSmoked": "دخّنت سيجارة",
+  "captureReflection": "تسجيل خاطرة",
+  "reflectionHint": "ما الذي يدور في ذهنك الآن؟",
+  "saveReflection": "حفظ الخاطرة",
+  "setbackTitle": "العثرة ليست نهاية المطاف",
+  "setbackSubtitle": "كل لحظة بداية جديدة. صدقك مع نفسك هو مصدر قوتك الحقيقي.",
+  "logSetbackAction": "تسجيل العثرة والمواصلة",
+  "triggerReflectionHint": "ما الذي أدى إلى هذا الموقف؟ (اختياري)"
 }
