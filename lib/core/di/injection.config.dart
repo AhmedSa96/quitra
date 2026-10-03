@@ -11,7 +11,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:isar/isar.dart' as _i3;
-import 'package:quitra/core/di/injection.dart' as _i46;
+import 'package:quitra/core/di/injection.dart' as _i48;
 import 'package:quitra/core/services/notification_trigger_service.dart' as _i8;
 import 'package:quitra/features/home/data/datasources/home_local_data_source.dart'
     as _i28;
@@ -20,22 +20,26 @@ import 'package:quitra/features/home/data/repositories/home_repository_impl.dart
 import 'package:quitra/features/home/domain/repositories/home_repository.dart'
     as _i29;
 import 'package:quitra/features/home/domain/usecases/get_home_stats_usecase.dart'
-    as _i42;
+    as _i43;
+import 'package:quitra/features/home/domain/usecases/get_today_check_in_status.dart'
+    as _i45;
 import 'package:quitra/features/home/domain/usecases/log_craving_usecase.dart'
     as _i35;
 import 'package:quitra/features/home/domain/usecases/save_daily_log.dart'
     as _i40;
-import 'package:quitra/features/home/presentation/bloc/home_bloc.dart' as _i44;
+import 'package:quitra/features/home/presentation/bloc/home_bloc.dart' as _i46;
 import 'package:quitra/features/journey/data/repositories/journey_repository_impl.dart'
     as _i34;
 import 'package:quitra/features/journey/domain/repositories/journey_repository.dart'
     as _i33;
+import 'package:quitra/features/journey/domain/usecases/add_journey_note.dart'
+    as _i42;
 import 'package:quitra/features/journey/domain/usecases/get_journey_history.dart'
-    as _i43;
+    as _i44;
 import 'package:quitra/features/journey/domain/usecases/update_journey_day.dart'
     as _i41;
 import 'package:quitra/features/journey/presentation/bloc/journey_bloc.dart'
-    as _i45;
+    as _i47;
 import 'package:quitra/features/milestones/data/datasources/milestone_local_data_source.dart'
     as _i4;
 import 'package:quitra/features/milestones/data/repositories/milestone_repository_impl.dart'
@@ -174,26 +178,31 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i40.SaveDailyLog(gh<_i29.HomeRepository>()));
     gh.lazySingleton<_i41.UpdateJourneyDay>(
         () => _i41.UpdateJourneyDay(gh<_i33.JourneyRepository>()));
-    gh.factory<_i42.GetHomeStatsUseCase>(
-        () => _i42.GetHomeStatsUseCase(gh<_i29.HomeRepository>()));
-    gh.lazySingleton<_i43.GetJourneyHistory>(
-        () => _i43.GetJourneyHistory(gh<_i33.JourneyRepository>()));
-    gh.factory<_i44.HomeBloc>(() => _i44.HomeBloc(
-          gh<_i42.GetHomeStatsUseCase>(),
+    gh.lazySingleton<_i42.AddJourneyNote>(
+        () => _i42.AddJourneyNote(gh<_i33.JourneyRepository>()));
+    gh.factory<_i43.GetHomeStatsUseCase>(
+        () => _i43.GetHomeStatsUseCase(gh<_i29.HomeRepository>()));
+    gh.lazySingleton<_i44.GetJourneyHistory>(
+        () => _i44.GetJourneyHistory(gh<_i33.JourneyRepository>()));
+    gh.factory<_i45.GetTodayCheckInStatus>(
+        () => _i45.GetTodayCheckInStatus(gh<_i29.HomeRepository>()));
+    gh.factory<_i46.HomeBloc>(() => _i46.HomeBloc(
+          gh<_i43.GetHomeStatsUseCase>(),
           gh<_i35.LogCravingUseCase>(),
           gh<_i40.SaveDailyLog>(),
           gh<_i27.GetStreak>(),
           gh<_i37.ProcessCheckIn>(),
           gh<_i21.CheckMilestones>(),
+          gh<_i45.GetTodayCheckInStatus>(),
         ));
-    gh.factory<_i45.JourneyBloc>(() => _i45.JourneyBloc(
-          gh<_i43.GetJourneyHistory>(),
+    gh.factory<_i47.JourneyBloc>(() => _i47.JourneyBloc(
+          gh<_i44.GetJourneyHistory>(),
           gh<_i41.UpdateJourneyDay>(),
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i46.RegisterModule {}
+class _$RegisterModule extends _i48.RegisterModule {}
 
-class _$RegisterSettingsModule extends _i46.RegisterSettingsModule {}
+class _$RegisterSettingsModule extends _i48.RegisterSettingsModule {}

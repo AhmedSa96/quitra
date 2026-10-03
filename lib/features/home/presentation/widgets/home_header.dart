@@ -22,7 +22,7 @@ class HomeHeader extends StatelessWidget {
             builder: (context, state) {
               final daysCount = state.maybeWhen(
                 initial: () => -1,
-                loaded: (stats, streak, _) => stats.daysSmokeFree,
+                loaded: (stats, streak, _, __) => stats.daysSmokeFree,
                 error: (stats) => -2,
                 loading: () => -3,
                 orElse: () => 0,

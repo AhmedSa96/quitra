@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import '../../domain/entities/today_check_in_status.dart';
 import '../../domain/usecases/get_home_stats_usecase.dart';
+import '../../domain/usecases/get_today_check_in_status.dart';
 import '../../domain/usecases/log_craving_usecase.dart';
 import '../../domain/usecases/save_daily_log.dart';
 import '../../../streak/domain/usecases/get_streak.dart';
@@ -18,6 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetStreak getStreak;
   final ProcessCheckIn processCheckIn;
   final CheckMilestones checkMilestones;
+  final GetTodayCheckInStatus getTodayCheckInStatus;
 
   HomeBloc(
     this.getHomeStatsUseCase,
@@ -26,6 +29,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     this.getStreak,
     this.processCheckIn,
     this.checkMilestones,
+    this.getTodayCheckInStatus,
   ) : super(const HomeState.initial()) {
     on<LoadStats>(_onLoadStats);
     on<LogCraving>(_onLogCraving);
@@ -36,13 +40,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(const HomeState.loading());
     final statsResult = await getHomeStatsUseCase();
     final streakResult = await getStreak();
+    final todayStatusResult = await getTodayCheckInStatus();
+    final todayStatus = todayStatusResult.getOrElse(() => const TodayCheckInStatus(
+          hasCheckedIn: false,
+          wasSmoked: false,
+          cravingLevel: 1,
+          notesCount: 0,
+        ));
 
     statsResult.fold(
       (failure) => emit(const HomeState.error('Failed to load stats')),
       (stats) {
         streakResult.fold(
           (failure) => emit(const HomeState.error('Failed to load streak')),
-          (streak) => emit(HomeState.loaded(stats: stats, streak: streak)),
+          (streak) => emit(HomeState.loaded(
+            stats: stats,
+            streak: streak,
+            todayStatus: todayStatus,
+          )),
         );
       },
     );
@@ -71,6 +86,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     final statsResult = await getHomeStatsUseCase();
     final streakResult = await getStreak();
+    final todayStatusResult = await getTodayCheckInStatus();
+    final todayStatus = todayStatusResult.fold((_) => null, (status) => status);
 
     if (statsResult.isRight() && streakResult.isRight()) {
       final stats = statsResult.getOrElse(() => throw Exception());
@@ -98,6 +115,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         stats: stats,
         streak: streak,
         newlyUnlockedMilestone: unlockedMilestone,
+        todayStatus: todayStatus,
       ));
       return;
     }

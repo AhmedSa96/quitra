@@ -680,4 +680,38 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get allMilestonesAchievedDesc =>
       'Yolculuğundaki tüm hedefleri başardın. Gerçekten olağanüstü!';
+
+  @override
+  String notesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count not',
+      one: '1 not',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notesLoggedToday(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Bugün $count not kaydedildi',
+      one: 'Bugün 1 not kaydedildi',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get addNoteHint => 'Bir düşünce veya not ekle...';
+
+  @override
+  String get addNoteAction => 'Not Ekle';
+
+  @override
+  String get todayNotesTitle => 'Bugünün Notları';
+
+  @override
+  String get noNotesRecorded => 'Bu gün için kayıtlı not bulunmuyor.';
 }

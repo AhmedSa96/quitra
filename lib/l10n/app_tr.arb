@@ -232,5 +232,11 @@
   "nextMilestoneTitle": "Sıradaki Kilometre Taşı",
   "milestoneComplete": "Tamamlandı",
   "allMilestonesAchieved": "Tüm Kilometre Taşları Aşıldı!",
-  "allMilestonesAchievedDesc": "Yolculuğundaki tüm hedefleri başardın. Gerçekten olağanüstü!"
+  "allMilestonesAchievedDesc": "Yolculuğundaki tüm hedefleri başardın. Gerçekten olağanüstü!",
+  "notesCount": "{count, plural, =1{1 not} other{{count} not}}",
+  "notesLoggedToday": "{count, plural, =1{Bugün 1 not kaydedildi} other{Bugün {count} not kaydedildi}}",
+  "addNoteHint": "Bir düşünce veya not ekle...",
+  "addNoteAction": "Not Ekle",
+  "todayNotesTitle": "Bugünün Notları",
+  "noNotesRecorded": "Bu gün için kayıtlı not bulunmuyor."
 }

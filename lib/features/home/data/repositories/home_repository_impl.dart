@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:quitra/features/onboarding/data/models/user_profile_isar.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../domain/entities/today_check_in_status.dart';
 import '../../domain/entities/user_stats.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../datasources/home_local_data_source.dart';
@@ -108,6 +109,40 @@ class HomeRepositoryImpl implements HomeRepository {
       }
 
       return const Right(unit);
+    } catch (e) {
+      return const Left(Failure.databaseError());
+    }
+  }
+
+  @override
+  Future<Either<Failure, TodayCheckInStatus>> getTodayCheckInStatus() async {
+    try {
+      final now = DateTime.now();
+      final normalizedDate = DateTime(now.year, now.month, now.day);
+      final dailyLogs = await localDataSource.getDailyLogs();
+      final todayLogs = dailyLogs.where((l) =>
+          l.date.year == normalizedDate.year &&
+          l.date.month == normalizedDate.month &&
+          l.date.day == normalizedDate.day).toList();
+      
+      final todayNotes = await localDataSource.getJournalNotesForDate(normalizedDate);
+
+      if (todayLogs.isNotEmpty) {
+        final log = todayLogs.first;
+        return Right(TodayCheckInStatus(
+          hasCheckedIn: true,
+          wasSmoked: log.wasSmoked,
+          cravingLevel: log.cravingLevel,
+          notesCount: todayNotes.length,
+        ));
+      } else {
+        return Right(TodayCheckInStatus(
+          hasCheckedIn: false,
+          wasSmoked: false,
+          cravingLevel: 1,
+          notesCount: todayNotes.length,
+        ));
+      }
     } catch (e) {
       return const Left(Failure.databaseError());
     }

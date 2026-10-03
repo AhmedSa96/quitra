@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
+import '../entities/today_check_in_status.dart';
 import '../entities/user_stats.dart';
 
 abstract class HomeRepository {
@@ -10,4 +11,5 @@ abstract class HomeRepository {
     required int cravingLevel,
     String? note,
   });
+  Future<Either<Failure, TodayCheckInStatus>> getTodayCheckInStatus();
 }

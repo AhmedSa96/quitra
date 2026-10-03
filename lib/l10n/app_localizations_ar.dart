@@ -675,4 +675,46 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get allMilestonesAchievedDesc =>
       'لقد حققت جميع الإنجازات في رحلتك بنجاح. إنجاز استثنائي حقاً!';
+
+  @override
+  String notesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ملاحظة',
+      many: '$count ملاحظة',
+      few: '$count ملاحظات',
+      two: 'ملاحظتان',
+      one: 'ملاحظة واحدة',
+      zero: 'لا توجد ملاحظات',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notesLoggedToday(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ملاحظة مسجلة اليوم',
+      many: '$count ملاحظة مسجلة اليوم',
+      few: '$count ملاحظات مسجلة اليوم',
+      two: 'ملاحظتان مسجلتان اليوم',
+      one: 'ملاحظة واحدة مسجلة اليوم',
+      zero: 'لا توجد ملاحظات مسجلة اليوم',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get addNoteHint => 'أضف خاطرة أو ملاحظة...';
+
+  @override
+  String get addNoteAction => 'إضافة ملاحظة';
+
+  @override
+  String get todayNotesTitle => 'تأملات اليوم';
+
+  @override
+  String get noNotesRecorded => 'لا توجد ملاحظات مسجلة لهذا اليوم.';
 }

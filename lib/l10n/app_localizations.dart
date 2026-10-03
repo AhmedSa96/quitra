@@ -1323,6 +1323,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You have achieved every single milestone on your journey. Truly remarkable!'**
   String get allMilestonesAchievedDesc;
+
+  /// No description provided for @notesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 note} other{{count} notes}}'**
+  String notesCount(int count);
+
+  /// No description provided for @notesLoggedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 note logged today} other{{count} notes logged today}}'**
+  String notesLoggedToday(int count);
+
+  /// No description provided for @addNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a reflection or thought...'**
+  String get addNoteHint;
+
+  /// No description provided for @addNoteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Note'**
+  String get addNoteAction;
+
+  /// No description provided for @todayNotesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Reflections'**
+  String get todayNotesTitle;
+
+  /// No description provided for @noNotesRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes recorded for this day.'**
+  String get noNotesRecorded;
 }
 
 class _AppLocalizationsDelegate

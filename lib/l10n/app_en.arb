@@ -277,5 +277,25 @@
   "nextMilestoneTitle": "Next Milestone",
   "milestoneComplete": "Completed",
   "allMilestonesAchieved": "All Milestones Achieved!",
-  "allMilestonesAchievedDesc": "You have achieved every single milestone on your journey. Truly remarkable!"
+  "allMilestonesAchievedDesc": "You have achieved every single milestone on your journey. Truly remarkable!",
+  "notesCount": "{count, plural, =1{1 note} other{{count} notes}}",
+  "@notesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notesLoggedToday": "{count, plural, =1{1 note logged today} other{{count} notes logged today}}",
+  "@notesLoggedToday": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addNoteHint": "Add a reflection or thought...",
+  "addNoteAction": "Add Note",
+  "todayNotesTitle": "Today's Reflections",
+  "noNotesRecorded": "No notes recorded for this day."
 }

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../domain/entities/today_check_in_status.dart';
 import '../../domain/entities/user_stats.dart';
 import '../../../streak/domain/entities/streak.dart';
 import '../../../milestones/domain/entities/milestone.dart';
@@ -13,6 +14,7 @@ abstract class HomeState with _$HomeState {
     required UserStats stats,
     required Streak streak,
     Milestone? newlyUnlockedMilestone,
+    TodayCheckInStatus? todayStatus,
   }) = Loaded;
   const factory HomeState.error(String message) = Error;
 }

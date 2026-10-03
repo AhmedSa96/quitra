@@ -203,5 +203,11 @@
   "nextMilestoneTitle": "المحطة التالية",
   "milestoneComplete": "مكتمل",
   "allMilestonesAchieved": "تم تحقيق جميع المحطات!",
-  "allMilestonesAchievedDesc": "لقد حققت جميع الإنجازات في رحلتك بنجاح. إنجاز استثنائي حقاً!"
+  "allMilestonesAchievedDesc": "لقد حققت جميع الإنجازات في رحلتك بنجاح. إنجاز استثنائي حقاً!",
+  "notesCount": "{count, plural, =0{لا توجد ملاحظات} =1{ملاحظة واحدة} =2{ملاحظتان} few{{count} ملاحظات} many{{count} ملاحظة} other{{count} ملاحظة}}",
+  "notesLoggedToday": "{count, plural, =0{لا توجد ملاحظات مسجلة اليوم} =1{ملاحظة واحدة مسجلة اليوم} =2{ملاحظتان مسجلتان اليوم} few{{count} ملاحظات مسجلة اليوم} many{{count} ملاحظة مسجلة اليوم} other{{count} ملاحظة مسجلة اليوم}}",
+  "addNoteHint": "أضف خاطرة أو ملاحظة...",
+  "addNoteAction": "إضافة ملاحظة",
+  "todayNotesTitle": "تأملات اليوم",
+  "noNotesRecorded": "لا توجد ملاحظات مسجلة لهذا اليوم."
 }

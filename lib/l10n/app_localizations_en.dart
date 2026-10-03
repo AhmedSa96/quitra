@@ -679,4 +679,38 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get allMilestonesAchievedDesc =>
       'You have achieved every single milestone on your journey. Truly remarkable!';
+
+  @override
+  String notesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notes',
+      one: '1 note',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notesLoggedToday(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notes logged today',
+      one: '1 note logged today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get addNoteHint => 'Add a reflection or thought...';
+
+  @override
+  String get addNoteAction => 'Add Note';
+
+  @override
+  String get todayNotesTitle => 'Today\'s Reflections';
+
+  @override
+  String get noNotesRecorded => 'No notes recorded for this day.';
 }

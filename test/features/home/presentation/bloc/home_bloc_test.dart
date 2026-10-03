@@ -12,6 +12,8 @@ import 'package:quitra/features/streak/domain/entities/streak.dart';
 import 'package:quitra/features/streak/domain/usecases/get_streak.dart';
 import 'package:quitra/features/streak/domain/usecases/process_check_in.dart';
 
+import 'package:quitra/features/home/domain/entities/today_check_in_status.dart';
+import 'package:quitra/features/home/domain/usecases/get_today_check_in_status.dart';
 import 'package:quitra/features/milestones/domain/usecases/check_milestones.dart';
 
 class MockGetHomeStatsUseCase extends Mock implements GetHomeStatsUseCase {}
@@ -20,6 +22,7 @@ class MockSaveDailyLog extends Mock implements SaveDailyLog {}
 class MockGetStreak extends Mock implements GetStreak {}
 class MockProcessCheckIn extends Mock implements ProcessCheckIn {}
 class MockCheckMilestones extends Mock implements CheckMilestones {}
+class MockGetTodayCheckInStatus extends Mock implements GetTodayCheckInStatus {}
 
 void main() {
   late HomeBloc bloc;
@@ -29,6 +32,7 @@ void main() {
   late MockGetStreak mockGetStreak;
   late MockProcessCheckIn mockProcessCheckIn;
   late MockCheckMilestones mockCheckMilestones;
+  late MockGetTodayCheckInStatus mockGetTodayCheckInStatus;
 
   const mockStats = UserStats(
     daysSmokeFree: 10,
@@ -51,6 +55,16 @@ void main() {
     mockGetStreak = MockGetStreak();
     mockProcessCheckIn = MockProcessCheckIn();
     mockCheckMilestones = MockCheckMilestones();
+    mockGetTodayCheckInStatus = MockGetTodayCheckInStatus();
+
+    when(() => mockGetTodayCheckInStatus()).thenAnswer(
+      (_) async => const Right(TodayCheckInStatus(
+        hasCheckedIn: false,
+        wasSmoked: false,
+        cravingLevel: 1,
+        notesCount: 0,
+      )),
+    );
 
     bloc = HomeBloc(
       mockStatsUseCase,
@@ -59,6 +73,7 @@ void main() {
       mockGetStreak,
       mockProcessCheckIn,
       mockCheckMilestones,
+      mockGetTodayCheckInStatus,
     );
   });
 
@@ -72,7 +87,16 @@ void main() {
 
     final expectedStates = [
       const HomeState.loading(),
-      const HomeState.loaded(stats: mockStats, streak: mockStreak),
+      const HomeState.loaded(
+        stats: mockStats,
+        streak: mockStreak,
+        todayStatus: TodayCheckInStatus(
+          hasCheckedIn: false,
+          wasSmoked: false,
+          cravingLevel: 1,
+          notesCount: 0,
+        ),
+      ),
     ];
 
     expectLater(bloc.stream, emitsInOrder(expectedStates));

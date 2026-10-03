@@ -38,6 +38,16 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
     if (!AdService.isAdReady) {
       AdService.loadRewardedAd();
     }
+    final homeState = context.read<HomeBloc>().state;
+    homeState.maybeWhen(
+      loaded: (_, __, ___, todayStatus) {
+        if (todayStatus != null && todayStatus.hasCheckedIn) {
+          _wasSmoked = todayStatus.wasSmoked;
+          _cravingLevel = todayStatus.cravingLevel.toDouble().clamp(1.0, 5.0);
+        }
+      },
+      orElse: () {},
+    );
   }
 
   @override
@@ -66,6 +76,11 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+    final homeState = context.watch<HomeBloc>().state;
+    final notesCount = homeState.maybeWhen(
+      loaded: (_, __, ___, todayStatus) => todayStatus?.notesCount ?? 0,
+      orElse: () => 0,
+    );
 
     return Container(
       padding: EdgeInsets.only(
@@ -78,10 +93,12 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
         color: AppTheme.surface,
         borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -140,11 +157,39 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
           const SizedBox(height: 24),
 
           // Question 3: Note
+          if (notesCount > 0) ...[
+            Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: AppTheme.primary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    SolarIconsOutline.notes,
+                    size: 14,
+                    color: AppTheme.primary,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    l10n.notesLoggedToday(notesCount),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppTheme.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+          ],
           TextField(
             controller: _noteController,
             maxLines: 3,
             decoration: InputDecoration(
-              hintText: l10n.addNoteOptional,
+              hintText: l10n.addNoteHint,
               filled: true,
               fillColor: AppTheme.surfaceContainerLowest,
               border: OutlineInputBorder(
@@ -222,7 +267,8 @@ class _DailyCheckInDialogState extends State<DailyCheckInDialog> {
           ),
         ],
       ),
-    );
+    ),
+  );
   }
 
   Widget _buildActionRow(
