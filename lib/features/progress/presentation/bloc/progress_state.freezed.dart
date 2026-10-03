@@ -20,7 +20,8 @@ mixin _$ProgressState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProgressStats stats) loaded,
+    required TResult Function(ProgressStats stats, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +29,7 @@ mixin _$ProgressState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProgressStats stats)? loaded,
+    TResult? Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ mixin _$ProgressState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProgressStats stats)? loaded,
+    TResult Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +127,8 @@ class _$InitialImpl implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProgressStats stats) loaded,
+    required TResult Function(ProgressStats stats, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +139,7 @@ class _$InitialImpl implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProgressStats stats)? loaded,
+    TResult? Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +150,7 @@ class _$InitialImpl implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProgressStats stats)? loaded,
+    TResult Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +242,8 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProgressStats stats) loaded,
+    required TResult Function(ProgressStats stats, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -251,7 +254,7 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProgressStats stats)? loaded,
+    TResult? Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -262,7 +265,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProgressStats stats)? loaded,
+    TResult Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +323,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProgressStats stats});
+  $Res call({ProgressStats stats, List<Milestone> milestones});
 
   $ProgressStatsCopyWith<$Res> get stats;
 }
@@ -337,12 +340,17 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? stats = null,
+    Object? milestones = null,
   }) {
     return _then(_$LoadedImpl(
-      null == stats
+      stats: null == stats
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as ProgressStats,
+      milestones: null == milestones
+          ? _value._milestones
+          : milestones // ignore: cast_nullable_to_non_nullable
+              as List<Milestone>,
     ));
   }
 
@@ -358,14 +366,24 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements Loaded {
-  const _$LoadedImpl(this.stats);
+  const _$LoadedImpl(
+      {required this.stats, final List<Milestone> milestones = const []})
+      : _milestones = milestones;
 
   @override
   final ProgressStats stats;
+  final List<Milestone> _milestones;
+  @override
+  @JsonKey()
+  List<Milestone> get milestones {
+    if (_milestones is EqualUnmodifiableListView) return _milestones;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_milestones);
+  }
 
   @override
   String toString() {
-    return 'ProgressState.loaded(stats: $stats)';
+    return 'ProgressState.loaded(stats: $stats, milestones: $milestones)';
   }
 
   @override
@@ -373,11 +391,14 @@ class _$LoadedImpl implements Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.stats, stats) || other.stats == stats));
+            (identical(other.stats, stats) || other.stats == stats) &&
+            const DeepCollectionEquality()
+                .equals(other._milestones, _milestones));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stats);
+  int get hashCode => Object.hash(
+      runtimeType, stats, const DeepCollectionEquality().hash(_milestones));
 
   @JsonKey(ignore: true)
   @override
@@ -390,10 +411,11 @@ class _$LoadedImpl implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProgressStats stats) loaded,
+    required TResult Function(ProgressStats stats, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(stats);
+    return loaded(stats, milestones);
   }
 
   @override
@@ -401,10 +423,10 @@ class _$LoadedImpl implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProgressStats stats)? loaded,
+    TResult? Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(stats);
+    return loaded?.call(stats, milestones);
   }
 
   @override
@@ -412,12 +434,12 @@ class _$LoadedImpl implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProgressStats stats)? loaded,
+    TResult Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(stats);
+      return loaded(stats, milestones);
     }
     return orElse();
   }
@@ -461,9 +483,12 @@ class _$LoadedImpl implements Loaded {
 }
 
 abstract class Loaded implements ProgressState {
-  const factory Loaded(final ProgressStats stats) = _$LoadedImpl;
+  const factory Loaded(
+      {required final ProgressStats stats,
+      final List<Milestone> milestones}) = _$LoadedImpl;
 
   ProgressStats get stats;
+  List<Milestone> get milestones;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -535,7 +560,8 @@ class _$ErrorImpl implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ProgressStats stats) loaded,
+    required TResult Function(ProgressStats stats, List<Milestone> milestones)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -546,7 +572,7 @@ class _$ErrorImpl implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ProgressStats stats)? loaded,
+    TResult? Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -557,7 +583,7 @@ class _$ErrorImpl implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ProgressStats stats)? loaded,
+    TResult Function(ProgressStats stats, List<Milestone> milestones)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
