@@ -10,4 +10,8 @@ abstract class JourneyRepository {
     int? cravingLevel,
     String? note,
   });
+  Future<Either<Failure, Unit>> addJourneyNote({
+    required DateTime date,
+    required String text,
+  });
 }

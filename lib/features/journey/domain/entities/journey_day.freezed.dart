@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$JourneyDay {
   DateTime get date => throw _privateConstructorUsedError;
   JourneyStatus get status => throw _privateConstructorUsedError;
+  List<JourneyNote> get notes => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
   int? get cravingLevel => throw _privateConstructorUsedError;
 
@@ -33,7 +34,11 @@ abstract class $JourneyDayCopyWith<$Res> {
       _$JourneyDayCopyWithImpl<$Res, JourneyDay>;
   @useResult
   $Res call(
-      {DateTime date, JourneyStatus status, String? note, int? cravingLevel});
+      {DateTime date,
+      JourneyStatus status,
+      List<JourneyNote> notes,
+      String? note,
+      int? cravingLevel});
 }
 
 /// @nodoc
@@ -51,6 +56,7 @@ class _$JourneyDayCopyWithImpl<$Res, $Val extends JourneyDay>
   $Res call({
     Object? date = null,
     Object? status = null,
+    Object? notes = null,
     Object? note = freezed,
     Object? cravingLevel = freezed,
   }) {
@@ -63,6 +69,10 @@ class _$JourneyDayCopyWithImpl<$Res, $Val extends JourneyDay>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as JourneyStatus,
+      notes: null == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as List<JourneyNote>,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -84,7 +94,11 @@ abstract class _$$JourneyDayImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime date, JourneyStatus status, String? note, int? cravingLevel});
+      {DateTime date,
+      JourneyStatus status,
+      List<JourneyNote> notes,
+      String? note,
+      int? cravingLevel});
 }
 
 /// @nodoc
@@ -100,6 +114,7 @@ class __$$JourneyDayImplCopyWithImpl<$Res>
   $Res call({
     Object? date = null,
     Object? status = null,
+    Object? notes = null,
     Object? note = freezed,
     Object? cravingLevel = freezed,
   }) {
@@ -112,6 +127,10 @@ class __$$JourneyDayImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as JourneyStatus,
+      notes: null == notes
+          ? _value._notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as List<JourneyNote>,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -128,12 +147,26 @@ class __$$JourneyDayImplCopyWithImpl<$Res>
 
 class _$JourneyDayImpl implements _JourneyDay {
   const _$JourneyDayImpl(
-      {required this.date, required this.status, this.note, this.cravingLevel});
+      {required this.date,
+      required this.status,
+      final List<JourneyNote> notes = const [],
+      this.note,
+      this.cravingLevel})
+      : _notes = notes;
 
   @override
   final DateTime date;
   @override
   final JourneyStatus status;
+  final List<JourneyNote> _notes;
+  @override
+  @JsonKey()
+  List<JourneyNote> get notes {
+    if (_notes is EqualUnmodifiableListView) return _notes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notes);
+  }
+
   @override
   final String? note;
   @override
@@ -141,7 +174,7 @@ class _$JourneyDayImpl implements _JourneyDay {
 
   @override
   String toString() {
-    return 'JourneyDay(date: $date, status: $status, note: $note, cravingLevel: $cravingLevel)';
+    return 'JourneyDay(date: $date, status: $status, notes: $notes, note: $note, cravingLevel: $cravingLevel)';
   }
 
   @override
@@ -151,14 +184,15 @@ class _$JourneyDayImpl implements _JourneyDay {
             other is _$JourneyDayImpl &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other._notes, _notes) &&
             (identical(other.note, note) || other.note == note) &&
             (identical(other.cravingLevel, cravingLevel) ||
                 other.cravingLevel == cravingLevel));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, date, status, note, cravingLevel);
+  int get hashCode => Object.hash(runtimeType, date, status,
+      const DeepCollectionEquality().hash(_notes), note, cravingLevel);
 
   @JsonKey(ignore: true)
   @override
@@ -171,6 +205,7 @@ abstract class _JourneyDay implements JourneyDay {
   const factory _JourneyDay(
       {required final DateTime date,
       required final JourneyStatus status,
+      final List<JourneyNote> notes,
       final String? note,
       final int? cravingLevel}) = _$JourneyDayImpl;
 
@@ -178,6 +213,8 @@ abstract class _JourneyDay implements JourneyDay {
   DateTime get date;
   @override
   JourneyStatus get status;
+  @override
+  List<JourneyNote> get notes;
   @override
   String? get note;
   @override

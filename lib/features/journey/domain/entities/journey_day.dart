@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'journey_note.dart';
 
 part 'journey_day.freezed.dart';
 
@@ -9,6 +10,7 @@ class JourneyDay with _$JourneyDay {
   const factory JourneyDay({
     required DateTime date,
     required JourneyStatus status,
+    @Default([]) List<JourneyNote> notes,
     String? note,
     int? cravingLevel,
   }) = _JourneyDay;

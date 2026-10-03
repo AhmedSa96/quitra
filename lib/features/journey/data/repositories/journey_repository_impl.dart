@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/error/failures.dart';
 import '../../../home/data/datasources/home_local_data_source.dart';
+import '../models/journal_note_isar.dart';
 import '../../domain/entities/journey_day.dart';
+import '../../domain/entities/journey_note.dart';
 import '../../domain/repositories/journey_repository.dart';
 
 @LazySingleton(as: JourneyRepository)
@@ -21,6 +23,7 @@ class JourneyRepositoryImpl implements JourneyRepository {
 
       final dailyLogs = await localDataSource.getDailyLogs();
       final cravingEvents = await localDataSource.getCravingEvents();
+      final journalNotes = await localDataSource.getAllJournalNotes();
 
       final now = DateTime.now();
       final startDate = profile.quitStartDate;
@@ -42,11 +45,21 @@ class JourneyRepositoryImpl implements JourneyRepository {
         final daysCravings = cravingEvents.where((e) => 
           e.timestamp.year == date.year && e.timestamp.month == date.month && e.timestamp.day == date.day).toList();
 
+        final daysNotes = journalNotes.where((n) =>
+          n.date.year == date.year && n.date.month == date.month && n.date.day == date.day).toList()
+          ..sort((a, b) => a.createdAt.compareTo(b.createdAt));
+
+        final domainNotes = daysNotes.map((n) => JourneyNote(
+          id: n.id,
+          createdAt: n.createdAt,
+          text: n.text,
+        )).toList();
+
         final hasSmokedManual = daysLogs.any((l) => l.wasSmoked);
         final hasSmokedEvent = daysCravings.any((e) => e.wasSmoked);
 
         JourneyStatus status = JourneyStatus.clean;
-        String? note;
+        String? legacyNote;
         int? cravingLevel;
 
         if (hasSmokedManual || hasSmokedEvent) {
@@ -56,14 +69,15 @@ class JourneyRepositoryImpl implements JourneyRepository {
         }
 
         if (daysLogs.isNotEmpty) {
-          note = daysLogs.first.note;
+          legacyNote = daysLogs.first.note;
           cravingLevel = daysLogs.first.cravingLevel;
         }
 
         history.add(JourneyDay(
           date: date,
           status: status,
-          note: note,
+          notes: domainNotes,
+          note: domainNotes.isNotEmpty ? domainNotes.last.text : legacyNote,
           cravingLevel: cravingLevel,
         ));
       }
@@ -88,6 +102,24 @@ class JourneyRepositoryImpl implements JourneyRepository {
         cravingLevel: cravingLevel,
         note: note,
       );
+      return const Right(unit);
+    } catch (e) {
+      return const Left(Failure.databaseError());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> addJourneyNote({
+    required DateTime date,
+    required String text,
+  }) async {
+    try {
+      final normalizedDate = DateTime(date.year, date.month, date.day);
+      final note = JournalNoteIsar()
+        ..date = normalizedDate
+        ..createdAt = DateTime.now()
+        ..text = text;
+      await localDataSource.addJournalNote(note);
       return const Right(unit);
     } catch (e) {
       return const Left(Failure.databaseError());

@@ -8,7 +8,7 @@ import '../../domain/repositories/home_repository.dart';
 import '../datasources/home_local_data_source.dart';
 import '../models/user_stats_isar.dart';
 import '../models/craving_event_isar.dart';
-import '../models/daily_log_isar.dart';
+import 'package:quitra/features/journey/data/models/journal_note_isar.dart';
 
 @LazySingleton(as: HomeRepository)
 class HomeRepositoryImpl implements HomeRepository {
@@ -89,13 +89,24 @@ class HomeRepositoryImpl implements HomeRepository {
     String? note,
   }) async {
     try {
-      final log = DailyLogIsar()
-        ..date = DateTime.now()
-        ..wasSmoked = wasSmoked
-        ..cravingLevel = cravingLevel
-        ..note = note;
-      
-      await localDataSource.saveDailyLog(log);
+      final now = DateTime.now();
+      final normalizedDate = DateTime(now.year, now.month, now.day);
+
+      await localDataSource.updateDailyLog(
+        date: normalizedDate,
+        wasSmoked: wasSmoked,
+        cravingLevel: cravingLevel,
+        note: note,
+      );
+
+      if (note != null && note.trim().isNotEmpty) {
+        final journalNote = JournalNoteIsar()
+          ..date = normalizedDate
+          ..createdAt = now
+          ..text = note.trim();
+        await localDataSource.addJournalNote(journalNote);
+      }
+
       return const Right(unit);
     } catch (e) {
       return const Left(Failure.databaseError());
