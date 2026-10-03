@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import '../../../../core/events/app_event_bus.dart';
+import '../../../journey/domain/usecases/get_journey_history.dart';
 import '../../domain/entities/today_check_in_status.dart';
 import '../../domain/usecases/get_home_stats_usecase.dart';
 import '../../domain/usecases/get_today_check_in_status.dart';
@@ -21,6 +24,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final ProcessCheckIn processCheckIn;
   final CheckMilestones checkMilestones;
   final GetTodayCheckInStatus getTodayCheckInStatus;
+  final GetJourneyHistory getJourneyHistory;
+  final AppEventBus appEventBus;
+  StreamSubscription<AppEvent>? _busSubscription;
 
   HomeBloc(
     this.getHomeStatsUseCase,
@@ -30,11 +36,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     this.processCheckIn,
     this.checkMilestones,
     this.getTodayCheckInStatus,
+    this.getJourneyHistory,
+    this.appEventBus,
   ) : super(const HomeState.initial()) {
     on<LoadStats>(_onLoadStats);
     on<LogCraving>(_onLogCraving);
     on<SaveDailyCheckIn>(_onSaveDailyCheckIn);
     on<AppendNote>(_onAppendNote);
+
+    _busSubscription = appEventBus.stream.listen((event) {
+      if (event is JourneyDayUpdatedEvent || event is NoteAddedEvent) {
+        add(const HomeEvent.loadStats());
+      }
+    });
   }
 
   Future<void> _onLoadStats(LoadStats event, Emitter<HomeState> emit) async {
@@ -42,6 +56,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final statsResult = await getHomeStatsUseCase();
     final streakResult = await getStreak();
     final todayStatusResult = await getTodayCheckInStatus();
+    final historyResult = await getJourneyHistory();
+    final history = historyResult.getOrElse(() => []);
+
     final todayStatus = todayStatusResult.getOrElse(() => const TodayCheckInStatus(
           hasCheckedIn: false,
           wasSmoked: false,
@@ -57,6 +74,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           (streak) => emit(HomeState.loaded(
             stats: stats,
             streak: streak,
+            journeyHistory: history,
             todayStatus: todayStatus,
           )),
         );
@@ -69,6 +87,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (event.wasSmoked) {
       await processCheckIn(wasSmoked: true);
     }
+    appEventBus.emit(CheckInUpdatedEvent(wasSmoked: event.wasSmoked));
     add(const HomeEvent.loadStats());
   }
 
@@ -88,6 +107,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final statsResult = await getHomeStatsUseCase();
     final streakResult = await getStreak();
     final todayStatusResult = await getTodayCheckInStatus();
+    final historyResult = await getJourneyHistory();
+    final history = historyResult.getOrElse(() => []);
     final todayStatus = todayStatusResult.fold((_) => null, (status) => status);
 
     if (statsResult.isRight() && streakResult.isRight()) {
@@ -115,12 +136,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeState.loaded(
         stats: stats,
         streak: streak,
+        journeyHistory: history,
         newlyUnlockedMilestone: unlockedMilestone,
         todayStatus: todayStatus,
       ));
+      appEventBus.emit(CheckInUpdatedEvent(wasSmoked: event.wasSmoked));
       return;
     }
 
+    appEventBus.emit(CheckInUpdatedEvent(wasSmoked: event.wasSmoked));
     add(const HomeEvent.loadStats());
   }
 
@@ -142,6 +166,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
     );
 
+    appEventBus.emit(NoteAddedEvent(date: DateTime.now()));
     add(const HomeEvent.loadStats());
+  }
+
+  @override
+  Future<void> close() {
+    _busSubscription?.cancel();
+    return super.close();
   }
 }

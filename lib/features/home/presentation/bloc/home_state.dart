@@ -3,6 +3,7 @@ import '../../domain/entities/today_check_in_status.dart';
 import '../../domain/entities/user_stats.dart';
 import '../../../streak/domain/entities/streak.dart';
 import '../../../milestones/domain/entities/milestone.dart';
+import '../../../journey/domain/entities/journey_day.dart';
 
 part 'home_state.freezed.dart';
 
@@ -13,6 +14,7 @@ abstract class HomeState with _$HomeState {
   const factory HomeState.loaded({
     required UserStats stats,
     required Streak streak,
+    @Default([]) List<JourneyDay> journeyHistory,
     Milestone? newlyUnlockedMilestone,
     TodayCheckInStatus? todayStatus,
   }) = Loaded;

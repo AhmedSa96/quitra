@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:quitra/core/events/app_event_bus.dart';
 import 'package:quitra/features/home/domain/entities/user_stats.dart';
 import 'package:quitra/features/home/domain/usecases/get_home_stats_usecase.dart';
 import 'package:quitra/features/home/domain/usecases/log_craving_usecase.dart';
@@ -8,6 +9,8 @@ import 'package:quitra/features/home/domain/usecases/save_daily_log.dart';
 import 'package:quitra/features/home/presentation/bloc/home_bloc.dart';
 import 'package:quitra/features/home/presentation/bloc/home_event.dart';
 import 'package:quitra/features/home/presentation/bloc/home_state.dart';
+import 'package:quitra/features/journey/domain/entities/journey_day.dart';
+import 'package:quitra/features/journey/domain/usecases/get_journey_history.dart';
 import 'package:quitra/features/streak/domain/entities/streak.dart';
 import 'package:quitra/features/streak/domain/usecases/get_streak.dart';
 import 'package:quitra/features/streak/domain/usecases/process_check_in.dart';
@@ -23,6 +26,7 @@ class MockGetStreak extends Mock implements GetStreak {}
 class MockProcessCheckIn extends Mock implements ProcessCheckIn {}
 class MockCheckMilestones extends Mock implements CheckMilestones {}
 class MockGetTodayCheckInStatus extends Mock implements GetTodayCheckInStatus {}
+class MockGetJourneyHistory extends Mock implements GetJourneyHistory {}
 
 void main() {
   late HomeBloc bloc;
@@ -33,6 +37,8 @@ void main() {
   late MockProcessCheckIn mockProcessCheckIn;
   late MockCheckMilestones mockCheckMilestones;
   late MockGetTodayCheckInStatus mockGetTodayCheckInStatus;
+  late MockGetJourneyHistory mockGetJourneyHistory;
+  late AppEventBus appEventBus;
 
   const mockStats = UserStats(
     daysSmokeFree: 10,
@@ -48,6 +54,13 @@ void main() {
     mode: StreakMode.strict,
   );
 
+  final List<JourneyDay> mockHistory = [
+    JourneyDay(
+      date: DateTime(2026, 10, 3),
+      status: JourneyStatus.clean,
+    ),
+  ];
+
   setUp(() {
     mockStatsUseCase = MockGetHomeStatsUseCase();
     mockCravingUseCase = MockLogCravingUseCase();
@@ -56,6 +69,8 @@ void main() {
     mockProcessCheckIn = MockProcessCheckIn();
     mockCheckMilestones = MockCheckMilestones();
     mockGetTodayCheckInStatus = MockGetTodayCheckInStatus();
+    mockGetJourneyHistory = MockGetJourneyHistory();
+    appEventBus = AppEventBus();
 
     when(() => mockGetTodayCheckInStatus()).thenAnswer(
       (_) async => const Right(TodayCheckInStatus(
@@ -65,6 +80,7 @@ void main() {
         notesCount: 0,
       )),
     );
+    when(() => mockGetJourneyHistory()).thenAnswer((_) async => Right(mockHistory));
 
     bloc = HomeBloc(
       mockStatsUseCase,
@@ -74,23 +90,31 @@ void main() {
       mockProcessCheckIn,
       mockCheckMilestones,
       mockGetTodayCheckInStatus,
+      mockGetJourneyHistory,
+      appEventBus,
     );
+  });
+
+  tearDown(() {
+    bloc.close();
+    appEventBus.dispose();
   });
 
   test('initial state is HomeState.initial()', () {
     expect(bloc.state, const HomeState.initial());
   });
 
-  test('LoadStats emits [Loading, Loaded] when stats and streak succeed', () async {
+  test('LoadStats emits [Loading, Loaded] when stats, streak, and history succeed', () async {
     when(() => mockStatsUseCase()).thenAnswer((_) async => const Right(mockStats));
     when(() => mockGetStreak()).thenAnswer((_) async => const Right(mockStreak));
 
     final expectedStates = [
       const HomeState.loading(),
-      const HomeState.loaded(
+      HomeState.loaded(
         stats: mockStats,
         streak: mockStreak,
-        todayStatus: TodayCheckInStatus(
+        journeyHistory: mockHistory,
+        todayStatus: const TodayCheckInStatus(
           hasCheckedIn: false,
           wasSmoked: false,
           cravingLevel: 1,
@@ -103,7 +127,7 @@ void main() {
     bloc.add(const HomeEvent.loadStats());
   });
 
-  test('AppendNote saves daily log with existing status and triggers loadStats', () async {
+  test('AppendNote saves daily log, emits NoteAddedEvent, and reloads stats', () async {
     registerFallbackValue(
       SaveDailyLogParams(
         wasSmoked: false,
@@ -123,6 +147,11 @@ void main() {
     when(() => mockStatsUseCase()).thenAnswer((_) async => const Right(mockStats));
     when(() => mockGetStreak()).thenAnswer((_) async => const Right(mockStreak));
 
+    expectLater(
+      appEventBus.on<NoteAddedEvent>(),
+      emits(isA<NoteAddedEvent>()),
+    );
+
     bloc.add(const HomeEvent.appendNote(note: 'Felt stronger today'));
 
     await untilCalled(() => mockSaveDailyLog(any()));
@@ -137,5 +166,44 @@ void main() {
         ),
       ),
     ).called(1);
+  });
+
+  test('LogCraving emits CheckInUpdatedEvent to AppEventBus', () async {
+    when(() => mockCravingUseCase(wasSmoked: any(named: 'wasSmoked')))
+        .thenAnswer((_) async => const Right(unit));
+    when(() => mockProcessCheckIn(wasSmoked: any(named: 'wasSmoked')))
+        .thenAnswer((_) async => const Right(ProcessCheckInResult(streak: mockStreak, wasForgiven: false)));
+    when(() => mockStatsUseCase()).thenAnswer((_) async => const Right(mockStats));
+    when(() => mockGetStreak()).thenAnswer((_) async => const Right(mockStreak));
+
+    expectLater(
+      appEventBus.on<CheckInUpdatedEvent>(),
+      emits(const CheckInUpdatedEvent(wasSmoked: true)),
+    );
+
+    bloc.add(const HomeEvent.logCraving(wasSmoked: true));
+  });
+
+  test('External JourneyDayUpdatedEvent triggers LoadStats on HomeBloc', () async {
+    when(() => mockStatsUseCase()).thenAnswer((_) async => const Right(mockStats));
+    when(() => mockGetStreak()).thenAnswer((_) async => const Right(mockStreak));
+
+    final expectedStates = [
+      const HomeState.loading(),
+      HomeState.loaded(
+        stats: mockStats,
+        streak: mockStreak,
+        journeyHistory: mockHistory,
+        todayStatus: const TodayCheckInStatus(
+          hasCheckedIn: false,
+          wasSmoked: false,
+          cravingLevel: 1,
+          notesCount: 0,
+        ),
+      ),
+    ];
+
+    expectLater(bloc.stream, emitsInOrder(expectedStates));
+    appEventBus.emit(JourneyDayUpdatedEvent(date: DateTime(2026, 10, 3)));
   });
 }
