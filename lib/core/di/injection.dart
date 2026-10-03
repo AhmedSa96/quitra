@@ -6,6 +6,7 @@ import '../../features/onboarding/data/models/user_profile_isar.dart';
 import '../../features/home/data/models/user_stats_isar.dart';
 import '../../features/home/data/models/craving_event_isar.dart';
 import '../../features/home/data/models/daily_log_isar.dart';
+import '../../features/journey/data/models/journal_note_isar.dart';
 import '../../features/settings/data/models/user_settings_isar.dart';
 import '../../features/streak/data/models/streak_isar.dart';
 import '../../features/milestones/data/models/milestone_isar.dart';
@@ -26,6 +27,7 @@ abstract class RegisterModule {
         UserProfileIsarSchema,
         CravingEventIsarSchema,
         DailyLogIsarSchema,
+        JournalNoteIsarSchema,
         UserSettingsIsarSchema,
         StreakIsarSchema,
         MilestoneIsarSchema,

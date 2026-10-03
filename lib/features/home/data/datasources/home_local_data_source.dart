@@ -2,6 +2,7 @@ import 'package:isar/isar.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../features/onboarding/data/models/user_profile_isar.dart';
+import 'package:quitra/features/journey/data/models/journal_note_isar.dart';
 import '../models/user_stats_isar.dart';
 import '../models/craving_event_isar.dart';
 import '../models/daily_log_isar.dart';
@@ -21,6 +22,9 @@ abstract class HomeLocalDataSource {
     int? cravingLevel,
     String? note,
   });
+  Future<void> addJournalNote(JournalNoteIsar note);
+  Future<List<JournalNoteIsar>> getJournalNotesForDate(DateTime date);
+  Future<List<JournalNoteIsar>> getAllJournalNotes();
 }
 
 @LazySingleton(as: HomeLocalDataSource)
@@ -94,10 +98,31 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
         final newLog = DailyLogIsar()
           ..date = normalizedDate
           ..wasSmoked = wasSmoked ?? false
-          ..cravingLevel = cravingLevel ?? 0
-          ..note = note;
+          ..cravingLevel = cravingLevel ?? 0;
         await isar.dailyLogIsars.put(newLog);
       }
     });
+  }
+
+  @override
+  Future<void> addJournalNote(JournalNoteIsar note) async {
+    await isar.writeTxn(() async {
+      await isar.journalNoteIsars.put(note);
+    });
+  }
+
+  @override
+  Future<List<JournalNoteIsar>> getJournalNotesForDate(DateTime date) async {
+    final normalizedDate = DateTime(date.year, date.month, date.day);
+    return isar.journalNoteIsars
+        .filter()
+        .dateEqualTo(normalizedDate)
+        .sortByCreatedAt()
+        .findAll();
+  }
+
+  @override
+  Future<List<JournalNoteIsar>> getAllJournalNotes() async {
+    return isar.journalNoteIsars.where().sortByCreatedAt().findAll();
   }
 }
