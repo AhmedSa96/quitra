@@ -37,6 +37,11 @@ class AppTheme {
         error: Colors.redAccent,
         onError: Colors.white,
       ),
+      appBarTheme: AppBarThemeData(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+      ),
       textTheme: textTheme.copyWith(
         displayLarge: GoogleFonts.manrope(
           fontSize: 32,
