@@ -11,6 +11,8 @@ abstract class JourneyState with _$JourneyState {
   const factory JourneyState.loaded({
     required List<JourneyDay> history,
     @Default([]) List<Milestone> milestones,
+    @Default(false) bool hasReachedMax,
+    @Default(false) bool isLoadingMore,
   }) = _Loaded;
   const factory JourneyState.error(String message) = _Error;
 }

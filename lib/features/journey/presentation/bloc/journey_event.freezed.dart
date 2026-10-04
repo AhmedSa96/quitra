@@ -19,6 +19,7 @@ mixin _$JourneyEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadHistory,
+    required TResult Function() loadMoreHistory,
     required TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
         updateDay,
@@ -28,6 +29,7 @@ mixin _$JourneyEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadHistory,
+    TResult? Function()? loadMoreHistory,
     TResult? Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
@@ -37,6 +39,7 @@ mixin _$JourneyEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadHistory,
+    TResult Function()? loadMoreHistory,
     TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
@@ -47,6 +50,7 @@ mixin _$JourneyEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadHistory value) loadHistory,
+    required TResult Function(LoadMoreHistory value) loadMoreHistory,
     required TResult Function(UpdateDay value) updateDay,
     required TResult Function(AddNote value) addNote,
   }) =>
@@ -54,6 +58,7 @@ mixin _$JourneyEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadHistory value)? loadHistory,
+    TResult? Function(LoadMoreHistory value)? loadMoreHistory,
     TResult? Function(UpdateDay value)? updateDay,
     TResult? Function(AddNote value)? addNote,
   }) =>
@@ -61,6 +66,7 @@ mixin _$JourneyEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadHistory value)? loadHistory,
+    TResult Function(LoadMoreHistory value)? loadMoreHistory,
     TResult Function(UpdateDay value)? updateDay,
     TResult Function(AddNote value)? addNote,
     required TResult orElse(),
@@ -125,6 +131,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadHistory,
+    required TResult Function() loadMoreHistory,
     required TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
         updateDay,
@@ -137,6 +144,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadHistory,
+    TResult? Function()? loadMoreHistory,
     TResult? Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
@@ -149,6 +157,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadHistory,
+    TResult Function()? loadMoreHistory,
     TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
@@ -165,6 +174,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadHistory value) loadHistory,
+    required TResult Function(LoadMoreHistory value) loadMoreHistory,
     required TResult Function(UpdateDay value) updateDay,
     required TResult Function(AddNote value) addNote,
   }) {
@@ -175,6 +185,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadHistory value)? loadHistory,
+    TResult? Function(LoadMoreHistory value)? loadMoreHistory,
     TResult? Function(UpdateDay value)? updateDay,
     TResult? Function(AddNote value)? addNote,
   }) {
@@ -185,6 +196,7 @@ class _$LoadHistoryImpl implements LoadHistory {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadHistory value)? loadHistory,
+    TResult Function(LoadMoreHistory value)? loadMoreHistory,
     TResult Function(UpdateDay value)? updateDay,
     TResult Function(AddNote value)? addNote,
     required TResult orElse(),
@@ -198,6 +210,126 @@ class _$LoadHistoryImpl implements LoadHistory {
 
 abstract class LoadHistory implements JourneyEvent {
   const factory LoadHistory() = _$LoadHistoryImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadMoreHistoryImplCopyWith<$Res> {
+  factory _$$LoadMoreHistoryImplCopyWith(_$LoadMoreHistoryImpl value,
+          $Res Function(_$LoadMoreHistoryImpl) then) =
+      __$$LoadMoreHistoryImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadMoreHistoryImplCopyWithImpl<$Res>
+    extends _$JourneyEventCopyWithImpl<$Res, _$LoadMoreHistoryImpl>
+    implements _$$LoadMoreHistoryImplCopyWith<$Res> {
+  __$$LoadMoreHistoryImplCopyWithImpl(
+      _$LoadMoreHistoryImpl _value, $Res Function(_$LoadMoreHistoryImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadMoreHistoryImpl implements LoadMoreHistory {
+  const _$LoadMoreHistoryImpl();
+
+  @override
+  String toString() {
+    return 'JourneyEvent.loadMoreHistory()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadMoreHistoryImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadHistory,
+    required TResult Function() loadMoreHistory,
+    required TResult Function(
+            DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
+        updateDay,
+    required TResult Function(DateTime date, String text) addNote,
+  }) {
+    return loadMoreHistory();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadHistory,
+    TResult? Function()? loadMoreHistory,
+    TResult? Function(
+            DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
+        updateDay,
+    TResult? Function(DateTime date, String text)? addNote,
+  }) {
+    return loadMoreHistory?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadHistory,
+    TResult Function()? loadMoreHistory,
+    TResult Function(
+            DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
+        updateDay,
+    TResult Function(DateTime date, String text)? addNote,
+    required TResult orElse(),
+  }) {
+    if (loadMoreHistory != null) {
+      return loadMoreHistory();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadHistory value) loadHistory,
+    required TResult Function(LoadMoreHistory value) loadMoreHistory,
+    required TResult Function(UpdateDay value) updateDay,
+    required TResult Function(AddNote value) addNote,
+  }) {
+    return loadMoreHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadHistory value)? loadHistory,
+    TResult? Function(LoadMoreHistory value)? loadMoreHistory,
+    TResult? Function(UpdateDay value)? updateDay,
+    TResult? Function(AddNote value)? addNote,
+  }) {
+    return loadMoreHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadHistory value)? loadHistory,
+    TResult Function(LoadMoreHistory value)? loadMoreHistory,
+    TResult Function(UpdateDay value)? updateDay,
+    TResult Function(AddNote value)? addNote,
+    required TResult orElse(),
+  }) {
+    if (loadMoreHistory != null) {
+      return loadMoreHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadMoreHistory implements JourneyEvent {
+  const factory LoadMoreHistory() = _$LoadMoreHistoryImpl;
 }
 
 /// @nodoc
@@ -293,6 +425,7 @@ class _$UpdateDayImpl implements UpdateDay {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadHistory,
+    required TResult Function() loadMoreHistory,
     required TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
         updateDay,
@@ -305,6 +438,7 @@ class _$UpdateDayImpl implements UpdateDay {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadHistory,
+    TResult? Function()? loadMoreHistory,
     TResult? Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
@@ -317,6 +451,7 @@ class _$UpdateDayImpl implements UpdateDay {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadHistory,
+    TResult Function()? loadMoreHistory,
     TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
@@ -333,6 +468,7 @@ class _$UpdateDayImpl implements UpdateDay {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadHistory value) loadHistory,
+    required TResult Function(LoadMoreHistory value) loadMoreHistory,
     required TResult Function(UpdateDay value) updateDay,
     required TResult Function(AddNote value) addNote,
   }) {
@@ -343,6 +479,7 @@ class _$UpdateDayImpl implements UpdateDay {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadHistory value)? loadHistory,
+    TResult? Function(LoadMoreHistory value)? loadMoreHistory,
     TResult? Function(UpdateDay value)? updateDay,
     TResult? Function(AddNote value)? addNote,
   }) {
@@ -353,6 +490,7 @@ class _$UpdateDayImpl implements UpdateDay {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadHistory value)? loadHistory,
+    TResult Function(LoadMoreHistory value)? loadMoreHistory,
     TResult Function(UpdateDay value)? updateDay,
     TResult Function(AddNote value)? addNote,
     required TResult orElse(),
@@ -453,6 +591,7 @@ class _$AddNoteImpl implements AddNote {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadHistory,
+    required TResult Function() loadMoreHistory,
     required TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)
         updateDay,
@@ -465,6 +604,7 @@ class _$AddNoteImpl implements AddNote {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadHistory,
+    TResult? Function()? loadMoreHistory,
     TResult? Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
@@ -477,6 +617,7 @@ class _$AddNoteImpl implements AddNote {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadHistory,
+    TResult Function()? loadMoreHistory,
     TResult Function(
             DateTime date, bool? wasSmoked, int? cravingLevel, String? note)?
         updateDay,
@@ -493,6 +634,7 @@ class _$AddNoteImpl implements AddNote {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadHistory value) loadHistory,
+    required TResult Function(LoadMoreHistory value) loadMoreHistory,
     required TResult Function(UpdateDay value) updateDay,
     required TResult Function(AddNote value) addNote,
   }) {
@@ -503,6 +645,7 @@ class _$AddNoteImpl implements AddNote {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadHistory value)? loadHistory,
+    TResult? Function(LoadMoreHistory value)? loadMoreHistory,
     TResult? Function(UpdateDay value)? updateDay,
     TResult? Function(AddNote value)? addNote,
   }) {
@@ -513,6 +656,7 @@ class _$AddNoteImpl implements AddNote {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadHistory value)? loadHistory,
+    TResult Function(LoadMoreHistory value)? loadMoreHistory,
     TResult Function(UpdateDay value)? updateDay,
     TResult Function(AddNote value)? addNote,
     required TResult orElse(),

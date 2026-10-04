@@ -19,6 +19,8 @@ class JourneyBloc extends Bloc<JourneyEvent, JourneyState> {
   final AppEventBus appEventBus;
   StreamSubscription<AppEvent>? _busSubscription;
 
+  static const int pageSize = 20;
+
   JourneyBloc(
     this.getJourneyHistory,
     this.updateJourneyDay,
@@ -27,6 +29,7 @@ class JourneyBloc extends Bloc<JourneyEvent, JourneyState> {
     this.appEventBus,
   ) : super(const JourneyState.initial()) {
     on<LoadHistory>(_onLoadHistory);
+    on<LoadMoreHistory>(_onLoadMoreHistory);
     on<UpdateDay>(_onUpdateDay);
     on<AddNote>(_onAddNote);
 
@@ -41,16 +44,56 @@ class JourneyBloc extends Bloc<JourneyEvent, JourneyState> {
     LoadHistory event,
     Emitter<JourneyState> emit,
   ) async {
+    final currentCount = state.maybeMap(
+      loaded: (s) => s.history.length > pageSize ? s.history.length : pageSize,
+      orElse: () => pageSize,
+    );
+
     emit(const JourneyState.loading());
-    final result = await getJourneyHistory();
+    final result = await getJourneyHistory(limit: currentCount, offset: 0);
     final milestonesResult = await getAllMilestones();
 
     result.fold(
       (failure) => emit(const JourneyState.error('Failed to load history')),
       (history) {
         final milestones = milestonesResult.getOrElse(() => []);
-        emit(JourneyState.loaded(history: history, milestones: milestones));
+        emit(JourneyState.loaded(
+          history: history,
+          milestones: milestones,
+          hasReachedMax: history.length < currentCount,
+          isLoadingMore: false,
+        ));
       },
+    );
+  }
+
+  Future<void> _onLoadMoreHistory(
+    LoadMoreHistory event,
+    Emitter<JourneyState> emit,
+  ) async {
+    await state.maybeMap(
+      loaded: (loadedState) async {
+        if (loadedState.hasReachedMax || loadedState.isLoadingMore) return;
+
+        emit(loadedState.copyWith(isLoadingMore: true));
+
+        final result = await getJourneyHistory(
+          limit: pageSize,
+          offset: loadedState.history.length,
+        );
+
+        result.fold(
+          (failure) => emit(loadedState.copyWith(isLoadingMore: false)),
+          (newDays) {
+            emit(loadedState.copyWith(
+              history: [...loadedState.history, ...newDays],
+              hasReachedMax: newDays.length < pageSize,
+              isLoadingMore: false,
+            ));
+          },
+        );
+      },
+      orElse: () async {},
     );
   }
 

@@ -20,8 +20,8 @@ mixin _$JourneyState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<JourneyDay> history, List<Milestone> milestones)
+    required TResult Function(List<JourneyDay> history,
+            List<Milestone> milestones, bool hasReachedMax, bool isLoadingMore)
         loaded,
     required TResult Function(String message) error,
   }) =>
@@ -30,7 +30,8 @@ mixin _$JourneyState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult? Function(String message)? error,
   }) =>
@@ -39,7 +40,8 @@ mixin _$JourneyState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -130,8 +132,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<JourneyDay> history, List<Milestone> milestones)
+    required TResult Function(List<JourneyDay> history,
+            List<Milestone> milestones, bool hasReachedMax, bool isLoadingMore)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -143,7 +145,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -155,7 +158,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -248,8 +252,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<JourneyDay> history, List<Milestone> milestones)
+    required TResult Function(List<JourneyDay> history,
+            List<Milestone> milestones, bool hasReachedMax, bool isLoadingMore)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -261,7 +265,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -273,7 +278,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -332,7 +338,11 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<JourneyDay> history, List<Milestone> milestones});
+  $Res call(
+      {List<JourneyDay> history,
+      List<Milestone> milestones,
+      bool hasReachedMax,
+      bool isLoadingMore});
 }
 
 /// @nodoc
@@ -348,6 +358,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? history = null,
     Object? milestones = null,
+    Object? hasReachedMax = null,
+    Object? isLoadingMore = null,
   }) {
     return _then(_$LoadedImpl(
       history: null == history
@@ -358,6 +370,14 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value._milestones
           : milestones // ignore: cast_nullable_to_non_nullable
               as List<Milestone>,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingMore: null == isLoadingMore
+          ? _value.isLoadingMore
+          : isLoadingMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -367,7 +387,9 @@ class __$$LoadedImplCopyWithImpl<$Res>
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
       {required final List<JourneyDay> history,
-      final List<Milestone> milestones = const []})
+      final List<Milestone> milestones = const [],
+      this.hasReachedMax = false,
+      this.isLoadingMore = false})
       : _history = history,
         _milestones = milestones;
 
@@ -389,8 +411,15 @@ class _$LoadedImpl implements _Loaded {
   }
 
   @override
+  @JsonKey()
+  final bool hasReachedMax;
+  @override
+  @JsonKey()
+  final bool isLoadingMore;
+
+  @override
   String toString() {
-    return 'JourneyState.loaded(history: $history, milestones: $milestones)';
+    return 'JourneyState.loaded(history: $history, milestones: $milestones, hasReachedMax: $hasReachedMax, isLoadingMore: $isLoadingMore)';
   }
 
   @override
@@ -400,14 +429,20 @@ class _$LoadedImpl implements _Loaded {
             other is _$LoadedImpl &&
             const DeepCollectionEquality().equals(other._history, _history) &&
             const DeepCollectionEquality()
-                .equals(other._milestones, _milestones));
+                .equals(other._milestones, _milestones) &&
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax) &&
+            (identical(other.isLoadingMore, isLoadingMore) ||
+                other.isLoadingMore == isLoadingMore));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_history),
-      const DeepCollectionEquality().hash(_milestones));
+      const DeepCollectionEquality().hash(_milestones),
+      hasReachedMax,
+      isLoadingMore);
 
   @JsonKey(ignore: true)
   @override
@@ -420,12 +455,12 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<JourneyDay> history, List<Milestone> milestones)
+    required TResult Function(List<JourneyDay> history,
+            List<Milestone> milestones, bool hasReachedMax, bool isLoadingMore)
         loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(history, milestones);
+    return loaded(history, milestones, hasReachedMax, isLoadingMore);
   }
 
   @override
@@ -433,11 +468,12 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(history, milestones);
+    return loaded?.call(history, milestones, hasReachedMax, isLoadingMore);
   }
 
   @override
@@ -445,13 +481,14 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(history, milestones);
+      return loaded(history, milestones, hasReachedMax, isLoadingMore);
     }
     return orElse();
   }
@@ -497,10 +534,14 @@ class _$LoadedImpl implements _Loaded {
 abstract class _Loaded implements JourneyState {
   const factory _Loaded(
       {required final List<JourneyDay> history,
-      final List<Milestone> milestones}) = _$LoadedImpl;
+      final List<Milestone> milestones,
+      final bool hasReachedMax,
+      final bool isLoadingMore}) = _$LoadedImpl;
 
   List<JourneyDay> get history;
   List<Milestone> get milestones;
+  bool get hasReachedMax;
+  bool get isLoadingMore;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -572,8 +613,8 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<JourneyDay> history, List<Milestone> milestones)
+    required TResult Function(List<JourneyDay> history,
+            List<Milestone> milestones, bool hasReachedMax, bool isLoadingMore)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -585,7 +626,8 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult? Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -597,7 +639,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<JourneyDay> history, List<Milestone> milestones)?
+    TResult Function(List<JourneyDay> history, List<Milestone> milestones,
+            bool hasReachedMax, bool isLoadingMore)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),

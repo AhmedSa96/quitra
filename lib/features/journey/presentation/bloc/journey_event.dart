@@ -5,6 +5,7 @@ part 'journey_event.freezed.dart';
 @freezed
 abstract class JourneyEvent with _$JourneyEvent {
   const factory JourneyEvent.loadHistory() = LoadHistory;
+  const factory JourneyEvent.loadMoreHistory() = LoadMoreHistory;
   const factory JourneyEvent.updateDay({
     required DateTime date,
     bool? wasSmoked,

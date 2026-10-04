@@ -3,7 +3,7 @@ import '../../../../core/error/failures.dart';
 import '../entities/journey_day.dart';
 
 abstract class JourneyRepository {
-  Future<Either<Failure, List<JourneyDay>>> getJourneyHistory();
+  Future<Either<Failure, List<JourneyDay>>> getJourneyHistory({int? limit, int? offset});
   Future<Either<Failure, Unit>> updateJourneyDay({
     required DateTime date,
     bool? wasSmoked,

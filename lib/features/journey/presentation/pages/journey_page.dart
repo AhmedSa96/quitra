@@ -21,14 +21,52 @@ class JourneyPage extends StatelessWidget {
   }
 }
 
-class _JourneyView extends StatelessWidget {
+class _JourneyView extends StatefulWidget {
   const _JourneyView();
+
+  @override
+  State<_JourneyView> createState() => _JourneyViewState();
+}
+
+class _JourneyViewState extends State<_JourneyView> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (!_scrollController.hasClients) return;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+    if (maxScroll - currentScroll <= 200) {
+      final bloc = context.read<JourneyBloc>();
+      bloc.state.maybeMap(
+        loaded: (loadedState) {
+          if (!loadedState.hasReachedMax && !loadedState.isLoadingMore) {
+            bloc.add(const JourneyEvent.loadMoreHistory());
+          }
+        },
+        orElse: () {},
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
     return SingleChildScrollView(
+      controller: _scrollController,
       physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
@@ -50,7 +88,7 @@ class _JourneyView extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     ),
                   ),
-                  loaded: (history, milestones) {
+                  loaded: (history, milestones, hasReachedMax, isLoadingMore) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -84,12 +122,20 @@ class _JourneyView extends StatelessWidget {
                               ),
                             ),
                           )
-                        else
+                        else ...[
                           Column(
                             children: history
                                 .map((day) => JourneyTimelineItem(day: day))
                                 .toList(),
                           ),
+                          if (isLoadingMore)
+                            const Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 24.0),
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                        ],
                       ],
                     );
                   },

@@ -10,7 +10,7 @@ class GetJourneyHistory {
   final JourneyRepository repository;
 
   GetJourneyHistory(this.repository);
-  Future<Either<Failure, List<JourneyDay>>> call() async {
-    return await repository.getJourneyHistory();
+  Future<Either<Failure, List<JourneyDay>>> call({int? limit, int? offset}) async {
+    return await repository.getJourneyHistory(limit: limit, offset: offset);
   }
 }

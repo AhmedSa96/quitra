@@ -14,7 +14,7 @@ class JourneyRepositoryImpl implements JourneyRepository {
   JourneyRepositoryImpl(this.localDataSource);
 
   @override
-  Future<Either<Failure, List<JourneyDay>>> getJourneyHistory() async {
+  Future<Either<Failure, List<JourneyDay>>> getJourneyHistory({int? limit, int? offset}) async {
     try {
       final profile = await localDataSource.getUserProfile();
       if (profile == null) {
@@ -32,12 +32,28 @@ class JourneyRepositoryImpl implements JourneyRepository {
       final normalizedNow = DateTime(now.year, now.month, now.day);
       final normalizedStart = DateTime(startDate.year, startDate.month, startDate.day);
 
+      if (normalizedStart.isAfter(normalizedNow)) {
+        return const Right([]);
+      }
+
+      final totalDays = (normalizedNow.difference(normalizedStart).inMinutes / (24 * 60)).round() + 1;
+      final startOffset = offset ?? 0;
+      if (startOffset >= totalDays) {
+        return const Right([]);
+      }
+
+      final count = limit != null
+          ? ((startOffset + limit > totalDays) ? totalDays - startOffset : limit)
+          : (totalDays - startOffset);
+      if (count <= 0) {
+        return const Right([]);
+      }
+
       final List<JourneyDay> history = [];
 
-      // Iterate from today back to start date
-      for (var date = normalizedNow; 
-           date.isAfter(normalizedStart.subtract(const Duration(seconds: 1))); 
-           date = date.subtract(const Duration(days: 1))) {
+      // Iterate for the paginated slice
+      for (var i = 0; i < count; i++) {
+        final date = DateTime(normalizedNow.year, normalizedNow.month, normalizedNow.day - (startOffset + i));
         
         final daysLogs = dailyLogs.where((l) => 
           l.date.year == date.year && l.date.month == date.month && l.date.day == date.day).toList();
